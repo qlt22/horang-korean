@@ -54,6 +54,22 @@ Lessons differ by kind: vocabulary opens with word cards, grammar starts with a 
 
 ---
 
+## Engagement Lab (branch `gamification-lab`)
+
+This branch adds three **alternative engagement systems** on top of the same course, switchable at `#/lab` (Me → Engagement Lab):
+
+| Mode | The bet | What changes |
+|---|---|---|
+| **Skill Constellation** | Autonomy + visible mastery | 48 grammar stars on a map; light any star you can reach; tap → targeted 5-sentence practice |
+| **Bounty Board** | Autonomy + challenge | Choose one of three daily bounties (safe / risky / epic); no stake, no penalty; claim on completion |
+| **Co-op Expedition** | Relatedness + role | A shared weekly 2,400 XP goal with four **labelled** pace-setters; pick Scout / Scribe / Envoy for +10 % XP on matching tasks; unlock a Seoul diary chapter at each 25 % |
+
+Full rationale, risks and the A/B plan: **`docs/ENGAGEMENT-ALTERNATIVES.md`**. Logic tests: `tests/engagement.test.mjs` (35 assertions). UI tests: `tests/lab.mjs`.
+
+The classic stack on `main` is untouched; these are additive prototypes, not a redesign of the course.
+
+---
+
 ## The Korean voice
 
 The MVP used `speechSynthesis`, which falls back to whatever the OS has installed (often a robotic formant voice). The A1 build ships **pre-generated Microsoft neural Korean audio**:

@@ -1,7 +1,7 @@
 [server] Horang running → http://localhost:4199
 
 ────────────────────────────────────────────────────────────────
-1/5 · Content validation (12 units)
+1/7 · Content validation (12 units)
 ────────────────────────────────────────────────────────────────
 
 u01.json
@@ -101,7 +101,7 @@ Totals: 12 units · 60 sessions · 288 sentences · 576 words · 48 grammar · 1
 ✓ 0 errors, 56 warnings
 
 ────────────────────────────────────────────────────────────────
-2/5 · Core logic
+2/7 · Core logic
 ────────────────────────────────────────────────────────────────
 
 A1 content
@@ -158,9 +158,9 @@ Session + progression
   ✓ lesson 1 starts
   ✓ lesson 1 opens with sentence #0 — say_it
   ✓ lesson completes with 3 stars — 3
-  ✓ lesson awards >= 100 XP — 218
+  ✓ lesson awards >= 100 XP — 258
   ✓ lesson met 5+ new sentences — 7
-  ✓ XP total rises — 243
+  ✓ XP total rises — 263
   ✓ lesson 2 unlocks
   ✓ lesson 4 is still locked early
   ✓ chest slot filled — 1
@@ -191,7 +191,7 @@ Economy + meta
 70 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-3/5 · Audio bundle
+3/7 · Audio bundle
 ────────────────────────────────────────────────────────────────
   ✓ expected clip count — 1352
   ✓ every clip exists
@@ -204,7 +204,86 @@ Economy + meta
 7 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-4/5 · Full browser journey (390×844 + 1440×900)
+4/7 · Engagement alternatives (branch)
+────────────────────────────────────────────────────────────────
+
+Lab shell
+  ✓ classic is the default mode
+  ✓ engagement state initialised
+  ✓ mode switches
+  ✓ unknown mode rejected
+
+Skill Constellation
+  ✓ 48 grammar stars — 48
+  ✓ 12 constellations — 12
+  ✓ every node has coordinates
+  ✓ unit 1 stars are unlocked
+  ✓ advanced units start locked
+  ✓ a grammar star covers several sentences — 18
+  ✓ unlit star has zero strength
+  ✓ mastery lights the star — 1/18
+  ✓ practice is recorded
+
+Targeted practice session
+  ✓ targeted session builds — 12
+  ✓ targeted session remembers its grammar
+  ✓ targeted tasks are all g01 sentences
+
+Bounty Board
+  ✓ three bounties
+  ✓ one of each tier
+  ✓ accept works
+  ✓ claim blocked before target
+  ✓ claim pays the reward — +60
+  ✓ claim is idempotent
+  ✓ bounty day is today
+
+Co-op Expedition
+  ✓ role is required before bonuses
+  ✓ role can be chosen
+  ✓ role types stored for the store hook
+  ✓ scribe boosts typing
+  ✓ scribe does not boost listening
+  ✓ four pace-setters
+  ✓ weekly goal is set
+  ✓ chapters exist
+
+Role bonus in the real XP path
+  ✓ typing pays more than listening under Scribe — 11 vs 10
+
+Mode does not break the core
+  ✓ core still awards XP
+  ✓ core still fills quests
+  ✓ classic can be restored
+
+35 passed, 0 failed
+
+────────────────────────────────────────────────────────────────
+5/7 · Engagement Lab UI
+────────────────────────────────────────────────────────────────
+  ✓ lab lists four modes
+  ✓ lab explains the test method
+  ✓ classic is active by default
+  ✓ 48 stars rendered — 48
+  ✓ constellation can be activated
+  ✓ star opens a grammar sheet — 도 N + 도  Add 도 to a noun to mean 'also / too'. It replaces 은
+  ✓ targeted practice starts a real session — {"kind":"practice","target":"g14","n":3}
+  ✓ three bounty tiers
+  ✓ accepting pins a bounty — 2026-11-17-listen10
+  ✓ board promises no penalty
+  ✓ four pace-setters listed — 5 incl you
+  ✓ role can be chosen — scribe
+  ✓ role bonus is wired into the store
+  ✓ expedition says pace-setters are not people
+  ✓ no horizontal overflow
+  ✓ home still renders after lab modes
+
+CONSOLE ERRORS: none
+
+ALL LAB CHECKS PASSED
+
+────────────────────────────────────────────────────────────────
+6/7 · Full browser journey (390×844 + 1440×900)
 ────────────────────────────────────────────────────────────────
 ▸ Welcome
 ▸ Onboarding
@@ -286,7 +365,7 @@ Economy + meta
   ✓ navigated to complete — http://localhost:4199/#/complete?node=0
   ✓ lesson recorded in path
   ✓ new sentences met — 7
-  ✓ XP awarded — 273
+  ✓ XP awarded — 263
   ✓ words were practised — 9
 ▸ Lesson 2 · grammar
   ✓ grammar lesson starts — grammar
@@ -302,7 +381,7 @@ Economy + meta
 ▸ Checkpoint (unit 1)
   ✓ checkpoint header visible
   ✓ checkpoint badge earned — u01_intro
-  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T03:15:44.761Z"}
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T03:31:07.724Z"}
 ▸ Home · course map + daily plan
   ✓ home shows 60 sessions
   ✓ home shows 288 sentences
@@ -340,7 +419,7 @@ CONSOLE ERRORS: none
 ALL CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-5/5 · Retention Lab (60-day A1 simulation)
+7/7 · Retention Lab (60-day A1 simulation)
 ────────────────────────────────────────────────────────────────
 start day 0
 {
@@ -348,13 +427,13 @@ start day 0
   sessions: 60,
   badges: 12,
   met: 288,
-  strong: 89,
+  strong: 94,
   words: 149,
-  xp: 20512,
+  xp: 20758,
   level: 22,
   streak: 19,
   best: 38,
-  coins: 16030,
+  coins: 15682,
   chests: 72,
   league: 1,
   timeline: 61,
@@ -362,4 +441,4 @@ start day 0
 }
 errors none
 
-✓ All suites passed  (content=0 core=0 audio=0 e2e=0 demo=0)
+✓ All suites passed  (content=0 core=0 audio=0 engage=0 lab=0 e2e=0 demo=0)

@@ -138,11 +138,16 @@ function ensureSession(params = {}) {
   const kind = params.kind || 'node';
   const nodeIndex = Math.max(0, Number(params.node ?? 0));
   const s = state.session;
+  const gid = params.grammarId || null;
   const matches =
-    s && s.kind === kind && (kind !== 'node' || (s.nodeIndex ?? 0) === nodeIndex) && Array.isArray(s.items);
+    s &&
+    s.kind === kind &&
+    (kind !== 'node' || (s.nodeIndex ?? 0) === nodeIndex) &&
+    (kind !== 'practice' || (s.targeted?.grammarId || null) === gid) &&
+    Array.isArray(s.items);
   if (matches && s.index < s.items.length) return { session: s, resumed: (s.index || 0) > 0 };
   // A finished run left behind (or no run at all): start clean.
-  const fresh = startSession(kind, kind === 'node' ? { nodeIndex } : {});
+  const fresh = startSession(kind, kind === 'node' ? { nodeIndex } : gid ? { grammarId: gid } : {});
   return { session: fresh || null, resumed: false };
 }
 

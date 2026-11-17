@@ -22,8 +22,13 @@ import demo from './screens/demo.js';
 import vocab from './screens/vocab.js';
 import grammar from './screens/grammar.js';
 import exam from './screens/exam.js';
+import lab from './screens/lab.js';
+import constellation from './screens/constellation.js';
+import bounties from './screens/bounties.js';
+import expedition from './screens/expedition.js';
+import { ensureEngagement } from './core/engagement.js';
 
-const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo, vocab, grammar, exam };
+const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo, vocab, grammar, exam, lab, constellation, bounties, expedition };
 
 const TABS = [
   { id: 'home', label: 'Learn', icon: 'home' },
@@ -111,6 +116,7 @@ function renderSidePanels() {
 
 function boot() {
   buildTabs();
+  ensureEngagement();
   refreshDay();
   audio.setEnabled(state.settings.sound);
   ui.initReducedMotion(state.settings.reducedMotion);

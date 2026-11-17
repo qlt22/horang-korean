@@ -501,6 +501,9 @@ export default {
         </div>
 
         <div class="pf-lab">
+          <button class="btn btn-ghost pf-lab-btn" type="button" data-go="lab">
+            ${ui.icon('sparkle', 16)} Engagement Lab
+          </button>
           <button class="btn btn-ghost pf-lab-btn" type="button" data-go="demo">
             ${ui.icon('chart', 16)} Retention Lab
           </button>

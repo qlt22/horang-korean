@@ -231,6 +231,22 @@ export function buildSession(kind, params = {}, mastery = {}, name = '') {
     lesson = lessonAt(index);
     items = buildLessonItems(lesson, { name, mastery });
     if (index === 0) items.unshift(exerciseFor('sentence0', 'say_it', { name }));
+  } else if (kind === 'practice' && params.grammarId) {
+    const gid = params.grammarId;
+    const pool = SENTENCES.filter((s) => (s.grammarIds || []).includes(gid));
+    const chosen = pool.slice(0, 6);
+    const poolWords = chosen.length ? wordsOf(chosen[0].unitId) : [];
+    const poolIds = pool.map((s) => s.id);
+    chosen.forEach((s, i) => {
+      const first = ['fill_blank', 'type_answer', 'tile_build', 'translate_pick'][i % 4];
+      const second = ['type_answer', 'listen_pick', 'tile_build', 'fill_blank'][i % 4];
+      const ex1 = sentenceTask(s, [first, 'type_answer'], { pool: poolIds, poolWords, name });
+      if (ex1) items.push(ex1);
+      const ex2 = sentenceTask(s, [second, 'listen_pick'], { pool: poolIds, poolWords, name });
+      if (ex2 && ex2.type !== ex1?.type) items.push(ex2);
+    });
+    items = interleave(items);
+    lesson = { id: `target_${gid}`, nodeIndex: null, kind: 'practice', unitId: chosen[0]?.unitId || null };
   } else {
     // review / daily / practice: due sentences, mixed tasks
     const all = SENTENCES.map((s) => s.id);
@@ -259,6 +275,7 @@ export function buildSession(kind, params = {}, mastery = {}, name = '') {
     nodeIndex: kind === 'node' ? (lesson?.nodeIndex ?? 0) : null,
     lessonId: lesson?.id || null,
     lessonKind: lesson?.kind || kind,
+    targeted: kind === 'practice' && params.grammarId ? { grammarId: params.grammarId } : null,
     items,
     index: 0,
     correct: 0,

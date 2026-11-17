@@ -113,6 +113,8 @@ function freshCounters() {
     reviews: 0,
     words: 0,
     reading: 0,
+    typed: 0,
+    perfectLesson: 0,
   };
 }
 
@@ -469,6 +471,10 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
   let xp = 0;
   if (correct) {
     xp = usedHint ? 5 : crit ? 20 : 10;
+    const exp = state.engagement?.expedition;
+    if (state.engagement?.mode === 'expedition' && exp?.roleTypes?.includes(type)) {
+      xp = Math.max(1, Math.round(xp * 1.1));
+    }
     if (state.flags.boosterUntil && state.flags.boosterUntil > nowMs()) xp *= 2;
     if (clock.isEvening()) xp = Math.round(xp * 1.5);
     xp = Math.min(xp, 60); // hard cap: 3× base
@@ -497,6 +503,7 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
     }
     if (type === 'say_it') state.counters.said++;
     if (type === 'listen_pick') state.counters.listens++;
+    if (type === 'type_answer' || type === 'dictation') state.counters.typed++;
     if (wasNew) state.counters.newSentences++;
     if (['fading', 'wilting', 'dropped'].includes(statusBefore)) state.counters.fadingReviews++;
   } else {
@@ -585,7 +592,10 @@ export function completeNode() {
     if (!state.path.completedNodes.includes(nodeIndex)) state.path.completedNodes.push(nodeIndex);
     state.path.currentNode = Math.max(state.path.currentNode, nodeIndex + 1);
     state.counters.nodes++;
-    if (stars === 3) state.counters.stars3++;
+    if (stars === 3) {
+    state.counters.stars3++;
+    state.counters.perfectLesson = (state.counters.perfectLesson || 0) + 1;
+  }
     state.stats.nodesDone++;
   }
   // Any finished session fills a chest slot (max 3/day) so the reward loop never

@@ -46,24 +46,30 @@ if (!up) {
   process.exit(1);
 }
 
-line('1/5 · Content validation (12 units)');
+line('1/7 · Content validation (12 units)');
 const content = await run('tools/validate-content.mjs');
 
-line('2/5 · Core logic');
+line('2/7 · Core logic');
 const core = await run('tests/core.test.mjs');
 
-line('3/5 · Audio bundle');
+line('3/7 · Audio bundle');
 const audio = await run('tests/audio.test.mjs');
 
-line('4/5 · Full browser journey (390×844 + 1440×900)');
+line('4/7 · Engagement alternatives (branch)');
+const engage = await run('tests/engagement.test.mjs');
+
+line('5/7 · Engagement Lab UI');
+const lab = await run('tests/lab.mjs', { BASE });
+
+line('6/7 · Full browser journey (390×844 + 1440×900)');
 const e2e = await run('tests/e2e.mjs', { BASE });
 
-line('5/5 · Retention Lab (60-day A1 simulation)');
+line('7/7 · Retention Lab (60-day A1 simulation)');
 const demo = await run('tests/demo.mjs', { BASE });
 
 server.kill();
-const failed = [content, core, audio, e2e, demo].filter((c) => c !== 0).length;
+const failed = [content, core, audio, engage, lab, e2e, demo].filter((c) => c !== 0).length;
 console.log(
-  `\n${failed ? `✗ ${failed} suite(s) failed` : '✓ All suites passed'}  (content=${content} core=${core} audio=${audio} e2e=${e2e} demo=${demo})`
+  `\n${failed ? `✗ ${failed} suite(s) failed` : '✓ All suites passed'}  (content=${content} core=${core} audio=${audio} engage=${engage} lab=${lab} e2e=${e2e} demo=${demo})`
 );
 process.exit(failed ? 1 : 0);
