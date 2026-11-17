@@ -59,7 +59,12 @@ const engine = await import('../app/js/core/engine.js');
 const targeted = engine.buildSession('practice', { grammarId: 'g01' }, store.state.mastery, 'Lucas');
 ok('targeted session builds', targeted.items.length >= 4, `${targeted.items.length}`);
 ok('targeted session remembers its grammar', targeted.targeted?.grammarId === 'g01');
-ok('targeted tasks are all g01 sentences', targeted.items.every((i) => course.SENTENCE_BY_ID[i.sentenceId]?.grammarIds.includes('g01')));
+ok(
+  'targeted tasks are all g01 sentences or its examples',
+  targeted.items.every(
+    (i) => !i.sentenceId || course.SENTENCE_BY_ID[i.sentenceId]?.grammarIds.includes('g01')
+  ) && targeted.items.some((i) => i.clipKind === 'g')
+);
 
 section('Bounty Board');
 const board = eng.ensureBounties();

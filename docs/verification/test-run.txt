@@ -225,9 +225,9 @@ Skill Constellation
   ✓ practice is recorded
 
 Targeted practice session
-  ✓ targeted session builds — 12
+  ✓ targeted session builds — 11
   ✓ targeted session remembers its grammar
-  ✓ targeted tasks are all g01 sentences
+  ✓ targeted tasks are all g01 sentences or its examples
 
 Bounty Board
   ✓ three bounties
@@ -267,7 +267,7 @@ Mode does not break the core
   ✓ 48 stars rendered — 48
   ✓ constellation can be activated
   ✓ star opens a grammar sheet — 도 N + 도  Add 도 to a noun to mean 'also / too'. It replaces 은
-  ✓ targeted practice starts a real session — {"kind":"practice","target":"g14","n":3}
+  ✓ targeted practice starts a real session — {"kind":"practice","target":"g14","n":6}
   ✓ three bounty tiers
   ✓ accepting pins a bounty — 2026-11-17-listen10
   ✓ board promises no penalty
@@ -365,7 +365,7 @@ ALL LAB CHECKS PASSED
   ✓ navigated to complete — http://localhost:4199/#/complete?node=0
   ✓ lesson recorded in path
   ✓ new sentences met — 7
-  ✓ XP awarded — 263
+  ✓ XP awarded — 253
   ✓ words were practised — 9
 ▸ Lesson 2 · grammar
   ✓ grammar lesson starts — grammar
@@ -381,7 +381,7 @@ ALL LAB CHECKS PASSED
 ▸ Checkpoint (unit 1)
   ✓ checkpoint header visible
   ✓ checkpoint badge earned — u01_intro
-  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T03:31:07.724Z"}
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T03:36:10.395Z"}
 ▸ Home · course map + daily plan
   ✓ home shows 60 sessions
   ✓ home shows 288 sentences
@@ -427,13 +427,13 @@ start day 0
   sessions: 60,
   badges: 12,
   met: 288,
-  strong: 94,
+  strong: 90,
   words: 149,
-  xp: 20758,
+  xp: 20480,
   level: 22,
   streak: 19,
   best: 38,
-  coins: 15682,
+  coins: 15567,
   chests: 72,
   league: 1,
   timeline: 61,

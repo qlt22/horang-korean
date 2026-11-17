@@ -58,6 +58,8 @@ Lessons differ by kind: vocabulary opens with word cards, grammar starts with a 
 
 This branch adds three **alternative engagement systems** on top of the same course, switchable at `#/lab` (Me → Engagement Lab):
 
+![Engagement Lab](docs/screenshots/lab-hub.png)
+
 | Mode | The bet | What changes |
 |---|---|---|
 | **Skill Constellation** | Autonomy + visible mastery | 48 grammar stars on a map; light any star you can reach; tap → targeted 5-sentence practice |

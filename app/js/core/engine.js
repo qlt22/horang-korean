@@ -7,6 +7,7 @@ import {
   SENTENCE_BY_ID,
   WORDS,
   WORD_BY_ID,
+  GRAMMAR_BY_ID,
   lessonAt,
   nextLessonIndex,
   lessonsOf,
@@ -193,6 +194,17 @@ export function buildLessonItems(lesson, { name = '', mastery = {} } = {}) {
   return interleave(items);
 }
 
+function seededShuffle(arr, seed) {
+  const a = arr.slice();
+  let s = seed * 9301 + 49297;
+  for (let i = a.length - 1; i > 0; i--) {
+    s = (s * 9301 + 49297) % 233280;
+    const j = Math.floor((s / 233280) * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function shuffleSeeded(arr, seed) {
   const a = arr.slice();
   let s = seed * 9301 + 49297;
@@ -234,7 +246,7 @@ export function buildSession(kind, params = {}, mastery = {}, name = '') {
   } else if (kind === 'practice' && params.grammarId) {
     const gid = params.grammarId;
     const pool = SENTENCES.filter((s) => (s.grammarIds || []).includes(gid));
-    const chosen = pool.slice(0, 6);
+    const chosen = pool.slice(0, 4);
     const poolWords = chosen.length ? wordsOf(chosen[0].unitId) : [];
     const poolIds = pool.map((s) => s.id);
     chosen.forEach((s, i) => {
@@ -244,6 +256,40 @@ export function buildSession(kind, params = {}, mastery = {}, name = '') {
       if (ex1) items.push(ex1);
       const ex2 = sentenceTask(s, [second, 'listen_pick'], { pool: poolIds, poolWords, name });
       if (ex2 && ex2.type !== ex1?.type) items.push(ex2);
+    });
+    // Sparse grammar points still get a full practice: the pattern's own examples
+    // become write-it and build-it tasks with their bundled audio.
+    const g = GRAMMAR_BY_ID[gid];
+    (g?.examples || []).forEach((ex, i) => {
+      const common = {
+        sentenceId: null,
+        wordId: null,
+        lessonId: null,
+        unitId: g.unitId,
+        korean: ex.ko,
+        english: ex.en,
+        romanization: '',
+        gloss: [],
+        grammarIds: [gid],
+        grammarTag: `${g.ko} · ${g.pattern}`,
+        clipId: `${gid}_${i + 1}`,
+        clipKind: 'g',
+        prompt: ex.en,
+        answerText: ex.ko,
+      };
+      items.push({ ...common, type: 'type_answer', id: `target:${gid}:ex${i}:type`, instruction: 'Write the example', input: true, hint: g.ko });
+      const tokens = tokenize(ex.ko);
+      if (tokens.length >= 3) {
+        items.push({
+          ...common,
+          type: 'tile_build',
+          id: `target:${gid}:ex${i}:tiles`,
+          instruction: 'Build the example',
+          answer: tokens,
+          tiles: seededShuffle(tokens, i + 3),
+          altOrders: [],
+        });
+      }
     });
     items = interleave(items);
     lesson = { id: `target_${gid}`, nodeIndex: null, kind: 'practice', unitId: chosen[0]?.unitId || null };

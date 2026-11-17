@@ -53,7 +53,7 @@ export default {
           <span class="overline">Experiment branch</span>
           <h1 class="h2">Engagement Lab</h1>
         </div>
-        <span class="pill pill--indigo pill--sm">gamification-lab</span>
+        <span class="pill pill--indigo pill--sm">LAB</span>
       </div>
 
       <div class="labhub-hero">
