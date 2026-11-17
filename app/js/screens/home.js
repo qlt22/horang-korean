@@ -1,6 +1,7 @@
-// S1 · Home / Path — the hub that makes tomorrow feel unfinished.
-// Retention surface: streak, daily goal, decay hook, pack guidebook, zigzag path,
-// Sentence of the Day, quest preview and one honest "cheapest next step".
+// S1 · Home — the A1 course map.
+// One glance answers "what do I do next?" while every retention surface stays:
+// streak, daily plan, A1 progress, fading sentences, sentence of the day,
+// quests, chest, league and one honest cheapest next step.
 import {
   state,
   save,
@@ -14,10 +15,11 @@ import {
   ensureLeague,
   levelInfo,
   questProgress,
-  currentUnit,
+  dailyPlan,
+  claimDailyBonus,
 } from '../core/store.js';
 import { NODES, UNIT_META } from '../core/engine.js';
-import curriculum from '../../data/curriculum.js';
+import { SENTENCES, nextLessonIndex, unitUnlocked, grammarOf } from '../core/course.js';
 import * as ui from '../core/ui.js';
 import * as routerApi from '../core/router.js';
 import * as clock from '../core/clock.js';
@@ -26,16 +28,25 @@ import * as audio from '../core/audio.js';
 // Core currently ships a default router object; accept a named export too.
 const router = routerApi.router || routerApi.default;
 
-const ZIGZAG = [0, 40, 8, -40, -8];
-const GOAL_OPTIONS = [60, 120, 180];
-const GP_BY_ID = new Map((curriculum.grammar_points || []).map((g) => [g.id, g]));
+const KIND = {
+  vocab: { label: 'Vocabulary', icon: 'book' },
+  grammar: { label: 'Grammar', icon: 'sparkle' },
+  listening: { label: 'Listening', icon: 'sound' },
+  reading: { label: 'Reading', icon: 'book' },
+  checkpoint: { label: 'Checkpoint', icon: 'trophy' },
+};
 
 let seenQuests = new Set();
 let pendingToasts = [];
 let currentSod = null;
+let renderedNextStep = null;
 
 function todayKey() {
   return clock.today();
+}
+
+function esc(s) {
+  return ui.esc(s);
 }
 
 function collectQuests() {
@@ -47,24 +58,26 @@ function collectQuests() {
   pendingToasts = fresh;
 }
 
-function firstOpenIndex() {
-  const done = new Set(state.path.completedNodes || []);
-  const node = NODES.find((n) => !done.has(n.index));
-  return node ? node.index : null;
-}
-
-function esc(s) {
-  return ui.esc(s);
+function stats() {
+  const completed = state.path.completedNodes || [];
+  const done = new Set(completed);
+  const next = nextLessonIndex(completed);
+  const complete = NODES.every((n) => done.has(n.index));
+  let met = 0;
+  let strong = 0;
+  SENTENCES.forEach((s) => {
+    const tier = state.mastery[s.id]?.tier || 0;
+    if (tier >= 1) met++;
+    if (tier >= 3) strong++;
+  });
+  const unitId = complete ? null : NODES[next]?.unitId;
+  return { completed, done, next, complete, met, strong, currentUnitId: unitId };
 }
 
 // ---------- 1 · HUD ----------
 function hudHTML() {
-  // Focus is deliberately NOT shown on the hub: no energy system may imply that
-  // studying is gated. It belongs to bonus modes only, which are out of this MVP.
-  const gems =
-    state.gems > 0
-      ? `<span class="pill pill--sm pill--mint" aria-label="${state.gems} gems">${ui.gem(14)} ${ui.fmt(state.gems)}</span>`
-      : '';
+  // No hearts or energy on the hub: studying is never gated.
+  const gems = `<span class="pill pill--sm pill--mint" aria-label="${state.gems} gems">${ui.gem(14)} ${ui.fmt(state.gems)}</span>`;
   return `<div class="hud home-hud">
     <div class="top-left">
       <span class="streak-pill ${state.streak.current ? '' : 'is-zero'}" aria-label="${state.streak.current} day streak">
@@ -81,135 +94,116 @@ function hudHTML() {
   </div>`;
 }
 
-// ---------- 2 · Daily goal ----------
-function goalHTML() {
+// ---------- 2 · Daily plan ----------
+function goalText() {
   const goal = state.profile.dailyGoalXp || 120;
   const xp = state.counters.xp || 0;
-  const hit = xp >= goal;
-  const pct = ui.pct((xp / goal) * 100);
+  if (xp >= goal) return { text: 'Goal hit', cls: 'is-hit' };
   const left = Math.max(0, goal - xp);
-  const close = left > 0 && left <= 15;
-  const sub = hit ? 'Daily goal done · see you tomorrow' : `${left} XP to go`;
-  return `<button class="goal-card ${hit ? 'goal-card--hit' : ''}" data-goal type="button"
-      aria-label="Daily goal: ${xp} of ${goal} XP. Tap for details.">
-    <span class="goal-ring">
-      ${ui.ring(pct, { size: 56, stroke: 7, color: hit ? 'var(--mint-600)' : 'var(--coral-500)' })}
-      <b class="goal-ring-label">${hit ? ui.icon('check', 20) : pct + '%'}</b>
+  return { text: `${left} XP to goal`, cls: left <= 15 ? 'is-close' : '' };
+}
+
+function planRow(it) {
+  const complete = it.progress >= it.target;
+  const pct = it.target ? (it.progress / it.target) * 100 : 0;
+  const icon = it.icon === 'refresh' ? 'refresh' : it.icon === 'book' ? 'book' : 'play';
+  const params = JSON.stringify(it.params || {});
+  return `<button class="plan-row plan-row--${esc(it.id)} ${complete ? 'is-done' : ''}"
+      data-go="${esc(it.screen)}" data-params="${esc(params)}" type="button"
+      aria-label="${esc(it.label)}, ${it.progress} of ${it.target}">
+    <span class="plan-ico">${ui.icon(icon, 19)}</span>
+    <span class="plan-main">
+      <span class="plan-line">
+        <span class="plan-label">${esc(it.label)}</span>
+        <span class="plan-count">${it.progress}/${it.target}</span>
+      </span>
+      <span class="bar bar--thin ${complete ? 'bar--mint' : ''}"><i style="width:${ui.pct(pct)}%"></i></span>
     </span>
-    <span class="goal-main">
-      <span class="goal-kicker">Daily goal</span>
-      <span class="goal-xp">${
-        hit
-          ? `Goal hit · ${ui.fmt(xp)} XP`
-          : `<span data-goal-xpnum>0</span> / ${ui.fmt(goal)} XP`
-      }</span>
-      <span class="goal-sub ${close ? 'is-close' : ''}">${sub}</span>
-    </span>
-    <span class="goal-chev">${ui.icon('chevron', 18)}</span>
+    <span class="plan-end">${complete ? ui.icon('check', 17) : ui.icon('chevron', 16)}</span>
   </button>`;
 }
 
-// ---------- interactions under the goal ----------
-function quickHTML() {
-  const due = decayReport().total;
-  return `<div class="quick-row">
-    <button class="btn btn-secondary quick-btn" data-practice type="button">
-      ${ui.icon('play', 18)} Practice 10
-    </button>
-    <button class="btn btn-secondary quick-btn" data-review type="button">
-      ${ui.icon('refresh', 18)} ${due ? 'Review ' + due : 'Review'}
-    </button>
-  </div>`;
+function dailyPlanHTML(plan) {
+  const goal = goalText();
+  const claim = plan.done
+    ? plan.claimed
+      ? `<div class="plan-claimed">${ui.icon('check', 17)} Collected today · +60 coins</div>`
+      : `<button class="btn btn-primary btn-block plan-claim" data-claim-daily type="button">
+          ${ui.coin(18)} Collect +60 coins
+        </button>`
+    : `<p class="plan-foot">Three small wins. Then 60 coins are yours.</p>`;
+  return `<section class="plan-card ${plan.done ? 'is-complete' : ''}" aria-label="Today's plan">
+    <div class="plan-head">
+      <div>
+        <span class="overline">Today</span>
+        <h2 class="plan-title">3 small wins</h2>
+      </div>
+      <span class="plan-goal ${goal.cls}">${ui.icon('target', 14)} ${esc(goal.text)}</span>
+    </div>
+    <div class="plan-rows">${plan.items.map(planRow).join('')}</div>
+    ${claim}
+  </section>`;
 }
 
-// ---------- 3 unfinished artefacts + the goal ring = 4 visuals max ----------
-function momentumHTML() {
-  const questsDone = (state.quests.items || []).filter((q) => q.done).length;
-  const unit = currentUnit();
-  const pp = packProgress(unit.id);
-  const li = levelInfo();
-  const stamps = stampCount();
-  const items = [
-    {
-      kind: 'amber',
-      label: 'Chest',
-      value: `${state.chest.slots}/3`,
-      pct: (state.chest.slots / 3) * 100,
-      steps: 3 - state.chest.slots,
-    },
-    {
-      kind: 'coral',
-      label: 'Daily quests',
-      value: `${questsDone}/3`,
-      pct: (questsDone / 3) * 100,
-      steps: 3 - questsDone,
-    },
-    {
-      kind: 'mint',
-      label: `${unit.title} pack`,
-      value: `${pp.met}/${pp.total}`,
-      pct: pp.pct,
-      steps: pp.total - pp.met,
-    },
-    {
-      kind: 'indigo',
-      label: `Level ${li.level}`,
-      value: `${ui.fmt(li.remaining)} XP left`,
-      pct: li.pct,
-      steps: li.remaining / 10,
-    },
-    {
-      kind: 'mint',
-      label: 'Passport',
-      value: `${stamps}/40`,
-      pct: (stamps / 40) * 100,
-      steps: 40 - stamps,
-    },
-  ];
-  const nearest = items
-    .filter((x) => x.steps > 0)
-    .sort((a, b) => a.steps - b.steps)
-    .slice(0, 3);
-  if (!nearest.length) {
-    return `<div class="momentum">
-      <div class="momentum-head"><span>Closing in</span><span class="momentum-clear">all clear</span></div>
-      <p class="small muted">Nothing unfinished. Rare.</p>
-    </div>`;
+// ---------- 3 · A1 progress strip ----------
+function progressHTML(s) {
+  const sessions = s.completed.length;
+  const pct = NODES.length ? (sessions / NODES.length) * 100 : 0;
+  return `<section class="a1-strip" aria-label="A1 course progress">
+    <div class="a1-top">
+      <span class="overline">A1 course</span>
+      <span class="a1-unit">${s.complete ? `All ${UNIT_META.length} units` : `Unit ${UNIT_META.find((u) => u.id === s.currentUnitId)?.order || 1} of ${UNIT_META.length}`}</span>
+    </div>
+    <div class="a1-count"><b>${sessions}</b><span>/ ${NODES.length} sessions</span></div>
+    <div class="bar bar--indigo bar--thin a1-bar"><i style="width:${ui.pct(pct)}%"></i></div>
+    <div class="a1-foot">
+      <span><b>${s.met}</b> / ${SENTENCES.length} sentences met</span>
+      <span class="a1-strong"><b>${s.strong}</b> strong</span>
+    </div>
+  </section>`;
+}
+
+// ---------- 4 · Next lesson hero ----------
+function heroHTML(s) {
+  if (s.complete) {
+    return `<section class="hero-lesson hero-lesson--done">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-top">
+        <span class="hero-unit">A1 · all ${NODES.length} sessions</span>
+        <span class="hero-min">${ui.icon('trophy', 14)} Course complete</span>
+      </div>
+      <h2 class="hero-title">A1 course complete.</h2>
+      <div class="hero-meta">
+        <span class="kind-chip kind-chip--checkpoint">${ui.icon('trophy', 15)} Final exam</span>
+        <span class="hero-xp">${s.met} / ${SENTENCES.length} sentences met</span>
+      </div>
+      <button class="btn btn-primary btn-block hero-cta" data-continue-exam type="button">
+        Take the final exam ${ui.icon('arrow', 19)}
+      </button>
+      <button class="hero-review" data-review type="button">or keep your sentences warm · review</button>
+    </section>`;
   }
-  return `<div class="momentum">
-    <div class="momentum-head"><span>Closing in</span><span>3 nearest</span></div>
-    ${nearest
-      .map(
-        (x) => `<div class="momentum-row">
-          <span class="momentum-label">${esc(x.label)}</span>
-          <span class="momentum-value">${esc(x.value)}</span>
-          <span class="bar bar--thin bar--${x.kind}"><i style="width:${ui.pct(x.pct)}%"></i></span>
-        </div>`
-      )
-      .join('')}
-  </div>`;
+  const lesson = NODES[s.next];
+  const unit = UNIT_META.find((u) => u.id === lesson?.unitId) || UNIT_META[0];
+  const kind = KIND[lesson?.kind] || KIND.vocab;
+  return `<section class="hero-lesson">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-top">
+      <span class="hero-unit">Unit ${unit.order} · ${esc(unit.ko)} ${esc(unit.title)}</span>
+      <span class="hero-min">${ui.icon('clock', 14)} ~6 min</span>
+    </div>
+    <h2 class="hero-title">${esc(lesson?.title || 'Your next lesson')}</h2>
+    <div class="hero-meta">
+      <span class="kind-chip kind-chip--${esc(lesson?.kind || 'vocab')}">${ui.icon(kind.icon, 15)} ${kind.label}</span>
+      <span class="hero-xp">+150 XP</span>
+    </div>
+    <button class="btn btn-primary btn-block hero-cta" data-continue type="button">
+      Continue ${ui.icon('arrow', 19)}
+    </button>
+  </section>`;
 }
 
-// ---------- 4 · Comeback (never guilt) ----------
-function comebackHTML() {
-  const f = state.flags;
-  if (!(f.streakLost && state.streak.current === 0 && (f.prevStreak || 0) > 0)) return '';
-  return `<div class="comeback">
-    <div class="comeback-top">
-      <span class="comeback-mascot">${ui.mascot(48, 'happy')}</span>
-      <span class="grow">
-        <span class="alert-title">Your streak stopped at ${f.prevStreak}.</span>
-        <span class="alert-sub">Your ${stampCount()} sentences are still here.</span>
-      </span>
-    </div>
-    <div class="comeback-actions">
-      <button class="btn btn-primary btn-sm" data-warmup type="button">Start a warm-up</button>
-      <button class="btn btn-ghost btn-sm" data-repair type="button">Repair streak</button>
-    </div>
-  </div>`;
-}
-
-// ---------- 5 · Fading alert (#1 return trigger) ----------
+// ---------- 5 · Fading alert ----------
 function fadingHTML() {
   const d = decayReport();
   if (!d.total) return '';
@@ -224,80 +218,102 @@ function fadingHTML() {
   </button>`;
 }
 
-// ---------- 6 · Pack banner (sticky) ----------
-function packHTML() {
-  const unit = currentUnit();
-  return `<div class="pack-banner">
-    <div class="pack-text">
-      <div class="pack-overline">Pack ${unit.order}</div>
-      <div class="pack-title">${esc(unit.koTitle)} ${esc(unit.title)}</div>
-    </div>
-    <button class="btn btn-ghost guide-btn" data-guide type="button">
-      ${ui.icon('book', 16)} Guidebook
+// ---------- 6 · Course map ----------
+function unitStatus(unit, s) {
+  const done = s.done;
+  const nodes = NODES.filter((n) => n.unitId === unit.id);
+  if (nodes.every((n) => done.has(n.index))) return 'done';
+  if (!unitUnlocked(unit.id, s.completed)) return 'locked';
+  if (unit.id === s.currentUnitId) return 'current';
+  const learnDone = nodes.filter((n) => n.kind !== 'checkpoint').every((n) => done.has(n.index));
+  return learnDone ? 'checkpoint' : 'open';
+}
+
+function nodeHTML(node, s) {
+  const kind = KIND[node.kind] || KIND.vocab;
+  const isDone = s.done.has(node.index);
+  const isNow = !isDone && node.index === s.next;
+  const locked = !isDone && !isNow;
+  const title = String(node.title || '').replace(/^Checkpoint:\s*/, '');
+  const cls = isDone ? 'is-done' : isNow ? 'is-now' : 'is-locked';
+  const stateMark = isDone
+    ? `<span class="node-state node-state--done" aria-hidden="true">${ui.icon('check', 15)}</span>`
+    : isNow
+      ? `<span class="node-start-pill">START</span>`
+      : `<span class="node-state node-state--lock" aria-hidden="true">${ui.icon('lock', 13)}</span>`;
+  const aria = isDone
+    ? `Replay ${kind.label}: ${title}`
+    : isNow
+      ? `Start ${kind.label}: ${title}`
+      : `${kind.label}: ${title}, locked`;
+  return `<li class="unit-node ${cls}">
+    <button class="node-card" data-node="${node.index}" ${locked ? 'data-node-locked="1" aria-disabled="true"' : ''}
+        type="button" aria-label="${esc(aria)}">
+      <span class="node-ico node-ico--${esc(node.kind)}">${ui.icon(kind.icon, 20)}</span>
+      <span class="node-text">
+        <span class="node-kind">${kind.label}</span>
+        <span class="node-title">${esc(title)}</span>
+      </span>
+      ${stateMark}
     </button>
-  </div>`;
+  </li>`;
 }
 
-// ---------- 7 · The path ----------
-function pathHTML() {
-  const done = new Set(state.path.completedNodes || []);
-  const open = firstOpenIndex();
-  let seq = 0;
-  let lastUnit = null;
-  let html = '';
-
-  NODES.forEach((node) => {
-    const unit = UNIT_META.find((u) => u.id === node.unitId);
-    if (unit && unit.id !== lastUnit) {
-      lastUnit = unit.id;
-      const pp = packProgress(unit.id);
-      html += `<div class="path-pack-head">
-        <span class="path-pack-name">Pack ${unit.order} · ${esc(unit.koTitle)} ${esc(unit.title)}</span>
-        <span class="path-pack-meta">${pp.met}/${pp.total} met</span>
-      </div>`;
+function unitHTML(unit, s) {
+  const status = unitStatus(unit, s);
+  const pp = packProgress(unit.id);
+  const open = status !== 'locked' && unit.id === s.currentUnitId;
+  const canOpen = status !== 'locked';
+  const statusText =
+    status === 'done' ? 'Done' : status === 'current' ? 'Current' : status === 'checkpoint' ? 'Checkpoint' : status === 'open' ? 'Open' : 'Locked';
+  const statusMark = status === 'done' ? ui.icon('check', 12) : '';
+  const hint = status === 'locked' ? `<span class="unit-hint">Finish Unit ${Math.max(1, unit.order - 1)} first</span>` : '';
+  const nodes = NODES.filter((n) => n.unitId === unit.id);
+  const bodyId = `unit-body-${unit.id}`;
+  return `<section class="unit unit--${status} ${open ? 'is-open' : ''}" data-unit="${esc(unit.id)}">
+    <div class="unit-head">
+      <button class="unit-toggle" data-unit-toggle="${esc(unit.id)}" data-unit-order="${unit.order}"
+          aria-expanded="${open}" ${canOpen ? `aria-controls="${esc(bodyId)}"` : ''} type="button">
+        <span class="unit-badge">${unit.order}</span>
+        <span class="unit-id">
+          <span class="unit-name">
+            <span class="unit-ko">${esc(unit.ko)}</span>
+            <span class="unit-title">${esc(unit.title)}</span>
+          </span>
+          ${hint}
+        </span>
+        <span class="unit-meta">
+          <span class="unit-met">${pp.met}/${pp.total}</span>
+          <span class="unit-status unit-status--${status}">${statusMark} ${statusText}</span>
+        </span>
+        <span class="unit-chev">${canOpen ? ui.icon('chevron', 17) : ui.icon('lock', 15)}</span>
+      </button>
+      <button class="unit-info" data-unit-info="${esc(unit.id)}" type="button"
+          aria-label="Guidebook for Unit ${unit.order}: ${esc(unit.title)}">
+        ${ui.icon('info', 17)}
+      </button>
+    </div>
+    ${
+      canOpen
+        ? `<div class="unit-body" id="${esc(bodyId)}">
+            <ol class="unit-nodes">${nodes.map((n) => nodeHTML(n, s)).join('')}</ol>
+          </div>`
+        : ''
     }
-
-    const isDone = done.has(node.index);
-    const isNow = !isDone && node.index === open;
-    const offset = ZIGZAG[seq++ % ZIGZAG.length];
-    const cls = isDone ? 'node--done' : isNow ? 'node--now' : 'node--lock';
-    const glyph = isDone
-      ? ui.icon('check', 26)
-      : isNow
-        ? ui.icon('play', 34)
-        : ui.icon('lock', 24);
-    const attr = isDone || isNow ? `data-node="${node.index}"` : 'data-locked="1"';
-    const a11y = isNow
-      ? `Start Node ${node.index + 1}`
-      : isDone
-        ? `Replay Node ${node.index + 1}`
-        : `Node ${node.index + 1}, locked`;
-
-    html += `<div class="node-wrap" style="margin-left:${offset}px">
-      ${isNow ? '<span class="node-start">START</span>' : ''}
-      <button class="node ${cls}" ${attr} type="button" aria-label="${a11y}">${glyph}</button>
-      <span class="node-label">Node ${node.index + 1}</span>
-    </div>`;
-
-    // Chest checkpoint: every 5th node or the end of a pack.
-    if (node.isUnitEnd || (node.index + 1) % 5 === 0) {
-      const chestOffset = ZIGZAG[seq++ % ZIGZAG.length];
-      const locked = !isDone;
-      html += `<div class="node-wrap path-chest" style="margin-left:${chestOffset}px">
-        <button class="node node--chest ${locked ? 'is-locked' : ''}" ${
-          locked ? 'data-locked="1"' : 'data-chest="1"'
-        } type="button" aria-label="${locked ? 'Pack chest, locked' : 'Pack chest'}">
-          ${ui.icon('chest', 28)}
-        </button>
-        <span class="node-label">Chest</span>
-      </div>`;
-    }
-  });
-
-  return `<div class="path-wrap"><div class="path">${html}</div></div>`;
+  </section>`;
 }
 
-// ---------- 8 · Sentence of the Day ----------
+function mapHTML(s) {
+  return `<section class="map-section" aria-label="A1 course map">
+    <div class="map-head">
+      <h2 class="map-title">A1 course map</h2>
+      <span class="map-count">${s.completed.length}/${NODES.length} sessions</span>
+    </div>
+    <div class="map">${UNIT_META.map((u) => unitHTML(u, s)).join('')}</div>
+  </section>`;
+}
+
+// ---------- 7 · Sentence of the Day ----------
 function sodHTML() {
   if (state.day < 1) return '';
   const s = sentenceOfTheDay();
@@ -312,7 +328,8 @@ function sodHTML() {
     </div>
     <div class="sod-ko-row">
       <span class="sod-ko">${esc(s.korean)}</span>
-      ${ui.sayBtn(s.korean, { small: true })}
+      <button class="say-btn say-btn--sm" data-clip="${esc(s.id)}" data-clip-kind="s"
+          data-say="${esc(s.korean)}" type="button" aria-label="Play the sentence">${ui.icon('sound', 18)}</button>
     </div>
     ${
       revealed
@@ -322,12 +339,28 @@ function sodHTML() {
              <p class="sod-en is-blurred" aria-hidden="true">${english}</p>
              <button class="sod-reveal" data-sod-reveal type="button">${ui.icon('eye', 16)} Tap to reveal</button>
            </div>
-           <p class="small muted mt-2">A real sentence from later in the course.</p>`
+           <p class="small muted mt-2">A real sentence from your A1 course.</p>`
     }
   </div>`;
 }
 
-// ---------- 9 · Quest strip ----------
+// ---------- 8 · Retention rows (below the map) ----------
+function chestHTML() {
+  const slots = state.chest.slots || 0;
+  const dots = [0, 1, 2]
+    .map((i) => `<i class="${i < slots ? 'on' : ''}"></i>`)
+    .join('');
+  return `<button class="chest-row" data-chest-open type="button" aria-label="Chest ${slots} of 3">
+    <span class="chest-row-ico">${ui.chestSvg(34)}</span>
+    <span class="grow">
+      <span class="chest-row-title">Chest ${slots}/3</span>
+      <span class="chest-row-sub">${slots ? 'Ready to open' : 'Finish a lesson to fill a slot'}</span>
+    </span>
+    <span class="chest-dots">${dots}</span>
+    <span class="quest-chev">${ui.icon('chevron', 17)}</span>
+  </button>`;
+}
+
 function questStripHTML() {
   const items = state.quests.items || [];
   const done = items.filter((q) => q.done).length;
@@ -343,7 +376,6 @@ function questStripHTML() {
   </button>`;
 }
 
-// ---------- 10 · League teaser ----------
 function leagueHTML() {
   if (state.day >= 7 && !state.flags.leagueJoined) {
     try {
@@ -372,72 +404,82 @@ function leagueHTML() {
   </div>`;
 }
 
-// ---------- 11 · Cheapest next step ----------
+function comebackHTML() {
+  const f = state.flags;
+  if (!(f.streakLost && state.streak.current === 0 && (f.prevStreak || 0) > 0)) return '';
+  return `<div class="comeback">
+    <div class="comeback-top">
+      <span class="comeback-mascot">${ui.mascot(48, 'happy')}</span>
+      <span class="grow">
+        <span class="alert-title">Your streak stopped at ${f.prevStreak}.</span>
+        <span class="alert-sub">Your ${stampCount()} sentences are still here.</span>
+      </span>
+    </div>
+    <div class="comeback-actions">
+      <button class="btn btn-primary btn-sm" data-warmup type="button">Start a warm-up</button>
+      <button class="btn btn-ghost btn-sm" data-repair type="button">Repair streak</button>
+    </div>
+  </div>`;
+}
+
+// ---------- 9 · Cheapest next step ----------
 function metricWord(q, n) {
   const map = {
     correct: 'correct answer',
-    nodes: 'node',
+    nodes: 'lesson',
     xp: 'XP',
     crits: 'crit',
     fadingReviews: 'fading review',
     comboBest: 'combo step',
-    stars3: '3-star node',
+    stars3: '3-star lesson',
     listens: 'listen',
     said: 'spoken sentence',
     speed8: 'speed round',
     newSentences: 'new sentence',
+    words: 'word',
+    reading: 'reading check',
   };
   const w = map[q.metric] || 'step';
   return n > 1 && w !== 'XP' ? `${w}s` : w;
 }
 
-function cheapestNextStep() {
+function cheapestStep(s) {
   const cand = [];
-  const open = firstOpenIndex();
-  const goal = state.profile.dailyGoalXp || 120;
-  const xp = state.counters.xp || 0;
-  const goalLeft = Math.max(0, goal - xp);
-
-  if (goalLeft > 0) {
-    const answers = Math.max(1, Math.ceil(goalLeft / 10));
+  const due = decayReport().total;
+  if (due > 0) {
     cand.push({
-      steps: answers,
-      label: `${answers} answer${answers > 1 ? 's' : ''} to your daily goal`,
+      steps: 1 + due * 0.05,
+      label: `Review ${due} fading sentence${due > 1 ? 's' : ''} — 3 min`,
       screen: 'lesson',
-      params: { kind: 'practice' },
+      params: { kind: 'review' },
     });
+  }
+
+  const plan = dailyPlan();
+  plan.items.forEach((it) => {
+    const left = Math.max(0, it.target - it.progress);
+    if (!left) return;
+    const label =
+      it.id === 'lesson'
+        ? 'Finish today’s lesson'
+        : it.id === 'review'
+          ? `Review ${left} more sentence${left > 1 ? 's' : ''}`
+          : `Practise ${left} more word${left > 1 ? 's' : ''}`;
+    cand.push({ steps: left, label, screen: it.screen, params: it.params });
+  });
+
+  if (state.chest.slots > 0) {
+    cand.push({ steps: 2, label: `Open your chest (${state.chest.slots}/3)`, action: 'chest' });
   }
 
   const li = levelInfo();
   if (li.remaining > 0) {
     const answers = Math.max(1, Math.ceil(li.remaining / 10));
     cand.push({
-      steps: answers + 0.2,
+      steps: answers + 0.4,
       label: `${answers} answer${answers > 1 ? 's' : ''} to Level ${li.level + 1}`,
       screen: 'lesson',
       params: { kind: 'practice' },
-    });
-  }
-
-  const chestGap = 3 - state.chest.slots;
-  if (chestGap > 0 && open !== null) {
-    cand.push({
-      steps: chestGap * 8,
-      label: `${chestGap} node${chestGap > 1 ? 's' : ''} to your next chest (${state.chest.slots}/3)`,
-      screen: 'lesson',
-      params: { node: open },
-    });
-  }
-
-  const unit = currentUnit();
-  const pp = packProgress(unit.id);
-  const packLeft = pp.total - pp.met;
-  if (packLeft > 0 && open !== null) {
-    cand.push({
-      steps: packLeft,
-      label: `${packLeft} stamp${packLeft > 1 ? 's' : ''} to finish ${unit.title}`,
-      screen: 'lesson',
-      params: { node: open },
     });
   }
 
@@ -447,76 +489,68 @@ function cheapestNextStep() {
       const left = Math.max(0, q.target - questProgress(q));
       if (!left) return;
       cand.push({
-        steps: left,
+        steps: left + 0.6,
         label: `${left} ${metricWord(q, left)} to finish a quest`,
         screen: 'quests',
         params: {},
       });
     });
 
+  const unit = UNIT_META.find((u) => u.id === s.currentUnitId);
+  if (unit && !s.complete) {
+    const pp = packProgress(unit.id);
+    const left = pp.total - pp.met;
+    if (left > 0) {
+      cand.push({
+        steps: left + 0.8,
+        label: `${left} sentence${left > 1 ? 's' : ''} to complete ${unit.title}`,
+        screen: 'lesson',
+        params: { node: s.next },
+      });
+    }
+  }
+
+  if (s.complete) {
+    cand.push({ steps: 5, label: 'Take the A1 final exam', screen: 'exam', params: {} });
+  }
+
   cand.sort((a, b) => a.steps - b.steps);
   return (
     cand[0] || {
-      label: "You've met all 40 sentences. Now it's about keeping them.",
-      screen: 'passport',
-      params: {},
+      label: 'Today is clear — keep a few sentences warm',
+      screen: 'lesson',
+      params: { kind: 'review' },
     }
   );
 }
 
-function nextUpHTML() {
-  const step = cheapestNextStep();
-  const tag = step.screen ? 'button' : 'div';
-  const attr = step.screen ? 'data-next type="button"' : '';
-  return `<${tag} class="next-up" ${attr}>
+function nextUpHTML(step) {
+  return `<button class="next-up" data-next type="button">
     <span class="next-up-ico">${ui.icon('arrow', 18)}</span>
     <span class="grow">
       <span class="overline">Next up</span>
       <span class="next-up-text">${esc(step.label)}</span>
     </span>
-  </${tag}>`;
+    ${ui.icon('chevron', 16)}
+  </button>`;
 }
 
 // ---------- overlays ----------
-function openGoalSheet() {
-  const goal = state.profile.dailyGoalXp || 120;
-  const idx = GOAL_OPTIONS.indexOf(goal);
-  const next = GOAL_OPTIONS[(idx < 0 ? 0 : idx + 1) % GOAL_OPTIONS.length];
-  const xp = state.counters.xp || 0;
-  const body = `<p>Your goal is <b>${goal} XP</b> a day. Most learners clear it in one or two 3-minute nodes.</p>
-    <p class="small muted mt-3">Streaks count the moment you hit it. 60 XP is a light day, 180 XP is a serious one — and you can change it any time.</p>
-    <div class="kv mt-3"><span>Today</span><b>${ui.fmt(xp)} / ${ui.fmt(goal)} XP</b></div>`;
-  ui.sheet({
-    title: 'Daily goal',
-    body,
-    actions: [
-      {
-        label: `Change goal to ${next} XP`,
-        onClick: () => {
-          state.profile.dailyGoalXp = next;
-          save();
-          ui.toast(`Daily goal · ${next} XP`, { icon: 'target', tone: 'mint' });
-          router.refresh();
-        },
-      },
-      { label: 'Got it' },
-    ],
-  });
-}
-
-function openGuidebook() {
-  const unit = currentUnit();
-  const gps = (unit.grammar_point_ids || [])
-    .map((id) => GP_BY_ID.get(id))
-    .filter(Boolean)
-    .slice(0, 3);
+function openGuidebook(unitId) {
+  const unit = UNIT_META.find((u) => u.id === unitId);
+  if (!unit) return;
+  const gps = grammarOf(unit.id);
   const pp = packProgress(unit.id);
-  const body = `<p class="small muted">${esc(unit.goal || '')}</p>
+  const canDo = (unit.canDo || [])
+    .map((c) => `<li>${ui.icon('check', 14)}<span>${esc(c)}</span></li>`)
+    .join('');
+  const body = `<p class="small muted">By the end of this unit you can:</p>
+    <ul class="can-do">${canDo}</ul>
     <div class="gp-list mt-4">
       ${gps
         .map(
           (g) => `<div class="gp-row">
-            <div class="gp-label">${esc(g.label)}</div>
+            <div class="gp-pattern">${esc(g.pattern || g.ko || g.label)}</div>
             <div class="gp-expl">${esc(g.explanation)}</div>
           </div>`
         )
@@ -529,7 +563,14 @@ function openGuidebook() {
       </div>
       <div class="bar mt-2"><i style="width:${ui.pct(pp.pct)}%"></i></div>
     </div>`;
-  ui.sheet({ title: `${unit.koTitle} ${unit.title}`, body, actions: [{ label: 'Got it' }] });
+  ui.sheet({
+    title: `${unit.ko} ${unit.title}`,
+    body,
+    actions: [
+      { label: 'Practise grammar', onClick: () => router.go('grammar') },
+      { label: 'Got it' },
+    ],
+  });
 }
 
 function chestSlotsHTML(slots) {
@@ -560,7 +601,7 @@ function openChestSheet() {
     <p class="center small muted">Chest ${slots} of 3</p>
     <div class="chest-slots mt-3" style="justify-content:center">${chestSlotsHTML(slots)}</div>
     <div class="bar mt-4"><i style="width:${ui.pct((slots / 3) * 100)}%"></i></div>
-    <p class="center small muted mt-3">${slots ? 'Finish a node to fill another slot.' : 'One chest per completed node, up to 3 a day.'}</p>`;
+    <p class="center small muted mt-3">${slots ? 'Open it now, or save the suspense.' : 'One chest slot per finished lesson, up to 3 a day.'}</p>`;
   ui.sheet({
     title: `Chest ${slots} of 3`,
     body,
@@ -582,7 +623,7 @@ function openChestSheet() {
               },
             },
           ]
-        : [{ label: 'Practice 10', onClick: () => router.go('lesson', { kind: 'practice' }) }],
+        : [{ label: 'Start a lesson', onClick: () => router.go('lesson', { kind: 'practice' }) }],
   });
 }
 
@@ -612,24 +653,25 @@ export default {
 
   render() {
     collectQuests();
-
-    const goal = `
-      ${hudHTML()}
-      ${goalHTML()}
-      ${quickHTML()}
-      ${momentumHTML()}
-      ${comebackHTML()}
-      ${fadingHTML()}
-      ${packHTML()}
-      ${pathHTML()}
-      ${sodHTML()}
-      ${questStripHTML()}
-      ${leagueHTML()}
-      ${nextUpHTML()}
-    `;
+    const s = stats();
+    renderedNextStep = cheapestStep(s);
+    const plan = dailyPlan();
 
     return `<section class="screen home">
-      <div class="home-stack stagger">${goal}</div>
+      <div class="home-stack stagger">
+        ${hudHTML()}
+        ${dailyPlanHTML(plan)}
+        ${progressHTML(s)}
+        ${heroHTML(s)}
+        ${fadingHTML()}
+        ${mapHTML(s)}
+        ${sodHTML()}
+        ${comebackHTML()}
+        ${chestHTML()}
+        ${questStripHTML()}
+        ${leagueHTML()}
+        ${nextUpHTML(renderedNextStep)}
+      </div>
     </section>`;
   },
 
@@ -641,33 +683,24 @@ export default {
       });
     });
 
-    const xp = state.counters.xp || 0;
-    const num = root.querySelector('[data-goal-xpnum]');
-    if (num && xp > 0) ui.countUp(num, 0, xp, 620);
-
-    root.querySelector('[data-goal]')?.addEventListener('click', openGoalSheet);
-    root.querySelector('[data-guide]')?.addEventListener('click', openGuidebook);
-
-    root.querySelectorAll('[data-node]').forEach((el) => {
-      el.addEventListener('click', () => {
-        audio.sfx('tap');
-        router.go('lesson', { node: Number(el.dataset.node) });
-      });
+    root.querySelector('[data-claim-daily]')?.addEventListener('click', () => {
+      if (!claimDailyBonus()) {
+        ui.toast('Already collected today', { icon: 'check', tone: 'mint' });
+        return;
+      }
+      audio.sfx('coin');
+      ui.confetti({ count: 26 });
+      ui.toast('Today complete · +60 coins, +30 XP', { icon: 'check', tone: 'mint' });
+      router.refresh();
     });
 
-    root.querySelectorAll('[data-locked]').forEach((el) => {
-      el.addEventListener('click', () => ui.toast('Finish the node above first.'));
+    root.querySelector('[data-continue]')?.addEventListener('click', () => {
+      const next = nextLessonIndex(state.path.completedNodes || []);
+      router.go('lesson', { node: next });
     });
 
-    root.querySelectorAll('[data-chest]').forEach((el) => {
-      el.addEventListener('click', openChestSheet);
-    });
-    root.querySelector('[data-warmup]')?.addEventListener('click', () => {
-      router.go('lesson', { kind: 'practice' });
-    });
-    root.querySelector('[data-repair]')?.addEventListener('click', repairStreak);
-    root.querySelector('[data-practice]')?.addEventListener('click', () => {
-      router.go('lesson', { kind: 'practice' });
+    root.querySelector('[data-continue-exam]')?.addEventListener('click', () => {
+      router.go('exam');
     });
 
     root.querySelector('[data-review]')?.addEventListener('click', () => {
@@ -678,8 +711,54 @@ export default {
       router.go('lesson', { kind: 'review' });
     });
 
+    root.querySelector('[data-chest-open]')?.addEventListener('click', openChestSheet);
+    root.querySelector('[data-warmup]')?.addEventListener('click', () => {
+      router.go('lesson', { kind: 'practice' });
+    });
+    root.querySelector('[data-repair]')?.addEventListener('click', repairStreak);
+
+    root.querySelectorAll('[data-unit-toggle]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const section = btn.closest('.unit');
+        if (!section) return;
+        if (section.closest('.unit--locked') || section.classList.contains('unit--locked')) {
+          ui.toast(`Finish Unit ${Math.max(1, Number(btn.dataset.unitOrder) - 1)} first.`, { icon: 'lock' });
+          return;
+        }
+        const willOpen = !section.classList.contains('is-open');
+        root.querySelectorAll('.unit.is-open').forEach((u) => {
+          u.classList.remove('is-open');
+          u.querySelector('[data-unit-toggle]')?.setAttribute('aria-expanded', 'false');
+        });
+        if (willOpen) {
+          section.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+        audio.sfx('tap');
+      });
+    });
+
+    root.querySelectorAll('[data-unit-info]').forEach((btn) => {
+      btn.addEventListener('click', () => openGuidebook(btn.dataset.unitInfo));
+    });
+
+    root.querySelectorAll('[data-node]').forEach((el) => {
+      el.addEventListener('click', () => {
+        if (el.dataset.nodeLocked) {
+          ui.toast('Finish the session above first.', { icon: 'lock' });
+          return;
+        }
+        audio.sfx('tap');
+        router.go('lesson', { node: Number(el.dataset.node) });
+      });
+    });
+
     root.querySelector('[data-next]')?.addEventListener('click', () => {
-      const step = cheapestNextStep();
+      const step = renderedNextStep || cheapestStep(stats());
+      if (step.action === 'chest') {
+        openChestSheet();
+        return;
+      }
       if (step.screen) router.go(step.screen, step.params || {});
     });
 
@@ -702,12 +781,9 @@ export default {
         wrap.innerHTML = `<p class="sod-en">${esc(currentSod.english)}</p>
           <p class="small muted mt-2">Revealed today · +20 XP claimed</p>`;
       }
-      const updated = state.counters.xp || 0;
-      const numEl = root.querySelector('[data-goal-xpnum]');
-      if (numEl) numEl.textContent = ui.fmt(updated);
       setTimeout(() => {
         if (router.currentScreen()?.id === 'home') router.refresh();
-      }, 420);
+      }, 1100);
     });
   },
 

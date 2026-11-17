@@ -1,0 +1,836 @@
+{
+  "unit": {
+    "id": "u12_travel",
+    "order": 12,
+    "title": "Travel & A1 wrap-up",
+    "ko": "여행",
+    "canDo": [
+      "State your travel intentions with -(으)려고 해요",
+      "Put actions before and after each other with -기 전에 and -(으)ㄴ 후에",
+      "Suggest a plan to the group with -(으)ㅂ시다",
+      "Handle a short trip from ticket to check-out"
+    ],
+    "grammarIds": ["g43", "g44", "g45", "g38"]
+  },
+  "lessons": [
+    {
+      "id": "l12_1",
+      "unitId": "u12_travel",
+      "order": 1,
+      "kind": "vocab",
+      "title": "We're going to Jeju",
+      "ko": "제주도에 가요",
+      "goal": "Name the parts of a trip and say what you intend to do",
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_01", "w12_02", "w12_03", "w12_04", "w12_05", "w12_06", "w12_07", "w12_08", "w12_09", "w12_10", "w12_11", "w12_12"],
+      "sentenceIds": ["s12_1_1", "s12_1_2", "s12_1_3", "s12_1_4", "s12_1_5", "s12_1_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l12_2",
+      "unitId": "u12_travel",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Before and after",
+      "ko": "가기 전에, 도착한 후에",
+      "goal": "Order two actions with -기 전에 and -(으)ㄴ 후에",
+      "grammarIds": ["g44", "g45"],
+      "wordIds": ["w12_13", "w12_14", "w12_15", "w12_16", "w12_17", "w12_18", "w12_19", "w12_20", "w12_21", "w12_22", "w12_23", "w12_24"],
+      "sentenceIds": ["s12_2_1", "s12_2_2", "s12_2_3", "s12_2_4", "s12_2_5", "s12_2_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 7
+    },
+    {
+      "id": "l12_3",
+      "unitId": "u12_travel",
+      "order": 3,
+      "kind": "listening",
+      "title": "Booking the trip",
+      "ko": "여행 예약",
+      "goal": "Follow a booking conversation and hear what happens first and next",
+      "grammarIds": ["g43", "g44", "g45", "g38"],
+      "wordIds": ["w12_25", "w12_26", "w12_27", "w12_28", "w12_29", "w12_30", "w12_31", "w12_32", "w12_33", "w12_34", "w12_35", "w12_36"],
+      "sentenceIds": ["s12_3_1", "s12_3_2", "s12_3_3", "s12_3_4", "s12_3_5", "s12_3_6"],
+      "dialogueId": "d12",
+      "readingId": null,
+      "minutes": 8
+    },
+    {
+      "id": "l12_4",
+      "unitId": "u12_travel",
+      "order": 4,
+      "kind": "reading",
+      "title": "Two days in Busan",
+      "ko": "부산 여행",
+      "goal": "Read a short trip diary and follow the order of the two days",
+      "grammarIds": ["g44", "g45"],
+      "wordIds": ["w12_37", "w12_38", "w12_39", "w12_40", "w12_41", "w12_42", "w12_43", "w12_44", "w12_45", "w12_46", "w12_47", "w12_48"],
+      "sentenceIds": ["s12_4_1", "s12_4_2", "s12_4_3", "s12_4_4", "s12_4_5", "s12_4_6"],
+      "dialogueId": null,
+      "readingId": "r12",
+      "minutes": 7
+    },
+    {
+      "id": "l12_5",
+      "unitId": "u12_travel",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "The whole trip, in Korean",
+      "ko": "여행 이야기",
+      "goal": "Plan, sequence and suggest a whole trip using everything from A1",
+      "grammarIds": ["g43", "g44", "g45", "g38"],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g43",
+      "unitId": "u12_travel",
+      "order": 1,
+      "label": "intend to (-(으)려고 해요)",
+      "ko": "-(으)려고 해요",
+      "pattern": "V-(으)려고 해요",
+      "explanation": "Use -(으)려고 해요 for a plan you have decided on: 가려고 해요, 먹으려고 해요. It is close to -(으)ㄹ 거예요 but sounds more like an intention.",
+      "examples": [
+        { "ko": "이번 여름에 제주도로 여행을 가려고 해요.", "en": "I'm planning to travel to Jeju Island this summer." },
+        { "ko": "표를 미리 예약하려고 해요.", "en": "I intend to book the tickets in advance." }
+      ],
+      "mistake": "가으려고 해요 ✗ → 가려고 해요 ✓"
+    },
+    {
+      "id": "g44",
+      "unitId": "u12_travel",
+      "order": 2,
+      "label": "before doing (-기 전에)",
+      "ko": "-기 전에",
+      "pattern": "V-기 전에",
+      "explanation": "Attach -기 전에 to a verb stem for 'before doing V'. The tense is not added to that verb: 출발하기 전에, 먹기 전에.",
+      "examples": [
+        { "ko": "출발하기 전에 지도를 봐요.", "en": "Before leaving, I look at the map." },
+        { "ko": "호텔에 가기 전에 저녁을 먹어요.", "en": "Before going to the hotel, I eat dinner." }
+      ],
+      "mistake": "출발했기 전에 ✗ → 출발하기 전에 ✓"
+    },
+    {
+      "id": "g45",
+      "unitId": "u12_travel",
+      "order": 3,
+      "label": "after doing (-(으)ㄴ 후에)",
+      "ko": "-(으)ㄴ 후에",
+      "pattern": "V-(으)ㄴ 후에",
+      "explanation": "Add -(으)ㄴ 후에 to a verb stem for 'after doing V'. Consonant stems take 은 후에, vowel stems take ㄴ 후에: 먹은 후에, 간 후에.",
+      "examples": [
+        { "ko": "호텔에 도착한 후에 짐을 풀어요.", "en": "After arriving at the hotel, I unpack." },
+        { "ko": "밥을 먹은 후에 산책을 해요.", "en": "After eating, I take a walk." }
+      ],
+      "mistake": "먹어은 후에 ✗ → 먹은 후에 ✓"
+    },
+    {
+      "id": "g38",
+      "unitId": "u12_travel",
+      "order": 4,
+      "label": "let's (-(으)ㅂ시다)",
+      "ko": "-(으)ㅂ시다",
+      "pattern": "V-(으)ㅂ시다",
+      "explanation": "-(으)ㅂ시다 means 'let's', neutral and slightly written. Use it for a group plan; -(으)ㄹ까요? is the softer, more conversational suggestion.",
+      "examples": [
+        { "ko": "다음에 같이 갑시다.", "en": "Let's go together next time." },
+        { "ko": "여기에서 쉽시다.", "en": "Let's rest here." }
+      ],
+      "mistake": "먹ㅂ시다 ✗ → 먹읍시다 ✓"
+    }
+  ],
+  "words": [
+    { "id": "w12_01", "ko": "여행", "rom": "yeohaeng", "en": "travel, trip", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_02", "ko": "제주도", "rom": "jejudo", "en": "Jeju Island", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_03", "ko": "부산", "rom": "busan", "en": "Busan", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_04", "ko": "비행기", "rom": "bihaenggi", "en": "airplane", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_05", "ko": "기차", "rom": "gicha", "en": "train", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_06", "ko": "표", "rom": "pyo", "en": "ticket", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_07", "ko": "공항", "rom": "gonghang", "en": "airport", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_08", "ko": "호텔", "rom": "hotel", "en": "hotel", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_09", "ko": "짐", "rom": "jim", "en": "luggage", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_10", "ko": "여권", "rom": "yeogwon", "en": "passport", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_11", "ko": "일정", "rom": "iljeong", "en": "schedule, itinerary", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_12", "ko": "가방", "rom": "gabang", "en": "bag", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_1" },
+    { "id": "w12_13", "ko": "출발", "rom": "chulbal", "en": "departure", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_14", "ko": "도착", "rom": "dochak", "en": "arrival", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_15", "ko": "관광", "rom": "gwangwang", "en": "sightseeing", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_16", "ko": "해변", "rom": "haebyeon", "en": "beach", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_17", "ko": "박물관", "rom": "bangmulgwan", "en": "museum", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_18", "ko": "유명한", "rom": "yumyeonghan", "en": "famous", "pos": "adjective", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_19", "ko": "구경", "rom": "gugyeong", "en": "looking around", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_20", "ko": "야경", "rom": "yagyeong", "en": "night view", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_21", "ko": "나중에", "rom": "najunge", "en": "later", "pos": "adverb", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_22", "ko": "지도", "rom": "jido", "en": "map", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_23", "ko": "해산물", "rom": "haesanmul", "en": "seafood", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_24", "ko": "기념품", "rom": "ginyeompum", "en": "souvenir", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_2" },
+    { "id": "w12_25", "ko": "숙소", "rom": "sukso", "en": "accommodation", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_26", "ko": "해운대", "rom": "haeundae", "en": "Haeundae", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_27", "ko": "예매", "rom": "yemae", "en": "advance booking", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_28", "ko": "1박 2일", "rom": "ilbak iil", "en": "one night, two days", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_29", "ko": "렌터카", "rom": "renteoka", "en": "rental car", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_30", "ko": "가이드", "rom": "gaideu", "en": "guide", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_31", "ko": "맛있었어요", "rom": "masisseosseoyo", "en": "was delicious", "pos": "adjective", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_32", "ko": "즐거웠어요", "rom": "jeulgeowosseoyo", "en": "was fun, had a good time", "pos": "adjective", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_33", "ko": "아쉬웠어요", "rom": "aswiwosseoyo", "en": "was a shame", "pos": "adjective", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_34", "ko": "돌아왔어요", "rom": "dorawasseoyo", "en": "came back", "pos": "verb", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_35", "ko": "여행지", "rom": "yeohangji", "en": "travel destination", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_36", "ko": "여행사", "rom": "yeohangsa", "en": "travel agency", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_3" },
+    { "id": "w12_37", "ko": "일출", "rom": "ilchul", "en": "sunrise", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_38", "ko": "노을", "rom": "noeul", "en": "sunset glow", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_39", "ko": "배", "rom": "bae", "en": "boat, ship", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_40", "ko": "섬", "rom": "seom", "en": "island", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_41", "ko": "풍경", "rom": "punggyeong", "en": "scenery", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_42", "ko": "마지막", "rom": "majimak", "en": "last", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_43", "ko": "첫날", "rom": "cheonnal", "en": "the first day", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_44", "ko": "체크인", "rom": "chekeuin", "en": "check-in", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_45", "ko": "체크아웃", "rom": "chekeuaut", "en": "check-out", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_46", "ko": "방", "rom": "bang", "en": "room", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_47", "ko": "전망", "rom": "jeonmang", "en": "view", "pos": "noun", "unitId": "u12_travel", "lessonId": "l12_4" },
+    { "id": "w12_48", "ko": "또", "rom": "tto", "en": "again", "pos": "adverb", "unitId": "u12_travel", "lessonId": "l12_4" }
+  ],
+  "sentences": [
+    {
+      "id": "s12_1_1",
+      "unitId": "u12_travel",
+      "lessonId": "l12_1",
+      "korean": "이번 여름에 제주도로 여행을 가려고 해요.",
+      "romanization": "ibeon yeoreume jejudo-ro yeohaengeul garyeogo haeyo.",
+      "english": "I'm planning to travel to Jeju Island this summer.",
+      "literal": "This summer, to Jeju Island, travel go-intend.",
+      "gloss": [
+        { "ko": "이번 여름에", "rom": "ibeon yeoreume", "en": "this summer" },
+        { "ko": "제주도로", "rom": "jejudo-ro", "en": "to Jeju Island" },
+        { "ko": "여행을", "rom": "yeohaengeul", "en": "travel (object)" },
+        { "ko": "가려고 해요", "rom": "garyeogo haeyo", "en": "intend to go" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_01", "w12_02"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I'm planning to travel to Jeju Island this winter.",
+        "I traveled to Jeju Island this summer.",
+        "I'm not planning to travel to Jeju Island."
+      ],
+      "notes": "도 takes 로 when it ends in a vowel: 제주도 → 제주도로."
+    },
+    {
+      "id": "s12_1_2",
+      "unitId": "u12_travel",
+      "lessonId": "l12_1",
+      "korean": "부산까지 기차로 가려고 해요.",
+      "romanization": "busankkaji gicharo garyeogo haeyo.",
+      "english": "I'm planning to go to Busan by train.",
+      "literal": "As far as Busan, by train go-intend.",
+      "gloss": [
+        { "ko": "부산까지", "rom": "busankkaji", "en": "as far as Busan" },
+        { "ko": "기차로", "rom": "gicharo", "en": "by train" },
+        { "ko": "가려고 해요", "rom": "garyeogo haeyo", "en": "intend to go" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_03", "w12_05"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm planning to go to Busan by plane.",
+        "I went to Busan by train.",
+        "I'm planning to go to Daegu by train."
+      ],
+      "notes": "까지 marks the end point of the journey; 로 marks the means."
+    },
+    {
+      "id": "s12_1_3",
+      "unitId": "u12_travel",
+      "lessonId": "l12_1",
+      "korean": "비행기 표를 미리 예약하려고 해요.",
+      "romanization": "bihaenggi pyoreul miri yeyakharyeogo haeyo.",
+      "english": "I intend to book the plane tickets in advance.",
+      "literal": "Plane tickets in advance reserve-intend.",
+      "gloss": [
+        { "ko": "비행기 표를", "rom": "bihaenggi pyoreul", "en": "plane tickets (object)" },
+        { "ko": "미리", "rom": "miri", "en": "in advance" },
+        { "ko": "예약하려고 해요", "rom": "yeyakharyeogo haeyo", "en": "intend to book" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_04", "w12_06"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I intend to book the train tickets in advance.",
+        "I booked the plane tickets in advance.",
+        "I don't intend to book the plane tickets."
+      ],
+      "notes": "예약하다 + 려고 해요 → 예약하려고 해요. The 려 goes straight onto 하."
+    },
+    {
+      "id": "s12_1_4",
+      "unitId": "u12_travel",
+      "lessonId": "l12_1",
+      "korean": "짐이 많아서 공항에 일찍 가려고 해요.",
+      "romanization": "jimi manaseo gonghange iljjik garyeogo haeyo.",
+      "english": "I have a lot of luggage, so I'm planning to go to the airport early.",
+      "literal": "Luggage is-much-because, to the airport early go-intend.",
+      "gloss": [
+        { "ko": "짐이", "rom": "jimi", "en": "luggage (subject)" },
+        { "ko": "많아서", "rom": "manaseo", "en": "is a lot, so" },
+        { "ko": "공항에", "rom": "gonghange", "en": "to the airport" },
+        { "ko": "일찍", "rom": "iljjik", "en": "early" },
+        { "ko": "가려고 해요", "rom": "garyeogo haeyo", "en": "intend to go" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_09", "w12_07"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I have a lot of luggage, so I'm planning to go to the airport late.",
+        "I have little luggage, so I'm planning to go to the airport early.",
+        "I have a lot of luggage, so I'm planning to go to the hotel early."
+      ],
+      "notes": "The reason clause comes first, then the intention at the end."
+    },
+    {
+      "id": "s12_1_5",
+      "unitId": "u12_travel",
+      "lessonId": "l12_1",
+      "korean": "여권을 가방에 넣으려고 해요.",
+      "romanization": "yeogwoneul gabange neoheuryeogo haeyo.",
+      "english": "I'm going to put my passport in my bag.",
+      "literal": "Passport in-bag put-in-intend.",
+      "gloss": [
+        { "ko": "여권을", "rom": "yeogwoneul", "en": "passport (object)" },
+        { "ko": "가방에", "rom": "gabange", "en": "in the bag" },
+        { "ko": "넣으려고 해요", "rom": "neoheuryeogo haeyo", "en": "intend to put in" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_10", "w12_12"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I'm going to put my ticket in my bag.",
+        "I'm going to take my passport out of my bag.",
+        "I put my passport in my bag."
+      ],
+      "notes": "넣다 has a ㅎ final, so it takes 으려고: 넣 + 으려고."
+    },
+    {
+      "id": "s12_1_6",
+      "unitId": "u12_travel",
+      "lessonId": "l12_1",
+      "korean": "여행 일정을 같이 정하려고 해요.",
+      "romanization": "yeohaeng iljeongeul gachi jeongharyeogo haeyo.",
+      "english": "We're planning to set the travel schedule together.",
+      "literal": "Travel schedule together decide-intend.",
+      "gloss": [
+        { "ko": "여행 일정을", "rom": "yeohaeng iljeongeul", "en": "the travel schedule (object)" },
+        { "ko": "같이", "rom": "gachi", "en": "together" },
+        { "ko": "정하려고 해요", "rom": "jeongharyeogo haeyo", "en": "intend to decide" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_01", "w12_11"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "We're planning to cancel the travel schedule.",
+        "We set the travel schedule together.",
+        "We're planning to set the travel schedule alone."
+      ],
+      "notes": "Korean does not need a subject here; 함께/같이 makes it 'we' in feel."
+    },
+    {
+      "id": "s12_2_1",
+      "unitId": "u12_travel",
+      "lessonId": "l12_2",
+      "korean": "출발하기 전에 지도를 봐요.",
+      "romanization": "chulbalhagi jeone jidoreul bwayo.",
+      "english": "Before leaving, I look at the map.",
+      "literal": "Before departing, the map look-at.",
+      "gloss": [
+        { "ko": "출발하기 전에", "rom": "chulbalhagi jeone", "en": "before departing" },
+        { "ko": "지도를", "rom": "jidoreul", "en": "the map (object)" },
+        { "ko": "봐요", "rom": "bwayo", "en": "look at" }
+      ],
+      "grammarIds": ["g44"],
+      "wordIds": ["w12_13", "w12_22"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "After leaving, I look at the map.",
+        "Before leaving, I buy a map.",
+        "Before arriving, I look at the map."
+      ],
+      "notes": "-기 전에 attaches to the stem with no tense: 출발하 + 기 전에."
+    },
+    {
+      "id": "s12_2_2",
+      "unitId": "u12_travel",
+      "lessonId": "l12_2",
+      "korean": "호텔에 도착한 후에 짐을 풀어요.",
+      "romanization": "hotele dochakhan hue jimeul pureoyo.",
+      "english": "After arriving at the hotel, I unpack my luggage.",
+      "literal": "After arriving at the hotel, luggage untie.",
+      "gloss": [
+        { "ko": "호텔에", "rom": "hotele", "en": "at the hotel" },
+        { "ko": "도착한 후에", "rom": "dochakhan hue", "en": "after arriving" },
+        { "ko": "짐을", "rom": "jimeul", "en": "luggage (object)" },
+        { "ko": "풀어요", "rom": "pureoyo", "en": "unpack, untie" }
+      ],
+      "grammarIds": ["g45"],
+      "wordIds": ["w12_14", "w12_09", "w12_08"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Before arriving at the hotel, I unpack my luggage.",
+        "After arriving at the hotel, I pack my luggage.",
+        "After arriving at the airport, I unpack my luggage."
+      ],
+      "notes": "도착하다 ends in a vowel, so it takes ㄴ: 도착한 후에."
+    },
+    {
+      "id": "s12_2_3",
+      "unitId": "u12_travel",
+      "lessonId": "l12_2",
+      "korean": "점심에 해산물을 먹은 후에 관광을 해요.",
+      "romanization": "jeomsime haesanmureul meogeun hue gwangwangeul haeyo.",
+      "english": "After eating seafood for lunch, I go sightseeing.",
+      "literal": "At lunch seafood eat-after, sightseeing do.",
+      "gloss": [
+        { "ko": "점심에", "rom": "jeomsime", "en": "at lunch" },
+        { "ko": "해산물을", "rom": "haesanmureul", "en": "seafood (object)" },
+        { "ko": "먹은 후에", "rom": "meogeun hue", "en": "after eating" },
+        { "ko": "관광을 해요", "rom": "gwangwangeul haeyo", "en": "go sightseeing" }
+      ],
+      "grammarIds": ["g45"],
+      "wordIds": ["w12_23", "w12_15"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Before eating seafood for lunch, I go sightseeing.",
+        "After eating seafood for dinner, I go sightseeing.",
+        "After eating seafood for lunch, I go back to the hotel."
+      ],
+      "notes": "먹다 has a consonant stem, so it takes 은: 먹은 후에."
+    },
+    {
+      "id": "s12_2_4",
+      "unitId": "u12_travel",
+      "lessonId": "l12_2",
+      "korean": "야경을 보기 전에 바다를 구경해요.",
+      "romanization": "yagyeongeul bogi jeone badareul gugyeonghaeyo.",
+      "english": "Before seeing the night view, I look around the sea.",
+      "literal": "Before seeing the night view, the sea look-around.",
+      "gloss": [
+        { "ko": "야경을", "rom": "yagyeongeul", "en": "the night view (object)" },
+        { "ko": "보기 전에", "rom": "bogi jeone", "en": "before seeing" },
+        { "ko": "바다를", "rom": "badareul", "en": "the sea (object)" },
+        { "ko": "구경해요", "rom": "gugyeonghaeyo", "en": "look around" }
+      ],
+      "grammarIds": ["g44"],
+      "wordIds": ["w12_20", "w12_19"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "After seeing the night view, I look around the sea.",
+        "Before seeing the sunrise, I look around the sea.",
+        "Before seeing the night view, I go back to the hotel."
+      ],
+      "notes": "구경하다 is for looking around a place or a sight; 보다 is for watching something specific."
+    },
+    {
+      "id": "s12_2_5",
+      "unitId": "u12_travel",
+      "lessonId": "l12_2",
+      "korean": "박물관에 가기 전에 표를 사요.",
+      "romanization": "bangmulgwane gagi jeone pyoreul sayo.",
+      "english": "Before going to the museum, I buy a ticket.",
+      "literal": "Before going to the museum, a ticket buy.",
+      "gloss": [
+        { "ko": "박물관에", "rom": "bangmulgwane", "en": "to the museum" },
+        { "ko": "가기 전에", "rom": "gagi jeone", "en": "before going" },
+        { "ko": "표를", "rom": "pyoreul", "en": "a ticket (object)" },
+        { "ko": "사요", "rom": "sayo", "en": "buy" }
+      ],
+      "grammarIds": ["g44"],
+      "wordIds": ["w12_17", "w12_06"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "After going to the museum, I buy a ticket.",
+        "Before going to the museum, I buy a map.",
+        "Before going to the beach, I buy a ticket."
+      ],
+      "notes": "-기 전에 can follow a movement verb as well: 가기 전에 = before going."
+    },
+    {
+      "id": "s12_2_6",
+      "unitId": "u12_travel",
+      "lessonId": "l12_2",
+      "korean": "기념품을 산 후에 해변에 가요.",
+      "romanization": "ginyeompumeul san hue haebyeone gayo.",
+      "english": "After buying souvenirs, I go to the beach.",
+      "literal": "After buying souvenirs, to the beach go.",
+      "gloss": [
+        { "ko": "기념품을", "rom": "ginyeompumeul", "en": "souvenirs (object)" },
+        { "ko": "산 후에", "rom": "san hue", "en": "after buying" },
+        { "ko": "해변에", "rom": "haebyeone", "en": "to the beach" },
+        { "ko": "가요", "rom": "gayo", "en": "go" }
+      ],
+      "grammarIds": ["g45"],
+      "wordIds": ["w12_24", "w12_16"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Before buying souvenirs, I go to the beach.",
+        "After buying souvenirs, I go to the museum.",
+        "After buying tickets, I go to the beach."
+      ],
+      "notes": "사다 is irregular here: 사 + ㄴ = 산, so 산 후에 = after buying."
+    },
+    {
+      "id": "s12_3_1",
+      "unitId": "u12_travel",
+      "lessonId": "l12_3",
+      "korean": "표를 예매한 후에 짐을 싸요.",
+      "romanization": "pyoreul yemaehan hue jimeul ssayo.",
+      "english": "After booking the tickets, I pack my luggage.",
+      "literal": "After booking tickets, luggage pack.",
+      "gloss": [
+        { "ko": "표를", "rom": "pyoreul", "en": "tickets (object)" },
+        { "ko": "예매한 후에", "rom": "yemaehan hue", "en": "after booking" },
+        { "ko": "짐을", "rom": "jimeul", "en": "luggage (object)" },
+        { "ko": "싸요", "rom": "ssayo", "en": "pack" }
+      ],
+      "grammarIds": ["g45"],
+      "wordIds": ["w12_06", "w12_27", "w12_09"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Before booking the tickets, I pack my luggage.",
+        "After booking the tickets, I unpack my luggage.",
+        "After booking the hotel, I pack my luggage."
+      ],
+      "notes": "예매하다 is the usual verb for booking tickets in advance; 예약하다 is for rooms and tables."
+    },
+    {
+      "id": "s12_3_2",
+      "unitId": "u12_travel",
+      "lessonId": "l12_3",
+      "korean": "해운대에 가기 전에 숙소를 정해요.",
+      "romanization": "haeundaee gagi jeone suksoreul jeonghaeyo.",
+      "english": "Before going to Haeundae, I decide on the accommodation.",
+      "literal": "Before going to Haeundae, accommodation decide.",
+      "gloss": [
+        { "ko": "해운대에", "rom": "haeundaee", "en": "to Haeundae" },
+        { "ko": "가기 전에", "rom": "gagi jeone", "en": "before going" },
+        { "ko": "숙소를", "rom": "suksoreul", "en": "accommodation (object)" },
+        { "ko": "정해요", "rom": "jeonghaeyo", "en": "decide on" }
+      ],
+      "grammarIds": ["g44"],
+      "wordIds": ["w12_26", "w12_25"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "After going to Haeundae, I decide on the accommodation.",
+        "Before going to Haeundae, I decide on the airline.",
+        "Before going to the museum, I decide on the accommodation."
+      ],
+      "notes": "정하다 is 'to decide on'; 숙소를 정하다 = book/choose where to stay."
+    },
+    {
+      "id": "s12_3_3",
+      "unitId": "u12_travel",
+      "lessonId": "l12_3",
+      "korean": "렌터카를 빌린 후에 해변에 가요.",
+      "romanization": "renteokareul billin hue haebyeone gayo.",
+      "english": "After renting a car, I go to the beach.",
+      "literal": "After renting a rental car, to the beach go.",
+      "gloss": [
+        { "ko": "렌터카를", "rom": "renteokareul", "en": "a rental car (object)" },
+        { "ko": "빌린 후에", "rom": "billin hue", "en": "after renting" },
+        { "ko": "해변에", "rom": "haebyeone", "en": "to the beach" },
+        { "ko": "가요", "rom": "gayo", "en": "go" }
+      ],
+      "grammarIds": ["g45"],
+      "wordIds": ["w12_29", "w12_16"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Before renting a car, I go to the beach.",
+        "After renting a car, I go to the museum.",
+        "After buying a car, I go to the beach."
+      ],
+      "notes": "빌리다 ends in a vowel, so it takes ㄴ: 빌린 후에."
+    },
+    {
+      "id": "s12_3_4",
+      "unitId": "u12_travel",
+      "lessonId": "l12_3",
+      "korean": "여행사에서 1박 2일 여행을 예약하려고 해요.",
+      "romanization": "yeohangsaseo ilbak iil yeohaengeul yeyakharyeogo haeyo.",
+      "english": "I'm planning to book a two-day trip at the travel agency.",
+      "literal": "At the travel agency, one-night-two-day trip reserve-intend.",
+      "gloss": [
+        { "ko": "여행사에서", "rom": "yeohangsaseo", "en": "at the travel agency" },
+        { "ko": "1박 2일 여행을", "rom": "ilbak iil yeohaengeul", "en": "a one night, two day trip (object)" },
+        { "ko": "예약하려고 해요", "rom": "yeyakharyeogo haeyo", "en": "intend to book" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_36", "w12_28"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I'm planning to book a three-day trip at the travel agency.",
+        "I booked a two-day trip at the travel agency.",
+        "I'm planning to book a two-day trip at the hotel."
+      ],
+      "notes": "1박 2일 is read 일박 이일: one night, two days."
+    },
+    {
+      "id": "s12_3_5",
+      "unitId": "u12_travel",
+      "lessonId": "l12_3",
+      "korean": "가이드와 함께 박물관에 갑시다.",
+      "romanization": "gaideuwa hamkke bangmulgwane gapsida.",
+      "english": "Let's go to the museum with the guide.",
+      "literal": "With the guide together, to the museum let's-go.",
+      "gloss": [
+        { "ko": "가이드와", "rom": "gaideuwa", "en": "with the guide" },
+        { "ko": "함께", "rom": "hamkke", "en": "together" },
+        { "ko": "박물관에", "rom": "bangmulgwane", "en": "to the museum" },
+        { "ko": "갑시다", "rom": "gapsida", "en": "let's go" }
+      ],
+      "grammarIds": ["g38"],
+      "wordIds": ["w12_30", "w12_17"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Let's go to the museum without the guide.",
+        "Let's go to the beach with the guide.",
+        "We went to the museum with the guide."
+      ],
+      "notes": "가다 + ㅂ시다 = 갑시다. The ㅂ is written as ㅂ before 시다."
+    },
+    {
+      "id": "s12_3_6",
+      "unitId": "u12_travel",
+      "lessonId": "l12_3",
+      "korean": "다음에 또 부산에 오려고 해요.",
+      "romanization": "daeume tto busane oryeogo haeyo.",
+      "english": "I'm planning to come to Busan again next time.",
+      "literal": "Next time, again to Busan come-intend.",
+      "gloss": [
+        { "ko": "다음에", "rom": "daeume", "en": "next time" },
+        { "ko": "또", "rom": "tto", "en": "again" },
+        { "ko": "부산에", "rom": "busane", "en": "to Busan" },
+        { "ko": "오려고 해요", "rom": "oryeogo haeyo", "en": "intend to come" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_48", "w12_03"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm planning to come to Busan again tomorrow.",
+        "I came to Busan again last time.",
+        "I'm not planning to come to Busan again."
+      ],
+      "notes": "오다 is 'come' from the listener's side - here the speaker is already in Busan."
+    },
+    {
+      "id": "s12_4_1",
+      "unitId": "u12_travel",
+      "lessonId": "l12_4",
+      "korean": "첫날에는 일출을 보려고 해요.",
+      "romanization": "cheonnareneun ilchureul boryeogo haeyo.",
+      "english": "On the first day, I'm planning to watch the sunrise.",
+      "literal": "On the first day, sunrise see-intend.",
+      "gloss": [
+        { "ko": "첫날에는", "rom": "cheonnareneun", "en": "on the first day (topic)" },
+        { "ko": "일출을", "rom": "ilchureul", "en": "the sunrise (object)" },
+        { "ko": "보려고 해요", "rom": "boryeogo haeyo", "en": "intend to see" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_43", "w12_37"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "On the first day, I'm planning to watch the sunset.",
+        "On the last day, I'm planning to watch the sunrise.",
+        "On the first day, I watched the sunrise."
+      ],
+      "notes": "보다 + 려고 → 보려고. No ㄹ is added before 려."
+    },
+    {
+      "id": "s12_4_2",
+      "unitId": "u12_travel",
+      "lessonId": "l12_4",
+      "korean": "배를 타고 섬에 가려고 해요.",
+      "romanization": "baereul tago seome garyeogo haeyo.",
+      "english": "I'm planning to take a boat to the island.",
+      "literal": "A boat ride-and, to the island go-intend.",
+      "gloss": [
+        { "ko": "배를", "rom": "baereul", "en": "a boat (object)" },
+        { "ko": "타고", "rom": "tago", "en": "ride and" },
+        { "ko": "섬에", "rom": "seome", "en": "to the island" },
+        { "ko": "가려고 해요", "rom": "garyeogo haeyo", "en": "intend to go" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_39", "w12_40"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I'm planning to take a bus to the island.",
+        "I'm planning to take a boat to the beach.",
+        "I took a boat to the island."
+      ],
+      "notes": "배를 타고 = ride a boat and…; 타다 is used for boats, buses and bikes."
+    },
+    {
+      "id": "s12_4_3",
+      "unitId": "u12_travel",
+      "lessonId": "l12_4",
+      "korean": "섬에 도착한 후에 풍경을 구경해요.",
+      "romanization": "seome dochakhan hue punggyeongeul gugyeonghaeyo.",
+      "english": "After arriving on the island, I look around at the scenery.",
+      "literal": "After arriving at the island, scenery look-around.",
+      "gloss": [
+        { "ko": "섬에", "rom": "seome", "en": "at the island" },
+        { "ko": "도착한 후에", "rom": "dochakhan hue", "en": "after arriving" },
+        { "ko": "풍경을", "rom": "punggyeongeul", "en": "the scenery (object)" },
+        { "ko": "구경해요", "rom": "gugyeonghaeyo", "en": "look around" }
+      ],
+      "grammarIds": ["g45"],
+      "wordIds": ["w12_40", "w12_41", "w12_19"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Before arriving on the island, I look around at the scenery.",
+        "After arriving on the island, I go to the museum.",
+        "After arriving at the airport, I look around at the scenery."
+      ],
+      "notes": "풍경 is the view or scenery itself; 구경 is the act of looking around."
+    },
+    {
+      "id": "s12_4_4",
+      "unitId": "u12_travel",
+      "lessonId": "l12_4",
+      "korean": "마지막 날에는 노을을 보려고 해요.",
+      "romanization": "majimak nareneun noeureul boryeogo haeyo.",
+      "english": "On the last day, I'm planning to watch the sunset.",
+      "literal": "On the last day, sunset-glow see-intend.",
+      "gloss": [
+        { "ko": "마지막 날에는", "rom": "majimak nareneun", "en": "on the last day (topic)" },
+        { "ko": "노을을", "rom": "noeureul", "en": "the sunset glow (object)" },
+        { "ko": "보려고 해요", "rom": "boryeogo haeyo", "en": "intend to see" }
+      ],
+      "grammarIds": ["g43"],
+      "wordIds": ["w12_42", "w12_38"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "On the last day, I'm planning to watch the sunrise.",
+        "On the first day, I'm planning to watch the sunset.",
+        "On the last day, I watched the sunset."
+      ],
+      "notes": "노을 is the red glow at sunset; 일출 is the sunrise event."
+    },
+    {
+      "id": "s12_4_5",
+      "unitId": "u12_travel",
+      "lessonId": "l12_4",
+      "korean": "체크인한 후에 방에서 쉬려고 해요.",
+      "romanization": "chekeuinhan hue bangeseo swiryeogo haeyo.",
+      "english": "After checking in, I'm planning to rest in the room.",
+      "literal": "After check-in, in the room rest-intend.",
+      "gloss": [
+        { "ko": "체크인한 후에", "rom": "chekeuinhan hue", "en": "after checking in" },
+        { "ko": "방에서", "rom": "bangeseo", "en": "in the room" },
+        { "ko": "쉬려고 해요", "rom": "swiryeogo haeyo", "en": "intend to rest" }
+      ],
+      "grammarIds": ["g45", "g43"],
+      "wordIds": ["w12_44", "w12_46"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Before checking in, I'm planning to rest in the room.",
+        "After checking out, I'm planning to rest in the room.",
+        "After checking in, I'm planning to go to the beach."
+      ],
+      "notes": "쉬다 + 려고 → 쉬려고. Two endings can stack: 체크인한 후에 … 쉬려고 해요."
+    },
+    {
+      "id": "s12_4_6",
+      "unitId": "u12_travel",
+      "lessonId": "l12_4",
+      "korean": "체크아웃하기 전에 전망을 봅시다.",
+      "romanization": "chekeuaut hagi jeone jeonmangeul bopsida.",
+      "english": "Let's look at the view before checking out.",
+      "literal": "Before checking out, the view let's-look.",
+      "gloss": [
+        { "ko": "체크아웃하기 전에", "rom": "chekeuaut hagi jeone", "en": "before checking out" },
+        { "ko": "전망을", "rom": "jeonmangeul", "en": "the view (object)" },
+        { "ko": "봅시다", "rom": "bopsida", "en": "let's look" }
+      ],
+      "grammarIds": ["g44", "g38"],
+      "wordIds": ["w12_45", "w12_47"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Let's look at the view after checking out.",
+        "Let's check out before looking at the view.",
+        "I looked at the view before checking out."
+      ],
+      "notes": "보다 + ㅂ시다 = 봅시다. -(으)ㅂ시다 includes the speaker, so it fits a group plan."
+    }
+  ],
+  "dialogue": {
+    "id": "d12",
+    "unitId": "u12_travel",
+    "title": "Back from Busan",
+    "setting": "Two friends talk on Monday about a weekend trip to Busan.",
+    "lines": [
+      { "id": "d12_1", "speaker": "A", "ko": "부산 여행은 어땠어요?", "rom": "busan yeohaengeun eottaesseoyo?", "en": "How was the trip to Busan?" },
+      { "id": "d12_2", "speaker": "B", "ko": "아주 즐거웠어요. 바다가 정말 예뻤어요.", "rom": "aju jeulgeowosseoyo. badaga jeongmal yeppeosseoyo.", "en": "It was really fun. The sea was so pretty." },
+      { "id": "d12_3", "speaker": "A", "ko": "숙소는 괜찮았어요?", "rom": "suksoneun gwaenchanasseoyo?", "en": "Was the accommodation okay?" },
+      { "id": "d12_4", "speaker": "B", "ko": "네, 역에서 가까워서 편했어요.", "rom": "ne, yeogeseo gakkawo-seo pyeonhaesseoyo.", "en": "Yes, it was close to the station, so it was comfortable." },
+      { "id": "d12_5", "speaker": "A", "ko": "뭐를 먹었어요?", "rom": "mworeul meogeosseoyo?", "en": "What did you eat?" },
+      { "id": "d12_6", "speaker": "B", "ko": "해운대에서 해산물을 먹었어요. 아주 맛있었어요.", "rom": "haeundaee haesanmureul meogeosseoyo. aju masisseosseoyo.", "en": "I ate seafood at Haeundae. It was delicious." },
+      { "id": "d12_7", "speaker": "A", "ko": "좋겠어요. 저도 부산에 가고 싶어요.", "rom": "jokesseoyo. jeodo busane gago sipeoyo.", "en": "That sounds nice. I want to go to Busan too." },
+      { "id": "d12_8", "speaker": "B", "ko": "그럼 나중에 같이 갑시다. 부산은 정말 좋은 여행지예요.", "rom": "geureom najunge gachi gapsida. busaneun jeongmal joeun yeohangjiyeyo.", "en": "Then let's go together later. Busan is a really good travel destination." }
+    ]
+  },
+  "reading": {
+    "id": "r12",
+    "unitId": "u12_travel",
+    "title": "Two days in Busan",
+    "ko": "금요일 저녁에 부산에 도착했어요. 숙소는 해운대 근처였어요. 조용하고 편했어요. 토요일 아침에 일찍 일어나서 해변을 걸었어요. 날씨가 따뜻했어요. 점심에는 유명한 식당에서 해산물을 먹었어요. 아주 맛있었어요. 오후에는 배를 타고 섬에 갔어요. 섬의 풍경이 정말 좋았어요. 저녁에는 노을을 봤어요. 마지막 날에는 시장에서 기념품을 샀어요. 사람들이 친절했어요. 1박 2일은 조금 아쉬웠어요. 그래도 아주 즐거웠어요. 일요일 저녁에 서울로 돌아왔어요. 다음에 또 가고 싶어요.",
+    "en": "I arrived in Busan on Friday evening. The accommodation was near Haeundae. It was quiet and comfortable. On Saturday morning I got up early and walked along the beach. The weather was warm. For lunch I ate seafood at a famous restaurant. It was delicious. In the afternoon I took a boat to an island. The scenery on the island was really good. In the evening I watched the sunset. On the last day I bought souvenirs at the market. The people were kind. Two days was a bit of a shame. Still, it was a lot of fun. I came back to Seoul on Sunday evening. I want to go again next time.",
+    "questions": [
+      {
+        "q": "When did the writer arrive in Busan?",
+        "options": ["Friday evening", "Saturday morning", "Sunday evening", "Monday afternoon"],
+        "answer": 0,
+        "why": "금요일 저녁에 부산에 도착했어요 = I arrived in Busan on Friday evening."
+      },
+      {
+        "q": "What did the writer do on Saturday morning?",
+        "options": ["Walked along the beach", "Took a boat to an island", "Bought souvenirs", "Watched the sunset"],
+        "answer": 0,
+        "why": "토요일 아침에 일찍 일어나서 해변을 걸었어요."
+      },
+      {
+        "q": "How did the writer feel about the trip?",
+        "options": ["It was fun but too short", "It was boring", "It was too long", "It was expensive"],
+        "answer": 0,
+        "why": "1박 2일은 조금 아쉬웠어요. 그래도 아주 즐거웠어요."
+      }
+    ]
+  }
+}

@@ -1,0 +1,1912 @@
+{
+  "unit": {
+    "id": "u02_daily",
+    "order": 2,
+    "title": "Daily life",
+    "ko": "일상생활",
+    "canDo": [
+      "Say what you have and what there is in a place",
+      "Describe your daily routine with time words",
+      "Say that you don't do something"
+    ],
+    "grammarIds": [
+      "g04",
+      "g05",
+      "g06",
+      "g07"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l02_1",
+      "unitId": "u02_daily",
+      "order": 1,
+      "kind": "vocab",
+      "title": "What is in my room",
+      "ko": "제 방에 책상이 있어요",
+      "goal": "Name everyday things and say whether they are there",
+      "grammarIds": [
+        "g04",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_01",
+        "w02_02",
+        "w02_03",
+        "w02_04",
+        "w02_05",
+        "w02_06",
+        "w02_07",
+        "w02_08",
+        "w02_09",
+        "w02_10",
+        "w02_11",
+        "w02_12"
+      ],
+      "sentenceIds": [
+        "s02_1_1",
+        "s02_1_2",
+        "s02_1_3",
+        "s02_1_4",
+        "s02_1_5",
+        "s02_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l02_2",
+      "unitId": "u02_daily",
+      "order": 2,
+      "kind": "grammar",
+      "title": "What I do every day",
+      "ko": "아침에는 일찍 일어나요",
+      "goal": "Use -아요/어요 for the present tense and 안 for 'don't'",
+      "grammarIds": [
+        "g06",
+        "g07",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_13",
+        "w02_14",
+        "w02_15",
+        "w02_16",
+        "w02_17",
+        "w02_18",
+        "w02_19",
+        "w02_20",
+        "w02_21",
+        "w02_22",
+        "w02_23",
+        "w02_24"
+      ],
+      "sentenceIds": [
+        "s02_2_1",
+        "s02_2_2",
+        "s02_2_3",
+        "s02_2_4",
+        "s02_2_5",
+        "s02_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 7
+    },
+    {
+      "id": "l02_3",
+      "unitId": "u02_daily",
+      "order": 3,
+      "kind": "listening",
+      "title": "Morning or evening?",
+      "ko": "저는 저녁에 운동해요",
+      "goal": "Understand two people comparing their daily routines",
+      "grammarIds": [
+        "g06",
+        "g07",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_25",
+        "w02_26",
+        "w02_27",
+        "w02_28",
+        "w02_29",
+        "w02_30",
+        "w02_31",
+        "w02_32",
+        "w02_33",
+        "w02_34",
+        "w02_35",
+        "w02_36"
+      ],
+      "sentenceIds": [
+        "s02_3_1",
+        "s02_3_2",
+        "s02_3_3",
+        "s02_3_4",
+        "s02_3_5",
+        "s02_3_6"
+      ],
+      "dialogueId": "d02",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l02_4",
+      "unitId": "u02_daily",
+      "order": 4,
+      "kind": "reading",
+      "title": "Lisa's day",
+      "ko": "제 생활",
+      "goal": "Read a short daily routine and answer three questions",
+      "grammarIds": [
+        "g06",
+        "g07",
+        "g04"
+      ],
+      "wordIds": [
+        "w02_37",
+        "w02_38",
+        "w02_39",
+        "w02_40",
+        "w02_41",
+        "w02_42",
+        "w02_43",
+        "w02_44",
+        "w02_45",
+        "w02_46",
+        "w02_47",
+        "w02_48"
+      ],
+      "sentenceIds": [
+        "s02_4_1",
+        "s02_4_2",
+        "s02_4_3",
+        "s02_4_4",
+        "s02_4_5",
+        "s02_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r02",
+      "minutes": 7
+    },
+    {
+      "id": "l02_5",
+      "unitId": "u02_daily",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: Daily life",
+      "ko": "복습",
+      "goal": "Describe your day and say what you don't do",
+      "grammarIds": [
+        "g04",
+        "g05",
+        "g06",
+        "g07"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g04",
+      "unitId": "u02_daily",
+      "order": 1,
+      "label": "there is / I have (있어요/없어요)",
+      "ko": "있어요/없어요",
+      "pattern": "N이/가 있어요 / 없어요",
+      "explanation": "있어요 means something exists or you have it; 없어요 means it doesn't. The thing takes 이/가.",
+      "examples": [
+        {
+          "ko": "냉장고에 우유가 있어요.",
+          "en": "There is milk in the fridge."
+        },
+        {
+          "ko": "제 방에 시계가 없어요.",
+          "en": "There is no clock in my room."
+        }
+      ],
+      "mistake": "우유를 있어요 ✗ → 우유가 있어요 ✓"
+    },
+    {
+      "id": "g05",
+      "unitId": "u02_daily",
+      "order": 2,
+      "label": "place and time particle (에)",
+      "ko": "에",
+      "pattern": "N + 에",
+      "explanation": "Put 에 after a place to say where something is, or after a time to say when. Its shape never changes.",
+      "examples": [
+        {
+          "ko": "제 방에 책상이 있어요.",
+          "en": "There is a desk in my room."
+        },
+        {
+          "ko": "아침에 운동해요.",
+          "en": "I exercise in the morning."
+        }
+      ],
+      "mistake": "아침을 운동해요 ✗ → 아침에 운동해요 ✓"
+    },
+    {
+      "id": "g06",
+      "unitId": "u02_daily",
+      "order": 3,
+      "label": "polite present ending (-아요/어요)",
+      "ko": "-아요/어요",
+      "pattern": "V-아요 / V-어요",
+      "explanation": "The polite present ending. Add 아요 after ㅏ or ㅗ, 어요 after other vowels; 하다 verbs become 해요.",
+      "examples": [
+        {
+          "ko": "저는 매일 운동해요.",
+          "en": "I exercise every day."
+        },
+        {
+          "ko": "저는 밤에 책을 읽어요.",
+          "en": "I read a book at night."
+        }
+      ],
+      "mistake": "읽아요 ✗ → 읽어요 ✓"
+    },
+    {
+      "id": "g07",
+      "unitId": "u02_daily",
+      "order": 4,
+      "label": "negation (안)",
+      "ko": "안",
+      "pattern": "안 + V",
+      "explanation": "Put 안 before the verb to say you don't do it. It is a choice, not an inability.",
+      "examples": [
+        {
+          "ko": "저는 밤에 우유를 안 마셔요.",
+          "en": "I don't drink milk at night."
+        },
+        {
+          "ko": "저는 텔레비전을 안 봐요.",
+          "en": "I don't watch TV."
+        }
+      ],
+      "mistake": "저는 안 운동해요 ✗ → 저는 운동을 안 해요 ✓"
+    }
+  ],
+  "words": [
+    {
+      "id": "w02_01",
+      "ko": "방",
+      "rom": "bang",
+      "en": "room",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_02",
+      "ko": "책상",
+      "rom": "chaeksang",
+      "en": "desk",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_03",
+      "ko": "침대",
+      "rom": "chimdae",
+      "en": "bed",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_04",
+      "ko": "컴퓨터",
+      "rom": "keompyuteo",
+      "en": "computer",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_05",
+      "ko": "핸드폰",
+      "rom": "haendeupon",
+      "en": "mobile phone",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_06",
+      "ko": "시계",
+      "rom": "sigye",
+      "en": "clock",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_07",
+      "ko": "우유",
+      "rom": "uyu",
+      "en": "milk",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_08",
+      "ko": "빵",
+      "rom": "ppang",
+      "en": "bread",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_09",
+      "ko": "과자",
+      "rom": "gwaja",
+      "en": "snack / biscuits",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_10",
+      "ko": "냉장고",
+      "rom": "naengjanggo",
+      "en": "fridge",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_11",
+      "ko": "집",
+      "rom": "jip",
+      "en": "house / home",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_12",
+      "ko": "부엌",
+      "rom": "bueok",
+      "en": "kitchen",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1"
+    },
+    {
+      "id": "w02_13",
+      "ko": "일어나요",
+      "rom": "ireonayo",
+      "en": "to get up",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_14",
+      "ko": "씻어요",
+      "rom": "ssiseoyo",
+      "en": "to wash (yourself)",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_15",
+      "ko": "자요",
+      "rom": "jayo",
+      "en": "to sleep",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_16",
+      "ko": "일해요",
+      "rom": "ilhaeyo",
+      "en": "to work",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_17",
+      "ko": "만나요",
+      "rom": "mannayo",
+      "en": "to meet",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_18",
+      "ko": "봐요",
+      "rom": "bwayo",
+      "en": "to look / watch",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_19",
+      "ko": "읽어요",
+      "rom": "ilgeoyo",
+      "en": "to read",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_20",
+      "ko": "들어요",
+      "rom": "deureoyo",
+      "en": "to listen",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_21",
+      "ko": "운동해요",
+      "rom": "undonghaeyo",
+      "en": "to exercise",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_22",
+      "ko": "쉬어요",
+      "rom": "swieoyo",
+      "en": "to rest",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_23",
+      "ko": "매일",
+      "rom": "maeil",
+      "en": "every day",
+      "pos": "adverb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_24",
+      "ko": "책",
+      "rom": "chaek",
+      "en": "book",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2"
+    },
+    {
+      "id": "w02_25",
+      "ko": "아침",
+      "rom": "achim",
+      "en": "morning",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_26",
+      "ko": "점심",
+      "rom": "jeomsim",
+      "en": "lunch / midday",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_27",
+      "ko": "저녁",
+      "rom": "jeonyeok",
+      "en": "evening",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_28",
+      "ko": "밤",
+      "rom": "bam",
+      "en": "night",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_29",
+      "ko": "보통",
+      "rom": "botong",
+      "en": "usually",
+      "pos": "adverb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_30",
+      "ko": "일찍",
+      "rom": "iljjik",
+      "en": "early",
+      "pos": "adverb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_31",
+      "ko": "늦게",
+      "rom": "neutge",
+      "en": "late",
+      "pos": "adverb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_32",
+      "ko": "주말",
+      "rom": "jumal",
+      "en": "weekend",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_33",
+      "ko": "청소해요",
+      "rom": "cheongsohaeyo",
+      "en": "to clean",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_34",
+      "ko": "빨래해요",
+      "rom": "ppallaeyaeyo",
+      "en": "to do the laundry",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_35",
+      "ko": "요리해요",
+      "rom": "yorihaeyo",
+      "en": "to cook",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_36",
+      "ko": "피곤해요",
+      "rom": "pigonhaeyo",
+      "en": "to be tired",
+      "pos": "adjective",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3"
+    },
+    {
+      "id": "w02_37",
+      "ko": "생활",
+      "rom": "saenghwal",
+      "en": "daily life",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_38",
+      "ko": "시작해요",
+      "rom": "sijakhaeyo",
+      "en": "to start",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_39",
+      "ko": "끝나요",
+      "rom": "kkeunnayo",
+      "en": "to end",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_40",
+      "ko": "바빠요",
+      "rom": "bappayo",
+      "en": "to be busy",
+      "pos": "adjective",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_41",
+      "ko": "샤워",
+      "rom": "syawo",
+      "en": "shower",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_42",
+      "ko": "거실",
+      "rom": "geosil",
+      "en": "living room",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_43",
+      "ko": "혼자",
+      "rom": "honja",
+      "en": "alone",
+      "pos": "adverb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_44",
+      "ko": "졸려요",
+      "rom": "jollyeoyo",
+      "en": "to be sleepy",
+      "pos": "adjective",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_45",
+      "ko": "출근해요",
+      "rom": "chulgeunhaeyo",
+      "en": "to go to work",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_46",
+      "ko": "퇴근해요",
+      "rom": "toegeunhaeyo",
+      "en": "to leave work",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_47",
+      "ko": "텔레비전",
+      "rom": "tellebijeon",
+      "en": "television",
+      "pos": "noun",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    },
+    {
+      "id": "w02_48",
+      "ko": "정리해요",
+      "rom": "jeongnihaeyo",
+      "en": "to tidy up",
+      "pos": "verb",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s02_1_1",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1",
+      "korean": "제 방에 책상이 있어요.",
+      "romanization": "je bange chaeksangi isseoyo.",
+      "english": "There is a desk in my room.",
+      "literal": "In my room, a desk exists.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "방에",
+          "rom": "bange",
+          "en": "in the room"
+        },
+        {
+          "ko": "책상이",
+          "rom": "chaeksangi",
+          "en": "desk (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there is"
+        }
+      ],
+      "grammarIds": [
+        "g04",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_01",
+        "w02_02"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "There is a desk in the kitchen.",
+        "There is no desk in my room.",
+        "Is there a desk in my room?"
+      ],
+      "notes": "The place takes 에, the thing takes 이/가."
+    },
+    {
+      "id": "s02_1_2",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1",
+      "korean": "냉장고에 우유가 없어요.",
+      "romanization": "naengjanggoe uyuga eopseoyo.",
+      "english": "There is no milk in the fridge.",
+      "literal": "In the fridge, milk does not exist.",
+      "gloss": [
+        {
+          "ko": "냉장고에",
+          "rom": "naengjanggoe",
+          "en": "in the fridge"
+        },
+        {
+          "ko": "우유가",
+          "rom": "uyuga",
+          "en": "milk (subject)"
+        },
+        {
+          "ko": "없어요",
+          "rom": "eopseoyo",
+          "en": "there is not"
+        }
+      ],
+      "grammarIds": [
+        "g04",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_10",
+        "w02_07"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "There is milk in the fridge.",
+        "There is no milk in the kitchen.",
+        "Is there milk in the fridge?"
+      ],
+      "notes": "없어요 is the exact opposite of 있어요."
+    },
+    {
+      "id": "s02_1_3",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1",
+      "korean": "부엌에 과자가 있어요.",
+      "romanization": "bueoke gwajaga isseoyo.",
+      "english": "There are snacks in the kitchen.",
+      "literal": "In the kitchen, snacks exist.",
+      "gloss": [
+        {
+          "ko": "부엌에",
+          "rom": "bueoke",
+          "en": "in the kitchen"
+        },
+        {
+          "ko": "과자가",
+          "rom": "gwajaga",
+          "en": "snacks (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there are"
+        }
+      ],
+      "grammarIds": [
+        "g04",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_12",
+        "w02_09"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "There are snacks in the fridge.",
+        "There are no snacks in the kitchen.",
+        "Are there snacks in the kitchen?"
+      ],
+      "notes": "과자 ends in a vowel, so the subject marker is 가."
+    },
+    {
+      "id": "s02_1_4",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1",
+      "korean": "제 핸드폰은 침대에 있어요.",
+      "romanization": "je haendeuponeun chimdaee isseoyo.",
+      "english": "My phone is on the bed.",
+      "literal": "As for my phone, it is on the bed.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "핸드폰은",
+          "rom": "haendeuponeun",
+          "en": "phone (topic)"
+        },
+        {
+          "ko": "침대에",
+          "rom": "chimdaee",
+          "en": "on the bed"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "is (there)"
+        }
+      ],
+      "grammarIds": [
+        "g04",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_05",
+        "w02_03"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My phone is on the desk.",
+        "My phone is not on the bed.",
+        "Is my phone on the bed?"
+      ],
+      "notes": "에 covers both 'in' and 'on' for locations."
+    },
+    {
+      "id": "s02_1_5",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1",
+      "korean": "저는 아침에 빵을 먹어요.",
+      "romanization": "jeoneun achime ppangeul meogeoyo.",
+      "english": "I eat bread in the morning.",
+      "literal": "As for me, in the morning bread eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "아침에",
+          "rom": "achime",
+          "en": "in the morning"
+        },
+        {
+          "ko": "빵을",
+          "rom": "ppangeul",
+          "en": "bread (object)"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_08",
+        "w02_25"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I eat bread in the evening.",
+        "I don't eat bread in the morning.",
+        "I eat bread at school."
+      ],
+      "notes": "아침 can mean both 'morning' and 'breakfast'."
+    },
+    {
+      "id": "s02_1_6",
+      "unitId": "u02_daily",
+      "lessonId": "l02_1",
+      "korean": "우리 집에 컴퓨터가 없어요.",
+      "romanization": "uri jibe keompyuteoga eopseoyo.",
+      "english": "There is no computer at home.",
+      "literal": "In our house, a computer does not exist.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "집에",
+          "rom": "jibe",
+          "en": "at home"
+        },
+        {
+          "ko": "컴퓨터가",
+          "rom": "keompyuteoga",
+          "en": "computer (subject)"
+        },
+        {
+          "ko": "없어요",
+          "rom": "eopseoyo",
+          "en": "there is not"
+        }
+      ],
+      "grammarIds": [
+        "g04",
+        "g05"
+      ],
+      "wordIds": [
+        "w02_11",
+        "w02_04"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "There is a computer at home.",
+        "There is no computer at the office.",
+        "Is there a computer at home?"
+      ],
+      "notes": "컴퓨터 ends in a vowel, so the marker is 가."
+    },
+    {
+      "id": "s02_2_1",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2",
+      "korean": "아침에는 일찍 일어나요.",
+      "romanization": "achimeneun iljjik ireonayo.",
+      "english": "In the morning I get up early.",
+      "literal": "As for the morning, early I get up.",
+      "gloss": [
+        {
+          "ko": "아침에는",
+          "rom": "achimeneun",
+          "en": "in the morning (topic)"
+        },
+        {
+          "ko": "일찍",
+          "rom": "iljjik",
+          "en": "early"
+        },
+        {
+          "ko": "일어나요",
+          "rom": "ireonayo",
+          "en": "get up"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_25",
+        "w02_30",
+        "w02_13"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "In the morning I get up late.",
+        "In the evening I get up early.",
+        "In the morning I don't get up early."
+      ],
+      "notes": "에 + 는 makes 'as for the morning', which is very common for routines."
+    },
+    {
+      "id": "s02_2_2",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2",
+      "korean": "저는 매일 저녁에 운동해요.",
+      "romanization": "jeoneun maeil jeonyeoge undonghaeyo.",
+      "english": "I exercise every evening.",
+      "literal": "As for me, every day in the evening exercise.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "매일",
+          "rom": "maeil",
+          "en": "every day"
+        },
+        {
+          "ko": "저녁에",
+          "rom": "jeonyeoge",
+          "en": "in the evening"
+        },
+        {
+          "ko": "운동해요",
+          "rom": "undonghaeyo",
+          "en": "exercise"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_23",
+        "w02_27",
+        "w02_21"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I exercise every morning.",
+        "I don't exercise every evening.",
+        "I exercise every evening at work."
+      ],
+      "notes": "매일 is a time word and does not need 에."
+    },
+    {
+      "id": "s02_2_3",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2",
+      "korean": "저는 주말에도 일해요.",
+      "romanization": "jeoneun jumaredo ilhaeyo.",
+      "english": "I work on weekends too.",
+      "literal": "As for me, even on the weekend work.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "주말에도",
+          "rom": "jumaredo",
+          "en": "on the weekend too"
+        },
+        {
+          "ko": "일해요",
+          "rom": "ilhaeyo",
+          "en": "work"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_32",
+        "w02_16"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I don't work on weekends.",
+        "I work on weekdays only.",
+        "I rest on weekends too."
+      ],
+      "notes": "에 + 도 = 'even on / also on'."
+    },
+    {
+      "id": "s02_2_4",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2",
+      "korean": "저는 밤에 우유를 안 마셔요.",
+      "romanization": "jeoneun bame uyureul an masyeoyo.",
+      "english": "I don't drink milk at night.",
+      "literal": "As for me, at night milk do-not drink.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "밤에",
+          "rom": "bame",
+          "en": "at night"
+        },
+        {
+          "ko": "우유를",
+          "rom": "uyureul",
+          "en": "milk (object)"
+        },
+        {
+          "ko": "안 마셔요",
+          "rom": "an masyeoyo",
+          "en": "don't drink"
+        }
+      ],
+      "grammarIds": [
+        "g07",
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_28",
+        "w02_07"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I drink milk at night.",
+        "I don't drink milk in the morning.",
+        "I can't drink milk at night."
+      ],
+      "notes": "안 goes right before the verb, after the object."
+    },
+    {
+      "id": "s02_2_5",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2",
+      "korean": "저녁에는 책을 읽어요.",
+      "romanization": "jeonyeogeneun chaegeul ilgeoyo.",
+      "english": "In the evening I read books.",
+      "literal": "As for the evening, books read.",
+      "gloss": [
+        {
+          "ko": "저녁에는",
+          "rom": "jeonyeogeneun",
+          "en": "in the evening (topic)"
+        },
+        {
+          "ko": "책을",
+          "rom": "chaegeul",
+          "en": "book (object)"
+        },
+        {
+          "ko": "읽어요",
+          "rom": "ilgeoyo",
+          "en": "read"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_27",
+        "w02_24",
+        "w02_19"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "In the evening I watch TV.",
+        "In the morning I read books.",
+        "In the evening I don't read books."
+      ],
+      "notes": "Korean does not mark plural, so 책을 can mean 'a book' or 'books'."
+    },
+    {
+      "id": "s02_2_6",
+      "unitId": "u02_daily",
+      "lessonId": "l02_2",
+      "korean": "저는 밤에 텔레비전을 봐요.",
+      "romanization": "jeoneun bame tellebijeoneul bwayo.",
+      "english": "I watch TV at night.",
+      "literal": "As for me, at night television watch.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "밤에",
+          "rom": "bame",
+          "en": "at night"
+        },
+        {
+          "ko": "텔레비전을",
+          "rom": "tellebijeoneul",
+          "en": "television (object)"
+        },
+        {
+          "ko": "봐요",
+          "rom": "bwayo",
+          "en": "watch"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_28",
+        "w02_47",
+        "w02_18"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I watch TV in the morning.",
+        "I don't watch TV at night.",
+        "I listen to the TV at night."
+      ],
+      "notes": "보다 covers both 'see' and 'watch'."
+    },
+    {
+      "id": "s02_3_1",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3",
+      "korean": "아침에는 아주 바빠요.",
+      "romanization": "achimeneun aju bappayo.",
+      "english": "I am very busy in the morning.",
+      "literal": "As for the morning, very busy.",
+      "gloss": [
+        {
+          "ko": "아침에는",
+          "rom": "achimeneun",
+          "en": "in the morning (topic)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "바빠요",
+          "rom": "bappayo",
+          "en": "am busy"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_25",
+        "w02_40"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am very busy in the evening.",
+        "I am not busy in the morning.",
+        "I am very tired in the morning."
+      ],
+      "notes": "The subject 'I' is dropped; Korean often leaves it out."
+    },
+    {
+      "id": "s02_3_2",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3",
+      "korean": "저는 밤에 씻어요.",
+      "romanization": "jeoneun bame ssiseoyo.",
+      "english": "I wash at night.",
+      "literal": "As for me, at night wash.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "밤에",
+          "rom": "bame",
+          "en": "at night"
+        },
+        {
+          "ko": "씻어요",
+          "rom": "ssiseoyo",
+          "en": "wash"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_28",
+        "w02_14"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I wash in the morning.",
+        "I wash in the kitchen.",
+        "I don't wash at night."
+      ],
+      "notes": "씻어요 means washing your body; it does not take an object."
+    },
+    {
+      "id": "s02_3_3",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3",
+      "korean": "저는 아주 늦게 자요.",
+      "romanization": "jeoneun aju neutge jayo.",
+      "english": "I go to bed very late.",
+      "literal": "As for me, very late sleep.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "늦게",
+          "rom": "neutge",
+          "en": "late"
+        },
+        {
+          "ko": "자요",
+          "rom": "jayo",
+          "en": "sleep"
+        }
+      ],
+      "grammarIds": [
+        "g06"
+      ],
+      "wordIds": [
+        "w02_31",
+        "w02_15"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I go to bed very early.",
+        "I get up very late.",
+        "I don't sleep late."
+      ],
+      "notes": "자요 means both 'sleep' and 'go to bed'."
+    },
+    {
+      "id": "s02_3_4",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3",
+      "korean": "저는 점심에 친구를 만나요.",
+      "romanization": "jeoneun jeomsime chingureul mannayo.",
+      "english": "I meet a friend at lunchtime.",
+      "literal": "As for me, at lunch a friend meet.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "점심에",
+          "rom": "jeomsime",
+          "en": "at lunchtime"
+        },
+        {
+          "ko": "친구를",
+          "rom": "chingureul",
+          "en": "friend (object)"
+        },
+        {
+          "ko": "만나요",
+          "rom": "mannayo",
+          "en": "meet"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_26",
+        "w02_17"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I meet a friend in the evening.",
+        "I met a friend at lunchtime.",
+        "I don't meet a friend at lunchtime."
+      ],
+      "notes": "점심에 can mean both 'at lunchtime' and 'for lunch'."
+    },
+    {
+      "id": "s02_3_5",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3",
+      "korean": "저녁에는 음악을 들어요.",
+      "romanization": "jeonyeogeneun eumageul deureoyo.",
+      "english": "In the evening I listen to music.",
+      "literal": "As for the evening, music listen.",
+      "gloss": [
+        {
+          "ko": "저녁에는",
+          "rom": "jeonyeogeneun",
+          "en": "in the evening (topic)"
+        },
+        {
+          "ko": "음악을",
+          "rom": "eumageul",
+          "en": "music (object)"
+        },
+        {
+          "ko": "들어요",
+          "rom": "deureoyo",
+          "en": "listen"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_27",
+        "w02_20"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I listen to music in the morning.",
+        "I listen to music at work.",
+        "I don't listen to music in the evening."
+      ],
+      "notes": "들어요 has two meanings: 'listen' and 'enter'. Here it is 'listen'."
+    },
+    {
+      "id": "s02_3_6",
+      "unitId": "u02_daily",
+      "lessonId": "l02_3",
+      "korean": "저는 보통 주말에 빨래해요.",
+      "romanization": "jeoneun botong jumare ppallaehaeyo.",
+      "english": "I usually do the laundry on weekends.",
+      "literal": "As for me, usually on the weekend laundry do.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "보통",
+          "rom": "botong",
+          "en": "usually"
+        },
+        {
+          "ko": "주말에",
+          "rom": "jumare",
+          "en": "on the weekend"
+        },
+        {
+          "ko": "빨래해요",
+          "rom": "ppallaehaeyo",
+          "en": "do the laundry"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_29",
+        "w02_32",
+        "w02_34"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I usually do the laundry on weekdays.",
+        "I never do the laundry on weekends.",
+        "I usually do the laundry in the evening."
+      ],
+      "notes": "Many action nouns take 해요: 빨래를 해요, 청소를 해요, 운동을 해요."
+    },
+    {
+      "id": "s02_4_1",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4",
+      "korean": "제 생활은 아침에 시작해요.",
+      "romanization": "je saenghwareun achime sijakhaeyo.",
+      "english": "My day starts in the morning.",
+      "literal": "As for my daily life, it starts in the morning.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "생활은",
+          "rom": "saenghwareun",
+          "en": "daily life (topic)"
+        },
+        {
+          "ko": "아침에",
+          "rom": "achime",
+          "en": "in the morning"
+        },
+        {
+          "ko": "시작해요",
+          "rom": "sijakhaeyo",
+          "en": "starts"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_37",
+        "w02_25",
+        "w02_38"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My day ends in the morning.",
+        "My day starts in the evening.",
+        "My work starts in the morning."
+      ],
+      "notes": "생활 is 'daily life' as a whole, not one single day."
+    },
+    {
+      "id": "s02_4_2",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4",
+      "korean": "저는 늦게 샤워를 해요.",
+      "romanization": "jeoneun neutge syawooreul haeyo.",
+      "english": "I take a shower late.",
+      "literal": "As for me, late a shower do.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "늦게",
+          "rom": "neutge",
+          "en": "late"
+        },
+        {
+          "ko": "샤워를",
+          "rom": "syawooreul",
+          "en": "shower (object)"
+        },
+        {
+          "ko": "해요",
+          "rom": "haeyo",
+          "en": "do"
+        }
+      ],
+      "grammarIds": [
+        "g06"
+      ],
+      "wordIds": [
+        "w02_31",
+        "w02_41"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I take a shower early.",
+        "I don't take a shower late.",
+        "I take a shower at work."
+      ],
+      "notes": "샤워를 해요 = take a shower."
+    },
+    {
+      "id": "s02_4_3",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4",
+      "korean": "저는 일찍 출근해요.",
+      "romanization": "jeoneun iljjik chulgeunhaeyo.",
+      "english": "I go to work early.",
+      "literal": "As for me, early go to work.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "일찍",
+          "rom": "iljjik",
+          "en": "early"
+        },
+        {
+          "ko": "출근해요",
+          "rom": "chulgeunhaeyo",
+          "en": "go to work"
+        }
+      ],
+      "grammarIds": [
+        "g06"
+      ],
+      "wordIds": [
+        "w02_30",
+        "w02_45"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I leave work early.",
+        "I go to work late.",
+        "I don't go to work early."
+      ],
+      "notes": "출근 is going in to work; 퇴근 is leaving work."
+    },
+    {
+      "id": "s02_4_4",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4",
+      "korean": "점심에는 조금 졸려요.",
+      "romanization": "jeomsimeneun jogeum jollyeoyo.",
+      "english": "I am a little sleepy at lunchtime.",
+      "literal": "As for lunchtime, a little sleepy.",
+      "gloss": [
+        {
+          "ko": "점심에는",
+          "rom": "jeomsimeneun",
+          "en": "at lunchtime (topic)"
+        },
+        {
+          "ko": "조금",
+          "rom": "jogeum",
+          "en": "a little"
+        },
+        {
+          "ko": "졸려요",
+          "rom": "jollyeoyo",
+          "en": "am sleepy"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_26",
+        "w02_44"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am a little hungry at lunchtime.",
+        "I am very sleepy at lunchtime.",
+        "I am not sleepy at lunchtime."
+      ],
+      "notes": "졸려요 is 'sleepy'; 피곤해요 is 'tired'."
+    },
+    {
+      "id": "s02_4_5",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4",
+      "korean": "주말에는 혼자 방을 정리해요.",
+      "romanization": "jumareneun honja bangeul jeongnihaeyo.",
+      "english": "On weekends I tidy my room alone.",
+      "literal": "As for the weekend, alone the room I tidy.",
+      "gloss": [
+        {
+          "ko": "주말에는",
+          "rom": "jumareneun",
+          "en": "on the weekend (topic)"
+        },
+        {
+          "ko": "혼자",
+          "rom": "honja",
+          "en": "alone"
+        },
+        {
+          "ko": "방을",
+          "rom": "bangeul",
+          "en": "room (object)"
+        },
+        {
+          "ko": "정리해요",
+          "rom": "jeongnihaeyo",
+          "en": "tidy up"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_32",
+        "w02_43",
+        "w02_01",
+        "w02_48"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "On weekends I tidy my room with a friend.",
+        "On weekdays I tidy my room alone.",
+        "On weekends I don't tidy my room."
+      ],
+      "notes": "방을 정리해요 = tidy the room; 정리 alone means 'organisation'."
+    },
+    {
+      "id": "s02_4_6",
+      "unitId": "u02_daily",
+      "lessonId": "l02_4",
+      "korean": "제 생활은 밤에 끝나요.",
+      "romanization": "je saenghwareun bame kkeunnayo.",
+      "english": "My day ends at night.",
+      "literal": "As for my daily life, it ends at night.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "생활은",
+          "rom": "saenghwareun",
+          "en": "daily life (topic)"
+        },
+        {
+          "ko": "밤에",
+          "rom": "bame",
+          "en": "at night"
+        },
+        {
+          "ko": "끝나요",
+          "rom": "kkeunnayo",
+          "en": "ends"
+        }
+      ],
+      "grammarIds": [
+        "g05",
+        "g06"
+      ],
+      "wordIds": [
+        "w02_37",
+        "w02_28",
+        "w02_39"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My day ends in the morning.",
+        "My day starts at night.",
+        "My work ends at night."
+      ],
+      "notes": "끝나요 is intransitive: 'it ends'. Use 끝내요 for 'I finish it'."
+    }
+  ],
+  "dialogue": {
+    "id": "d02",
+    "unitId": "u02_daily",
+    "title": "Morning exercise",
+    "setting": "Two neighbours meet in front of their building in the morning.",
+    "lines": [
+      {
+        "id": "d02_1",
+        "speaker": "A",
+        "ko": "안녕하세요, 리사 씨. 아침에 운동해요?",
+        "rom": "annyeonghaseyo. risa ssi. achime undonghaeyo?",
+        "en": "Hello, Lisa. Do you exercise in the morning?"
+      },
+      {
+        "id": "d02_2",
+        "speaker": "B",
+        "ko": "네, 매일 아침에 운동해요. 지호 씨도 운동해요?",
+        "rom": "ne. maeil achime undonghaeyo. jiho ssido undonghaeyo?",
+        "en": "Yes, I exercise every morning. Do you exercise too, Jiho?"
+      },
+      {
+        "id": "d02_3",
+        "speaker": "A",
+        "ko": "아니요, 저는 저녁에 운동해요.",
+        "rom": "aniyo. jeoneun jeonyeoge undonghaeyo.",
+        "en": "No, I exercise in the evening."
+      },
+      {
+        "id": "d02_4",
+        "speaker": "B",
+        "ko": "아, 그래요? 저는 밤에 운동을 안 해요.",
+        "rom": "a. geuraeyo? jeoneun bame undongeul an haeyo.",
+        "en": "Oh, really? I don't exercise at night."
+      },
+      {
+        "id": "d02_5",
+        "speaker": "A",
+        "ko": "주말에도 운동해요?",
+        "rom": "jumaredo undonghaeyo?",
+        "en": "Do you exercise on weekends too?"
+      },
+      {
+        "id": "d02_6",
+        "speaker": "B",
+        "ko": "주말에는 아주 많이 쉬어요. 그리고 청소해요.",
+        "rom": "jumareneun aju mani swieoyo. geurigo cheongsohaeyo.",
+        "en": "On weekends I rest a lot. And I clean."
+      },
+      {
+        "id": "d02_7",
+        "speaker": "A",
+        "ko": "저도 주말에 청소해요. 우리 같이 아침을 먹어요?",
+        "rom": "jeodo jumare cheongsohaeyo. uri gachi achimeul meogeoyo?",
+        "en": "I clean on weekends too. Shall we eat breakfast together?"
+      },
+      {
+        "id": "d02_8",
+        "speaker": "B",
+        "ko": "좋아요. 집에 빵이 있어요.",
+        "rom": "joayo. jibe ppangi isseoyo.",
+        "en": "Sounds good. There is bread at home."
+      },
+      {
+        "id": "d02_9",
+        "speaker": "A",
+        "ko": "좋아요. 같이 가요.",
+        "rom": "joayo. gachi gayo.",
+        "en": "Great. Let's go together."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r02",
+    "unitId": "u02_daily",
+    "title": "My daily life",
+    "ko": "안녕하세요. 저는 리사예요. 제 생활은 아주 바빠요. 아침에는 일찍 일어나요. 그리고 씻어요. 빵을 먹어요. 우유도 마셔요. 점심에는 같이 밥을 먹어요. 저는 늦게 퇴근해요. 저녁에는 요리해요. 제 방에는 침대가 있어요. 시계도 있어요. 거실에는 텔레비전이 있어요. 저는 밤에 텔레비전을 안 봐요. 밤에는 책을 읽어요. 조금 피곤해요. 주말에는 아주 많이 쉬어요. 제 생활은 밤에 끝나요.",
+    "en": "Hello. I am Lisa. My daily life is very busy. In the morning I get up early. Then I wash. I eat bread. I drink milk too. At lunchtime I eat a meal with someone. I leave work late. In the evening I cook. There is a bed in my room. There is a clock too. There is a television in the living room. I don't watch TV at night. At night I read a book. I am a little tired. On weekends I rest a lot. My day ends at night.",
+    "questions": [
+      {
+        "q": "When does Lisa get up?",
+        "options": [
+          "Early in the morning",
+          "Late in the morning",
+          "At lunchtime",
+          "In the evening"
+        ],
+        "answer": 0,
+        "why": "아침에는 일찍 일어나요 = In the morning I get up early."
+      },
+      {
+        "q": "What does Lisa do at night?",
+        "options": [
+          "She reads a book",
+          "She watches TV",
+          "She cooks dinner",
+          "She goes to work"
+        ],
+        "answer": 0,
+        "why": "밤에는 책을 읽어요 = At night I read a book. The text also says she does not watch TV at night."
+      },
+      {
+        "q": "What does Lisa do on weekends?",
+        "options": [
+          "She rests a lot",
+          "She works at the office",
+          "She cleans the kitchen",
+          "She meets her teacher"
+        ],
+        "answer": 0,
+        "why": "주말에는 아주 많이 쉬어요 = On weekends I rest a lot."
+      }
+    ]
+  }
+}

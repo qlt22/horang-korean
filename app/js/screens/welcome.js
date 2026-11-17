@@ -1,5 +1,6 @@
 // S0 · Welcome — reference implementation for the screen module pattern.
 import { state } from '../core/store.js';
+import { META } from '../core/course.js';
 import * as ui from '../core/ui.js';
 import { router } from '../core/router.js';
 import * as audio from '../core/audio.js';
@@ -31,12 +32,12 @@ export default {
 
       <div class="welcome-mid">
         <div class="welcome-proof">
-          <span class="pill pill--sm">${ui.icon('flame', 14)} 3 min a day</span>
-          <span class="pill pill--sm">${ui.icon('passport', 14)} 40 real sentences</span>
-          <span class="pill pill--sm">${ui.icon('heart', 14)} never blocked</span>
+          <span class="pill pill--sm">${ui.icon('flame', 14)} ${META.lessonCount} sessions</span>
+          <span class="pill pill--sm">${ui.icon('passport', 14)} ${META.sentenceCount} real sentences</span>
+          <span class="pill pill--sm">${ui.icon('heart', 14)} A1 · never blocked</span>
         </div>
-        <h2 class="welcome-h">Learn your first Korean sentence in 90 seconds.</h2>
-        <p class="welcome-sub">No signup. No grammar tables. Just the sentences you'll actually say.</p>
+        <h2 class="welcome-h">From Hangul to A1, one sentence at a time.</h2>
+        <p class="welcome-sub">${META.sentenceCount} real sentences · ${META.wordCount} words · ${META.grammarCount} grammar patterns. No signup, no grammar tables.</p>
       </div>
 
       <div class="welcome-actions">

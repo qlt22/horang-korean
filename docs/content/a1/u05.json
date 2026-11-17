@@ -1,0 +1,1892 @@
+{
+  "unit": {
+    "id": "u05_places",
+    "order": 5,
+    "title": "Places & directions",
+    "ko": "장소",
+    "canDo": [
+      "Say where you go and where you are",
+      "Ask where something is",
+      "Give a simple direction",
+      "Name the places in your neighborhood"
+    ],
+    "grammarIds": [
+      "g15",
+      "g16",
+      "g17",
+      "g18"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l05_1",
+      "unitId": "u05_places",
+      "order": 1,
+      "kind": "vocab",
+      "title": "Places in town",
+      "ko": "도서관이 어디예요?",
+      "goal": "Name 12 places and say where they are",
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_01",
+        "w05_02",
+        "w05_03",
+        "w05_04",
+        "w05_05",
+        "w05_06",
+        "w05_07",
+        "w05_08",
+        "w05_09",
+        "w05_10",
+        "w05_11",
+        "w05_12"
+      ],
+      "sentenceIds": [
+        "s05_1_1",
+        "s05_1_2",
+        "s05_1_3",
+        "s05_1_4",
+        "s05_1_5",
+        "s05_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l05_2",
+      "unitId": "u05_places",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Destination, action, direction",
+      "ko": "시장에 가요",
+      "goal": "Use 에 for destinations, 에서 for where an action happens, and (으)로 for direction or means",
+      "grammarIds": [
+        "g15",
+        "g16",
+        "g17"
+      ],
+      "wordIds": [
+        "w05_13",
+        "w05_14",
+        "w05_15",
+        "w05_16",
+        "w05_17",
+        "w05_18",
+        "w05_19",
+        "w05_20",
+        "w05_21",
+        "w05_22",
+        "w05_23",
+        "w05_24"
+      ],
+      "sentenceIds": [
+        "s05_2_1",
+        "s05_2_2",
+        "s05_2_3",
+        "s05_2_4",
+        "s05_2_5",
+        "s05_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l05_3",
+      "unitId": "u05_places",
+      "order": 3,
+      "kind": "listening",
+      "title": "Asking the way",
+      "ko": "지하철역이 어디예요?",
+      "goal": "Understand and give simple directions on the street",
+      "grammarIds": [
+        "g16",
+        "g18"
+      ],
+      "wordIds": [
+        "w05_25",
+        "w05_26",
+        "w05_27",
+        "w05_28",
+        "w05_29",
+        "w05_30",
+        "w05_31",
+        "w05_32",
+        "w05_33",
+        "w05_34",
+        "w05_35",
+        "w05_36"
+      ],
+      "sentenceIds": [
+        "s05_3_1",
+        "s05_3_2",
+        "s05_3_3",
+        "s05_3_4",
+        "s05_3_5",
+        "s05_3_6"
+      ],
+      "dialogueId": "d05",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l05_4",
+      "unitId": "u05_places",
+      "order": 4,
+      "kind": "reading",
+      "title": "My neighborhood",
+      "ko": "우리 동네",
+      "goal": "Read a short description of a neighborhood and find places on a map",
+      "grammarIds": [
+        "g16",
+        "g18"
+      ],
+      "wordIds": [
+        "w05_37",
+        "w05_38",
+        "w05_39",
+        "w05_40",
+        "w05_41",
+        "w05_42",
+        "w05_43",
+        "w05_44",
+        "w05_45",
+        "w05_46",
+        "w05_47",
+        "w05_48"
+      ],
+      "sentenceIds": [
+        "s05_4_1",
+        "s05_4_2",
+        "s05_4_3",
+        "s05_4_4",
+        "s05_4_5",
+        "s05_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r05",
+      "minutes": 6
+    },
+    {
+      "id": "l05_5",
+      "unitId": "u05_places",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: getting around",
+      "ko": "길 찾기",
+      "goal": "Use the whole unit without hints to find your way",
+      "grammarIds": [
+        "g15",
+        "g16",
+        "g17",
+        "g18"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g15",
+      "unitId": "u05_places",
+      "order": 1,
+      "label": "go to a place",
+      "ko": "에 가다",
+      "pattern": "N + 에 가요",
+      "explanation": "Put 에 after the place you go to. It works with 가다 and 오다: 도서관에 가요 = I go to the library.",
+      "examples": [
+        {
+          "ko": "도서관에 가요.",
+          "en": "I go to the library."
+        },
+        {
+          "ko": "시장에 같이 가요.",
+          "en": "Let's go to the market together."
+        }
+      ],
+      "mistake": "도서관을 가요 ✗ → 도서관에 가요 ✓"
+    },
+    {
+      "id": "g16",
+      "unitId": "u05_places",
+      "order": 2,
+      "label": "at / from a place",
+      "ko": "에서",
+      "pattern": "N + 에서",
+      "explanation": "에서 marks where an action happens, or where you start from. Compare 도서관에 가요 (going there) with 도서관에서 공부해요 (studying there).",
+      "examples": [
+        {
+          "ko": "도서관에서 공부해요.",
+          "en": "I study at the library."
+        },
+        {
+          "ko": "버스에서 내려요.",
+          "en": "I get off the bus."
+        }
+      ],
+      "mistake": "도서관에 공부해요 ✗ → 도서관에서 공부해요 ✓"
+    },
+    {
+      "id": "g17",
+      "unitId": "u05_places",
+      "order": 3,
+      "label": "toward / by means of",
+      "ko": "-(으)로",
+      "pattern": "N + (으)로",
+      "explanation": "으로 after a consonant, 로 after a vowel or ㄹ. It gives a direction (왼쪽으로) or a means (지하철로, 택시로).",
+      "examples": [
+        {
+          "ko": "왼쪽으로 가세요.",
+          "en": "Please go to the left."
+        },
+        {
+          "ko": "지하철로 가요.",
+          "en": "I go by subway."
+        }
+      ],
+      "mistake": "지하철으로 가요 ✗ → 지하철로 가요 ✓ (ㄹ drops)"
+    },
+    {
+      "id": "g18",
+      "unitId": "u05_places",
+      "order": 4,
+      "label": "where is it?",
+      "ko": "어디 / 위치",
+      "pattern": "N이/가 어디예요? / 앞·뒤·옆",
+      "explanation": "어디예요? asks where something is. Answer with a position word plus 에: 은행이 도서관 옆에 있어요.",
+      "examples": [
+        {
+          "ko": "약국이 어디예요?",
+          "en": "Where is the pharmacy?"
+        },
+        {
+          "ko": "은행이 도서관 옆에 있어요.",
+          "en": "The bank is next to the library."
+        }
+      ],
+      "mistake": "은행이 어디에요? ✗ → 은행이 어디예요? ✓"
+    }
+  ],
+  "words": [
+    {
+      "id": "w05_01",
+      "ko": "도서관",
+      "rom": "doseogwan",
+      "en": "library",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_02",
+      "ko": "은행",
+      "rom": "eunhaeng",
+      "en": "bank",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_03",
+      "ko": "병원",
+      "rom": "byeongwon",
+      "en": "hospital",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_04",
+      "ko": "약국",
+      "rom": "yakguk",
+      "en": "pharmacy",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_05",
+      "ko": "편의점",
+      "rom": "pyeonuijeom",
+      "en": "convenience store",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_06",
+      "ko": "공원",
+      "rom": "gongwon",
+      "en": "park",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_07",
+      "ko": "시장",
+      "rom": "sijang",
+      "en": "market",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_08",
+      "ko": "미술관",
+      "rom": "misulgwan",
+      "en": "art museum",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_09",
+      "ko": "극장",
+      "rom": "geukjang",
+      "en": "theater",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_10",
+      "ko": "식당",
+      "rom": "sikdang",
+      "en": "restaurant",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_11",
+      "ko": "서점",
+      "rom": "seojeom",
+      "en": "bookstore",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_12",
+      "ko": "지하철역",
+      "rom": "jihacheollyeok",
+      "en": "subway station",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_1"
+    },
+    {
+      "id": "w05_13",
+      "ko": "같이",
+      "rom": "gachi",
+      "en": "together",
+      "pos": "adverb",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_14",
+      "ko": "걸어요",
+      "rom": "georeoyo",
+      "en": "to walk",
+      "pos": "verb",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_15",
+      "ko": "타요",
+      "rom": "tayo",
+      "en": "to ride, to take",
+      "pos": "verb",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_16",
+      "ko": "내려요",
+      "rom": "naeryeoyo",
+      "en": "to get off",
+      "pos": "verb",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_17",
+      "ko": "출구",
+      "rom": "chulgu",
+      "en": "exit",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_18",
+      "ko": "입구",
+      "rom": "ipgu",
+      "en": "entrance",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_19",
+      "ko": "길",
+      "rom": "gil",
+      "en": "road, way",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_20",
+      "ko": "왼쪽",
+      "rom": "oenjjok",
+      "en": "left side",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_21",
+      "ko": "오른쪽",
+      "rom": "oreunjjok",
+      "en": "right side",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_22",
+      "ko": "앞",
+      "rom": "ap",
+      "en": "front",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_23",
+      "ko": "뒤",
+      "rom": "dwi",
+      "en": "behind, back",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_24",
+      "ko": "옆",
+      "rom": "yeop",
+      "en": "side, next to",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_2"
+    },
+    {
+      "id": "w05_25",
+      "ko": "버스",
+      "rom": "beoseu",
+      "en": "bus",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_26",
+      "ko": "지하철",
+      "rom": "jihacheol",
+      "en": "subway",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_27",
+      "ko": "택시",
+      "rom": "taeksi",
+      "en": "taxi",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_28",
+      "ko": "표",
+      "rom": "pyo",
+      "en": "ticket",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_29",
+      "ko": "여기",
+      "rom": "yeogi",
+      "en": "here",
+      "pos": "pronoun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_30",
+      "ko": "거기",
+      "rom": "geogi",
+      "en": "there",
+      "pos": "pronoun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_31",
+      "ko": "저기",
+      "rom": "jeogi",
+      "en": "over there",
+      "pos": "pronoun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_32",
+      "ko": "쪽",
+      "rom": "jjok",
+      "en": "side, direction",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_33",
+      "ko": "맞은편",
+      "rom": "majeunpyeon",
+      "en": "the opposite side (of the street)",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_34",
+      "ko": "건너편",
+      "rom": "geonneopyeon",
+      "en": "the other side",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_35",
+      "ko": "정류장",
+      "rom": "jeongnyujang",
+      "en": "bus stop",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_36",
+      "ko": "지도",
+      "rom": "jido",
+      "en": "map",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_3"
+    },
+    {
+      "id": "w05_37",
+      "ko": "가까워요",
+      "rom": "gakkawoyo",
+      "en": "to be close, near",
+      "pos": "adjective",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_38",
+      "ko": "멀어요",
+      "rom": "meoreoyo",
+      "en": "to be far",
+      "pos": "adjective",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_39",
+      "ko": "찾아요",
+      "rom": "chajayo",
+      "en": "to look for, to find",
+      "pos": "verb",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_40",
+      "ko": "몰라요",
+      "rom": "mollayo",
+      "en": "to not know",
+      "pos": "verb",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_41",
+      "ko": "알아요",
+      "rom": "arayo",
+      "en": "to know",
+      "pos": "verb",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_42",
+      "ko": "조용해요",
+      "rom": "joyonghaeyo",
+      "en": "to be quiet",
+      "pos": "adjective",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_43",
+      "ko": "복잡해요",
+      "rom": "bokjaphaeyo",
+      "en": "to be crowded, busy",
+      "pos": "adjective",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_44",
+      "ko": "바로",
+      "rom": "baro",
+      "en": "right, straight",
+      "pos": "adverb",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_45",
+      "ko": "쭉",
+      "rom": "jjuk",
+      "en": "straight, all the way",
+      "pos": "adverb",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_46",
+      "ko": "골목",
+      "rom": "golmok",
+      "en": "alley",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_47",
+      "ko": "근처",
+      "rom": "geuncheo",
+      "en": "vicinity, nearby",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    },
+    {
+      "id": "w05_48",
+      "ko": "동네",
+      "rom": "dongne",
+      "en": "neighborhood",
+      "pos": "noun",
+      "unitId": "u05_places",
+      "lessonId": "l05_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s05_1_1",
+      "unitId": "u05_places",
+      "lessonId": "l05_1",
+      "korean": "은행이 도서관 옆에 있어요.",
+      "romanization": "eunhaengi doseogwan yeope isseoyo.",
+      "english": "The bank is next to the library.",
+      "literal": "The bank, at the library's side, exists.",
+      "gloss": [
+        {
+          "ko": "은행이",
+          "rom": "eunhaengi",
+          "en": "the bank (subject)"
+        },
+        {
+          "ko": "도서관",
+          "rom": "doseogwan",
+          "en": "library"
+        },
+        {
+          "ko": "옆에",
+          "rom": "yeope",
+          "en": "next to, at the side"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "is, there is"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_02",
+        "w05_01",
+        "w05_24"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "The library is next to the bank.",
+        "The bank is behind the library.",
+        "The bank is not next to the library."
+      ],
+      "notes": "Position words take 에: 옆에 = at the side of."
+    },
+    {
+      "id": "s05_1_2",
+      "unitId": "u05_places",
+      "lessonId": "l05_1",
+      "korean": "약국은 병원 앞에 있어요.",
+      "romanization": "yakkugeun byeongwon ape isseoyo.",
+      "english": "The pharmacy is in front of the hospital.",
+      "literal": "As for the pharmacy, it exists at the hospital's front.",
+      "gloss": [
+        {
+          "ko": "약국은",
+          "rom": "yakkugeun",
+          "en": "the pharmacy (topic)"
+        },
+        {
+          "ko": "병원",
+          "rom": "byeongwon",
+          "en": "hospital"
+        },
+        {
+          "ko": "앞에",
+          "rom": "ape",
+          "en": "in front of"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "is, there is"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_04",
+        "w05_03",
+        "w05_22"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "The hospital is in front of the pharmacy.",
+        "The pharmacy is behind the hospital.",
+        "The pharmacy is far from the hospital."
+      ],
+      "notes": "은 after 약국 marks it as the topic; the new information is the position."
+    },
+    {
+      "id": "s05_1_3",
+      "unitId": "u05_places",
+      "lessonId": "l05_1",
+      "korean": "이 근처에 편의점이 있어요?",
+      "romanization": "i geuncheoe pyeonuijeomi isseoyo?",
+      "english": "Is there a convenience store near here?",
+      "literal": "In this vicinity, does a convenience store exist?",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "근처에",
+          "rom": "geuncheoe",
+          "en": "near, in the vicinity"
+        },
+        {
+          "ko": "편의점이",
+          "rom": "pyeonuijeomi",
+          "en": "convenience store (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "is there"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_47",
+        "w05_05"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Is there a pharmacy near here?",
+        "Is the convenience store open?",
+        "There is no convenience store near here."
+      ],
+      "notes": "Rising intonation with 있어요? turns a statement into a yes/no question."
+    },
+    {
+      "id": "s05_1_4",
+      "unitId": "u05_places",
+      "lessonId": "l05_1",
+      "korean": "극장에는 지하철로 가요.",
+      "romanization": "geukjangeneun jihacheollo gayo.",
+      "english": "I go to the theater by subway.",
+      "literal": "To the theater, by subway, I go.",
+      "gloss": [
+        {
+          "ko": "극장에는",
+          "rom": "geukjangeneun",
+          "en": "to the theater (topic)"
+        },
+        {
+          "ko": "지하철로",
+          "rom": "jihacheollo",
+          "en": "by subway"
+        },
+        {
+          "ko": "가요",
+          "rom": "gayo",
+          "en": "go"
+        }
+      ],
+      "grammarIds": [
+        "g15",
+        "g17"
+      ],
+      "wordIds": [
+        "w05_09",
+        "w05_26"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I go to the theater by bus.",
+        "I go to the station by subway.",
+        "I don't go to the theater by subway."
+      ],
+      "notes": "지하철 ends in ㄹ, so it takes 로, not 으로."
+    },
+    {
+      "id": "s05_1_5",
+      "unitId": "u05_places",
+      "lessonId": "l05_1",
+      "korean": "여기에서 약국이 아주 멀어요?",
+      "romanization": "yeogieseo yakkugi aju meoreoyo?",
+      "english": "Is the pharmacy far from here?",
+      "literal": "From here, is the pharmacy far?",
+      "gloss": [
+        {
+          "ko": "여기에서",
+          "rom": "yeogieseo",
+          "en": "from here"
+        },
+        {
+          "ko": "약국이",
+          "rom": "yakkugi",
+          "en": "the pharmacy (subject)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "멀어요",
+          "rom": "meoreoyo",
+          "en": "is far"
+        }
+      ],
+      "grammarIds": [
+        "g16",
+        "g18"
+      ],
+      "wordIds": [
+        "w05_29",
+        "w05_04",
+        "w05_38"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Is the pharmacy close to here?",
+        "Is the bank far from here?",
+        "Where is the pharmacy?"
+      ],
+      "notes": "에서 here means 'from': the distance is measured from this point."
+    },
+    {
+      "id": "s05_1_6",
+      "unitId": "u05_places",
+      "lessonId": "l05_1",
+      "korean": "여기에는 은행이 없어요.",
+      "romanization": "yeogieneun eunhaengi eopseoyo.",
+      "english": "There is no bank here.",
+      "literal": "As for here, a bank does not exist.",
+      "gloss": [
+        {
+          "ko": "여기에는",
+          "rom": "yeogieneun",
+          "en": "here (topic, contrast)"
+        },
+        {
+          "ko": "은행이",
+          "rom": "eunhaengi",
+          "en": "bank (subject)"
+        },
+        {
+          "ko": "없어요",
+          "rom": "eopseoyo",
+          "en": "there is not"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_29",
+        "w05_02"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "There is a bank here.",
+        "There is no pharmacy here.",
+        "The bank is over there."
+      ],
+      "notes": "에는 adds a contrast: 'here, at least, there is none'."
+    },
+    {
+      "id": "s05_2_1",
+      "unitId": "u05_places",
+      "lessonId": "l05_2",
+      "korean": "저는 지하철역에서 표를 사요.",
+      "romanization": "jeoneun jihacheollyeogeseo pyoreul sayo.",
+      "english": "I buy a ticket at the subway station.",
+      "literal": "At the subway station, a ticket, I buy.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "지하철역에서",
+          "rom": "jihacheollyeogeseo",
+          "en": "at the subway station"
+        },
+        {
+          "ko": "표를",
+          "rom": "pyoreul",
+          "en": "ticket (object)"
+        },
+        {
+          "ko": "사요",
+          "rom": "sayo",
+          "en": "buy"
+        }
+      ],
+      "grammarIds": [
+        "g16"
+      ],
+      "wordIds": [
+        "w05_12",
+        "w05_28"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I buy a ticket at the bus stop.",
+        "I buy a map at the subway station.",
+        "I don't buy a ticket at the subway station."
+      ],
+      "notes": "Buying is an action, so the place gets 에서."
+    },
+    {
+      "id": "s05_2_2",
+      "unitId": "u05_places",
+      "lessonId": "l05_2",
+      "korean": "저는 아침에 공원에서 걸어요.",
+      "romanization": "jeoneun achime gongwoneseo georeoyo.",
+      "english": "I walk in the park in the morning.",
+      "literal": "In the morning, in the park, I walk.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "아침에",
+          "rom": "achime",
+          "en": "in the morning"
+        },
+        {
+          "ko": "공원에서",
+          "rom": "gongwoneseo",
+          "en": "in the park"
+        },
+        {
+          "ko": "걸어요",
+          "rom": "georeoyo",
+          "en": "walk"
+        }
+      ],
+      "grammarIds": [
+        "g16"
+      ],
+      "wordIds": [
+        "w05_06",
+        "w05_14"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I walk in the park in the evening.",
+        "I rest in the park in the morning.",
+        "I don't walk in the park in the morning."
+      ],
+      "notes": "Time gets 에, the place of the action gets 에서."
+    },
+    {
+      "id": "s05_2_3",
+      "unitId": "u05_places",
+      "lessonId": "l05_2",
+      "korean": "우리는 버스에서 내려요.",
+      "romanization": "urineun beoseueseo naeryeoyo.",
+      "english": "We get off the bus.",
+      "literal": "As for us, from the bus, we get off.",
+      "gloss": [
+        {
+          "ko": "우리는",
+          "rom": "urineun",
+          "en": "we (topic)"
+        },
+        {
+          "ko": "버스에서",
+          "rom": "beoseueseo",
+          "en": "from the bus"
+        },
+        {
+          "ko": "내려요",
+          "rom": "naeryeoyo",
+          "en": "get off"
+        }
+      ],
+      "grammarIds": [
+        "g16"
+      ],
+      "wordIds": [
+        "w05_25",
+        "w05_16"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "We get on the bus.",
+        "We get off the subway.",
+        "We don't get off the bus."
+      ],
+      "notes": "내리다 is 'get off'; 타다 is 'get on'."
+    },
+    {
+      "id": "s05_2_4",
+      "unitId": "u05_places",
+      "lessonId": "l05_2",
+      "korean": "왼쪽으로 쭉 가세요.",
+      "romanization": "oenjjogeuro jjuk gaseyo.",
+      "english": "Please go straight to the left.",
+      "literal": "To the left, all the way, please go.",
+      "gloss": [
+        {
+          "ko": "왼쪽으로",
+          "rom": "oenjjogeuro",
+          "en": "to the left"
+        },
+        {
+          "ko": "쭉",
+          "rom": "jjuk",
+          "en": "straight, all the way"
+        },
+        {
+          "ko": "가세요",
+          "rom": "gaseyo",
+          "en": "please go"
+        }
+      ],
+      "grammarIds": [
+        "g17"
+      ],
+      "wordIds": [
+        "w05_20",
+        "w05_45"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Please go straight to the right.",
+        "Please go straight ahead.",
+        "Please come this way."
+      ],
+      "notes": "왼쪽 ends in ㄱ, so it takes 으로. 가세요 is a polite instruction."
+    },
+    {
+      "id": "s05_2_5",
+      "unitId": "u05_places",
+      "lessonId": "l05_2",
+      "korean": "택시로 병원에 가세요.",
+      "romanization": "taeksiro byeongwone gaseyo.",
+      "english": "Please take a taxi to the hospital.",
+      "literal": "By taxi, to the hospital, please go.",
+      "gloss": [
+        {
+          "ko": "택시로",
+          "rom": "taeksiro",
+          "en": "by taxi"
+        },
+        {
+          "ko": "병원에",
+          "rom": "byeongwone",
+          "en": "to the hospital"
+        },
+        {
+          "ko": "가세요",
+          "rom": "gaseyo",
+          "en": "please go"
+        }
+      ],
+      "grammarIds": [
+        "g15",
+        "g17"
+      ],
+      "wordIds": [
+        "w05_27",
+        "w05_03"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Please take a taxi to the pharmacy.",
+        "Please walk to the hospital.",
+        "Please take a bus to the hospital."
+      ],
+      "notes": "로 marks the means of transport; 에 marks the destination."
+    },
+    {
+      "id": "s05_2_6",
+      "unitId": "u05_places",
+      "lessonId": "l05_2",
+      "korean": "우리 같이 은행에 가요.",
+      "romanization": "uri gachi eunhaenge gayo.",
+      "english": "Let's go to the bank together.",
+      "literal": "We, to the bank, together, go.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "we, our"
+        },
+        {
+          "ko": "은행에",
+          "rom": "eunhaenge",
+          "en": "to the bank"
+        },
+        {
+          "ko": "같이",
+          "rom": "gachi",
+          "en": "together"
+        },
+        {
+          "ko": "가요",
+          "rom": "gayo",
+          "en": "go"
+        }
+      ],
+      "grammarIds": [
+        "g15"
+      ],
+      "wordIds": [
+        "w05_02",
+        "w05_13"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Let's go to the library together.",
+        "Let's go to the bank now.",
+        "I go to the bank alone."
+      ],
+      "notes": "우리 + 가요 is a soft suggestion: 'let's go'."
+    },
+    {
+      "id": "s05_3_1",
+      "unitId": "u05_places",
+      "lessonId": "l05_3",
+      "korean": "저기 지하철역이 바로 있어요.",
+      "romanization": "jeogi jihacheollyeogi baro isseoyo.",
+      "english": "The subway station is over there.",
+      "literal": "Over there, a subway station exists.",
+      "gloss": [
+        {
+          "ko": "저기",
+          "rom": "jeogi",
+          "en": "over there"
+        },
+        {
+          "ko": "지하철역이",
+          "rom": "jihacheollyeogi",
+          "en": "subway station (subject)"
+        },
+        {
+          "ko": "바로",
+          "rom": "baro",
+          "en": "right there"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "is, there is"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_31",
+        "w05_12"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "The bus stop is over there.",
+        "The subway station is right here.",
+        "Where is the subway station?"
+      ],
+      "notes": "저기 points to something visible but far from both speakers."
+    },
+    {
+      "id": "s05_3_2",
+      "unitId": "u05_places",
+      "lessonId": "l05_3",
+      "korean": "여기에서 지하철을 타요.",
+      "romanization": "yeogieseo jihacheoreul tayo.",
+      "english": "I take the subway from here.",
+      "literal": "From here, the subway, please take.",
+      "gloss": [
+        {
+          "ko": "여기에서",
+          "rom": "yeogieseo",
+          "en": "from here"
+        },
+        {
+          "ko": "지하철을",
+          "rom": "jihacheoreul",
+          "en": "the subway (object)"
+        },
+        {
+          "ko": "타요",
+          "rom": "tayo",
+          "en": "take, ride"
+        }
+      ],
+      "grammarIds": [
+        "g16"
+      ],
+      "wordIds": [
+        "w05_29",
+        "w05_26"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I take the bus from here.",
+        "I take the subway from there.",
+        "I don't take the subway from here."
+      ],
+      "notes": "에서 marks the starting point: you get on here."
+    },
+    {
+      "id": "s05_3_3",
+      "unitId": "u05_places",
+      "lessonId": "l05_3",
+      "korean": "지하철역 출구 쪽에서 만나요.",
+      "romanization": "jihacheollyeok chulgu jjogeseo mannayo.",
+      "english": "Let's meet at the subway station exit.",
+      "literal": "At the subway station exit side, we meet.",
+      "gloss": [
+        {
+          "ko": "지하철역",
+          "rom": "jihacheollyeok",
+          "en": "subway station"
+        },
+        {
+          "ko": "출구",
+          "rom": "chulgu",
+          "en": "exit"
+        },
+        {
+          "ko": "쪽에서",
+          "rom": "jjogeseo",
+          "en": "at the side of"
+        },
+        {
+          "ko": "만나요",
+          "rom": "mannayo",
+          "en": "meet"
+        }
+      ],
+      "grammarIds": [
+        "g16"
+      ],
+      "wordIds": [
+        "w05_12",
+        "w05_17",
+        "w05_32"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Let's meet at the subway station entrance.",
+        "Let's meet at the bus stop.",
+        "Let's meet in front of the bank."
+      ],
+      "notes": "쪽 makes a location vaguer: 'the exit side'."
+    },
+    {
+      "id": "s05_3_4",
+      "unitId": "u05_places",
+      "lessonId": "l05_3",
+      "korean": "저 맞은편에 정류장이 있어요.",
+      "romanization": "jeo majeunpyeone jeongnyujangi isseoyo.",
+      "english": "There is a bus stop across the street.",
+      "literal": "On the opposite side, a bus stop exists.",
+      "gloss": [
+        {
+          "ko": "저",
+          "rom": "jeo",
+          "en": "that (over there)"
+        },
+        {
+          "ko": "맞은편에",
+          "rom": "majeunpyeone",
+          "en": "on the opposite side"
+        },
+        {
+          "ko": "정류장이",
+          "rom": "jeongnyujangi",
+          "en": "bus stop (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "is, there is"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_33",
+        "w05_35"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "There is a subway station across the street.",
+        "There is a bus stop next to the bank.",
+        "There is no bus stop across the street."
+      ],
+      "notes": "맞은편 and 건너편 both mean the other side of the road."
+    },
+    {
+      "id": "s05_3_5",
+      "unitId": "u05_places",
+      "lessonId": "l05_3",
+      "korean": "여기 지도가 있어요?",
+      "romanization": "yeogi jidoga isseoyo?",
+      "english": "Do you have a map here?",
+      "literal": "Here, does a map exist?",
+      "gloss": [
+        {
+          "ko": "여기",
+          "rom": "yeogi",
+          "en": "here"
+        },
+        {
+          "ko": "지도가",
+          "rom": "jidoga",
+          "en": "map (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "is there"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_29",
+        "w05_36"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Do you have a ticket here?",
+        "Is there a map over there?",
+        "Do you need a map?"
+      ],
+      "notes": "Korean says 'does a map exist' where English says 'do you have a map'."
+    },
+    {
+      "id": "s05_3_6",
+      "unitId": "u05_places",
+      "lessonId": "l05_3",
+      "korean": "표는 저기에서 사세요.",
+      "romanization": "pyoneun jeogieseo saseyo.",
+      "english": "Buy the ticket over there.",
+      "literal": "As for the ticket, over there, please buy.",
+      "gloss": [
+        {
+          "ko": "표는",
+          "rom": "pyoneun",
+          "en": "the ticket (topic)"
+        },
+        {
+          "ko": "저기에서",
+          "rom": "jeogieseo",
+          "en": "over there"
+        },
+        {
+          "ko": "사세요",
+          "rom": "saseyo",
+          "en": "please buy"
+        }
+      ],
+      "grammarIds": [
+        "g16"
+      ],
+      "wordIds": [
+        "w05_28",
+        "w05_31"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Buy the map over there.",
+        "Buy the ticket here.",
+        "Don't buy the ticket over there."
+      ],
+      "notes": "은/는 sets the ticket as the topic, so the new information is the place."
+    },
+    {
+      "id": "s05_4_1",
+      "unitId": "u05_places",
+      "lessonId": "l05_4",
+      "korean": "우리 동네에 공원이 있어요.",
+      "romanization": "uri dongnee gongwoni isseoyo.",
+      "english": "There is a park in my neighborhood.",
+      "literal": "In our neighborhood, a park exists.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "동네에",
+          "rom": "dongnee",
+          "en": "in the neighborhood"
+        },
+        {
+          "ko": "공원이",
+          "rom": "gongwoni",
+          "en": "park (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there is"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_48",
+        "w05_06"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "There is a market in my neighborhood.",
+        "There is no park in my neighborhood.",
+        "The park is near my neighborhood."
+      ],
+      "notes": "우리 is used for 'my' with homes, towns and families."
+    },
+    {
+      "id": "s05_4_2",
+      "unitId": "u05_places",
+      "lessonId": "l05_4",
+      "korean": "도서관 뒤에 조용한 골목이 있어요.",
+      "romanization": "doseogwan dwie joyonghan golmogi isseoyo.",
+      "english": "There is a quiet alley behind the library.",
+      "literal": "Behind the library, a quiet alley exists.",
+      "gloss": [
+        {
+          "ko": "도서관",
+          "rom": "doseogwan",
+          "en": "library"
+        },
+        {
+          "ko": "뒤에",
+          "rom": "dwie",
+          "en": "behind"
+        },
+        {
+          "ko": "조용한",
+          "rom": "joyonghan",
+          "en": "quiet"
+        },
+        {
+          "ko": "골목이",
+          "rom": "golmogi",
+          "en": "alley (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there is"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_01",
+        "w05_23",
+        "w05_42",
+        "w05_46"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "There is a busy alley behind the library.",
+        "There is a quiet alley next to the library.",
+        "There is a quiet park behind the alley."
+      ],
+      "notes": "Adjectives change before a noun: 조용하다 → 조용한 골목."
+    },
+    {
+      "id": "s05_4_3",
+      "unitId": "u05_places",
+      "lessonId": "l05_4",
+      "korean": "시장은 여기에서 가까워요.",
+      "romanization": "sijangeun yeogieseo gakkawoyo.",
+      "english": "The market is close to here.",
+      "literal": "As for the market, from here, it is close.",
+      "gloss": [
+        {
+          "ko": "시장은",
+          "rom": "sijangeun",
+          "en": "the market (topic)"
+        },
+        {
+          "ko": "여기에서",
+          "rom": "yeogieseo",
+          "en": "from here"
+        },
+        {
+          "ko": "가까워요",
+          "rom": "gakkawoyo",
+          "en": "is close"
+        }
+      ],
+      "grammarIds": [
+        "g16",
+        "g18"
+      ],
+      "wordIds": [
+        "w05_07",
+        "w05_29",
+        "w05_37"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "The market is far from here.",
+        "The bank is close to here.",
+        "Is the market close to here?"
+      ],
+      "notes": "가깝다 is irregular: 가깝 + 어요 → 가까워요."
+    },
+    {
+      "id": "s05_4_4",
+      "unitId": "u05_places",
+      "lessonId": "l05_4",
+      "korean": "미술관은 시장에서 멀어요.",
+      "romanization": "misulgwaneun sijangeseo meoreoyo.",
+      "english": "The art museum is far from the market.",
+      "literal": "As for the art museum, from the market, it is far.",
+      "gloss": [
+        {
+          "ko": "미술관은",
+          "rom": "misulgwaneun",
+          "en": "the art museum (topic)"
+        },
+        {
+          "ko": "시장에서",
+          "rom": "sijangeseo",
+          "en": "from the market"
+        },
+        {
+          "ko": "멀어요",
+          "rom": "meoreoyo",
+          "en": "is far"
+        }
+      ],
+      "grammarIds": [
+        "g16",
+        "g18"
+      ],
+      "wordIds": [
+        "w05_08",
+        "w05_07",
+        "w05_38"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "The art museum is close to the market.",
+        "The theater is far from the market.",
+        "The art museum is next to the market."
+      ],
+      "notes": "에서 marks the starting point of the distance."
+    },
+    {
+      "id": "s05_4_5",
+      "unitId": "u05_places",
+      "lessonId": "l05_4",
+      "korean": "바로 앞에 편의점이 있어요.",
+      "romanization": "baro ape pyeonuijeomi isseoyo.",
+      "english": "There is a convenience store right in front.",
+      "literal": "Right at the front, a convenience store exists.",
+      "gloss": [
+        {
+          "ko": "바로",
+          "rom": "baro",
+          "en": "right, just"
+        },
+        {
+          "ko": "앞에",
+          "rom": "ape",
+          "en": "in front"
+        },
+        {
+          "ko": "편의점이",
+          "rom": "pyeonuijeomi",
+          "en": "convenience store (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there is"
+        }
+      ],
+      "grammarIds": [
+        "g18"
+      ],
+      "wordIds": [
+        "w05_44",
+        "w05_22",
+        "w05_05"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "There is a convenience store right behind.",
+        "There is a pharmacy right in front.",
+        "There is no convenience store in front."
+      ],
+      "notes": "바로 앞 = right in front, no distance at all."
+    },
+    {
+      "id": "s05_4_6",
+      "unitId": "u05_places",
+      "lessonId": "l05_4",
+      "korean": "저는 지도에서 길을 찾아요.",
+      "romanization": "jeoneun jidoeseo gireul chajayo.",
+      "english": "I find the way on the map.",
+      "literal": "On the map, the way, I find.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "지도에서",
+          "rom": "jidoeseo",
+          "en": "on the map"
+        },
+        {
+          "ko": "길을",
+          "rom": "gireul",
+          "en": "the way, road (object)"
+        },
+        {
+          "ko": "찾아요",
+          "rom": "chajayo",
+          "en": "find, look for"
+        }
+      ],
+      "grammarIds": [
+        "g16"
+      ],
+      "wordIds": [
+        "w05_36",
+        "w05_19",
+        "w05_39"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I find the way on the street.",
+        "I lose the way on the map.",
+        "I find the map in the alley."
+      ],
+      "notes": "길 ends in ㄹ, so it takes 을."
+    }
+  ],
+  "dialogue": {
+    "id": "d05",
+    "unitId": "u05_places",
+    "title": "Where is the subway station?",
+    "setting": "A visitor stops a passerby on a Seoul street.",
+    "lines": [
+      {
+        "id": "d05_1",
+        "speaker": "A",
+        "ko": "실례합니다. 지하철역이 어디예요?",
+        "rom": "sillyehamnida. jihacheollyeogi eodiyeyo?",
+        "en": "Excuse me. Where is the subway station?"
+      },
+      {
+        "id": "d05_2",
+        "speaker": "B",
+        "ko": "저기 은행 옆에 있어요.",
+        "rom": "jeogi eunhaeng yeope isseoyo.",
+        "en": "It's over there, next to the bank."
+      },
+      {
+        "id": "d05_3",
+        "speaker": "A",
+        "ko": "저는 이 동네를 몰라요. 여기에서 멀어요?",
+        "rom": "jeoneun i dongnereul mollayo. yeogieseo meoreoyo?",
+        "en": "I don't know this neighborhood. Is it far from here?"
+      },
+      {
+        "id": "d05_4",
+        "speaker": "B",
+        "ko": "아니요, 가까워요. 이 골목으로 쭉 가세요.",
+        "rom": "aniyo, gakkawoyo. i golmogeuro jjuk gaseyo.",
+        "en": "No, it's close. Go straight down this alley."
+      },
+      {
+        "id": "d05_5",
+        "speaker": "A",
+        "ko": "표는 어디에서 사요?",
+        "rom": "pyoneun eodieseo sayo?",
+        "en": "Where do I buy a ticket?"
+      },
+      {
+        "id": "d05_6",
+        "speaker": "B",
+        "ko": "역 안에서 사세요. 거기 지도도 있어요.",
+        "rom": "yeok aneseo saseyo. geogi jidodo isseoyo.",
+        "en": "Buy it inside the station. There's a map there too."
+      },
+      {
+        "id": "d05_7",
+        "speaker": "A",
+        "ko": "시장에도 지하철로 가요?",
+        "rom": "sijangedo jihacheollo gayo?",
+        "en": "Can I also get to the market by subway?"
+      },
+      {
+        "id": "d05_8",
+        "speaker": "B",
+        "ko": "네, 시장은 바로 다음 역이에요.",
+        "rom": "ne, sijangeun baro daeum yeogieyo.",
+        "en": "Yes, the market is the very next station."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r05",
+    "unitId": "u05_places",
+    "title": "My neighborhood",
+    "ko": "저는 서울에 살아요. 우리 동네는 조금 복잡해요. 공원은 아주 가까워요. 공원 옆에 도서관이 있어요. 도서관은 아주 조용해요. 저는 도서관에서 책을 읽어요. 우리 집 앞에 식당과 서점이 있어요. 서점은 오른쪽에 있어요. 편의점 건너편에 약국이 있어요. 시장은 여기에서 멀어요. 시장에는 지하철로 가요. 지하철역 입구는 시장 앞에 있어요. 저는 이 동네를 잘 알아요. 저는 공원에서 자주 걸어요.",
+    "en": "I live in Seoul. My neighborhood is a little busy. The park is very close. Next to the park there is a library. The library is very quiet. I read books at the library. In front of my house there is a restaurant and a bookstore. The bookstore is on the right. Across from the convenience store there is a pharmacy. The market is far from here. I go to the market by subway. The subway station entrance is in front of the market. I know this neighborhood well. I often walk in the park.",
+    "questions": [
+      {
+        "q": "Where is the library?",
+        "options": [
+          "Next to the park",
+          "Across from the pharmacy",
+          "In the market",
+          "Behind the bookstore"
+        ],
+        "answer": 0,
+        "why": "공원 옆에 도서관이 있어요 = the library is next to the park."
+      },
+      {
+        "q": "How does the writer go to the market?",
+        "options": [
+          "By subway",
+          "By bus",
+          "By taxi",
+          "On foot"
+        ],
+        "answer": 0,
+        "why": "시장에는 지하철로 가요 = I go to the market by subway."
+      },
+      {
+        "q": "What is across from the convenience store?",
+        "options": [
+          "A pharmacy",
+          "A bank",
+          "A park",
+          "A bookstore"
+        ],
+        "answer": 0,
+        "why": "편의점 건너편에 약국이 있어요 = across from the convenience store is a pharmacy."
+      }
+    ]
+  }
+}

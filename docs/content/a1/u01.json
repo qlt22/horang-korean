@@ -1,0 +1,1900 @@
+{
+  "unit": {
+    "id": "u01_intro",
+    "order": 1,
+    "title": "Introductions",
+    "ko": "자기소개",
+    "canDo": [
+      "Introduce yourself by name, job and nationality",
+      "Ask someone's name and which country they are from",
+      "Say that someone is not something, and add 'too' with 도"
+    ],
+    "grammarIds": [
+      "g01",
+      "g02",
+      "g03",
+      "g14"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l01_1",
+      "unitId": "u01_intro",
+      "order": 1,
+      "kind": "vocab",
+      "title": "Say who you are",
+      "ko": "저는 회사원이에요",
+      "goal": "Give your name and job with 이에요/예요",
+      "grammarIds": [
+        "g01"
+      ],
+      "wordIds": [
+        "w01_01",
+        "w01_02",
+        "w01_03",
+        "w01_04",
+        "w01_05",
+        "w01_06",
+        "w01_07",
+        "w01_08",
+        "w01_09",
+        "w01_10",
+        "w01_11",
+        "w01_12"
+      ],
+      "sentenceIds": [
+        "s01_1_1",
+        "s01_1_2",
+        "s01_1_3",
+        "s01_1_4",
+        "s01_1_5",
+        "s01_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l01_2",
+      "unitId": "u01_intro",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Topic, subject, and 'too'",
+      "ko": "이 사람은 제 선생님이에요",
+      "goal": "Mark the topic with 은/는, the subject with 이/가, and add 도 for 'too'",
+      "grammarIds": [
+        "g02",
+        "g03",
+        "g14"
+      ],
+      "wordIds": [
+        "w01_13",
+        "w01_14",
+        "w01_15",
+        "w01_16",
+        "w01_17",
+        "w01_18",
+        "w01_19",
+        "w01_20",
+        "w01_21",
+        "w01_22",
+        "w01_23",
+        "w01_24"
+      ],
+      "sentenceIds": [
+        "s01_2_1",
+        "s01_2_2",
+        "s01_2_3",
+        "s01_2_4",
+        "s01_2_5",
+        "s01_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 7
+    },
+    {
+      "id": "l01_3",
+      "unitId": "u01_intro",
+      "order": 3,
+      "kind": "listening",
+      "title": "First day of class",
+      "ko": "우리 교실은 여기예요",
+      "goal": "Follow a first meeting: names, jobs and countries",
+      "grammarIds": [
+        "g01",
+        "g03",
+        "g14"
+      ],
+      "wordIds": [
+        "w01_25",
+        "w01_26",
+        "w01_27",
+        "w01_28",
+        "w01_29",
+        "w01_30",
+        "w01_31",
+        "w01_32",
+        "w01_33",
+        "w01_34",
+        "w01_35",
+        "w01_36"
+      ],
+      "sentenceIds": [
+        "s01_3_1",
+        "s01_3_2",
+        "s01_3_3",
+        "s01_3_4",
+        "s01_3_5",
+        "s01_3_6"
+      ],
+      "dialogueId": "d01",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l01_4",
+      "unitId": "u01_intro",
+      "order": 4,
+      "kind": "reading",
+      "title": "Marie's introduction",
+      "ko": "제 소개",
+      "goal": "Read a short self-introduction and answer three questions",
+      "grammarIds": [
+        "g01",
+        "g02"
+      ],
+      "wordIds": [
+        "w01_37",
+        "w01_38",
+        "w01_39",
+        "w01_40",
+        "w01_41",
+        "w01_42",
+        "w01_43",
+        "w01_44",
+        "w01_45",
+        "w01_46",
+        "w01_47",
+        "w01_48"
+      ],
+      "sentenceIds": [
+        "s01_4_1",
+        "s01_4_2",
+        "s01_4_3",
+        "s01_4_4",
+        "s01_4_5",
+        "s01_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r01",
+      "minutes": 7
+    },
+    {
+      "id": "l01_5",
+      "unitId": "u01_intro",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: Introductions",
+      "ko": "복습",
+      "goal": "Say who you are and ask about someone else",
+      "grammarIds": [
+        "g01",
+        "g02",
+        "g03",
+        "g14"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g01",
+      "unitId": "u01_intro",
+      "order": 1,
+      "label": "to be (이에요/예요)",
+      "ko": "이에요/예요",
+      "pattern": "N + 이에요/예요",
+      "explanation": "The polite word for 'is / am / are'. Use 예요 after a vowel and 이에요 after a consonant.",
+      "examples": [
+        {
+          "ko": "저는 의사예요.",
+          "en": "I am a doctor."
+        },
+        {
+          "ko": "제 친구는 학생이에요.",
+          "en": "My friend is a student."
+        }
+      ],
+      "mistake": "학생예요 ✗ → 학생이에요 ✓"
+    },
+    {
+      "id": "g02",
+      "unitId": "u01_intro",
+      "order": 2,
+      "label": "topic marker (은/는)",
+      "ko": "은/는",
+      "pattern": "N + 은/는",
+      "explanation": "'As for N…' — it marks what the sentence is about. Use 은 after a consonant and 는 after a vowel.",
+      "examples": [
+        {
+          "ko": "저는 유나예요.",
+          "en": "I am Yuna."
+        },
+        {
+          "ko": "이 사람은 제 동료예요.",
+          "en": "This person is my colleague."
+        }
+      ],
+      "mistake": "저가 학생이에요 ✗ → 저는 학생이에요 ✓"
+    },
+    {
+      "id": "g03",
+      "unitId": "u01_intro",
+      "order": 3,
+      "label": "subject marker (이/가)",
+      "ko": "이/가",
+      "pattern": "N + 이/가",
+      "explanation": "Marks who or what does the action or has the quality. Use 이 after a consonant and 가 after a vowel.",
+      "examples": [
+        {
+          "ko": "이름이 뭐예요?",
+          "en": "What is your name?"
+        },
+        {
+          "ko": "한국어가 어려워요.",
+          "en": "Korean is difficult."
+        }
+      ],
+      "mistake": "이름가 뭐예요? ✗ → 이름이 뭐예요? ✓"
+    },
+    {
+      "id": "g14",
+      "unitId": "u01_intro",
+      "order": 4,
+      "label": "also / too (도)",
+      "ko": "도",
+      "pattern": "N + 도",
+      "explanation": "Add 도 to a noun to mean 'also / too'. It replaces 은/는 or 이/가 — never use both.",
+      "examples": [
+        {
+          "ko": "저도 학생이에요.",
+          "en": "I am a student too."
+        },
+        {
+          "ko": "선생님도 미국 사람이에요.",
+          "en": "The teacher is American too."
+        }
+      ],
+      "mistake": "저는도 학생이에요 ✗ → 저도 학생이에요 ✓"
+    }
+  ],
+  "words": [
+    {
+      "id": "w01_01",
+      "ko": "이름",
+      "rom": "ireum",
+      "en": "name",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_02",
+      "ko": "학생",
+      "rom": "haksaeng",
+      "en": "student",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_03",
+      "ko": "선생님",
+      "rom": "seonsaengnim",
+      "en": "teacher",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_04",
+      "ko": "의사",
+      "rom": "uisa",
+      "en": "doctor",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_05",
+      "ko": "회사원",
+      "rom": "hoesawon",
+      "en": "office worker",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_06",
+      "ko": "사람",
+      "rom": "saram",
+      "en": "person",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_07",
+      "ko": "저",
+      "rom": "jeo",
+      "en": "I (humble)",
+      "pos": "pronoun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_08",
+      "ko": "제",
+      "rom": "je",
+      "en": "my (humble)",
+      "pos": "pronoun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_09",
+      "ko": "뭐",
+      "rom": "mwo",
+      "en": "what",
+      "pos": "pronoun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_10",
+      "ko": "직업",
+      "rom": "jikgeop",
+      "en": "job",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_11",
+      "ko": "한국",
+      "rom": "hanguk",
+      "en": "Korea",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_12",
+      "ko": "미국",
+      "rom": "miguk",
+      "en": "the USA",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1"
+    },
+    {
+      "id": "w01_13",
+      "ko": "일본",
+      "rom": "ilbon",
+      "en": "Japan",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_14",
+      "ko": "중국",
+      "rom": "jungguk",
+      "en": "China",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_15",
+      "ko": "영어",
+      "rom": "yeongeo",
+      "en": "English",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_16",
+      "ko": "한국어",
+      "rom": "hangugeo",
+      "en": "Korean (language)",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_17",
+      "ko": "외국인",
+      "rom": "oegugin",
+      "en": "foreigner",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_18",
+      "ko": "유학생",
+      "rom": "yuhaksaeng",
+      "en": "international student",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_19",
+      "ko": "나라",
+      "rom": "nara",
+      "en": "country",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_20",
+      "ko": "자리",
+      "rom": "jari",
+      "en": "seat",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_21",
+      "ko": "동료",
+      "rom": "dongnyo",
+      "en": "colleague",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_22",
+      "ko": "교실",
+      "rom": "gyosil",
+      "en": "classroom",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_23",
+      "ko": "어려워요",
+      "rom": "eoryeowoyo",
+      "en": "to be difficult",
+      "pos": "adjective",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_24",
+      "ko": "가수",
+      "rom": "gasu",
+      "en": "singer",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2"
+    },
+    {
+      "id": "w01_25",
+      "ko": "안녕하세요",
+      "rom": "annyeonghaseyo",
+      "en": "hello",
+      "pos": "expression",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_26",
+      "ko": "반가워요",
+      "rom": "bangawoyo",
+      "en": "nice to meet you",
+      "pos": "expression",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_27",
+      "ko": "네",
+      "rom": "ne",
+      "en": "yes",
+      "pos": "expression",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_28",
+      "ko": "아니요",
+      "rom": "aniyo",
+      "en": "no",
+      "pos": "expression",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_29",
+      "ko": "우리",
+      "rom": "uri",
+      "en": "we / our",
+      "pos": "pronoun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_30",
+      "ko": "어느",
+      "rom": "eoneu",
+      "en": "which",
+      "pos": "pronoun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_31",
+      "ko": "의자",
+      "rom": "uija",
+      "en": "chair",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_32",
+      "ko": "씨",
+      "rom": "ssi",
+      "en": "Mr / Ms (after a name)",
+      "pos": "particle",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_33",
+      "ko": "감사해요",
+      "rom": "gamsahaeyo",
+      "en": "thank you",
+      "pos": "expression",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_34",
+      "ko": "괜찮아요",
+      "rom": "gwaenchanayo",
+      "en": "to be okay",
+      "pos": "adjective",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_35",
+      "ko": "처음",
+      "rom": "cheoeum",
+      "en": "the first time",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_36",
+      "ko": "또 봐요",
+      "rom": "tto bwayo",
+      "en": "see you again",
+      "pos": "expression",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3"
+    },
+    {
+      "id": "w01_37",
+      "ko": "지금",
+      "rom": "jigeum",
+      "en": "now",
+      "pos": "adverb",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_38",
+      "ko": "서울",
+      "rom": "seoul",
+      "en": "Seoul",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_39",
+      "ko": "살아요",
+      "rom": "sarayo",
+      "en": "to live",
+      "pos": "verb",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_40",
+      "ko": "반",
+      "rom": "ban",
+      "en": "class (group)",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_41",
+      "ko": "재미있어요",
+      "rom": "jaemiisseoyo",
+      "en": "to be fun",
+      "pos": "adjective",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_42",
+      "ko": "아주",
+      "rom": "aju",
+      "en": "very",
+      "pos": "adverb",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_43",
+      "ko": "노트",
+      "rom": "noteu",
+      "en": "notebook",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_44",
+      "ko": "층",
+      "rom": "cheung",
+      "en": "floor (of a building)",
+      "pos": "counter",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_45",
+      "ko": "프랑스",
+      "rom": "peurangseu",
+      "en": "France",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_46",
+      "ko": "말해요",
+      "rom": "malhaeyo",
+      "en": "to speak",
+      "pos": "verb",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_47",
+      "ko": "조금",
+      "rom": "jogeum",
+      "en": "a little",
+      "pos": "adverb",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    },
+    {
+      "id": "w01_48",
+      "ko": "대학생",
+      "rom": "daehaksaeng",
+      "en": "university student",
+      "pos": "noun",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01_1_1",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1",
+      "korean": "저는 회사원이에요.",
+      "romanization": "jeoneun hoesawon-ieyo.",
+      "english": "I am an office worker.",
+      "literal": "As for me, an office worker am.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "회사원",
+          "rom": "hoesawon",
+          "en": "office worker"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "am (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g01",
+        "g02"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_05"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am a student.",
+        "I am not an office worker.",
+        "Are you an office worker?"
+      ],
+      "notes": "저는 is the humble 'I' plus the topic marker 는."
+    },
+    {
+      "id": "s01_1_2",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1",
+      "korean": "제 이름은 유나예요.",
+      "romanization": "je ireumeun yuna-yeyo.",
+      "english": "My name is Yuna.",
+      "literal": "As for my name, Yuna is.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my (humble)"
+        },
+        {
+          "ko": "이름은",
+          "rom": "ireumeun",
+          "en": "name (topic)"
+        },
+        {
+          "ko": "유나",
+          "rom": "yuna",
+          "en": "Yuna"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g01",
+        "g02"
+      ],
+      "wordIds": [
+        "w01_08",
+        "w01_01"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My name is not Yuna.",
+        "Your name is Yuna.",
+        "Yuna is a teacher."
+      ],
+      "notes": "제 is the humble form of 내, used when talking about your own things."
+    },
+    {
+      "id": "s01_1_3",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1",
+      "korean": "이름이 뭐예요?",
+      "romanization": "ireumi mwo-yeyo?",
+      "english": "What is your name?",
+      "literal": "A name is what?",
+      "gloss": [
+        {
+          "ko": "이름이",
+          "rom": "ireumi",
+          "en": "name (subject)"
+        },
+        {
+          "ko": "뭐",
+          "rom": "mwo",
+          "en": "what"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g01",
+        "g03"
+      ],
+      "wordIds": [
+        "w01_01",
+        "w01_09"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Where are you from?",
+        "How old are you?",
+        "What is your job?"
+      ],
+      "notes": "뭐 + 예요 contracts to 뭐예요, not 무엇이에요 in speech."
+    },
+    {
+      "id": "s01_1_4",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1",
+      "korean": "저는 의사가 아니에요.",
+      "romanization": "jeoneun uisa-ga anieyo.",
+      "english": "I am not a doctor.",
+      "literal": "As for me, a doctor am-not.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "의사가",
+          "rom": "uisaga",
+          "en": "doctor (subject)"
+        },
+        {
+          "ko": "아니에요",
+          "rom": "anieyo",
+          "en": "am not (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g03",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_04"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am a doctor.",
+        "I am a nurse.",
+        "Is he a doctor?"
+      ],
+      "notes": "Negate 이에요/예요 with 이/가 아니에요."
+    },
+    {
+      "id": "s01_1_5",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1",
+      "korean": "선생님은 한국 사람이에요.",
+      "romanization": "seonsaengnimeun hanguk saram-ieyo.",
+      "english": "The teacher is Korean.",
+      "literal": "As for the teacher, a Korean person is.",
+      "gloss": [
+        {
+          "ko": "선생님은",
+          "rom": "seonsaengnimeun",
+          "en": "teacher (topic)"
+        },
+        {
+          "ko": "한국",
+          "rom": "hanguk",
+          "en": "Korea"
+        },
+        {
+          "ko": "사람",
+          "rom": "saram",
+          "en": "person"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g02",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_03",
+        "w01_11",
+        "w01_06"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "The teacher is American.",
+        "The teacher is not Korean.",
+        "Is the teacher Korean?"
+      ],
+      "notes": "Nationality is expressed as '나라 + 사람'."
+    },
+    {
+      "id": "s01_1_6",
+      "unitId": "u01_intro",
+      "lessonId": "l01_1",
+      "korean": "저도 학생이에요.",
+      "romanization": "jeodo haksaeng-ieyo.",
+      "english": "I am a student too.",
+      "literal": "I also, a student am.",
+      "gloss": [
+        {
+          "ko": "저도",
+          "rom": "jeodo",
+          "en": "I also"
+        },
+        {
+          "ko": "학생",
+          "rom": "haksaeng",
+          "en": "student"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "am (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g14",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_02"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am not a student.",
+        "I am a teacher too.",
+        "Are you a student too?"
+      ],
+      "notes": "도 replaces 는: 저도, not 저는도."
+    },
+    {
+      "id": "s01_2_1",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2",
+      "korean": "이 사람은 제 선생님이에요.",
+      "romanization": "i sarameun je seonsaengnim-ieyo.",
+      "english": "This person is my teacher.",
+      "literal": "As for this person, my teacher is.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "사람은",
+          "rom": "sarameun",
+          "en": "person (topic)"
+        },
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "선생님이에요",
+          "rom": "seonsaengnim-ieyo",
+          "en": "is a teacher"
+        }
+      ],
+      "grammarIds": [
+        "g02",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_06",
+        "w01_08",
+        "w01_03"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "This person is my doctor.",
+        "That person is your teacher.",
+        "This person is not my teacher."
+      ],
+      "notes": "Use 이 사람 for 'this person' when pointing at someone."
+    },
+    {
+      "id": "s01_2_2",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2",
+      "korean": "유나 씨는 일본 사람이에요?",
+      "romanization": "yuna ssineun ilbon saram-ieyo?",
+      "english": "Is Yuna Japanese?",
+      "literal": "As for Yuna, a Japanese person is?",
+      "gloss": [
+        {
+          "ko": "유나 씨는",
+          "rom": "yuna ssineun",
+          "en": "Yuna (topic)"
+        },
+        {
+          "ko": "일본",
+          "rom": "ilbon",
+          "en": "Japan"
+        },
+        {
+          "ko": "사람",
+          "rom": "saram",
+          "en": "person"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g01",
+        "g02"
+      ],
+      "wordIds": [
+        "w01_13",
+        "w01_06"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Yuna is Chinese.",
+        "Yuna is not Japanese.",
+        "Yuna is a Japanese teacher."
+      ],
+      "notes": "씨 goes after a name, never after your own name."
+    },
+    {
+      "id": "s01_2_3",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2",
+      "korean": "저는 중국 사람이 아니에요.",
+      "romanization": "jeoneun jungguk saram-i anieyo.",
+      "english": "I am not Chinese.",
+      "literal": "As for me, a Chinese person am-not.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "중국",
+          "rom": "jungguk",
+          "en": "China"
+        },
+        {
+          "ko": "사람이",
+          "rom": "sarami",
+          "en": "person (subject)"
+        },
+        {
+          "ko": "아니에요",
+          "rom": "anieyo",
+          "en": "am not (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g03",
+        "g02"
+      ],
+      "wordIds": [
+        "w01_14",
+        "w01_06"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I am Chinese.",
+        "I am Japanese.",
+        "Is she Chinese?"
+      ],
+      "notes": "사람 ends in a consonant, so the subject marker is 이."
+    },
+    {
+      "id": "s01_2_4",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2",
+      "korean": "저도 유학생이에요.",
+      "romanization": "jeodo yuhaksaeng-ieyo.",
+      "english": "I am an international student too.",
+      "literal": "I also, an international student am.",
+      "gloss": [
+        {
+          "ko": "저도",
+          "rom": "jeodo",
+          "en": "I also"
+        },
+        {
+          "ko": "유학생",
+          "rom": "yuhaksaeng",
+          "en": "international student"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "am (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g14",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_18"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am not an international student.",
+        "I am a university student.",
+        "Are you an international student too?"
+      ],
+      "notes": "유학생 = a student who came to Korea to study."
+    },
+    {
+      "id": "s01_2_5",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2",
+      "korean": "여기가 제 자리예요.",
+      "romanization": "yeogiga je jari-yeyo.",
+      "english": "This is my seat.",
+      "literal": "Here, my seat is.",
+      "gloss": [
+        {
+          "ko": "여기가",
+          "rom": "yeogiga",
+          "en": "here (subject)"
+        },
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "자리",
+          "rom": "jari",
+          "en": "seat"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g03",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_20",
+        "w01_08"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "This is your seat.",
+        "This is not my seat.",
+        "My seat is over there."
+      ],
+      "notes": "여기 + 가 = 여기가 marks the place as the subject."
+    },
+    {
+      "id": "s01_2_6",
+      "unitId": "u01_intro",
+      "lessonId": "l01_2",
+      "korean": "한국어가 어려워요.",
+      "romanization": "hangugeoga eoryeowoyo.",
+      "english": "Korean is difficult.",
+      "literal": "Korean is difficult.",
+      "gloss": [
+        {
+          "ko": "한국어가",
+          "rom": "hangugeoga",
+          "en": "Korean (subject)"
+        },
+        {
+          "ko": "어려워요",
+          "rom": "eoryeowoyo",
+          "en": "is difficult"
+        }
+      ],
+      "grammarIds": [
+        "g03"
+      ],
+      "wordIds": [
+        "w01_16",
+        "w01_23"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Korean is easy.",
+        "Korean is fun.",
+        "Korean is not difficult."
+      ],
+      "notes": "한국어 ends in a vowel, so the subject marker is 가."
+    },
+    {
+      "id": "s01_3_1",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3",
+      "korean": "제 동료는 외국인이에요.",
+      "romanization": "je dongnyoneun oegugin-ieyo.",
+      "english": "My colleague is a foreigner.",
+      "literal": "As for my colleague, a foreigner is.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "동료는",
+          "rom": "dongnyoneun",
+          "en": "colleague (topic)"
+        },
+        {
+          "ko": "외국인",
+          "rom": "oegugin",
+          "en": "foreigner"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g02",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_08",
+        "w01_21",
+        "w01_17"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My colleague is Korean.",
+        "My colleague is not a foreigner.",
+        "Is your colleague a foreigner?"
+      ],
+      "notes": "동료 is a work colleague; 친구 is a friend."
+    },
+    {
+      "id": "s01_3_2",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3",
+      "korean": "저는 영어를 가르쳐요.",
+      "romanization": "jeoneun yeongeoreul gareucheoyo.",
+      "english": "I teach English.",
+      "literal": "As for me, English teach.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "영어를",
+          "rom": "yeongeoreul",
+          "en": "English (object)"
+        },
+        {
+          "ko": "가르쳐요",
+          "rom": "gareucheoyo",
+          "en": "teach"
+        }
+      ],
+      "grammarIds": [
+        "g02"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_15"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I study English.",
+        "I teach Korean.",
+        "I don't teach English."
+      ],
+      "notes": "를 marks English as the thing being taught."
+    },
+    {
+      "id": "s01_3_3",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3",
+      "korean": "저는 가수가 아니에요.",
+      "romanization": "jeoneun gasuga anieyo.",
+      "english": "I am not a singer.",
+      "literal": "As for me, a singer am-not.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "가수가",
+          "rom": "gasuga",
+          "en": "singer (subject)"
+        },
+        {
+          "ko": "아니에요",
+          "rom": "anieyo",
+          "en": "am not (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g03",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_24"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am a singer.",
+        "I am a teacher.",
+        "Is she a singer?"
+      ],
+      "notes": "가수 ends in a vowel, so the marker is 가."
+    },
+    {
+      "id": "s01_3_4",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3",
+      "korean": "어느 나라 사람이에요?",
+      "romanization": "eoneu nara saram-ieyo?",
+      "english": "Which country are you from?",
+      "literal": "Which country person are you?",
+      "gloss": [
+        {
+          "ko": "어느",
+          "rom": "eoneu",
+          "en": "which"
+        },
+        {
+          "ko": "나라",
+          "rom": "nara",
+          "en": "country"
+        },
+        {
+          "ko": "사람",
+          "rom": "saram",
+          "en": "person"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g01"
+      ],
+      "wordIds": [
+        "w01_19",
+        "w01_30"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Where do you live?",
+        "How old are you?",
+        "What is your job?"
+      ],
+      "notes": "The subject 'you' is dropped; the sentence is literally 'which country person is?'"
+    },
+    {
+      "id": "s01_3_5",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3",
+      "korean": "우리 교실은 여기예요.",
+      "romanization": "uri gyosireun yeogi-yeyo.",
+      "english": "Our classroom is here.",
+      "literal": "As for our classroom, here it is.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "교실은",
+          "rom": "gyosireun",
+          "en": "classroom (topic)"
+        },
+        {
+          "ko": "여기",
+          "rom": "yeogi",
+          "en": "here"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g02",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_22",
+        "w01_29"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Our classroom is over there.",
+        "Our classroom is on the third floor.",
+        "Is this our classroom?"
+      ],
+      "notes": "우리 is used for 'our' even when you mean 'my' group."
+    },
+    {
+      "id": "s01_3_6",
+      "unitId": "u01_intro",
+      "lessonId": "l01_3",
+      "korean": "한국은 처음이에요.",
+      "romanization": "hangugeun cheoeum-ieyo.",
+      "english": "It is my first time in Korea.",
+      "literal": "As for Korea, it is the first time.",
+      "gloss": [
+        {
+          "ko": "한국은",
+          "rom": "hangugeun",
+          "en": "Korea (topic)"
+        },
+        {
+          "ko": "처음",
+          "rom": "cheoeum",
+          "en": "the first time"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g02",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_11",
+        "w01_35"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I live in Korea.",
+        "I am Korean.",
+        "I go to Korea every year."
+      ],
+      "notes": "A very common traveller line: 'Korea is a first for me.'"
+    },
+    {
+      "id": "s01_4_1",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4",
+      "korean": "직업이 뭐예요?",
+      "romanization": "jikgeobi mwo-yeyo?",
+      "english": "What is your job?",
+      "literal": "A job is what?",
+      "gloss": [
+        {
+          "ko": "직업이",
+          "rom": "jikgeobi",
+          "en": "job (subject)"
+        },
+        {
+          "ko": "뭐",
+          "rom": "mwo",
+          "en": "what"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g03",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_10",
+        "w01_09"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Where do you work?",
+        "What is your name?",
+        "Are you a student?"
+      ],
+      "notes": "직업 ends in a consonant (ㅂ), so the marker is 이."
+    },
+    {
+      "id": "s01_4_2",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4",
+      "korean": "저는 한국에 살아요.",
+      "romanization": "jeoneun hanguge sarayo.",
+      "english": "I live in Korea.",
+      "literal": "As for me, in Korea live.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "한국에",
+          "rom": "hanguge",
+          "en": "in Korea"
+        },
+        {
+          "ko": "살아요",
+          "rom": "sarayo",
+          "en": "live"
+        }
+      ],
+      "grammarIds": [
+        "g02"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_11",
+        "w01_39"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am Korean.",
+        "I work in Korea.",
+        "I am visiting Korea."
+      ],
+      "notes": "살아요 means 'to live'; the place takes 에."
+    },
+    {
+      "id": "s01_4_3",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4",
+      "korean": "제 친구는 미국 사람이에요.",
+      "romanization": "je chinguneun miguk saram-ieyo.",
+      "english": "My friend is American.",
+      "literal": "As for my friend, an American person is.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "친구는",
+          "rom": "chinguneun",
+          "en": "friend (topic)"
+        },
+        {
+          "ko": "미국",
+          "rom": "miguk",
+          "en": "the USA"
+        },
+        {
+          "ko": "사람",
+          "rom": "saram",
+          "en": "person"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g02",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_08",
+        "w01_12",
+        "w01_06"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My friend is Korean.",
+        "My friend is not American.",
+        "Is your friend American?"
+      ],
+      "notes": "친구 ends in a vowel, so the topic marker is 는."
+    },
+    {
+      "id": "s01_4_4",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4",
+      "korean": "저는 한국어를 조금 말해요.",
+      "romanization": "jeoneun hangugeoreul jogeum malhaeyo.",
+      "english": "I speak a little Korean.",
+      "literal": "As for me, Korean a little speak.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "한국어를",
+          "rom": "hangugeoreul",
+          "en": "Korean (object)"
+        },
+        {
+          "ko": "조금",
+          "rom": "jogeum",
+          "en": "a little"
+        },
+        {
+          "ko": "말해요",
+          "rom": "malhaeyo",
+          "en": "speak"
+        }
+      ],
+      "grammarIds": [
+        "g02"
+      ],
+      "wordIds": [
+        "w01_07",
+        "w01_16",
+        "w01_47"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I speak Korean very well.",
+        "I don't speak Korean.",
+        "I study Korean a little."
+      ],
+      "notes": "조금 goes before the verb, not before the object."
+    },
+    {
+      "id": "s01_4_5",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4",
+      "korean": "우리 반은 아주 재미있어요.",
+      "romanization": "uri baneun aju jaemiisseoyo.",
+      "english": "Our class is really fun.",
+      "literal": "As for our class, it is very fun.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "반은",
+          "rom": "baneun",
+          "en": "class (topic)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "재미있어요",
+          "rom": "jaemiisseoyo",
+          "en": "is fun"
+        }
+      ],
+      "grammarIds": [
+        "g02"
+      ],
+      "wordIds": [
+        "w01_29",
+        "w01_40",
+        "w01_42",
+        "w01_41"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Our class is very difficult.",
+        "Our class is not fun.",
+        "Our teacher is very kind."
+      ],
+      "notes": "반 here means a class group of students, not a classroom."
+    },
+    {
+      "id": "s01_4_6",
+      "unitId": "u01_intro",
+      "lessonId": "l01_4",
+      "korean": "제 노트는 여기예요.",
+      "romanization": "je noteuneun yeogi-yeyo.",
+      "english": "My notebook is here.",
+      "literal": "As for my notebook, here it is.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "노트는",
+          "rom": "noteuneun",
+          "en": "notebook (topic)"
+        },
+        {
+          "ko": "여기",
+          "rom": "yeogi",
+          "en": "here"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g02",
+        "g01"
+      ],
+      "wordIds": [
+        "w01_08",
+        "w01_43"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My notebook is over there.",
+        "Your notebook is here.",
+        "My notebook is not here."
+      ],
+      "notes": "노트 ends in a vowel, so the topic marker is 는."
+    }
+  ],
+  "dialogue": {
+    "id": "d01",
+    "unitId": "u01_intro",
+    "title": "First day of Korean class",
+    "setting": "Two new students meet in the hallway before their first Korean class.",
+    "lines": [
+      {
+        "id": "d01_1",
+        "speaker": "A",
+        "ko": "안녕하세요. 저는 유나예요.",
+        "rom": "annyeonghaseyo. jeoneun yuna-yeyo.",
+        "en": "Hello. I'm Yuna."
+      },
+      {
+        "id": "d01_2",
+        "speaker": "B",
+        "ko": "반가워요. 저는 지호예요.",
+        "rom": "bangawoyo. jeoneun jiho-yeyo.",
+        "en": "Nice to meet you. I'm Jiho."
+      },
+      {
+        "id": "d01_3",
+        "speaker": "A",
+        "ko": "지호 씨는 회사원이에요?",
+        "rom": "jiho ssineun hoesawon-ieyo?",
+        "en": "Are you an office worker, Jiho?"
+      },
+      {
+        "id": "d01_4",
+        "speaker": "B",
+        "ko": "아니요, 저는 학생이에요. 유나 씨는 어느 나라 사람이에요?",
+        "rom": "aniyo. jeoneun haksaeng-ieyo. yuna ssineun eoneu nara saram-ieyo?",
+        "en": "No, I'm a student. Where are you from, Yuna?"
+      },
+      {
+        "id": "d01_5",
+        "speaker": "A",
+        "ko": "저는 일본 사람이에요. 한국은 처음이에요.",
+        "rom": "jeoneun ilbon saram-ieyo. hangugeun cheoeum-ieyo.",
+        "en": "I'm Japanese. It's my first time in Korea."
+      },
+      {
+        "id": "d01_6",
+        "speaker": "B",
+        "ko": "저도 일본어를 배워요. 같이 공부해요.",
+        "rom": "jeodo ilboneoreul baewoyo. gachi gongbuhaeyo.",
+        "en": "I'm learning Japanese too. Let's study together."
+      },
+      {
+        "id": "d01_7",
+        "speaker": "A",
+        "ko": "우리 교실은 3층이에요. 같이 가요.",
+        "rom": "uri gyosireun samcheung-ieyo. gachi gayo.",
+        "en": "Our classroom is on the third floor. Let's go together."
+      },
+      {
+        "id": "d01_8",
+        "speaker": "B",
+        "ko": "네, 감사해요.",
+        "rom": "ne. gamsahaeyo.",
+        "en": "Yes, thank you."
+      },
+      {
+        "id": "d01_9",
+        "speaker": "A",
+        "ko": "괜찮아요. 또 봐요.",
+        "rom": "gwaenchanayo. tto bwayo.",
+        "en": "No problem. See you again."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r01",
+    "unitId": "u01_intro",
+    "title": "My introduction",
+    "ko": "안녕하세요. 제 이름은 마리예요. 프랑스 사람이에요. 지금은 서울에 살아요. 저는 대학생이에요. 아침에는 한국어를 공부해요. 한국어가 조금 어려워요. 우리 반은 아주 재미있어요. 우리 반에는 외국인이 많아요. 제 교실은 3층이에요. 교실에 의자가 많아요. 선생님은 한국 사람이에요. 선생님은 영어도 가르쳐요. 제 친구도 유학생이에요. 친구는 일본 사람이에요. 우리는 매일 같이 공부해요. 우리 교실에는 노트가 많아요.",
+    "en": "Hello. My name is Marie. I am French. Right now I live in Seoul. I am a university student. In the morning I study Korean. Korean is a little difficult. Our class is really fun. There are many foreigners in our class. My classroom is on the third floor. There are many chairs in the classroom. The teacher is Korean. The teacher also teaches English. My friend is an international student too. My friend is Japanese. We study together every day. There are many notebooks in our classroom.",
+    "questions": [
+      {
+        "q": "Where is Marie from?",
+        "options": [
+          "France",
+          "Korea",
+          "Japan",
+          "The United States"
+        ],
+        "answer": 0,
+        "why": "프랑스 사람이에요 = I am French."
+      },
+      {
+        "q": "What does Marie study in the morning?",
+        "options": [
+          "Korean",
+          "English",
+          "French",
+          "Japanese"
+        ],
+        "answer": 0,
+        "why": "아침에는 한국어를 공부해요 = In the morning I study Korean."
+      },
+      {
+        "q": "Where is Marie's classroom?",
+        "options": [
+          "On the third floor",
+          "On the first floor",
+          "Next to the library",
+          "At home"
+        ],
+        "answer": 0,
+        "why": "제 교실은 3층이에요 = My classroom is on the third floor."
+      }
+    ]
+  }
+}

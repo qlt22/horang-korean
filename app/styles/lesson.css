@@ -1282,3 +1282,773 @@
   color: var(--ink-500);
   font-weight: 600;
 }
+
+/* ============================================================
+   A1 player — 13 task types
+   Word cards, grammar cards, dictation, dialogue, reading,
+   word match, say-it. Same design language as v1.
+   ============================================================ */
+
+/* ---------- Header: crumb row + checkpoint chip ---------- */
+.lesson-crumb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 26px;
+  margin-top: 10px;
+}
+.lesson-crumb-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--ink-700);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lesson-crumb-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+/* The combo pill lives in the crumb row now, so it can never cover a prompt. */
+.lesson .combo-pill {
+  position: static;
+  top: auto;
+  right: auto;
+  padding: 3px 9px;
+  font-size: 11.5px;
+  box-shadow: 0 2px 0 var(--amber-400);
+}
+.lesson-pass {
+  height: 26px;
+  padding: 0 9px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  gap: 4px;
+}
+.lesson-pass svg {
+  width: 13px;
+  height: 13px;
+}
+.lesson--checkpoint .lesson-prog-label {
+  color: var(--indigo-700);
+}
+.lesson--checkpoint .lesson-segs > i.done {
+  background: var(--indigo-600);
+}
+.lesson--checkpoint .lesson-segs > i.now {
+  background: linear-gradient(90deg, var(--indigo-600) 60%, var(--cream-200) 60%);
+}
+
+/* ---------- Audio row (normal + slow replay) ---------- */
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.audio-row--center {
+  justify-content: center;
+}
+.audio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  box-shadow: 0 2px 0 var(--line);
+  color: var(--ink-700);
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: transform var(--dur-1) var(--ease-snap), box-shadow var(--dur-1),
+    background var(--dur-2);
+}
+.audio-pill:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+.audio-pill svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+.audio-pill--slow {
+  background: var(--indigo-100);
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--indigo-700);
+  padding: 0 11px;
+}
+.audio-slow-dot {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: var(--white);
+  border-radius: 999px;
+  padding: 2px 5px;
+  line-height: 1;
+}
+
+/* ---------- word_card ---------- */
+.lesson-item--card .lesson-body {
+  gap: 14px;
+  margin: auto 0;
+}
+.word-hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 28px 18px 22px;
+  border-radius: 24px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  box-shadow: 0 6px 0 var(--line), var(--shadow-2);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-1) var(--ease-snap), box-shadow var(--dur-1);
+}
+.word-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--coral-500);
+}
+.word-hero:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--line);
+}
+.word-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--mint-100);
+  color: var(--mint-700);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.word-play svg {
+  width: 14px;
+  height: 14px;
+}
+.word-ko {
+  font-size: clamp(42px, 13vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink-900);
+  word-break: keep-all;
+}
+.word-rom {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-500);
+}
+.word-en {
+  text-align: center;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink-900);
+}
+.card-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.card-chips .chip {
+  height: 26px;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 0 10px;
+  gap: 4px;
+}
+.card-chips .chip svg {
+  width: 12px;
+  height: 12px;
+}
+.card-example {
+  background: var(--cream-100);
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: riseFade var(--dur-4) var(--ease-out) both;
+  animation-delay: 80ms;
+}
+.card-example-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+.card-example-ko {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.4;
+  color: var(--ink-900);
+  word-break: keep-all;
+}
+.card-example-en {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-500);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+/* ---------- grammar_card ---------- */
+.lesson-item--grammar .lesson-body {
+  margin: 0;
+  gap: 12px;
+}
+.grammar-hero {
+  background: var(--indigo-900);
+  border-radius: 24px;
+  padding: 18px 16px 16px;
+  box-shadow: 0 5px 0 #120f26;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+.grammar-ko {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--amber-400);
+  letter-spacing: 0.02em;
+}
+.grammar-pattern {
+  font-size: clamp(21px, 6vw, 25px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--cream-50);
+  word-break: keep-all;
+}
+.grammar-expl {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink-700);
+}
+.grammar-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.grammar-ex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  padding: 11px 12px;
+  box-shadow: 0 3px 0 var(--line);
+}
+.grammar-ex-text {
+  flex: 1;
+  min-width: 0;
+}
+.grammar-ex-ko {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--ink-900);
+  word-break: keep-all;
+}
+.grammar-ex-en {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-500);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.grammar-ex .say-btn {
+  background: var(--mint-100);
+}
+.grammar-mistake {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  background: var(--amber-100);
+  border-radius: 16px;
+  padding: 11px 12px;
+  color: var(--amber-700);
+}
+.grammar-mistake .gm-ico {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--white);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.grammar-mistake .gm-ico svg {
+  width: 15px;
+  height: 15px;
+}
+.grammar-mistake b {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.grammar-mistake p {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 2px;
+  word-break: keep-all;
+}
+
+/* ---------- type_answer / dictation ---------- */
+.lesson-item--type .lesson-body {
+  gap: 12px;
+  margin: auto 0;
+}
+.type-hint {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-500);
+}
+.type-hint b {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 8px;
+  background: var(--indigo-100);
+  color: var(--indigo-700);
+  font-weight: 800;
+  word-break: keep-all;
+}
+.input-wrap {
+  position: relative;
+}
+.lesson-input {
+  width: 100%;
+  height: 60px;
+  padding: 0 16px;
+  border-radius: 18px;
+  border: 2px solid var(--line-strong);
+  background: var(--white);
+  box-shadow: 0 3px 0 var(--line);
+  color: var(--ink-900);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: border-color var(--dur-2), background var(--dur-2), box-shadow var(--dur-2);
+}
+.lesson-input::placeholder {
+  color: var(--ink-300);
+  font-weight: 600;
+  font-size: 15px;
+}
+.lesson-input:focus {
+  outline: none;
+  border-color: var(--indigo-600);
+  box-shadow: 0 0 0 3px var(--indigo-100), 0 3px 0 var(--line);
+}
+.lesson-input.is-correct {
+  border-color: var(--mint-600);
+  background: var(--mint-100);
+  box-shadow: 0 3px 0 var(--mint-400);
+}
+.lesson-input.is-wrong {
+  border-color: var(--berry-600);
+  background: var(--berry-100);
+  box-shadow: 0 3px 0 var(--berry-600);
+  animation: shakeX 320ms both;
+}
+.lesson-input:disabled {
+  color: var(--ink-900);
+  opacity: 1;
+  -webkit-text-fill-color: var(--ink-900);
+}
+.dictation-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 0 0;
+}
+.dictation-note {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-300);
+}
+
+/* ---------- dialogue_reply ---------- */
+.lesson-item--dialogue .lesson-body {
+  gap: 12px;
+}
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--cream-100);
+  border: 2px solid var(--line);
+  animation: riseFade var(--dur-4) var(--ease-out) both;
+}
+.bubble {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  max-width: 90%;
+  padding: 9px 11px;
+  border-radius: 18px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  box-shadow: 0 2px 0 var(--line);
+}
+.bubble--a {
+  align-self: flex-start;
+  border-bottom-left-radius: 6px;
+}
+.bubble--b {
+  align-self: flex-end;
+  border-bottom-right-radius: 6px;
+  background: var(--indigo-100);
+  border-color: var(--indigo-300);
+  box-shadow: 0 2px 0 var(--indigo-300);
+}
+.bubble-main {
+  min-width: 0;
+}
+.bubble-ko {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--ink-900);
+  word-break: keep-all;
+}
+.bubble-en {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-500);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.bubble-play {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--mint-100);
+  color: var(--mint-700);
+  flex: 0 0 auto;
+  transition: transform var(--dur-1) var(--ease-snap);
+}
+.bubble-play:active {
+  transform: scale(0.9);
+}
+.bubble-play svg {
+  width: 14px;
+  height: 14px;
+}
+.lesson-item--dialogue .opt {
+  min-height: 56px;
+}
+
+/* ---------- reading_q ---------- */
+.lesson-item--reading .lesson-body {
+  gap: 12px;
+  margin: 0;
+}
+.reading-card {
+  background: var(--white);
+  border: 2px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 4px 0 var(--line);
+  overflow: hidden;
+}
+.reading-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 13px;
+  background: var(--cream-100);
+  color: var(--ink-700);
+  text-align: left;
+}
+.reading-overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--indigo-700);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.reading-overline svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+}
+.reading-chev {
+  display: grid;
+  place-items: center;
+  color: var(--ink-500);
+  transition: transform var(--dur-2) var(--ease-spring);
+  transform: rotate(90deg);
+  flex: 0 0 auto;
+}
+.reading-chev svg {
+  width: 16px;
+  height: 16px;
+}
+.reading-card.is-collapsed .reading-chev {
+  transform: rotate(0deg);
+}
+.reading-card.is-collapsed .reading-body {
+  display: none;
+}
+.reading-body {
+  padding: 12px 13px 13px;
+  border-top: 2px solid var(--line);
+}
+.reading-ko {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.75;
+  color: var(--ink-900);
+  max-height: 132px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+  scrollbar-width: thin;
+}
+.reading-en-toggle {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--indigo-700);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+.reading-en {
+  margin-top: 7px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--ink-500);
+}
+.reading-why {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  animation: riseFade 220ms var(--ease-out) both;
+}
+.reading-why svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+.reading-why.is-good {
+  background: var(--mint-100);
+  color: var(--mint-700);
+}
+.reading-why.is-bad {
+  background: var(--berry-100);
+  color: var(--berry-700);
+}
+
+/* ---------- near-miss banner ---------- */
+.lesson-banner--near {
+  background: var(--amber-100);
+  color: var(--amber-700);
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 359px) {
+  .word-ko {
+    font-size: 38px;
+  }
+  .grammar-pattern {
+    font-size: 20px;
+  }
+  .bubble-ko {
+    font-size: 15px;
+  }
+}
+
+/* ---------- desktop: a touch more air ---------- */
+@media (min-width: 900px) {
+  .lesson-crumb {
+    margin-top: 12px;
+  }
+  .lesson-input {
+    height: 64px;
+    font-size: 19px;
+  }
+  .word-hero {
+    padding: 32px 22px 26px;
+  }
+  .grammar-hero {
+    padding: 22px 18px 20px;
+  }
+}
+
+/* ---------- A1 layout refinements ---------- */
+/* The ring is the play button itself: keep its icon above the mint disc. */
+.listen-ring {
+  color: var(--mint-700);
+}
+.listen-ring > svg {
+  position: relative;
+  z-index: 1;
+  color: var(--mint-700);
+  transition: transform var(--dur-2) var(--ease-spring);
+}
+.listen-ring:active > svg {
+  transform: scale(0.92);
+}
+.listen-ring.is-speaking > svg {
+  animation: countPop 700ms var(--ease-out) infinite;
+}
+
+/* Typed answers and dictation read from the prompt downwards. */
+.lesson-item--type .lesson-body {
+  margin: 10px 0 auto;
+}
+/* Dialogue: conversation first, options under it. */
+.lesson-item--dialogue .lesson-body {
+  margin: 12px 0 auto;
+}
+/* Word match: centre the timer + grid as one block. */
+.lesson-item--match {
+  justify-content: center;
+}
+.lesson-item--match .lesson-body {
+  margin: 0;
+}
+.reading-ko {
+  max-height: 142px;
+}
+
+/* Long readings scroll inside the card; fade the cut so it reads as "more below". */
+.reading-ko {
+  max-height: 126px;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 88%, transparent 100%);
+}
+.reading-ko::-webkit-scrollbar {
+  display: none;
+}
+.reading-en {
+  max-height: 124px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 92%, transparent 100%);
+}
+.reading-en::-webkit-scrollbar {
+  display: none;
+}
+
+/* With English open, keep three lines of Korean so the options stay reachable. */
+.reading-card:has(.reading-en:not([hidden])) .reading-ko {
+  max-height: 82px;
+}
+.reading-card:has(.reading-en:not([hidden])) .reading-en {
+  max-height: 108px;
+}
+
+/* One slip is a pass — keep the note amber until it actually hurts. */
+.match-slips {
+  color: var(--amber-700);
+}
+.match-slips.is-bad {
+  color: var(--berry-600);
+}
+
+/* Long say_it sentences: compact the card so the ratings clear the footer. */
+.say-card--long {
+  padding: 20px 14px 16px;
+  gap: 5px;
+}
+.say-card--long .say-ko {
+  font-size: clamp(24px, 7vw, 31px);
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+}
+.say-card--long .say-rom {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.say-card--long .say-en {
+  font-size: 14.5px;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+.say-card--long .say-gloss {
+  gap: 4px;
+  margin-top: 6px;
+}
+.say-card--long .say-gloss span {
+  font-size: 10.5px;
+  padding: 2px 7px;
+}
+.say-card--long .say-actions {
+  margin-top: 8px;
+  gap: 12px;
+}
+.say-card--long .say-actions .say-btn {
+  width: 56px;
+  height: 56px;
+}
+.say-card--long .say-actions .say-btn svg {
+  width: 24px;
+  height: 24px;
+}
+.say-card--long .mic-btn {
+  height: 56px;
+  padding: 0 20px;
+  font-size: 15px;
+}

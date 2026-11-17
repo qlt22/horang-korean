@@ -888,6 +888,47 @@
   color: var(--ink-500);
 }
 
+/* ---------- A1 additions ---------- */
+.ob-quiz-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--indigo-100);
+  color: var(--indigo-700);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ob-quiz-type svg {
+  width: 14px;
+  height: 14px;
+}
+.ob-q-sub {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-500);
+}
+.ob-name-preview .ob-preview-mark {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--white);
+  color: var(--coral-800);
+  box-shadow: 0 3px 0 var(--coral-300);
+}
+.ob-name-preview .ob-preview-mark svg {
+  width: 19px;
+  height: 19px;
+}
+
 /* ---------- short screens ---------- */
 @media (max-height: 720px) {
   .ob-hero {

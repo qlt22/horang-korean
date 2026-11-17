@@ -1,0 +1,1914 @@
+{
+  "unit": {
+    "id": "u08_hobbies",
+    "order": 8,
+    "title": "Hobbies & ability",
+    "ko": "취미",
+    "canDo": [
+      "Say what you like and dislike",
+      "Say what you can do",
+      "Say what you are good at and bad at",
+      "Say what you want to do",
+      "Talk about a hobby club"
+    ],
+    "grammarIds": [
+      "g26",
+      "g27",
+      "g28",
+      "g29"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l08_1",
+      "unitId": "u08_hobbies",
+      "order": 1,
+      "kind": "vocab",
+      "title": "What I like",
+      "ko": "제 취미는 운동이에요",
+      "goal": "Name 12 hobbies and say which ones you like",
+      "grammarIds": [
+        "g26"
+      ],
+      "wordIds": [
+        "w08_01",
+        "w08_02",
+        "w08_03",
+        "w08_04",
+        "w08_05",
+        "w08_06",
+        "w08_07",
+        "w08_08",
+        "w08_09",
+        "w08_10",
+        "w08_11",
+        "w08_12"
+      ],
+      "sentenceIds": [
+        "s08_1_1",
+        "s08_1_2",
+        "s08_1_3",
+        "s08_1_4",
+        "s08_1_5",
+        "s08_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l08_2",
+      "unitId": "u08_hobbies",
+      "order": 2,
+      "kind": "grammar",
+      "title": "I can do it",
+      "ko": "기타를 칠 수 있어요",
+      "goal": "Use -(으)ㄹ 수 있어요 to say what you can and cannot do",
+      "grammarIds": [
+        "g27"
+      ],
+      "wordIds": [
+        "w08_13",
+        "w08_14",
+        "w08_15",
+        "w08_16",
+        "w08_17",
+        "w08_18",
+        "w08_19",
+        "w08_20",
+        "w08_21",
+        "w08_22",
+        "w08_23",
+        "w08_24"
+      ],
+      "sentenceIds": [
+        "s08_2_1",
+        "s08_2_2",
+        "s08_2_3",
+        "s08_2_4",
+        "s08_2_5",
+        "s08_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l08_3",
+      "unitId": "u08_hobbies",
+      "order": 3,
+      "kind": "listening",
+      "title": "Good at it, bad at it",
+      "ko": "노래를 잘해요",
+      "goal": "Understand who is good at what, and who cannot do what",
+      "grammarIds": [
+        "g28"
+      ],
+      "wordIds": [
+        "w08_25",
+        "w08_26",
+        "w08_27",
+        "w08_28",
+        "w08_29",
+        "w08_30",
+        "w08_31",
+        "w08_32",
+        "w08_33",
+        "w08_34",
+        "w08_35",
+        "w08_36"
+      ],
+      "sentenceIds": [
+        "s08_3_1",
+        "s08_3_2",
+        "s08_3_3",
+        "s08_3_4",
+        "s08_3_5",
+        "s08_3_6"
+      ],
+      "dialogueId": "d08",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l08_4",
+      "unitId": "u08_hobbies",
+      "order": 4,
+      "kind": "reading",
+      "title": "What I want to do",
+      "ko": "배우고 싶어요",
+      "goal": "Read about someone's hobbies and what they want to try",
+      "grammarIds": [
+        "g26",
+        "g29"
+      ],
+      "wordIds": [
+        "w08_37",
+        "w08_38",
+        "w08_39",
+        "w08_40",
+        "w08_41",
+        "w08_42",
+        "w08_43",
+        "w08_44",
+        "w08_45",
+        "w08_46",
+        "w08_47",
+        "w08_48"
+      ],
+      "sentenceIds": [
+        "s08_4_1",
+        "s08_4_2",
+        "s08_4_3",
+        "s08_4_4",
+        "s08_4_5",
+        "s08_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r08",
+      "minutes": 6
+    },
+    {
+      "id": "l08_5",
+      "unitId": "u08_hobbies",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: hobby club",
+      "ko": "취미 동아리",
+      "goal": "Use the whole unit without hints to talk about hobbies",
+      "grammarIds": [
+        "g26",
+        "g27",
+        "g28",
+        "g29"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g26",
+      "unitId": "u08_hobbies",
+      "order": 1,
+      "label": "like / be good",
+      "ko": "좋아해요 / 좋아요",
+      "pattern": "N을/를 좋아해요 / N이 좋아요",
+      "explanation": "좋아해요 is a verb: you like something (축구를 좋아해요). 좋아요 is an adjective: the thing itself is good (축구가 좋아요).",
+      "examples": [
+        {
+          "ko": "저는 축구를 좋아해요.",
+          "en": "I like soccer."
+        },
+        {
+          "ko": "노래와 춤이 아주 좋아요.",
+          "en": "Singing and dancing are really good."
+        }
+      ],
+      "mistake": "저는 축구를 좋아요 ✗ → 저는 축구를 좋아해요 ✓"
+    },
+    {
+      "id": "g27",
+      "unitId": "u08_hobbies",
+      "order": 2,
+      "label": "can do",
+      "ko": "-(으)ㄹ 수 있어요",
+      "pattern": "V-(으)ㄹ 수 있어요",
+      "explanation": "Take 다 off the verb: after a vowel add -ㄹ 수 있어요, after a consonant -을 수 있어요. The negative is -ㄹ 수 없어요.",
+      "examples": [
+        {
+          "ko": "저는 기타를 칠 수 있어요.",
+          "en": "I can play the guitar."
+        },
+        {
+          "ko": "춤과 그림은 아직 할 수 없어요.",
+          "en": "I still can't dance or draw."
+        }
+      ],
+      "mistake": "배우수 있어요 ✗ → 배울 수 있어요 ✓"
+    },
+    {
+      "id": "g28",
+      "unitId": "u08_hobbies",
+      "order": 3,
+      "label": "well / cannot",
+      "ko": "잘 / 못",
+      "pattern": "잘 V / 못 V",
+      "explanation": "잘 before a verb means 'do it well'. 못 before a verb means 'cannot do it'. Both sit right before the verb: 잘해요, 못해요, 잘 못해요.",
+      "examples": [
+        {
+          "ko": "저는 노래를 잘해요.",
+          "en": "I am good at singing."
+        },
+        {
+          "ko": "동생은 수영을 못해요.",
+          "en": "My little sibling can't swim."
+        }
+      ],
+      "mistake": "못 수영해요 ✗ → 수영을 못해요 ✓"
+    },
+    {
+      "id": "g29",
+      "unitId": "u08_hobbies",
+      "order": 4,
+      "label": "want to do",
+      "ko": "-고 싶어요",
+      "pattern": "V-고 싶어요",
+      "explanation": "Attach -고 싶어요 to the verb stem to say what you want to do: 배우다 → 배우고 싶어요. The subject is usually 저는 or 나는.",
+      "examples": [
+        {
+          "ko": "저는 기타를 배우고 싶어요.",
+          "en": "I want to learn the guitar."
+        },
+        {
+          "ko": "언제 등산을 하고 싶어요?",
+          "en": "When do you want to go hiking?"
+        }
+      ],
+      "mistake": "배우다 싶어요 ✗ → 배우고 싶어요 ✓"
+    }
+  ],
+  "words": [
+    {
+      "id": "w08_01",
+      "ko": "취미",
+      "rom": "chwimi",
+      "en": "hobby",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_02",
+      "ko": "운동",
+      "rom": "undong",
+      "en": "exercise, sport",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_03",
+      "ko": "축구",
+      "rom": "chukgu",
+      "en": "soccer",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_04",
+      "ko": "야구",
+      "rom": "yagu",
+      "en": "baseball",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_05",
+      "ko": "수영",
+      "rom": "suyeong",
+      "en": "swimming",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_06",
+      "ko": "등산",
+      "rom": "deungsan",
+      "en": "hiking",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_07",
+      "ko": "요리",
+      "rom": "yori",
+      "en": "cooking, dish",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_08",
+      "ko": "그림",
+      "rom": "geurim",
+      "en": "drawing, picture",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_09",
+      "ko": "노래",
+      "rom": "norae",
+      "en": "song, singing",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_10",
+      "ko": "춤",
+      "rom": "chum",
+      "en": "dance, dancing",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_11",
+      "ko": "게임",
+      "rom": "geim",
+      "en": "game",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_12",
+      "ko": "영화",
+      "rom": "yeonghwa",
+      "en": "movie",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1"
+    },
+    {
+      "id": "w08_13",
+      "ko": "배워요",
+      "rom": "baewoyo",
+      "en": "to learn",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_14",
+      "ko": "연습해요",
+      "rom": "yeonseuphaeyo",
+      "en": "to practice",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_15",
+      "ko": "즐겨요",
+      "rom": "jeulgyeoyo",
+      "en": "to enjoy",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_16",
+      "ko": "불러요",
+      "rom": "bulleoyo",
+      "en": "to sing (a song)",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_17",
+      "ko": "그려요",
+      "rom": "geuryeoyo",
+      "en": "to draw",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_18",
+      "ko": "봐요",
+      "rom": "bwayo",
+      "en": "to watch, to see",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_19",
+      "ko": "들어요",
+      "rom": "deureoyo",
+      "en": "to listen",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_20",
+      "ko": "만들어요",
+      "rom": "mandeureoyo",
+      "en": "to make",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_21",
+      "ko": "모아요",
+      "rom": "moayo",
+      "en": "to collect",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_22",
+      "ko": "악기",
+      "rom": "akgi",
+      "en": "musical instrument",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_23",
+      "ko": "기타",
+      "rom": "gita",
+      "en": "guitar",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_24",
+      "ko": "피아노",
+      "rom": "piano",
+      "en": "piano",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2"
+    },
+    {
+      "id": "w08_25",
+      "ko": "잘",
+      "rom": "jal",
+      "en": "well",
+      "pos": "adverb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_26",
+      "ko": "잘해요",
+      "rom": "jalhaeyo",
+      "en": "to be good at",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_27",
+      "ko": "처음",
+      "rom": "cheoeum",
+      "en": "first time, beginning",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_28",
+      "ko": "어려워요",
+      "rom": "eoryeowoyo",
+      "en": "to be difficult",
+      "pos": "adjective",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_29",
+      "ko": "쉬워요",
+      "rom": "swiwoyo",
+      "en": "to be easy",
+      "pos": "adjective",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_30",
+      "ko": "가끔",
+      "rom": "gakkeum",
+      "en": "sometimes",
+      "pos": "adverb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_31",
+      "ko": "항상",
+      "rom": "hangsang",
+      "en": "always",
+      "pos": "adverb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_32",
+      "ko": "동아리",
+      "rom": "dongari",
+      "en": "club, society",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_33",
+      "ko": "회원",
+      "rom": "hoewon",
+      "en": "member",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_34",
+      "ko": "대회",
+      "rom": "daehoe",
+      "en": "competition, contest",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_35",
+      "ko": "실력",
+      "rom": " sillyeok",
+      "en": "skill, ability",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_36",
+      "ko": "공연",
+      "rom": "gongyeon",
+      "en": "performance",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3"
+    },
+    {
+      "id": "w08_37",
+      "ko": "좋아해요",
+      "rom": "joahaeyo",
+      "en": "to like",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_38",
+      "ko": "싫어해요",
+      "rom": "sireohaeyo",
+      "en": "to dislike",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_39",
+      "ko": "재미있어요",
+      "rom": "jaemiisseoyo",
+      "en": "to be fun, interesting",
+      "pos": "adjective",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_40",
+      "ko": "재미없어요",
+      "rom": "jaemieopseoyo",
+      "en": "to be boring, not fun",
+      "pos": "adjective",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_41",
+      "ko": "피곤해요",
+      "rom": "pigonhaeyo",
+      "en": "to be tired",
+      "pos": "adjective",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_42",
+      "ko": "신나요",
+      "rom": "sinnayo",
+      "en": "to be excited, to feel great",
+      "pos": "verb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_43",
+      "ko": "언제",
+      "rom": "eonje",
+      "en": "when",
+      "pos": "adverb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_44",
+      "ko": "뭐",
+      "rom": "mwo",
+      "en": "what",
+      "pos": "pronoun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_45",
+      "ko": "누구",
+      "rom": "nugu",
+      "en": "who",
+      "pos": "pronoun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_46",
+      "ko": "왜",
+      "rom": "wae",
+      "en": "why",
+      "pos": "adverb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_47",
+      "ko": "모임",
+      "rom": "moim",
+      "en": "meeting, gathering",
+      "pos": "noun",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    },
+    {
+      "id": "w08_48",
+      "ko": "나중에",
+      "rom": "najunge",
+      "en": "later",
+      "pos": "adverb",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s08_1_1",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1",
+      "korean": "저는 축구를 좋아해요.",
+      "romanization": "jeoneun chukgureul joahaeyo.",
+      "english": "I like soccer.",
+      "literal": "As for me, soccer, I like.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "축구를",
+          "rom": "chukgureul",
+          "en": "soccer (object)"
+        },
+        {
+          "ko": "좋아해요",
+          "rom": "joahaeyo",
+          "en": "like"
+        }
+      ],
+      "grammarIds": [
+        "g26"
+      ],
+      "wordIds": [
+        "w08_03",
+        "w08_37"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I don't like soccer.",
+        "I like baseball.",
+        "Soccer is good."
+      ],
+      "notes": "좋아해요 takes an object: 축구를 좋아해요."
+    },
+    {
+      "id": "s08_1_2",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1",
+      "korean": "어떤 운동을 좋아해요?",
+      "romanization": "eotteon undongeul joahaeyo?",
+      "english": "What kind of sport do you like?",
+      "literal": "Which kind of sport do you like?",
+      "gloss": [
+        {
+          "ko": "어떤",
+          "rom": "eotteon",
+          "en": "what kind of"
+        },
+        {
+          "ko": "운동을",
+          "rom": "undongeul",
+          "en": "sport (object)"
+        },
+        {
+          "ko": "좋아해요",
+          "rom": "joahaeyo",
+          "en": "do you like"
+        }
+      ],
+      "grammarIds": [
+        "g26"
+      ],
+      "wordIds": [
+        "w08_02",
+        "w08_37"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "What kind of music do you like?",
+        "Do you like exercise?",
+        "Where do you play sports?"
+      ],
+      "notes": "어떤 asks 'which kind of' and goes before the noun."
+    },
+    {
+      "id": "s08_1_3",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1",
+      "korean": "제 친구는 야구를 좋아해요.",
+      "romanization": "je chinguneun yagureul joahaeyo.",
+      "english": "My friend likes baseball.",
+      "literal": "As for my friend, baseball, [they] like.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "친구는",
+          "rom": "chinguneun",
+          "en": "friend (topic)"
+        },
+        {
+          "ko": "야구를",
+          "rom": "yagureul",
+          "en": "baseball (object)"
+        },
+        {
+          "ko": "좋아해요",
+          "rom": "joahaeyo",
+          "en": "likes"
+        }
+      ],
+      "grammarIds": [
+        "g26"
+      ],
+      "wordIds": [
+        "w08_04",
+        "w08_37"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My friend likes soccer.",
+        "My friend doesn't like baseball.",
+        "I like baseball."
+      ],
+      "notes": "The subject is 제 친구, so the English verb becomes 'likes'."
+    },
+    {
+      "id": "s08_1_4",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1",
+      "korean": "저는 수영과 등산을 좋아해요.",
+      "romanization": "jeoneun suyeonggwa deungsaneul joahaeyo.",
+      "english": "I like swimming and hiking.",
+      "literal": "As for me, swimming and hiking, I like.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "수영과",
+          "rom": "suyeonggwa",
+          "en": "swimming and"
+        },
+        {
+          "ko": "등산을",
+          "rom": "deungsaneul",
+          "en": "hiking (object)"
+        },
+        {
+          "ko": "좋아해요",
+          "rom": "joahaeyo",
+          "en": "like"
+        }
+      ],
+      "grammarIds": [
+        "g26"
+      ],
+      "wordIds": [
+        "w08_05",
+        "w08_06",
+        "w08_37"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I like swimming, but not hiking.",
+        "I hate swimming and hiking.",
+        "I like swimming and cooking."
+      ],
+      "notes": "와/과 joins two nouns; the object marker goes on the last one."
+    },
+    {
+      "id": "s08_1_5",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1",
+      "korean": "노래와 춤이 아주 좋아요.",
+      "romanization": "noraewa chumi aju joayo.",
+      "english": "Singing and dancing are really good.",
+      "literal": "Songs and dancing are very good.",
+      "gloss": [
+        {
+          "ko": "노래와",
+          "rom": "noraewa",
+          "en": "songs and"
+        },
+        {
+          "ko": "춤이",
+          "rom": "chumi",
+          "en": "dancing (subject)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very, really"
+        },
+        {
+          "ko": "좋아요",
+          "rom": "joayo",
+          "en": "are good"
+        }
+      ],
+      "grammarIds": [
+        "g26"
+      ],
+      "wordIds": [
+        "w08_09",
+        "w08_10"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I really like singing and dancing.",
+        "Singing and dancing are not good.",
+        "Songs are good, but dancing is not."
+      ],
+      "notes": "Here 좋아요 is the adjective 'is good', not the verb 'like'."
+    },
+    {
+      "id": "s08_1_6",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_1",
+      "korean": "동생은 게임을 안 좋아해요.",
+      "romanization": "dongsaengeun geimeul an joahaeyo.",
+      "english": "My little sibling doesn't like games.",
+      "literal": "As for my little sibling, games, [they] do not like.",
+      "gloss": [
+        {
+          "ko": "동생은",
+          "rom": "dongsaengeun",
+          "en": "little sibling (topic)"
+        },
+        {
+          "ko": "게임을",
+          "rom": "geimeul",
+          "en": "games (object)"
+        },
+        {
+          "ko": "안",
+          "rom": "an",
+          "en": "not"
+        },
+        {
+          "ko": "좋아해요",
+          "rom": "joahaeyo",
+          "en": "like"
+        }
+      ],
+      "grammarIds": [
+        "g26"
+      ],
+      "wordIds": [
+        "w08_11",
+        "w08_37"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My little sibling likes games.",
+        "My friend doesn't like games.",
+        "My little sibling can't play games."
+      ],
+      "notes": "안 goes before the verb: 안 좋아해요 = don't like."
+    },
+    {
+      "id": "s08_2_1",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2",
+      "korean": "저는 피아노와 기타를 칠 수 있어요.",
+      "romanization": "jeoneun pianowa gitareul chil su isseoyo.",
+      "english": "I can play the piano and the guitar.",
+      "literal": "As for me, piano and guitar, the way to play exists.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "피아노와",
+          "rom": "pianowa",
+          "en": "piano and"
+        },
+        {
+          "ko": "기타를",
+          "rom": "gitareul",
+          "en": "guitar (object)"
+        },
+        {
+          "ko": "칠 수 있어요",
+          "rom": "chil su isseoyo",
+          "en": "can play (an instrument)"
+        }
+      ],
+      "grammarIds": [
+        "g27"
+      ],
+      "wordIds": [
+        "w08_24",
+        "w08_23"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I can play the piano, but not the guitar.",
+        "I can't play the piano or the guitar.",
+        "I want to learn the piano and the guitar."
+      ],
+      "notes": "치다 is the verb for playing a string or keyboard instrument."
+    },
+    {
+      "id": "s08_2_2",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2",
+      "korean": "우리 동아리에서 요리를 배울 수 있어요.",
+      "romanization": "uri dongarieseo yorireul baeul su isseoyo.",
+      "english": "You can learn to cook in our club.",
+      "literal": "At our club, cooking, the way to learn exists.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "동아리에서",
+          "rom": "dongarieseo",
+          "en": "at the club"
+        },
+        {
+          "ko": "요리를",
+          "rom": "yorireul",
+          "en": "cooking (object)"
+        },
+        {
+          "ko": "배울 수 있어요",
+          "rom": "baeul su isseoyo",
+          "en": "can learn"
+        }
+      ],
+      "grammarIds": [
+        "g27"
+      ],
+      "wordIds": [
+        "w08_32",
+        "w08_07",
+        "w08_13"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "You can learn to cook at the school.",
+        "You cannot learn to cook in our club.",
+        "You can learn to sing in our club."
+      ],
+      "notes": "배우다 ends in a vowel, so it takes -ㄹ 수 있어요."
+    },
+    {
+      "id": "s08_2_3",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2",
+      "korean": "한국어로 노래를 부를 수 있어요?",
+      "romanization": "hangugeoro noraereul bureul su isseoyo?",
+      "english": "Can you sing a song in Korean?",
+      "literal": "In Korean, a song, can you sing?",
+      "gloss": [
+        {
+          "ko": "한국어로",
+          "rom": "hangugeoro",
+          "en": "in Korean"
+        },
+        {
+          "ko": "노래를",
+          "rom": "noraereul",
+          "en": "song (object)"
+        },
+        {
+          "ko": "부를 수 있어요",
+          "rom": "bureul su isseoyo",
+          "en": "can sing"
+        }
+      ],
+      "grammarIds": [
+        "g27"
+      ],
+      "wordIds": [
+        "w08_09",
+        "w08_16"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Can you sing a song in English?",
+        "Do you like Korean songs?",
+        "Can you write a song in Korean?"
+      ],
+      "notes": "로 after a language means 'in that language'."
+    },
+    {
+      "id": "s08_2_4",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2",
+      "korean": "춤과 그림은 아직 할 수 없어요.",
+      "romanization": "chumgwa geurimeun ajik hal su eopseoyo.",
+      "english": "I still can't dance or draw.",
+      "literal": "Dancing and drawing, still, the way to do does not exist.",
+      "gloss": [
+        {
+          "ko": "춤과",
+          "rom": "chumgwa",
+          "en": "dancing and"
+        },
+        {
+          "ko": "그림은",
+          "rom": "geurimeun",
+          "en": "drawing (topic)"
+        },
+        {
+          "ko": "아직",
+          "rom": "ajik",
+          "en": "still, yet"
+        },
+        {
+          "ko": "할 수 없어요",
+          "rom": "hal su eopseoyo",
+          "en": "cannot do"
+        }
+      ],
+      "grammarIds": [
+        "g27"
+      ],
+      "wordIds": [
+        "w08_10",
+        "w08_08"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I can dance and draw now.",
+        "I can dance but I can't draw.",
+        "I don't like dancing or drawing."
+      ],
+      "notes": "The negative of -(으)ㄹ 수 있어요 is -(으)ㄹ 수 없어요."
+    },
+    {
+      "id": "s08_2_5",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2",
+      "korean": "악기는 혼자서도 연습할 수 있어요.",
+      "romanization": "akgineun honjaseodo yeonseuphal su isseoyo.",
+      "english": "You can practice an instrument on your own too.",
+      "literal": "An instrument, even alone, the way to practice exists.",
+      "gloss": [
+        {
+          "ko": "악기는",
+          "rom": "akgineun",
+          "en": "instrument (topic)"
+        },
+        {
+          "ko": "혼자서도",
+          "rom": "honjaseodo",
+          "en": "even alone"
+        },
+        {
+          "ko": "연습할 수 있어요",
+          "rom": "yeonseuphal su isseoyo",
+          "en": "can practice"
+        }
+      ],
+      "grammarIds": [
+        "g27"
+      ],
+      "wordIds": [
+        "w08_22",
+        "w08_14"
+      ],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "You can only practice an instrument with a teacher.",
+        "You cannot practice an instrument alone.",
+        "You can practice singing alone."
+      ],
+      "notes": "도 after 혼자서 adds 'even': even by yourself."
+    },
+    {
+      "id": "s08_2_6",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_2",
+      "korean": "저는 그림을 잘 그릴 수 있어요.",
+      "romanization": "jeoneun geurimeul jal geuril su isseoyo.",
+      "english": "I can draw well.",
+      "literal": "As for me, drawings, well, I can draw.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "그림을",
+          "rom": "geurimeul",
+          "en": "drawing (object)"
+        },
+        {
+          "ko": "잘",
+          "rom": "jal",
+          "en": "well"
+        },
+        {
+          "ko": "그릴 수 있어요",
+          "rom": "geuril su isseoyo",
+          "en": "can draw"
+        }
+      ],
+      "grammarIds": [
+        "g27",
+        "g28"
+      ],
+      "wordIds": [
+        "w08_08",
+        "w08_17",
+        "w08_25"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I can draw a little.",
+        "I can't draw well.",
+        "I want to draw well."
+      ],
+      "notes": "잘 can sit inside the ㄹ 수 있어요 pattern: 잘 그릴 수 있어요."
+    },
+    {
+      "id": "s08_3_1",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3",
+      "korean": "저는 노래를 잘 불러요.",
+      "romanization": "jeoneun noraereul jal bulleoyo.",
+      "english": "I sing well.",
+      "literal": "As for me, songs, well, I sing.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "노래를",
+          "rom": "noraereul",
+          "en": "song (object)"
+        },
+        {
+          "ko": "잘",
+          "rom": "jal",
+          "en": "well"
+        },
+        {
+          "ko": "불러요",
+          "rom": "bulleoyo",
+          "en": "sing"
+        }
+      ],
+      "grammarIds": [
+        "g28"
+      ],
+      "wordIds": [
+        "w08_09",
+        "w08_26"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I like singing.",
+        "I can't sing well.",
+        "I am good at dancing."
+      ],
+      "notes": "잘 before a verb = do it well: 잘 불러요."
+    },
+    {
+      "id": "s08_3_2",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3",
+      "korean": "제 친구는 축구를 아주 잘해요.",
+      "romanization": "je chinguneun chukgureul aju jalhaeyo.",
+      "english": "My friend is very good at soccer.",
+      "literal": "As for my friend, soccer, very well, [they] do.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "친구는",
+          "rom": "chinguneun",
+          "en": "friend (topic)"
+        },
+        {
+          "ko": "축구를",
+          "rom": "chukgureul",
+          "en": "soccer (object)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "잘해요",
+          "rom": "jalhaeyo",
+          "en": "is good at"
+        }
+      ],
+      "grammarIds": [
+        "g28"
+      ],
+      "wordIds": [
+        "w08_03",
+        "w08_25"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My friend likes soccer.",
+        "My friend is not good at soccer.",
+        "My friend is very good at baseball."
+      ],
+      "notes": "An adverb like 아주 goes before 잘해요."
+    },
+    {
+      "id": "s08_3_3",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3",
+      "korean": "저는 춤을 잘 못 춰요.",
+      "romanization": "jeoneun chumeul jal mot chwoyo.",
+      "english": "I can't dance well.",
+      "literal": "As for me, dancing, well, cannot do.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "춤을",
+          "rom": "chumeul",
+          "en": "dancing (object)"
+        },
+        {
+          "ko": "잘",
+          "rom": "jal",
+          "en": "well"
+        },
+        {
+          "ko": "못",
+          "rom": "mot",
+          "en": "cannot"
+        },
+        {
+          "ko": "춰요",
+          "rom": "chwoyo",
+          "en": "dance"
+        }
+      ],
+      "grammarIds": [
+        "g28"
+      ],
+      "wordIds": [
+        "w08_10",
+        "w08_25"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I dance very well.",
+        "I don't dance at all.",
+        "I can't sing well."
+      ],
+      "notes": "잘 못 = 'not well' — softer than 못 alone."
+    },
+    {
+      "id": "s08_3_4",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3",
+      "korean": "동생은 수영을 못해요.",
+      "romanization": "dongsaengeun suyeongeul motaeyo.",
+      "english": "My little sibling can't swim.",
+      "literal": "As for my little sibling, swimming, cannot do.",
+      "gloss": [
+        {
+          "ko": "동생은",
+          "rom": "dongsaengeun",
+          "en": "little sibling (topic)"
+        },
+        {
+          "ko": "수영을",
+          "rom": "suyeongeul",
+          "en": "swimming (object)"
+        },
+        {
+          "ko": "못해요",
+          "rom": "motaeyo",
+          "en": "cannot do"
+        }
+      ],
+      "grammarIds": [
+        "g28"
+      ],
+      "wordIds": [
+        "w08_05",
+        "w08_26"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My little sibling swims well.",
+        "My little sibling doesn't like swimming.",
+        "I can't swim."
+      ],
+      "notes": "못 = cannot (no ability); 안 = do not (no intention)."
+    },
+    {
+      "id": "s08_3_5",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3",
+      "korean": "처음에는 그림을 잘 못 그려요.",
+      "romanization": "cheoeumeneun geurimeul jal mot geuryeoyo.",
+      "english": "At first I can't draw well.",
+      "literal": "At the beginning, drawings, well, I cannot draw.",
+      "gloss": [
+        {
+          "ko": "처음에는",
+          "rom": "cheoeumeneun",
+          "en": "at first"
+        },
+        {
+          "ko": "그림을",
+          "rom": "geurimeul",
+          "en": "drawing (object)"
+        },
+        {
+          "ko": "잘",
+          "rom": "jal",
+          "en": "well"
+        },
+        {
+          "ko": "못 그려요",
+          "rom": "mot geuryeoyo",
+          "en": "cannot draw"
+        }
+      ],
+      "grammarIds": [
+        "g28"
+      ],
+      "wordIds": [
+        "w08_27",
+        "w08_08"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "At first I draw very well.",
+        "At first I don't like drawing.",
+        "Now I can't draw well."
+      ],
+      "notes": "처음에는 sets the contrast: at first, even if later it changes."
+    },
+    {
+      "id": "s08_3_6",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_3",
+      "korean": "우리 어머니는 요리를 아주 잘하세요.",
+      "romanization": "uri eomeonineun yorireul aju jalhaseyo.",
+      "english": "My mother is very good at cooking.",
+      "literal": "As for our mother, cooking, very well, she does.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "어머니는",
+          "rom": "eomeonineun",
+          "en": "mother (topic)"
+        },
+        {
+          "ko": "요리를",
+          "rom": "yorireul",
+          "en": "cooking (object)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "잘하세요",
+          "rom": "jalhaseyo",
+          "en": "is good at (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g28"
+      ],
+      "wordIds": [
+        "w08_07",
+        "w08_26"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My mother doesn't cook well.",
+        "My mother likes cooking.",
+        "My father is very good at cooking."
+      ],
+      "notes": "잘하세요 = 잘하 + 시 + 어요: the honorific rides on the same verb."
+    },
+    {
+      "id": "s08_4_1",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4",
+      "korean": "저는 기타를 배우고 싶어요.",
+      "romanization": "jeoneun gitareul baeugo sipeoyo.",
+      "english": "I want to learn the guitar.",
+      "literal": "As for me, the guitar, I want to learn.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "기타를",
+          "rom": "gitareul",
+          "en": "guitar (object)"
+        },
+        {
+          "ko": "배우고 싶어요",
+          "rom": "baeugo sipeoyo",
+          "en": "want to learn"
+        }
+      ],
+      "grammarIds": [
+        "g29"
+      ],
+      "wordIds": [
+        "w08_23",
+        "w08_13"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I can learn the guitar.",
+        "I want to learn the piano.",
+        "I don't want to learn the guitar."
+      ],
+      "notes": "-고 싶어요 attaches to the stem: 배우- + 고 싶어요."
+    },
+    {
+      "id": "s08_4_2",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4",
+      "korean": "저는 영화를 보고 싶어요.",
+      "romanization": "jeoneun yeonghwareul bogo sipeoyo.",
+      "english": "I want to watch a movie.",
+      "literal": "As for me, a movie, I want to see.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "영화를",
+          "rom": "yeonghwareul",
+          "en": "movie (object)"
+        },
+        {
+          "ko": "보고 싶어요",
+          "rom": "bogo sipeoyo",
+          "en": "want to watch"
+        }
+      ],
+      "grammarIds": [
+        "g29"
+      ],
+      "wordIds": [
+        "w08_12",
+        "w08_18"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I want to watch a game.",
+        "I don't want to watch a movie.",
+        "I watched a movie."
+      ],
+      "notes": "보다 covers both 'see' and 'watch'."
+    },
+    {
+      "id": "s08_4_3",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4",
+      "korean": "우리 동아리 회원을 만나고 싶어요.",
+      "romanization": "uri dongari hoewoneul mannago sipeoyo.",
+      "english": "I want to meet the members of our club.",
+      "literal": "Our club members, I want to meet.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "동아리",
+          "rom": "dongari",
+          "en": "club"
+        },
+        {
+          "ko": "회원을",
+          "rom": "hoewoneul",
+          "en": "members (object)"
+        },
+        {
+          "ko": "만나고 싶어요",
+          "rom": "mannago sipeoyo",
+          "en": "want to meet"
+        }
+      ],
+      "grammarIds": [
+        "g29"
+      ],
+      "wordIds": [
+        "w08_32",
+        "w08_33"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I want to meet the members of another club.",
+        "I don't want to meet the club members.",
+        "I already met the club members."
+      ],
+      "notes": "동아리 회원 = club member; the possessor needs no 의 here."
+    },
+    {
+      "id": "s08_4_4",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4",
+      "korean": "저는 피아노를 연습하고 싶어요.",
+      "romanization": "jeoneun pianoreul yeonseuphago sipeoyo.",
+      "english": "I want to practice the piano.",
+      "literal": "As for me, the piano, I want to practice.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "피아노를",
+          "rom": "pianoreul",
+          "en": "piano (object)"
+        },
+        {
+          "ko": "연습하고 싶어요",
+          "rom": "yeonseuphago sipeoyo",
+          "en": "want to practice"
+        }
+      ],
+      "grammarIds": [
+        "g29"
+      ],
+      "wordIds": [
+        "w08_24",
+        "w08_14"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I practice the piano every day.",
+        "I want to practice the guitar.",
+        "I don't want to practice the piano."
+      ],
+      "notes": "연습하다 is a 하다 verb: the stem is 연습하-."
+    },
+    {
+      "id": "s08_4_5",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4",
+      "korean": "언제 등산을 하고 싶어요?",
+      "romanization": "eonje deungsaneul hago sipeoyo?",
+      "english": "When do you want to go hiking?",
+      "literal": "When, hiking, do you want to do?",
+      "gloss": [
+        {
+          "ko": "언제",
+          "rom": "eonje",
+          "en": "when"
+        },
+        {
+          "ko": "등산을",
+          "rom": "deungsaneul",
+          "en": "hiking (object)"
+        },
+        {
+          "ko": "하고 싶어요",
+          "rom": "hago sipeoyo",
+          "en": "want to do"
+        }
+      ],
+      "grammarIds": [
+        "g29"
+      ],
+      "wordIds": [
+        "w08_43",
+        "w08_06"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Where do you want to go hiking?",
+        "Do you like hiking?",
+        "When do you go hiking?"
+      ],
+      "notes": "등산을 하다 is the usual collocation for 'go hiking'."
+    },
+    {
+      "id": "s08_4_6",
+      "unitId": "u08_hobbies",
+      "lessonId": "l08_4",
+      "korean": "저는 우리 동아리에서 노래를 부르고 싶어요.",
+      "romanization": "jeoneun uri dongarieseo noraereul bureugo sipeoyo.",
+      "english": "I want to sing in our club.",
+      "literal": "As for me, at our club, a song, I want to sing.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "동아리에서",
+          "rom": "dongarieseo",
+          "en": "at the club"
+        },
+        {
+          "ko": "노래를",
+          "rom": "noraereul",
+          "en": "song (object)"
+        },
+        {
+          "ko": "부르고 싶어요",
+          "rom": "bureugo sipeoyo",
+          "en": "want to sing"
+        }
+      ],
+      "grammarIds": [
+        "g29"
+      ],
+      "wordIds": [
+        "w08_32",
+        "w08_09",
+        "w08_16"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I want to sing at the concert hall.",
+        "I don't want to sing in our club.",
+        "I want to dance in our club."
+      ],
+      "notes": "노래를 부르다 is the full phrase for 'sing a song'."
+    }
+  ],
+  "dialogue": {
+    "id": "d08",
+    "unitId": "u08_hobbies",
+    "title": "The photo club",
+    "setting": "A student tells a friend about a club at school.",
+    "lines": [
+      {
+        "id": "d08_1",
+        "speaker": "A",
+        "ko": "취미가 뭐예요?",
+        "rom": "chwimiga mwoyeyo?",
+        "en": "What's your hobby?"
+      },
+      {
+        "id": "d08_2",
+        "speaker": "B",
+        "ko": "저는 사진과 영화를 좋아해요.",
+        "rom": "jeoneun sajingwa yeonghwareul joahaeyo.",
+        "en": "I like photography and movies."
+      },
+      {
+        "id": "d08_3",
+        "speaker": "A",
+        "ko": "왜 사진을 좋아해요?",
+        "rom": "wae sajineul joahaeyo?",
+        "en": "Why do you like photography?"
+      },
+      {
+        "id": "d08_4",
+        "speaker": "B",
+        "ko": "사진이 아주 재미있어요.",
+        "rom": "sajini aju jaemiisseoyo.",
+        "en": "Photography is really fun."
+      },
+      {
+        "id": "d08_5",
+        "speaker": "A",
+        "ko": "우리 사진 동아리에 같이 가요.",
+        "rom": "uri sajin dongarie gachi gayo.",
+        "en": "Come to our photo club with me."
+      },
+      {
+        "id": "d08_6",
+        "speaker": "B",
+        "ko": "사진 동아리에서 뭐를 해요?",
+        "rom": "sajin dongarieseo mworeul haeyo?",
+        "en": "What do you do in the photo club?"
+      },
+      {
+        "id": "d08_7",
+        "speaker": "A",
+        "ko": "같이 사진을 찍어요. 영화도 만들어요.",
+        "rom": "gachi sajineul jjigeoyo. yeonghwado mandeureoyo.",
+        "en": "We take photos together. We make movies too."
+      },
+      {
+        "id": "d08_8",
+        "speaker": "B",
+        "ko": "누구와 같이 해요?",
+        "rom": "nuguwa gachi haeyo?",
+        "en": "Who do you do it with?"
+      },
+      {
+        "id": "d08_9",
+        "speaker": "A",
+        "ko": "회원들이 다 같이 해요. 나중에 모임에 오세요.",
+        "rom": "hoewondeuri da gachi haeyo. najunge moime oseyo.",
+        "en": "All the members do it together. Come to a meeting later."
+      },
+      {
+        "id": "d08_10",
+        "speaker": "B",
+        "ko": "네, 저도 가고 싶어요.",
+        "rom": "ne, jeodo gago sipeoyo.",
+        "en": "Yes, I want to go too."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r08",
+    "unitId": "u08_hobbies",
+    "title": "What my hobby gives me",
+    "ko": "제 취미는 음악이에요. 저는 매일 음악을 들어요. 요즘 기타를 배워요. 기타와 피아노를 칠 수 있어요. 기타는 쉬워요. 그런데 피아노는 조금 어려워요. 저는 매일 연습해요. 우리 동아리는 대회에 자주 나가요. 회원들의 실력이 아주 좋아요. 저는 가끔 공연도 해요. 운동도 좋아해요. 주말에는 축구를 해요. 영화도 자주 봐요. 수영은 잘 못해요. 등산은 조금 어려워요. 게임은 재미없어요. 저는 게임을 싫어해요. 노래와 춤은 아주 좋아요. 요리는 아주 쉬워요. 저는 요리를 즐겨요. 저는 옛날 영화를 모아요. 음악을 들을 때 저는 아주 신나요. 피곤해요. 그때도 음악을 들어요. 저는 항상 행복해요. 나중에 한국에서 공연하고 싶어요.",
+    "en": "My hobby is music. I listen to music every day. These days I am learning the guitar. I can play the guitar and the piano. The guitar is easy. The piano, though, is a little difficult. I practice every day. Our club often goes to competitions. The members' skill is very good. I sometimes give performances too. I like sports too. On weekends I play soccer. I often watch movies too. I am not good at swimming. Hiking is a little difficult. Games are boring. I dislike games. Songs and dancing are really good. Cooking is very easy. I enjoy cooking. I collect old movies. When I listen to music I feel great. I am tired. Even then I listen to music. I am always happy. Later I want to perform in Korea.",
+    "questions": [
+      {
+        "q": "Which instrument is easy for the writer?",
+        "options": [
+          "The guitar",
+          "The piano",
+          "The drum",
+          "The violin"
+        ],
+        "answer": 0,
+        "why": "기타는 쉬워요 = the guitar is easy."
+      },
+      {
+        "q": "How often does the writer perform?",
+        "options": [
+          "Sometimes",
+          "Every day",
+          "Never",
+          "Every weekend"
+        ],
+        "answer": 0,
+        "why": "저는 가끔 공연도 해요 = I sometimes give performances too."
+      },
+      {
+        "q": "What does the writer do when tired?",
+        "options": [
+          "Listens to music",
+          "Goes hiking",
+          "Plays soccer",
+          "Draws pictures"
+        ],
+        "answer": 0,
+        "why": "피곤할 때도 음악을 들어요 = even when tired, I listen to music."
+      }
+    ]
+  }
+}

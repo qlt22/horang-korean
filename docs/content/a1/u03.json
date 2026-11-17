@@ -1,0 +1,1912 @@
+{
+  "unit": {
+    "id": "u03_food",
+    "order": 3,
+    "title": "Food & ordering",
+    "ko": "음식",
+    "canDo": [
+      "Order food and drinks politely",
+      "Ask the price, ask for the bill and count things with counters",
+      "Say you can't eat something"
+    ],
+    "grammarIds": [
+      "g08",
+      "g09",
+      "g10",
+      "g11"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l03_1",
+      "unitId": "u03_food",
+      "order": 1,
+      "kind": "vocab",
+      "title": "Korean food",
+      "ko": "저는 매일 김치를 먹어요",
+      "goal": "Name everyday dishes and say what you eat",
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_01",
+        "w03_02",
+        "w03_03",
+        "w03_04",
+        "w03_05",
+        "w03_06",
+        "w03_07",
+        "w03_08",
+        "w03_09",
+        "w03_10",
+        "w03_11",
+        "w03_12"
+      ],
+      "sentenceIds": [
+        "s03_1_1",
+        "s03_1_2",
+        "s03_1_3",
+        "s03_1_4",
+        "s03_1_5",
+        "s03_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l03_2",
+      "unitId": "u03_food",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Ordering and counting",
+      "ko": "물 한 잔 주세요",
+      "goal": "Use 을/를, make requests with 주세요, count with 잔 and 개",
+      "grammarIds": [
+        "g08",
+        "g09",
+        "g10",
+        "g11"
+      ],
+      "wordIds": [
+        "w03_13",
+        "w03_14",
+        "w03_15",
+        "w03_16",
+        "w03_17",
+        "w03_18",
+        "w03_19",
+        "w03_20",
+        "w03_21",
+        "w03_22",
+        "w03_23",
+        "w03_24"
+      ],
+      "sentenceIds": [
+        "s03_2_1",
+        "s03_2_2",
+        "s03_2_3",
+        "s03_2_4",
+        "s03_2_5",
+        "s03_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    },
+    {
+      "id": "l03_3",
+      "unitId": "u03_food",
+      "order": 3,
+      "kind": "listening",
+      "title": "At the restaurant",
+      "ko": "불고기 하나 주세요",
+      "goal": "Follow a real order from menu to receipt",
+      "grammarIds": [
+        "g08",
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_25",
+        "w03_26",
+        "w03_27",
+        "w03_28",
+        "w03_29",
+        "w03_30",
+        "w03_31",
+        "w03_32",
+        "w03_33",
+        "w03_34",
+        "w03_35",
+        "w03_36"
+      ],
+      "sentenceIds": [
+        "s03_3_1",
+        "s03_3_2",
+        "s03_3_3",
+        "s03_3_4",
+        "s03_3_5",
+        "s03_3_6"
+      ],
+      "dialogueId": "d03",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l03_4",
+      "unitId": "u03_food",
+      "order": 4,
+      "kind": "reading",
+      "title": "Lunch near the office",
+      "ko": "점심 식당",
+      "goal": "Read a short text about lunch and answer three questions",
+      "grammarIds": [
+        "g08",
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_37",
+        "w03_38",
+        "w03_39",
+        "w03_40",
+        "w03_41",
+        "w03_42",
+        "w03_43",
+        "w03_44",
+        "w03_45",
+        "w03_46",
+        "w03_47",
+        "w03_48"
+      ],
+      "sentenceIds": [
+        "s03_4_1",
+        "s03_4_2",
+        "s03_4_3",
+        "s03_4_4",
+        "s03_4_5",
+        "s03_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r03",
+      "minutes": 7
+    },
+    {
+      "id": "l03_5",
+      "unitId": "u03_food",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: Food",
+      "ko": "복습",
+      "goal": "Order a meal and say what you can't eat",
+      "grammarIds": [
+        "g08",
+        "g09",
+        "g10",
+        "g11"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g08",
+      "unitId": "u03_food",
+      "order": 1,
+      "label": "object marker (을/를)",
+      "ko": "을/를",
+      "pattern": "N + 을/를",
+      "explanation": "Marks the thing the verb acts on: the food you eat, the menu you ask for. Use 을 after a consonant, 를 after a vowel.",
+      "examples": [
+        {
+          "ko": "저는 김치를 먹어요.",
+          "en": "I eat kimchi."
+        },
+        {
+          "ko": "비빔밥을 주세요.",
+          "en": "Bibimbap, please."
+        }
+      ],
+      "mistake": "김치을 먹어요 ✗ → 김치를 먹어요 ✓"
+    },
+    {
+      "id": "g09",
+      "unitId": "u03_food",
+      "order": 2,
+      "label": "please give me (주세요)",
+      "ko": "주세요",
+      "pattern": "N + 주세요",
+      "explanation": "Put 주세요 after the thing you want. It is already polite, so it works in every shop and restaurant.",
+      "examples": [
+        {
+          "ko": "물 한 잔 주세요.",
+          "en": "One glass of water, please."
+        },
+        {
+          "ko": "계산서 주세요.",
+          "en": "The bill, please."
+        }
+      ],
+      "mistake": "물이 주세요 ✗ → 물 주세요 ✓"
+    },
+    {
+      "id": "g10",
+      "unitId": "u03_food",
+      "order": 3,
+      "label": "counters (개/잔/명)",
+      "ko": "개/잔/명",
+      "pattern": "N + 한 개 / 한 잔 / 한 명",
+      "explanation": "Count with a counter: 개 for things, 잔 for drinks, 명 for people. 하나 and 둘 become 한 and 두 before a counter.",
+      "examples": [
+        {
+          "ko": "계란 두 개 주세요.",
+          "en": "Two eggs, please."
+        },
+        {
+          "ko": "커피 한 잔 주세요.",
+          "en": "One cup of coffee, please."
+        }
+      ],
+      "mistake": "커피 한 개 ✗ → 커피 한 잔 ✓"
+    },
+    {
+      "id": "g11",
+      "unitId": "u03_food",
+      "order": 4,
+      "label": "cannot (못)",
+      "ko": "못",
+      "pattern": "못 + V",
+      "explanation": "못 before a verb means you are unable to do it. 안 means you choose not to; 못 means you can't.",
+      "examples": [
+        {
+          "ko": "저는 매운 김치를 못 먹어요.",
+          "en": "I can't eat spicy kimchi."
+        },
+        {
+          "ko": "저는 커피를 못 마셔요.",
+          "en": "I can't drink coffee."
+        }
+      ],
+      "mistake": "안 먹어요 = I don't eat it / 못 먹어요 = I can't eat it"
+    }
+  ],
+  "words": [
+    {
+      "id": "w03_01",
+      "ko": "김치",
+      "rom": "gimchi",
+      "en": "kimchi",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_02",
+      "ko": "비빔밥",
+      "rom": "bibimbap",
+      "en": "bibimbap (mixed rice)",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_03",
+      "ko": "불고기",
+      "rom": "bulgogi",
+      "en": "bulgogi (grilled beef)",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_04",
+      "ko": "라면",
+      "rom": "ramyeon",
+      "en": "ramyeon (noodles)",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_05",
+      "ko": "떡볶이",
+      "rom": "tteokbokki",
+      "en": "tteokbokki (spicy rice cakes)",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_06",
+      "ko": "김밥",
+      "rom": "gimbap",
+      "en": "gimbap (rice rolls)",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_07",
+      "ko": "밥",
+      "rom": "bap",
+      "en": "rice / a meal",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_08",
+      "ko": "국",
+      "rom": "guk",
+      "en": "soup",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_09",
+      "ko": "고기",
+      "rom": "gogi",
+      "en": "meat",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_10",
+      "ko": "생선",
+      "rom": "saengseon",
+      "en": "fish",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_11",
+      "ko": "계란",
+      "rom": "gyeran",
+      "en": "egg",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_12",
+      "ko": "먹어요",
+      "rom": "meogeoyo",
+      "en": "to eat",
+      "pos": "verb",
+      "unitId": "u03_food",
+      "lessonId": "l03_1"
+    },
+    {
+      "id": "w03_13",
+      "ko": "물",
+      "rom": "mul",
+      "en": "water",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_14",
+      "ko": "커피",
+      "rom": "keopi",
+      "en": "coffee",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_15",
+      "ko": "차",
+      "rom": "cha",
+      "en": "tea",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_16",
+      "ko": "주스",
+      "rom": "jyuseu",
+      "en": "juice",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_17",
+      "ko": "메뉴",
+      "rom": "menyu",
+      "en": "menu",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_18",
+      "ko": "계산서",
+      "rom": "gyesanseo",
+      "en": "bill / check",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_19",
+      "ko": "좀",
+      "rom": "jom",
+      "en": "a little / please",
+      "pos": "adverb",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_20",
+      "ko": "맛있어요",
+      "rom": "masisseoyo",
+      "en": "to be delicious",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_21",
+      "ko": "매워요",
+      "rom": "maewoyo",
+      "en": "to be spicy",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_22",
+      "ko": "배고파요",
+      "rom": "baegopayo",
+      "en": "to be hungry",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_23",
+      "ko": "배불러요",
+      "rom": "baebulleoyo",
+      "en": "to be full (after eating)",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_24",
+      "ko": "마셔요",
+      "rom": "masyeoyo",
+      "en": "to drink",
+      "pos": "verb",
+      "unitId": "u03_food",
+      "lessonId": "l03_2"
+    },
+    {
+      "id": "w03_25",
+      "ko": "개",
+      "rom": "gae",
+      "en": "counter for things",
+      "pos": "counter",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_26",
+      "ko": "잔",
+      "rom": "jan",
+      "en": "counter for cups / glasses",
+      "pos": "counter",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_27",
+      "ko": "명",
+      "rom": "myeong",
+      "en": "counter for people",
+      "pos": "counter",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_28",
+      "ko": "병",
+      "rom": "byeong",
+      "en": "counter for bottles",
+      "pos": "counter",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_29",
+      "ko": "그릇",
+      "rom": "geureut",
+      "en": "bowl",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_30",
+      "ko": "값",
+      "rom": "gap",
+      "en": "price",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_31",
+      "ko": "포장",
+      "rom": "pojang",
+      "en": "takeout / wrapping",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_32",
+      "ko": "주문해요",
+      "rom": "jumunhaeyo",
+      "en": "to order",
+      "pos": "verb",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_33",
+      "ko": "직원",
+      "rom": "jigwon",
+      "en": "staff member",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_34",
+      "ko": "달아요",
+      "rom": "darayo",
+      "en": "to be sweet",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_35",
+      "ko": "음료",
+      "rom": "eumnyo",
+      "en": "drink / beverage",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_36",
+      "ko": "많이",
+      "rom": "mani",
+      "en": "a lot",
+      "pos": "adverb",
+      "unitId": "u03_food",
+      "lessonId": "l03_3"
+    },
+    {
+      "id": "w03_37",
+      "ko": "카페",
+      "rom": "kape",
+      "en": "café",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_38",
+      "ko": "음식",
+      "rom": "eumsik",
+      "en": "food",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_39",
+      "ko": "반찬",
+      "rom": "banchan",
+      "en": "side dishes",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_40",
+      "ko": "젓가락",
+      "rom": "jeotgarak",
+      "en": "chopsticks",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_41",
+      "ko": "숟가락",
+      "rom": "sutgarak",
+      "en": "spoon",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_42",
+      "ko": "냅킨",
+      "rom": "naepkin",
+      "en": "napkin",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_43",
+      "ko": "영수증",
+      "rom": "yeongsujeung",
+      "en": "receipt",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_44",
+      "ko": "뜨거워요",
+      "rom": "tteugeowoyo",
+      "en": "to be hot (to the touch)",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_45",
+      "ko": "차가워요",
+      "rom": "chagawoyo",
+      "en": "to be cold (to the touch)",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_46",
+      "ko": "짜요",
+      "rom": "jjayo",
+      "en": "to be salty",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_47",
+      "ko": "싱거워요",
+      "rom": "singgeowoyo",
+      "en": "to be bland",
+      "pos": "adjective",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    },
+    {
+      "id": "w03_48",
+      "ko": "김치찌개",
+      "rom": "gimchijjigae",
+      "en": "kimchi stew",
+      "pos": "noun",
+      "unitId": "u03_food",
+      "lessonId": "l03_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s03_1_1",
+      "unitId": "u03_food",
+      "lessonId": "l03_1",
+      "korean": "저는 매일 김치를 먹어요.",
+      "romanization": "jeoneun maeil gimchireul meogeoyo.",
+      "english": "I eat kimchi every day.",
+      "literal": "As for me, every day kimchi eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "매일",
+          "rom": "maeil",
+          "en": "every day"
+        },
+        {
+          "ko": "김치를",
+          "rom": "gimchireul",
+          "en": "kimchi (object)"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_01",
+        "w03_12"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I eat kimchi every morning.",
+        "I don't eat kimchi every day.",
+        "I make kimchi every day."
+      ],
+      "notes": "김치 ends in a vowel, so the object marker is 를."
+    },
+    {
+      "id": "s03_1_2",
+      "unitId": "u03_food",
+      "lessonId": "l03_1",
+      "korean": "비빔밥 두 개 주세요.",
+      "romanization": "bibimbap du gae juseyo.",
+      "english": "Two bibimbaps, please.",
+      "literal": "Bibimbap two items, please give.",
+      "gloss": [
+        {
+          "ko": "비빔밥",
+          "rom": "bibimbap",
+          "en": "bibimbap"
+        },
+        {
+          "ko": "두",
+          "rom": "du",
+          "en": "two"
+        },
+        {
+          "ko": "개",
+          "rom": "gae",
+          "en": "counter for items"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_02",
+        "w03_25"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "One bibimbap, please.",
+        "Two bowls of soup, please.",
+        "The bill, please."
+      ],
+      "notes": "둘 becomes 두 before a counter: 두 개, not 둘 개."
+    },
+    {
+      "id": "s03_1_3",
+      "unitId": "u03_food",
+      "lessonId": "l03_1",
+      "korean": "저는 떡볶이를 못 먹어요.",
+      "romanization": "jeoneun tteokbokkireul mot meogeoyo.",
+      "english": "I can't eat tteokbokki.",
+      "literal": "As for me, tteokbokki cannot eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "떡볶이를",
+          "rom": "tteokbokkireul",
+          "en": "tteokbokki (object)"
+        },
+        {
+          "ko": "못 먹어요",
+          "rom": "mot meogeoyo",
+          "en": "cannot eat"
+        }
+      ],
+      "grammarIds": [
+        "g08",
+        "g11"
+      ],
+      "wordIds": [
+        "w03_05",
+        "w03_12"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I don't eat tteokbokki.",
+        "I can eat tteokbokki.",
+        "I can't eat kimchi."
+      ],
+      "notes": "못 means you are unable; 안 would mean you simply choose not to."
+    },
+    {
+      "id": "s03_1_4",
+      "unitId": "u03_food",
+      "lessonId": "l03_1",
+      "korean": "저는 고기를 안 먹어요.",
+      "romanization": "jeoneun gogireul an meogeoyo.",
+      "english": "I don't eat meat.",
+      "literal": "As for me, meat do-not eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "고기를",
+          "rom": "gogireul",
+          "en": "meat (object)"
+        },
+        {
+          "ko": "안",
+          "rom": "an",
+          "en": "not"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_09",
+        "w03_12"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I eat meat.",
+        "I can't eat meat.",
+        "I don't eat fish."
+      ],
+      "notes": "안 is a choice; 못 would mean you are unable to eat it."
+    },
+    {
+      "id": "s03_1_5",
+      "unitId": "u03_food",
+      "lessonId": "l03_1",
+      "korean": "저는 김밥을 자주 먹어요.",
+      "romanization": "jeoneun gimbabeul jaju meogeoyo.",
+      "english": "I often eat gimbap.",
+      "literal": "As for me, gimbap often eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "김밥을",
+          "rom": "gimbabeul",
+          "en": "gimbap (object)"
+        },
+        {
+          "ko": "자주",
+          "rom": "jaju",
+          "en": "often"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_06",
+        "w03_12"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I never eat gimbap.",
+        "I often make gimbap.",
+        "I often eat ramyeon."
+      ],
+      "notes": "자주 (often) goes before the verb, like 많이."
+    },
+    {
+      "id": "s03_1_6",
+      "unitId": "u03_food",
+      "lessonId": "l03_1",
+      "korean": "저는 생선을 먹어요.",
+      "romanization": "jeoneun saengseoneul meogeoyo.",
+      "english": "I eat fish.",
+      "literal": "As for me, fish eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "생선을",
+          "rom": "saengseoneul",
+          "en": "fish (object)"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_10",
+        "w03_12"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I don't eat fish.",
+        "I can't eat fish.",
+        "I eat meat."
+      ],
+      "notes": "생선 is fish as food; 물고기 is a fish in the water."
+    },
+    {
+      "id": "s03_2_1",
+      "unitId": "u03_food",
+      "lessonId": "l03_2",
+      "korean": "물 한 잔 주세요.",
+      "romanization": "mul han jan juseyo.",
+      "english": "One glass of water, please.",
+      "literal": "Water one glass, please give.",
+      "gloss": [
+        {
+          "ko": "물",
+          "rom": "mul",
+          "en": "water"
+        },
+        {
+          "ko": "한",
+          "rom": "han",
+          "en": "one"
+        },
+        {
+          "ko": "잔",
+          "rom": "jan",
+          "en": "counter for cups"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_13",
+        "w03_26"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Two glasses of water, please.",
+        "One cup of coffee, please.",
+        "The bill, please."
+      ],
+      "notes": "하나 becomes 한 before a counter: 한 잔."
+    },
+    {
+      "id": "s03_2_2",
+      "unitId": "u03_food",
+      "lessonId": "l03_2",
+      "korean": "커피 두 잔 주세요.",
+      "romanization": "keopi du jan juseyo.",
+      "english": "Two cups of coffee, please.",
+      "literal": "Coffee two cups, please give.",
+      "gloss": [
+        {
+          "ko": "커피",
+          "rom": "keopi",
+          "en": "coffee"
+        },
+        {
+          "ko": "두",
+          "rom": "du",
+          "en": "two"
+        },
+        {
+          "ko": "잔",
+          "rom": "jan",
+          "en": "counter for cups"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_14",
+        "w03_26"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Two cups of tea, please.",
+        "One cup of coffee, please.",
+        "Two bottles of water, please."
+      ],
+      "notes": "Drinks use 잔 (cup), not 개."
+    },
+    {
+      "id": "s03_2_3",
+      "unitId": "u03_food",
+      "lessonId": "l03_2",
+      "korean": "메뉴 좀 주세요.",
+      "romanization": "menyu jom juseyo.",
+      "english": "The menu, please.",
+      "literal": "Menu a little, please give.",
+      "gloss": [
+        {
+          "ko": "메뉴",
+          "rom": "menyu",
+          "en": "menu"
+        },
+        {
+          "ko": "좀",
+          "rom": "jom",
+          "en": "please"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09"
+      ],
+      "wordIds": [
+        "w03_17",
+        "w03_19"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "The bill, please.",
+        "Water, please.",
+        "The menu is delicious."
+      ],
+      "notes": "좀 softens a request; here it does not mean a small amount."
+    },
+    {
+      "id": "s03_2_4",
+      "unitId": "u03_food",
+      "lessonId": "l03_2",
+      "korean": "저는 차를 자주 마셔요.",
+      "romanization": "jeoneun chareul jaju masyeoyo.",
+      "english": "I often drink tea.",
+      "literal": "As for me, tea often drink.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "차를",
+          "rom": "chareul",
+          "en": "tea (object)"
+        },
+        {
+          "ko": "자주",
+          "rom": "jaju",
+          "en": "often"
+        },
+        {
+          "ko": "마셔요",
+          "rom": "masyeoyo",
+          "en": "drink"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_15",
+        "w03_24"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I often drink coffee.",
+        "I never drink tea.",
+        "I often drink tea in the evening."
+      ],
+      "notes": "마셔요 comes from 마시다: 마시 + 어요 → 마셔요."
+    },
+    {
+      "id": "s03_2_5",
+      "unitId": "u03_food",
+      "lessonId": "l03_2",
+      "korean": "저는 커피를 안 마셔요.",
+      "romanization": "jeoneun keopireul an masyeoyo.",
+      "english": "I don't drink coffee.",
+      "literal": "As for me, coffee do-not drink.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "커피를",
+          "rom": "keopireul",
+          "en": "coffee (object)"
+        },
+        {
+          "ko": "안 마셔요",
+          "rom": "an masyeoyo",
+          "en": "don't drink"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_14",
+        "w03_24"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I drink coffee.",
+        "I can't drink coffee.",
+        "I don't drink tea."
+      ],
+      "notes": "안 goes directly before the verb, after the object."
+    },
+    {
+      "id": "s03_2_6",
+      "unitId": "u03_food",
+      "lessonId": "l03_2",
+      "korean": "저는 매운 김치를 못 먹어요.",
+      "romanization": "jeoneun maeun gimchireul mot meogeoyo.",
+      "english": "I can't eat spicy kimchi.",
+      "literal": "As for me, spicy kimchi cannot eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "매운",
+          "rom": "maeun",
+          "en": "spicy"
+        },
+        {
+          "ko": "김치를",
+          "rom": "gimchireul",
+          "en": "kimchi (object)"
+        },
+        {
+          "ko": "못 먹어요",
+          "rom": "mot meogeoyo",
+          "en": "cannot eat"
+        }
+      ],
+      "grammarIds": [
+        "g08",
+        "g11"
+      ],
+      "wordIds": [
+        "w03_01",
+        "w03_12"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I don't eat spicy kimchi.",
+        "I can eat spicy kimchi.",
+        "I can't eat mild kimchi."
+      ],
+      "notes": "매운 is the form used before a noun; at the end of a sentence it is 매워요."
+    },
+    {
+      "id": "s03_3_1",
+      "unitId": "u03_food",
+      "lessonId": "l03_3",
+      "korean": "저는 밥을 많이 먹어요.",
+      "romanization": "jeoneun babeul mani meogeoyo.",
+      "english": "I eat a lot of rice.",
+      "literal": "As for me, rice a lot eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "밥을",
+          "rom": "babeul",
+          "en": "rice (object)"
+        },
+        {
+          "ko": "많이",
+          "rom": "mani",
+          "en": "a lot"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_07",
+        "w03_36"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I eat a little rice.",
+        "I don't eat a lot of rice.",
+        "I eat a lot of bread."
+      ],
+      "notes": "밥 means both cooked rice and 'a meal'."
+    },
+    {
+      "id": "s03_3_2",
+      "unitId": "u03_food",
+      "lessonId": "l03_3",
+      "korean": "국 좀 주세요.",
+      "romanization": "guk jom juseyo.",
+      "english": "Some soup, please.",
+      "literal": "Soup a little, please give.",
+      "gloss": [
+        {
+          "ko": "국",
+          "rom": "guk",
+          "en": "soup"
+        },
+        {
+          "ko": "좀",
+          "rom": "jom",
+          "en": "please"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09"
+      ],
+      "wordIds": [
+        "w03_08",
+        "w03_19"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Some water, please.",
+        "The bill, please.",
+        "The soup is delicious."
+      ],
+      "notes": "국 ends in a consonant, but 주세요 follows directly with no particle."
+    },
+    {
+      "id": "s03_3_3",
+      "unitId": "u03_food",
+      "lessonId": "l03_3",
+      "korean": "계란 두 개 주세요.",
+      "romanization": "gyeran du gae juseyo.",
+      "english": "Two eggs, please.",
+      "literal": "Eggs two items, please give.",
+      "gloss": [
+        {
+          "ko": "계란",
+          "rom": "gyeran",
+          "en": "egg"
+        },
+        {
+          "ko": "두",
+          "rom": "du",
+          "en": "two"
+        },
+        {
+          "ko": "개",
+          "rom": "gae",
+          "en": "counter for items"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_11",
+        "w03_25"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Three eggs, please.",
+        "Two bowls of soup, please.",
+        "Two eggs are delicious."
+      ],
+      "notes": "Eggs are things, so they take 개."
+    },
+    {
+      "id": "s03_3_4",
+      "unitId": "u03_food",
+      "lessonId": "l03_3",
+      "korean": "저는 라면을 자주 먹어요.",
+      "romanization": "jeoneun ramyeoneul jaju meogeoyo.",
+      "english": "I often eat ramyeon.",
+      "literal": "As for me, ramyeon often eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "라면을",
+          "rom": "ramyeoneul",
+          "en": "ramyeon (object)"
+        },
+        {
+          "ko": "자주",
+          "rom": "jaju",
+          "en": "often"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_04",
+        "w03_12"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I never eat ramyeon.",
+        "I often eat gimbap.",
+        "I often drink juice."
+      ],
+      "notes": "라면 ends in a consonant, so the object marker is 을."
+    },
+    {
+      "id": "s03_3_5",
+      "unitId": "u03_food",
+      "lessonId": "l03_3",
+      "korean": "저는 아침에 주스를 마셔요.",
+      "romanization": "jeoneun achime jyuseureul masyeoyo.",
+      "english": "I drink juice in the morning.",
+      "literal": "As for me, in the morning juice drink.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "아침에",
+          "rom": "achime",
+          "en": "in the morning"
+        },
+        {
+          "ko": "주스를",
+          "rom": "jyuseureul",
+          "en": "juice (object)"
+        },
+        {
+          "ko": "마셔요",
+          "rom": "masyeoyo",
+          "en": "drink"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_16",
+        "w03_24"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I drink juice in the evening.",
+        "I don't drink juice in the morning.",
+        "I drink coffee in the morning."
+      ],
+      "notes": "주스 ends in a vowel, so the object marker is 를."
+    },
+    {
+      "id": "s03_3_6",
+      "unitId": "u03_food",
+      "lessonId": "l03_3",
+      "korean": "물 두 병 주세요.",
+      "romanization": "mul du byeong juseyo.",
+      "english": "Two bottles of water, please.",
+      "literal": "Water two bottles, please give.",
+      "gloss": [
+        {
+          "ko": "물",
+          "rom": "mul",
+          "en": "water"
+        },
+        {
+          "ko": "두",
+          "rom": "du",
+          "en": "two"
+        },
+        {
+          "ko": "병",
+          "rom": "byeong",
+          "en": "counter for bottles"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_13",
+        "w03_28"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Two glasses of water, please.",
+        "One bottle of water, please.",
+        "Two bottles of juice, please."
+      ],
+      "notes": "Bottles use 병; cups and glasses use 잔."
+    },
+    {
+      "id": "s03_4_1",
+      "unitId": "u03_food",
+      "lessonId": "l03_4",
+      "korean": "김치찌개를 주문해요.",
+      "romanization": "gimchijjigaereul jumunhaeyo.",
+      "english": "I order kimchi stew.",
+      "literal": "Kimchi stew order.",
+      "gloss": [
+        {
+          "ko": "김치찌개를",
+          "rom": "gimchijjigaereul",
+          "en": "kimchi stew (object)"
+        },
+        {
+          "ko": "주문해요",
+          "rom": "jumunhaeyo",
+          "en": "order"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_48",
+        "w03_32"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I order bulgogi.",
+        "I don't order kimchi stew.",
+        "I make kimchi stew."
+      ],
+      "notes": "찌개 is a stew served bubbling hot in a pot."
+    },
+    {
+      "id": "s03_4_2",
+      "unitId": "u03_food",
+      "lessonId": "l03_4",
+      "korean": "저는 반찬을 많이 먹어요.",
+      "romanization": "jeoneun banchaneul mani meogeoyo.",
+      "english": "I eat a lot of side dishes.",
+      "literal": "As for me, side dishes a lot eat.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "반찬을",
+          "rom": "banchaneul",
+          "en": "side dishes (object)"
+        },
+        {
+          "ko": "많이",
+          "rom": "mani",
+          "en": "a lot"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_39",
+        "w03_36"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I eat a lot of rice.",
+        "I don't eat many side dishes.",
+        "I eat a lot of meat."
+      ],
+      "notes": "반찬 are the small dishes that come with a Korean meal."
+    },
+    {
+      "id": "s03_4_3",
+      "unitId": "u03_food",
+      "lessonId": "l03_4",
+      "korean": "젓가락 좀 주세요.",
+      "romanization": "jeotgarak jom juseyo.",
+      "english": "Chopsticks, please.",
+      "literal": "Chopsticks a little, please give.",
+      "gloss": [
+        {
+          "ko": "젓가락",
+          "rom": "jeotgarak",
+          "en": "chopsticks"
+        },
+        {
+          "ko": "좀",
+          "rom": "jom",
+          "en": "please"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09"
+      ],
+      "wordIds": [
+        "w03_40",
+        "w03_19"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "A spoon, please.",
+        "A napkin, please.",
+        "The chopsticks are delicious."
+      ],
+      "notes": "Pairs like 젓가락 are not marked plural in Korean."
+    },
+    {
+      "id": "s03_4_4",
+      "unitId": "u03_food",
+      "lessonId": "l03_4",
+      "korean": "숟가락 두 개 주세요.",
+      "romanization": "sutgarak du gae juseyo.",
+      "english": "Two spoons, please.",
+      "literal": "Spoons two items, please give.",
+      "gloss": [
+        {
+          "ko": "숟가락",
+          "rom": "sutgarak",
+          "en": "spoon"
+        },
+        {
+          "ko": "두",
+          "rom": "du",
+          "en": "two"
+        },
+        {
+          "ko": "개",
+          "rom": "gae",
+          "en": "counter for items"
+        },
+        {
+          "ko": "주세요",
+          "rom": "juseyo",
+          "en": "please give"
+        }
+      ],
+      "grammarIds": [
+        "g09",
+        "g10"
+      ],
+      "wordIds": [
+        "w03_41",
+        "w03_25"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Two forks, please.",
+        "One spoon, please.",
+        "Two spoons are here."
+      ],
+      "notes": "숟가락 is a spoon; 젓가락 is chopsticks."
+    },
+    {
+      "id": "s03_4_5",
+      "unitId": "u03_food",
+      "lessonId": "l03_4",
+      "korean": "저는 카페 커피를 자주 마셔요.",
+      "romanization": "jeoneun kape keopireul jaju masyeoyo.",
+      "english": "I often drink café coffee.",
+      "literal": "As for me, café coffee often drink.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "카페",
+          "rom": "kape",
+          "en": "café"
+        },
+        {
+          "ko": "커피를",
+          "rom": "keopireul",
+          "en": "coffee (object)"
+        },
+        {
+          "ko": "자주",
+          "rom": "jaju",
+          "en": "often"
+        },
+        {
+          "ko": "마셔요",
+          "rom": "masyeoyo",
+          "en": "drink"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_37",
+        "w03_14",
+        "w03_24"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I often drink tea at the café.",
+        "I never drink café coffee.",
+        "I often drink café juice."
+      ],
+      "notes": "카페 커피 is the coffee you buy at a café."
+    },
+    {
+      "id": "s03_4_6",
+      "unitId": "u03_food",
+      "lessonId": "l03_4",
+      "korean": "저는 음식을 자주 주문해요.",
+      "romanization": "jeoneun eumsigeul jaju jumunhaeyo.",
+      "english": "I often order food.",
+      "literal": "As for me, food often order.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "음식을",
+          "rom": "eumsigeul",
+          "en": "food (object)"
+        },
+        {
+          "ko": "자주",
+          "rom": "jaju",
+          "en": "often"
+        },
+        {
+          "ko": "주문해요",
+          "rom": "jumunhaeyo",
+          "en": "order"
+        }
+      ],
+      "grammarIds": [
+        "g08"
+      ],
+      "wordIds": [
+        "w03_38",
+        "w03_32"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I never order food.",
+        "I order a lot of food.",
+        "I cook food often."
+      ],
+      "notes": "자주 (often) sits between the object and the verb."
+    }
+  ],
+  "dialogue": {
+    "id": "d03",
+    "unitId": "u03_food",
+    "title": "Lunch at a small restaurant",
+    "setting": "A customer orders lunch at a small Korean restaurant near the office.",
+    "lines": [
+      {
+        "id": "d03_1",
+        "speaker": "A",
+        "ko": "저기요, 메뉴 좀 주세요.",
+        "rom": "jeogiyo. menyu jom juseyo.",
+        "en": "Excuse me, the menu please."
+      },
+      {
+        "id": "d03_2",
+        "speaker": "B",
+        "ko": "네, 여기 있어요.",
+        "rom": "ne. yeogi isseoyo.",
+        "en": "Yes, here it is."
+      },
+      {
+        "id": "d03_3",
+        "speaker": "A",
+        "ko": "이거 얼마예요?",
+        "rom": "igeo eolmayeyo?",
+        "en": "How much is this one?"
+      },
+      {
+        "id": "d03_4",
+        "speaker": "B",
+        "ko": "불고기는 팔천 원이에요.",
+        "rom": "bulgogineun palcheon won-ieyo.",
+        "en": "Bulgogi is 8,000 won."
+      },
+      {
+        "id": "d03_5",
+        "speaker": "A",
+        "ko": "그럼 불고기 하나 주세요. 물 한 병도 주세요.",
+        "rom": "geureom bulgogi hana juseyo. mul han byeongdo juseyo.",
+        "en": "Then one bulgogi, please. A bottle of water too, please."
+      },
+      {
+        "id": "d03_6",
+        "speaker": "B",
+        "ko": "네, 잠시만요. 두 명이에요?",
+        "rom": "ne. jamsimanyo. du myeong-ieyo?",
+        "en": "Yes, one moment. Is it for two people?"
+      },
+      {
+        "id": "d03_7",
+        "speaker": "A",
+        "ko": "아니요, 저 혼자예요. 배고파요.",
+        "rom": "aniyo. jeo honjayeyo. baegopayo.",
+        "en": "No, just me. I'm hungry."
+      },
+      {
+        "id": "d03_8",
+        "speaker": "B",
+        "ko": "여기 불고기예요. 숟가락하고 냅킨도 여기 있어요.",
+        "rom": "yeogi bulgogiyeyo. sutgarakhago naepkindo yeogi isseoyo.",
+        "en": "Here is your bulgogi. The spoon and napkin are here too."
+      },
+      {
+        "id": "d03_9",
+        "speaker": "A",
+        "ko": "감사해요. 아주 맛있어요. 이제 배불러요. 계산서 주세요.",
+        "rom": "gamsahaeyo. aju masisseoyo. ije baebulleoyo. gyesanseo juseyo.",
+        "en": "Thank you. It's really delicious. I'm full now. The bill, please."
+      },
+      {
+        "id": "d03_10",
+        "speaker": "B",
+        "ko": "네, 여기 영수증이에요.",
+        "rom": "ne. yeogi yeongsujeung-ieyo.",
+        "en": "Yes, here is your receipt."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r03",
+    "unitId": "u03_food",
+    "title": "Lunch near the office",
+    "ko": "저는 회사원이에요. 점심에는 회사 앞 식당에 가요. 그 식당은 아주 작아요. 직원은 친절해요. 손님도 많아요. 저는 보통 비빔밥을 먹어요. 그릇이 커요. 반찬 맛도 아주 좋아요. 반찬이 조금 매워요. 그리고 조금 짜요. 국이 아주 뜨거워요. 국은 조금 싱거워요. 물이 아주 차가워요. 배불러요. 물도 많이 마셔요. 그리고 영수증을 받아요. 가끔은 카페에 가요. 카페에서 커피를 주문해요. 음료는 주스와 커피가 있어요. 저는 보통 차를 마셔요. 커피가 아주 달아요. 값이 조금 비싸요. 가끔은 포장을 해요.",
+    "en": "I am an office worker. At lunchtime I go to a restaurant in front of the office. That restaurant is very small. The staff are kind. There are many customers too. I usually eat bibimbap. The bowl is big. The side dishes taste very good too. The side dishes are a little spicy. And a little salty. The soup is very hot. The soup is a little bland. The water is very cold. I am full. I drink a lot of water too. And I get a receipt. Sometimes I go to a café. At the café I order coffee. For drinks there is juice and coffee. I usually drink tea. The coffee is very sweet. The price is a little expensive. Sometimes I get takeout.",
+    "questions": [
+      {
+        "q": "Where does the writer eat lunch?",
+        "options": [
+          "At a small restaurant near the office",
+          "At home",
+          "At a café",
+          "In the company cafeteria"
+        ],
+        "answer": 0,
+        "why": "점심에는 회사 앞 식당에 가요 = At lunchtime I go to a restaurant in front of the office."
+      },
+      {
+        "q": "What does the writer usually eat?",
+        "options": [
+          "Bibimbap",
+          "Ramyeon",
+          "Gimbap",
+          "Bulgogi"
+        ],
+        "answer": 0,
+        "why": "저는 보통 비빔밥을 먹어요 = I usually eat bibimbap."
+      },
+      {
+        "q": "How is the price at the café?",
+        "options": [
+          "A little expensive",
+          "Very cheap",
+          "Free for office workers",
+          "The same as the restaurant"
+        ],
+        "answer": 0,
+        "why": "값이 조금 비싸요 = The price is a little expensive."
+      }
+    ]
+  }
+}

@@ -1,0 +1,1943 @@
+{
+  "unit": {
+    "id": "u04_shopping",
+    "order": 4,
+    "title": "Shopping & numbers",
+    "ko": "쇼핑",
+    "canDo": [
+      "Use Sino-Korean numbers and say prices in won",
+      "Point at things with 이/그/저",
+      "Say 'only' with 만 and compare two things with 더/제일"
+    ],
+    "grammarIds": [
+      "g12",
+      "g13",
+      "g25",
+      "g46"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l04_1",
+      "unitId": "u04_shopping",
+      "order": 1,
+      "kind": "vocab",
+      "title": "Clothes and things",
+      "ko": "이 옷은 아주 비싸요",
+      "goal": "Name everyday items and point at them with 이/그/저",
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_01",
+        "w04_02",
+        "w04_03",
+        "w04_04",
+        "w04_05",
+        "w04_06",
+        "w04_07",
+        "w04_08",
+        "w04_09",
+        "w04_10",
+        "w04_11",
+        "w04_12"
+      ],
+      "sentenceIds": [
+        "s04_1_1",
+        "s04_1_2",
+        "s04_1_3",
+        "s04_1_4",
+        "s04_1_5",
+        "s04_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l04_2",
+      "unitId": "u04_shopping",
+      "order": 2,
+      "kind": "grammar",
+      "title": "How much is it?",
+      "ko": "이 가방은 삼천 원이에요",
+      "goal": "Read prices with Sino-Korean numbers and use 만 and 더/제일",
+      "grammarIds": [
+        "g12",
+        "g13",
+        "g25",
+        "g46"
+      ],
+      "wordIds": [
+        "w04_13",
+        "w04_14",
+        "w04_15",
+        "w04_16",
+        "w04_17",
+        "w04_18",
+        "w04_19",
+        "w04_20",
+        "w04_21",
+        "w04_22",
+        "w04_23",
+        "w04_24"
+      ],
+      "sentenceIds": [
+        "s04_2_1",
+        "s04_2_2",
+        "s04_2_3",
+        "s04_2_4",
+        "s04_2_5",
+        "s04_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    },
+    {
+      "id": "l04_3",
+      "unitId": "u04_shopping",
+      "order": 3,
+      "kind": "listening",
+      "title": "At the scarf stall",
+      "ko": "이 목도리 얼마예요?",
+      "goal": "Follow a real purchase: pointing, price, payment and change",
+      "grammarIds": [
+        "g12",
+        "g13"
+      ],
+      "wordIds": [
+        "w04_25",
+        "w04_26",
+        "w04_27",
+        "w04_28",
+        "w04_29",
+        "w04_30",
+        "w04_31",
+        "w04_32",
+        "w04_33",
+        "w04_34",
+        "w04_35",
+        "w04_36"
+      ],
+      "sentenceIds": [
+        "s04_3_1",
+        "s04_3_2",
+        "s04_3_3",
+        "s04_3_4",
+        "s04_3_5",
+        "s04_3_6"
+      ],
+      "dialogueId": "d04",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l04_4",
+      "unitId": "u04_shopping",
+      "order": 4,
+      "kind": "reading",
+      "title": "A sale at the department store",
+      "ko": "오늘은 세일이에요",
+      "goal": "Read a short shopping text and answer three questions",
+      "grammarIds": [
+        "g12",
+        "g13",
+        "g25",
+        "g46"
+      ],
+      "wordIds": [
+        "w04_37",
+        "w04_38",
+        "w04_39",
+        "w04_40",
+        "w04_41",
+        "w04_42",
+        "w04_43",
+        "w04_44",
+        "w04_45",
+        "w04_46",
+        "w04_47",
+        "w04_48"
+      ],
+      "sentenceIds": [
+        "s04_4_1",
+        "s04_4_2",
+        "s04_4_3",
+        "s04_4_4",
+        "s04_4_5",
+        "s04_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r04",
+      "minutes": 7
+    },
+    {
+      "id": "l04_5",
+      "unitId": "u04_shopping",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: Shopping",
+      "ko": "복습",
+      "goal": "Ask a price, pay and choose between two things",
+      "grammarIds": [
+        "g12",
+        "g13",
+        "g25",
+        "g46"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g12",
+      "unitId": "u04_shopping",
+      "order": 1,
+      "label": "Sino-Korean numbers and money",
+      "ko": "숫자와 돈",
+      "pattern": "N + 원",
+      "explanation": "Prices use Sino-Korean numbers: 일 이 삼 사 오 육 칠 팔 구 십 백 천. Say the number, then 원.",
+      "examples": [
+        {
+          "ko": "이 가방은 삼천 원이에요.",
+          "en": "This bag is 3,000 won."
+        },
+        {
+          "ko": "이거는 오백 원이에요.",
+          "en": "This one is 500 won."
+        }
+      ],
+      "mistake": "세천 원 ✗ → 삼천 원 ✓ (money uses Sino numbers)"
+    },
+    {
+      "id": "g13",
+      "unitId": "u04_shopping",
+      "order": 2,
+      "label": "this / that / that over there",
+      "ko": "이/그/저",
+      "pattern": "이/그/저 + N",
+      "explanation": "이 = this near me, 그 = that near you, 저 = that over there. They always go before a noun.",
+      "examples": [
+        {
+          "ko": "이 옷은 얼마예요?",
+          "en": "How much are these clothes?"
+        },
+        {
+          "ko": "저 가방이 예뻐요.",
+          "en": "That bag over there is pretty."
+        }
+      ],
+      "mistake": "그것 가방 ✗ → 그 가방 ✓"
+    },
+    {
+      "id": "g25",
+      "unitId": "u04_shopping",
+      "order": 3,
+      "label": "only (만)",
+      "ko": "만",
+      "pattern": "N + 만",
+      "explanation": "Add 만 to a noun to mean 'only'. It replaces 은/는 or 을/를, so the two are never used together.",
+      "examples": [
+        {
+          "ko": "이 가게는 현금만 받아요.",
+          "en": "This shop only takes cash."
+        },
+        {
+          "ko": "저는 이 모자만 사요.",
+          "en": "I'm only buying this hat."
+        }
+      ],
+      "mistake": "현금을만 받아요 ✗ → 현금만 받아요 ✓"
+    },
+    {
+      "id": "g46",
+      "unitId": "u04_shopping",
+      "order": 4,
+      "label": "more / the most (더/제일)",
+      "ko": "더/제일",
+      "pattern": "더 + Adj / 제일 + Adj",
+      "explanation": "더 before an adjective means 'more'; 제일 means 'the most'. Both sit directly before the adjective.",
+      "examples": [
+        {
+          "ko": "이 양말이 더 싸요.",
+          "en": "These socks are cheaper."
+        },
+        {
+          "ko": "저거는 제일 예뻐요.",
+          "en": "That one is the prettiest."
+        }
+      ],
+      "mistake": "더 싸요 = cheaper / 제일 싸요 = the cheapest"
+    }
+  ],
+  "words": [
+    {
+      "id": "w04_01",
+      "ko": "옷",
+      "rom": "ot",
+      "en": "clothes",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_02",
+      "ko": "바지",
+      "rom": "baji",
+      "en": "trousers",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_03",
+      "ko": "티셔츠",
+      "rom": "tisyeocheu",
+      "en": "T-shirt",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_04",
+      "ko": "신발",
+      "rom": "sinbal",
+      "en": "shoes",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_05",
+      "ko": "가방",
+      "rom": "gabang",
+      "en": "bag",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_06",
+      "ko": "모자",
+      "rom": "moja",
+      "en": "hat",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_07",
+      "ko": "양말",
+      "rom": "yangmal",
+      "en": "socks",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_08",
+      "ko": "우산",
+      "rom": "usan",
+      "en": "umbrella",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_09",
+      "ko": "안경",
+      "rom": "angyeong",
+      "en": "glasses",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_10",
+      "ko": "지갑",
+      "rom": "jigap",
+      "en": "wallet",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_11",
+      "ko": "목도리",
+      "rom": "mokdori",
+      "en": "scarf",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_12",
+      "ko": "장갑",
+      "rom": "janggap",
+      "en": "gloves",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1"
+    },
+    {
+      "id": "w04_13",
+      "ko": "가게",
+      "rom": "gage",
+      "en": "shop",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_14",
+      "ko": "옷가게",
+      "rom": "otgage",
+      "en": "clothes shop",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_15",
+      "ko": "백화점",
+      "rom": "baekhwajeom",
+      "en": "department store",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_16",
+      "ko": "원",
+      "rom": "won",
+      "en": "won (Korean currency)",
+      "pos": "counter",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_17",
+      "ko": "돈",
+      "rom": "don",
+      "en": "money",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_18",
+      "ko": "비싸요",
+      "rom": "bissayo",
+      "en": "to be expensive",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_19",
+      "ko": "싸요",
+      "rom": "ssayo",
+      "en": "to be cheap",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_20",
+      "ko": "카드",
+      "rom": "kadeu",
+      "en": "card",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_21",
+      "ko": "현금",
+      "rom": "hyeongeum",
+      "en": "cash",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_22",
+      "ko": "사요",
+      "rom": "sayo",
+      "en": "to buy",
+      "pos": "verb",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_23",
+      "ko": "팔아요",
+      "rom": "parayo",
+      "en": "to sell",
+      "pos": "verb",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_24",
+      "ko": "얼마",
+      "rom": "eolma",
+      "en": "how much",
+      "pos": "pronoun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2"
+    },
+    {
+      "id": "w04_25",
+      "ko": "이거",
+      "rom": "igeo",
+      "en": "this one",
+      "pos": "pronoun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_26",
+      "ko": "그거",
+      "rom": "geugeo",
+      "en": "that one (near you)",
+      "pos": "pronoun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_27",
+      "ko": "저거",
+      "rom": "jeogeo",
+      "en": "that one over there",
+      "pos": "pronoun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_28",
+      "ko": "사이즈",
+      "rom": "saijeu",
+      "en": "size",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_29",
+      "ko": "색깔",
+      "rom": "saekkkal",
+      "en": "colour",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_30",
+      "ko": "입어요",
+      "rom": "ibeoyo",
+      "en": "to wear / to try on",
+      "pos": "verb",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_31",
+      "ko": "봉투",
+      "rom": "bongtu",
+      "en": "bag / envelope (for goods)",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_32",
+      "ko": "거스름돈",
+      "rom": "geoseureumdon",
+      "en": "change (money back)",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_33",
+      "ko": "계산해요",
+      "rom": "gyesanhaeyo",
+      "en": "to pay / to calculate",
+      "pos": "verb",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_34",
+      "ko": "많아요",
+      "rom": "manayo",
+      "en": "to be many / much",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_35",
+      "ko": "커요",
+      "rom": "keoyo",
+      "en": "to be big",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_36",
+      "ko": "작아요",
+      "rom": "jagayo",
+      "en": "to be small",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3"
+    },
+    {
+      "id": "w04_37",
+      "ko": "예뻐요",
+      "rom": "yeppeoyo",
+      "en": "to be pretty",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_38",
+      "ko": "멋있어요",
+      "rom": "meosisseoyo",
+      "en": "to be cool / stylish",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_39",
+      "ko": "편해요",
+      "rom": "pyeonhaeyo",
+      "en": "to be comfortable",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_40",
+      "ko": "길어요",
+      "rom": "gireoyo",
+      "en": "to be long",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_41",
+      "ko": "짧아요",
+      "rom": "jjalbayo",
+      "en": "to be short",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_42",
+      "ko": "무거워요",
+      "rom": "mugeowoyo",
+      "en": "to be heavy",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_43",
+      "ko": "가벼워요",
+      "rom": "gabyeowoyo",
+      "en": "to be light (weight)",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_44",
+      "ko": "어때요",
+      "rom": "eottaeyo",
+      "en": "how is it?",
+      "pos": "adjective",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_45",
+      "ko": "골라요",
+      "rom": "gollayo",
+      "en": "to choose",
+      "pos": "verb",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_46",
+      "ko": "세일",
+      "rom": "seil",
+      "en": "sale",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_47",
+      "ko": "인기",
+      "rom": "ingi",
+      "en": "popularity",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    },
+    {
+      "id": "w04_48",
+      "ko": "무료",
+      "rom": "muryo",
+      "en": "free of charge",
+      "pos": "noun",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s04_1_1",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1",
+      "korean": "이 옷은 아주 비싸요.",
+      "romanization": "i oseun aju bissayo.",
+      "english": "These clothes are very expensive.",
+      "literal": "As for these clothes, they are very expensive.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "옷은",
+          "rom": "oseun",
+          "en": "clothes (topic)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "비싸요",
+          "rom": "bissayo",
+          "en": "are expensive"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_01",
+        "w04_18"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "These clothes are very cheap.",
+        "These clothes are not expensive.",
+        "That hat is very expensive."
+      ],
+      "notes": "이 goes directly before the noun; the topic marker goes after the whole noun."
+    },
+    {
+      "id": "s04_1_2",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1",
+      "korean": "그 가방이 더 예뻐요.",
+      "romanization": "geu gabangi deo yeppeoyo.",
+      "english": "That bag is prettier.",
+      "literal": "That bag is more pretty.",
+      "gloss": [
+        {
+          "ko": "그",
+          "rom": "geu",
+          "en": "that"
+        },
+        {
+          "ko": "가방이",
+          "rom": "gabangi",
+          "en": "bag (subject)"
+        },
+        {
+          "ko": "더",
+          "rom": "deo",
+          "en": "more"
+        },
+        {
+          "ko": "예뻐요",
+          "rom": "yeppeoyo",
+          "en": "is pretty"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g46"
+      ],
+      "wordIds": [
+        "w04_05",
+        "w04_37"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "That bag is the prettiest.",
+        "This bag is prettier.",
+        "That bag is heavier."
+      ],
+      "notes": "더 compares two things; 제일 compares three or more."
+    },
+    {
+      "id": "s04_1_3",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1",
+      "korean": "저 신발은 얼마예요?",
+      "romanization": "jeo sinbareun eolmayeyo?",
+      "english": "How much are those shoes over there?",
+      "literal": "As for those shoes over there, how much are they?",
+      "gloss": [
+        {
+          "ko": "저",
+          "rom": "jeo",
+          "en": "that over there"
+        },
+        {
+          "ko": "신발은",
+          "rom": "sinbareun",
+          "en": "shoes (topic)"
+        },
+        {
+          "ko": "얼마",
+          "rom": "eolma",
+          "en": "how much"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "are (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g12"
+      ],
+      "wordIds": [
+        "w04_04",
+        "w04_24"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "How much is this hat?",
+        "Where are those shoes?",
+        "How many shoes are there?"
+      ],
+      "notes": "저 is used for something far from both speaker and listener."
+    },
+    {
+      "id": "s04_1_4",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1",
+      "korean": "이 모자 어때요?",
+      "romanization": "i moja eottaeyo?",
+      "english": "How is this hat?",
+      "literal": "This hat, how is it?",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "모자",
+          "rom": "moja",
+          "en": "hat"
+        },
+        {
+          "ko": "어때요",
+          "rom": "eottaeyo",
+          "en": "how is it?"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_06",
+        "w04_44"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "How much is this hat?",
+        "Where is this hat?",
+        "Is this hat expensive?"
+      ],
+      "notes": "어때요? is the natural way to ask someone's opinion in a shop."
+    },
+    {
+      "id": "s04_1_5",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1",
+      "korean": "양말은 천 원이에요.",
+      "romanization": "yangmareun cheon won-ieyo.",
+      "english": "The socks are 1,000 won.",
+      "literal": "As for the socks, it is one thousand won.",
+      "gloss": [
+        {
+          "ko": "양말은",
+          "rom": "yangmareun",
+          "en": "socks (topic)"
+        },
+        {
+          "ko": "천 원",
+          "rom": "cheon won",
+          "en": "1,000 won"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g12"
+      ],
+      "wordIds": [
+        "w04_07",
+        "w04_16"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "The socks are 10,000 won.",
+        "The socks are 3,000 won.",
+        "The socks are very expensive."
+      ],
+      "notes": "천 is the Sino number 1,000; do not use the native number here."
+    },
+    {
+      "id": "s04_1_6",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_1",
+      "korean": "그 가게에 지갑이 많아요.",
+      "romanization": "geu gagee jigabi manayo.",
+      "english": "That shop has a lot of wallets.",
+      "literal": "In that shop, wallets are many.",
+      "gloss": [
+        {
+          "ko": "그",
+          "rom": "geu",
+          "en": "that"
+        },
+        {
+          "ko": "가게에",
+          "rom": "gagee",
+          "en": "in the shop"
+        },
+        {
+          "ko": "지갑이",
+          "rom": "jigabi",
+          "en": "wallets (subject)"
+        },
+        {
+          "ko": "많아요",
+          "rom": "manayo",
+          "en": "are many"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_13",
+        "w04_10",
+        "w04_34"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "That shop has few wallets.",
+        "That shop has a lot of hats.",
+        "That shop has no wallets."
+      ],
+      "notes": "많아요 describes quantity; it is the opposite of 적어요 (few)."
+    },
+    {
+      "id": "s04_2_1",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2",
+      "korean": "이 옷은 얼마예요?",
+      "romanization": "i oseun eolmayeyo?",
+      "english": "How much are these clothes?",
+      "literal": "As for these clothes, how much are they?",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "옷은",
+          "rom": "oseun",
+          "en": "clothes (topic)"
+        },
+        {
+          "ko": "얼마",
+          "rom": "eolma",
+          "en": "how much"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "are (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g12"
+      ],
+      "wordIds": [
+        "w04_01",
+        "w04_24"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "How much is this bag?",
+        "How many clothes are there?",
+        "Where are these clothes?"
+      ],
+      "notes": "얼마 + 예요 is the all-purpose price question."
+    },
+    {
+      "id": "s04_2_2",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2",
+      "korean": "이 가방은 삼천 원이에요.",
+      "romanization": "i gabangeun samcheon won-ieyo.",
+      "english": "This bag is 3,000 won.",
+      "literal": "As for this bag, it is three thousand won.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "가방은",
+          "rom": "gabangeun",
+          "en": "bag (topic)"
+        },
+        {
+          "ko": "삼천 원",
+          "rom": "samcheon won",
+          "en": "3,000 won"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g12"
+      ],
+      "wordIds": [
+        "w04_05",
+        "w04_16"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "This bag is 300 won.",
+        "This bag is 30,000 won.",
+        "This bag is free."
+      ],
+      "notes": "삼 is the Sino number 3, used for money — not the native 셋."
+    },
+    {
+      "id": "s04_2_3",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2",
+      "korean": "이 가게는 현금만 받아요.",
+      "romanization": "i gageneun hyeongeumman badayo.",
+      "english": "This shop only takes cash.",
+      "literal": "As for this shop, only cash it receives.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "가게는",
+          "rom": "gageneun",
+          "en": "shop (topic)"
+        },
+        {
+          "ko": "현금만",
+          "rom": "hyeongeumman",
+          "en": "only cash"
+        },
+        {
+          "ko": "받아요",
+          "rom": "badayo",
+          "en": "receives"
+        }
+      ],
+      "grammarIds": [
+        "g25",
+        "g13"
+      ],
+      "wordIds": [
+        "w04_13",
+        "w04_21"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "This shop only takes cards.",
+        "This shop doesn't take cash.",
+        "This shop takes cash and cards."
+      ],
+      "notes": "만 replaces 를, so it is 현금만 받아요, never 현금을만."
+    },
+    {
+      "id": "s04_2_4",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2",
+      "korean": "그 모자는 너무 비싸요.",
+      "romanization": "geu mojaneun neomu bissayo.",
+      "english": "That hat is too expensive.",
+      "literal": "As for that hat, it is too expensive.",
+      "gloss": [
+        {
+          "ko": "그",
+          "rom": "geu",
+          "en": "that"
+        },
+        {
+          "ko": "모자는",
+          "rom": "mojaneun",
+          "en": "hat (topic)"
+        },
+        {
+          "ko": "너무",
+          "rom": "neomu",
+          "en": "too"
+        },
+        {
+          "ko": "비싸요",
+          "rom": "bissayo",
+          "en": "is expensive"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_06",
+        "w04_18"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "That hat is very cheap.",
+        "That hat is not expensive.",
+        "That bag is too expensive."
+      ],
+      "notes": "너무 is 'too much'; 아주 is simply 'very'."
+    },
+    {
+      "id": "s04_2_5",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2",
+      "korean": "이 양말이 더 싸요.",
+      "romanization": "i yangmari deo ssayo.",
+      "english": "These socks are cheaper.",
+      "literal": "These socks are more cheap.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "these"
+        },
+        {
+          "ko": "양말이",
+          "rom": "yangmari",
+          "en": "socks (subject)"
+        },
+        {
+          "ko": "더",
+          "rom": "deo",
+          "en": "more"
+        },
+        {
+          "ko": "싸요",
+          "rom": "ssayo",
+          "en": "are cheap"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g46"
+      ],
+      "wordIds": [
+        "w04_07",
+        "w04_19"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "These socks are more expensive.",
+        "These socks are the cheapest.",
+        "These socks are very cheap."
+      ],
+      "notes": "더 sits right before the adjective; the ending does not change: 더 싸요."
+    },
+    {
+      "id": "s04_2_6",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_2",
+      "korean": "저거는 제일 예뻐요.",
+      "romanization": "jeogeneun jeil yeppeoyo.",
+      "english": "That one over there is the prettiest.",
+      "literal": "As for that one over there, it is the most pretty.",
+      "gloss": [
+        {
+          "ko": "저거는",
+          "rom": "jeogeneun",
+          "en": "that one over there (topic)"
+        },
+        {
+          "ko": "제일",
+          "rom": "jeil",
+          "en": "the most"
+        },
+        {
+          "ko": "예뻐요",
+          "rom": "yeppeoyo",
+          "en": "is pretty"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g46"
+      ],
+      "wordIds": [
+        "w04_27",
+        "w04_37"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "That one over there is prettier.",
+        "This one is the prettiest.",
+        "That one over there is the cheapest."
+      ],
+      "notes": "제일 compares three or more; 더 compares only two."
+    },
+    {
+      "id": "s04_3_1",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3",
+      "korean": "그 옷가게에 사람이 아주 많아요.",
+      "romanization": "geu otgagee sarami aju manayo.",
+      "english": "That clothes shop has a lot of people.",
+      "literal": "In that clothes shop, people are very many.",
+      "gloss": [
+        {
+          "ko": "그",
+          "rom": "geu",
+          "en": "that"
+        },
+        {
+          "ko": "옷가게에",
+          "rom": "otgagee",
+          "en": "in the clothes shop"
+        },
+        {
+          "ko": "사람이",
+          "rom": "sarami",
+          "en": "people (subject)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "많아요",
+          "rom": "manayo",
+          "en": "are many"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_14",
+        "w04_34"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "That clothes shop has few people.",
+        "That clothes shop is very expensive.",
+        "This clothes shop has a lot of people."
+      ],
+      "notes": "옷 + 가게 = clothes shop; the same pattern gives 커피숍, 빵집."
+    },
+    {
+      "id": "s04_3_2",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3",
+      "korean": "이 가게는 양말만 팔아요.",
+      "romanization": "i gageneun yangmalman parayo.",
+      "english": "This shop only sells socks.",
+      "literal": "As for this shop, only socks it sells.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "가게는",
+          "rom": "gageneun",
+          "en": "shop (topic)"
+        },
+        {
+          "ko": "양말만",
+          "rom": "yangmalman",
+          "en": "only socks"
+        },
+        {
+          "ko": "팔아요",
+          "rom": "parayo",
+          "en": "sells"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g25"
+      ],
+      "wordIds": [
+        "w04_13",
+        "w04_07",
+        "w04_23"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "This shop only sells hats.",
+        "This shop doesn't sell socks.",
+        "This shop sells socks and hats."
+      ],
+      "notes": "양말 ends in ㄹ, but 만 always attaches with no change."
+    },
+    {
+      "id": "s04_3_3",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3",
+      "korean": "저는 이 바지를 입어요.",
+      "romanization": "jeoneun i bajireul ibeoyo.",
+      "english": "I wear these trousers.",
+      "literal": "As for me, these trousers wear.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "these"
+        },
+        {
+          "ko": "바지를",
+          "rom": "bajireul",
+          "en": "trousers (object)"
+        },
+        {
+          "ko": "입어요",
+          "rom": "ibeoyo",
+          "en": "wear"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_02",
+        "w04_30"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I wear this shirt.",
+        "I don't wear these trousers.",
+        "I buy these trousers."
+      ],
+      "notes": "입어요 is for clothes on your body; 신어요 is for shoes."
+    },
+    {
+      "id": "s04_3_4",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3",
+      "korean": "이 옷은 사이즈가 작아요.",
+      "romanization": "i oseun saijeuga jagayo.",
+      "english": "These clothes are a small size.",
+      "literal": "As for these clothes, the size is small.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "옷은",
+          "rom": "oseun",
+          "en": "clothes (topic)"
+        },
+        {
+          "ko": "사이즈가",
+          "rom": "saijeuga",
+          "en": "size (subject)"
+        },
+        {
+          "ko": "작아요",
+          "rom": "jagayo",
+          "en": "is small"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_01",
+        "w04_28",
+        "w04_36"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "These clothes are a big size.",
+        "These clothes are the wrong colour.",
+        "These clothes are very cheap."
+      ],
+      "notes": "Korean often names the body part or quality as the subject: 사이즈가 작아요."
+    },
+    {
+      "id": "s04_3_5",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3",
+      "korean": "저는 이 지갑을 사요.",
+      "romanization": "jeoneun i jigabeul sayo.",
+      "english": "I'm buying this wallet.",
+      "literal": "As for me, this wallet buy.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "지갑을",
+          "rom": "jigabeul",
+          "en": "wallet (object)"
+        },
+        {
+          "ko": "사요",
+          "rom": "sayo",
+          "en": "buy"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_10",
+        "w04_22"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I'm buying this bag.",
+        "I'm not buying this wallet.",
+        "I'm selling this wallet."
+      ],
+      "notes": "사요 is 'buy'; 팔아요 is 'sell' — easy to mix up."
+    },
+    {
+      "id": "s04_3_6",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_3",
+      "korean": "저 신발은 너무 커요.",
+      "romanization": "jeo sinbareun neomu keoyo.",
+      "english": "Those shoes over there are too big.",
+      "literal": "As for those shoes over there, they are too big.",
+      "gloss": [
+        {
+          "ko": "저",
+          "rom": "jeo",
+          "en": "those over there"
+        },
+        {
+          "ko": "신발은",
+          "rom": "sinbareun",
+          "en": "shoes (topic)"
+        },
+        {
+          "ko": "너무",
+          "rom": "neomu",
+          "en": "too"
+        },
+        {
+          "ko": "커요",
+          "rom": "keoyo",
+          "en": "are big"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_04",
+        "w04_35"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Those shoes are too small.",
+        "These shoes are too big.",
+        "Those shoes are very cheap."
+      ],
+      "notes": "크다 becomes 커요; the ㅡ drops before 어요."
+    },
+    {
+      "id": "s04_4_1",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4",
+      "korean": "이 옷은 아주 편해요.",
+      "romanization": "i oseun aju pyeonhaeyo.",
+      "english": "These clothes are very comfortable.",
+      "literal": "As for these clothes, they are very comfortable.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "these"
+        },
+        {
+          "ko": "옷은",
+          "rom": "oseun",
+          "en": "clothes (topic)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "편해요",
+          "rom": "pyeonhaeyo",
+          "en": "are comfortable"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_01",
+        "w04_39"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "These clothes are very uncomfortable.",
+        "These clothes are very pretty.",
+        "That hat is very comfortable."
+      ],
+      "notes": "편하다 → 편해요, like all 하다 adjectives."
+    },
+    {
+      "id": "s04_4_2",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4",
+      "korean": "그 바지는 조금 길어요.",
+      "romanization": "geu bajineun jogeum gireoyo.",
+      "english": "Those trousers are a little long.",
+      "literal": "As for those trousers, they are a little long.",
+      "gloss": [
+        {
+          "ko": "그",
+          "rom": "geu",
+          "en": "those"
+        },
+        {
+          "ko": "바지는",
+          "rom": "bajineun",
+          "en": "trousers (topic)"
+        },
+        {
+          "ko": "조금",
+          "rom": "jogeum",
+          "en": "a little"
+        },
+        {
+          "ko": "길어요",
+          "rom": "gireoyo",
+          "en": "are long"
+        }
+      ],
+      "grammarIds": [
+        "g13"
+      ],
+      "wordIds": [
+        "w04_02",
+        "w04_40"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Those trousers are a little short.",
+        "These trousers are a little long.",
+        "Those trousers are very expensive."
+      ],
+      "notes": "길어요 (long) and 짧아요 (short) are opposites."
+    },
+    {
+      "id": "s04_4_3",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4",
+      "korean": "저 가방은 얼마예요?",
+      "romanization": "jeo gabangeun eolmayeyo?",
+      "english": "How much is that bag over there?",
+      "literal": "As for that bag over there, how much is it?",
+      "gloss": [
+        {
+          "ko": "저",
+          "rom": "jeo",
+          "en": "that over there"
+        },
+        {
+          "ko": "가방은",
+          "rom": "gabangeun",
+          "en": "bag (topic)"
+        },
+        {
+          "ko": "얼마",
+          "rom": "eolma",
+          "en": "how much"
+        },
+        {
+          "ko": "예요",
+          "rom": "yeyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g12"
+      ],
+      "wordIds": [
+        "w04_05",
+        "w04_24"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "How much is this bag?",
+        "Where is that bag?",
+        "How many bags are there?"
+      ],
+      "notes": "You can also just point and say 저거 얼마예요?"
+    },
+    {
+      "id": "s04_4_4",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4",
+      "korean": "이 우산은 오천 원이에요.",
+      "romanization": "i usaneun ocheon won-ieyo.",
+      "english": "This umbrella is 5,000 won.",
+      "literal": "As for this umbrella, it is five thousand won.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "우산은",
+          "rom": "usaneun",
+          "en": "umbrella (topic)"
+        },
+        {
+          "ko": "오천 원",
+          "rom": "ocheon won",
+          "en": "5,000 won"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "is (polite)"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g12"
+      ],
+      "wordIds": [
+        "w04_08",
+        "w04_16"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "This umbrella is 500 won.",
+        "This umbrella is 50,000 won.",
+        "This umbrella is very cheap."
+      ],
+      "notes": "오 is 5 in Sino numbers; the native number 다섯 is not used for money."
+    },
+    {
+      "id": "s04_4_5",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4",
+      "korean": "그 티셔츠가 제일 멋있어요.",
+      "romanization": "geu tisyeocheuga jeil meosisseoyo.",
+      "english": "That T-shirt is the coolest.",
+      "literal": "That T-shirt is the most cool.",
+      "gloss": [
+        {
+          "ko": "그",
+          "rom": "geu",
+          "en": "that"
+        },
+        {
+          "ko": "티셔츠가",
+          "rom": "tisyeocheuga",
+          "en": "T-shirt (subject)"
+        },
+        {
+          "ko": "제일",
+          "rom": "jeil",
+          "en": "the most"
+        },
+        {
+          "ko": "멋있어요",
+          "rom": "meosisseoyo",
+          "en": "is cool"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g46"
+      ],
+      "wordIds": [
+        "w04_03",
+        "w04_38"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "That T-shirt is cooler.",
+        "That T-shirt is the cheapest.",
+        "This T-shirt is the coolest."
+      ],
+      "notes": "제일 comes from 第一 ('number one') and works like 'the most'."
+    },
+    {
+      "id": "s04_4_6",
+      "unitId": "u04_shopping",
+      "lessonId": "l04_4",
+      "korean": "저는 이 모자만 사요.",
+      "romanization": "jeoneun i mojaman sayo.",
+      "english": "I'm only buying this hat.",
+      "literal": "As for me, only this hat buy.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "모자만",
+          "rom": "mojaman",
+          "en": "only a hat"
+        },
+        {
+          "ko": "사요",
+          "rom": "sayo",
+          "en": "buy"
+        }
+      ],
+      "grammarIds": [
+        "g13",
+        "g25"
+      ],
+      "wordIds": [
+        "w04_06",
+        "w04_22"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I'm only buying this bag.",
+        "I'm not buying this hat.",
+        "I'm buying this hat and a bag."
+      ],
+      "notes": "만 attaches after the noun and before the verb."
+    }
+  ],
+  "dialogue": {
+    "id": "d04",
+    "unitId": "u04_shopping",
+    "title": "At the scarf stall",
+    "setting": "A customer is looking at scarves at a small stall in a market.",
+    "lines": [
+      {
+        "id": "d04_1",
+        "speaker": "A",
+        "ko": "저기요, 이 목도리 얼마예요?",
+        "rom": "jeogiyo. i mokdori eolmayeyo?",
+        "en": "Excuse me, how much is this scarf?"
+      },
+      {
+        "id": "d04_2",
+        "speaker": "B",
+        "ko": "그 목도리는 팔천 원이에요.",
+        "rom": "geu mokdorineun palcheon won-ieyo.",
+        "en": "That scarf is 8,000 won."
+      },
+      {
+        "id": "d04_3",
+        "speaker": "A",
+        "ko": "조금 비싸요. 이거는 얼마예요?",
+        "rom": "jogeum bissayo. igeoneun eolmayeyo?",
+        "en": "It's a little expensive. How much is this one?"
+      },
+      {
+        "id": "d04_4",
+        "speaker": "B",
+        "ko": "이거는 오천 원이에요.",
+        "rom": "igeoneun ocheon won-ieyo.",
+        "en": "This one is 5,000 won."
+      },
+      {
+        "id": "d04_5",
+        "speaker": "A",
+        "ko": "그거는 너무 커요. 저거는 얼마예요?",
+        "rom": "geugeoneun neomu keoyo. jeogeneun eolmayeyo?",
+        "en": "That one is too big. How much is that one over there?"
+      },
+      {
+        "id": "d04_6",
+        "speaker": "B",
+        "ko": "저거는 구천 원이에요. 아주 따뜻해요.",
+        "rom": "jeogeneun gucheon won-ieyo. aju ttatteuthaeyo.",
+        "en": "That one is 9,000 won. It's very warm."
+      },
+      {
+        "id": "d04_7",
+        "speaker": "A",
+        "ko": "좋아요. 저거 주세요.",
+        "rom": "joayo. jeogeo juseyo.",
+        "en": "Good. I'll take that one."
+      },
+      {
+        "id": "d04_8",
+        "speaker": "B",
+        "ko": "네, 여기 봉투예요. 거스름돈도 여기 있어요.",
+        "rom": "ne. yeogi bongtuyeyo. geoseureumdondo yeogi isseoyo.",
+        "en": "Yes, here is a bag. Your change is here too."
+      },
+      {
+        "id": "d04_9",
+        "speaker": "A",
+        "ko": "감사해요. 안녕히 계세요.",
+        "rom": "gamsahaeyo. annyeonghi gyeseyo.",
+        "en": "Thank you. Goodbye."
+      },
+      {
+        "id": "d04_10",
+        "speaker": "B",
+        "ko": "네, 안녕히 가세요.",
+        "rom": "ne. annyeonghi gaseyo.",
+        "en": "Yes, goodbye."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r04",
+    "unitId": "u04_shopping",
+    "title": "A sale at the department store",
+    "ko": "오늘은 백화점에 가요. 백화점은 아주 커요. 오늘은 세일이에요. 그래서 사람이 아주 많아요. 저는 겨울 옷을 사요. 이 목도리는 조금 짧아요. 저는 긴 목도리를 골라요. 그 목도리는 인기가 많아요. 색깔도 아주 예뻐요. 값은 팔천 원이에요. 장갑은 삼천 원이에요. 저는 안경도 사요. 안경은 아주 가벼워요. 제 가방은 아주 무거워요. 제 지갑에 돈이 많아요. 카드로 계산해요. 주차는 무료예요.",
+    "en": "Today I go to a department store. The department store is very big. Today there is a sale. So there are a lot of people. I buy winter clothes. This scarf is a little short. I choose a long scarf. That scarf is popular. The colour is very pretty too. The price is 8,000 won. The gloves are 3,000 won. I buy glasses too. The glasses are very light. My bag is very heavy. There is a lot of money in my wallet. I pay by card. Parking is free.",
+    "questions": [
+      {
+        "q": "Where does the writer go today?",
+        "options": [
+          "To a department store",
+          "To a market",
+          "To a restaurant",
+          "To school"
+        ],
+        "answer": 0,
+        "why": "오늘은 백화점에 가요 = Today I go to a department store."
+      },
+      {
+        "q": "Which scarf does the writer choose?",
+        "options": [
+          "The long one",
+          "The short one",
+          "The cheapest one",
+          "The red one"
+        ],
+        "answer": 0,
+        "why": "이 목도리는 조금 짧아요. 저는 긴 목도리를 골라요 = This scarf is short, so I choose a long one."
+      },
+      {
+        "q": "How does the writer pay?",
+        "options": [
+          "By card",
+          "In cash",
+          "With a coupon",
+          "Online"
+        ],
+        "answer": 0,
+        "why": "카드로 계산해요 = I pay by card."
+      }
+    ]
+  }
+}

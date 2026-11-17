@@ -111,6 +111,19 @@ export function refresh() {
 // ---------- global delegation ----------
 function bindGlobal() {
   document.addEventListener('click', (e) => {
+    const clip = e.target.closest('[data-clip]');
+    if (clip) {
+      e.preventDefault();
+      const kind = clip.dataset.clipKind || 's';
+      const slow = clip.dataset.slow === '1';
+      audio.playClip(slow && kind === 's' ? 's-slow' : kind, clip.dataset.clip, {
+        slow,
+        fallbackText: clip.dataset.say || '',
+      });
+      clip.classList.add('is-speaking');
+      setTimeout(() => clip.classList.remove('is-speaking'), 700);
+      return;
+    }
     const say = e.target.closest('[data-say]');
     if (say) {
       e.preventDefault();

@@ -4,6 +4,8 @@ let ctx = null;
 let voices = [];
 let voiceReady = false;
 let currentUtter = null;
+let currentAudio = null;
+const CLIP_BASE = 'app/audio';
 
 function loadVoices() {
   if (!('speechSynthesis' in window)) return;
@@ -56,12 +58,70 @@ export function speak(text, opts = {}) {
 }
 
 export function stopSpeaking() {
+  if (currentAudio) {
+    try {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    } catch {
+      /* ignore */
+    }
+    currentAudio = null;
+  }
   if (!supported) return;
   try {
     window.speechSynthesis.cancel();
   } catch {
     /* ignore */
   }
+}
+
+// ---------- bundled neural audio ----------
+/**
+ * Play a pre-generated clip. kind: 's' sentence, 's-slow', 'w' word, 'd' dialogue, 'g' grammar example.
+ * Falls back to speechSynthesis with the same text if the file is missing.
+ */
+export function playClip(kind, id, opts = {}) {
+  if (!id) {
+    opts.onend?.();
+    return false;
+  }
+  const dir = kind.startsWith('s') ? 's' : kind;
+  const suffix = kind === 's-slow' ? '-slow' : '';
+  const url = `${CLIP_BASE}/${dir}/${id}${suffix}.mp3`;
+  stopSpeaking();
+  try {
+    const a = new Audio(url);
+    currentAudio = a;
+    a.playbackRate = opts.rate || (kind === 's-slow' ? 0.9 : 1);
+    a.onended = () => {
+      if (currentAudio === a) currentAudio = null;
+      opts.onend?.();
+    };
+    a.onerror = () => {
+      if (currentAudio === a) currentAudio = null;
+      if (opts.fallbackText) speak(opts.fallbackText, { rate: kind === 's-slow' ? 0.7 : 0.86, onend: opts.onend });
+      else opts.onend?.();
+    };
+    const p = a.play();
+    if (p && p.catch) p.catch(() => {});
+    return true;
+  } catch {
+    if (opts.fallbackText) speak(opts.fallbackText, { onend: opts.onend });
+    else opts.onend?.();
+    return false;
+  }
+}
+
+/** Play the clip that belongs to a task object. */
+export function playTask(ex, opts = {}) {
+  if (!ex) return false;
+  if (ex.clipId && ex.clipKind) {
+    const kind = opts.slow && ex.clipKind === 's' ? 's-slow' : ex.clipKind;
+    const text = ex.korean || ex.audioText || '';
+    return playClip(kind, ex.clipId, { ...opts, fallbackText: text });
+  }
+  if (ex.korean) return speak(ex.korean, opts);
+  return false;
 }
 
 export function hasKoreanVoice() {
@@ -168,4 +228,4 @@ export function unlock() {
   ac();
 }
 
-export default { speak, stopSpeaking, sfx, setEnabled, isEnabled, supported, unlock, hasKoreanVoice };
+export default { speak, stopSpeaking, sfx, setEnabled, isEnabled, supported, unlock, hasKoreanVoice, playClip, playTask };

@@ -1,0 +1,1880 @@
+{
+  "unit": {
+    "id": "u07_family",
+    "order": 7,
+    "title": "Family & people",
+    "ko": "가족",
+    "canDo": [
+      "Talk about your family members",
+      "Say whose thing something is",
+      "Give someone's age",
+      "Speak politely about and to older people",
+      "Say who you give something to and get something from"
+    ],
+    "grammarIds": [
+      "g22",
+      "g23",
+      "g24",
+      "g47"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l07_1",
+      "unitId": "u07_family",
+      "order": 1,
+      "kind": "vocab",
+      "title": "My family",
+      "ko": "우리 가족",
+      "goal": "Name 12 family members and say whose they are",
+      "grammarIds": [
+        "g22"
+      ],
+      "wordIds": [
+        "w07_01",
+        "w07_02",
+        "w07_03",
+        "w07_04",
+        "w07_05",
+        "w07_06",
+        "w07_07",
+        "w07_08",
+        "w07_09",
+        "w07_10",
+        "w07_11",
+        "w07_12"
+      ],
+      "sentenceIds": [
+        "s07_1_1",
+        "s07_1_2",
+        "s07_1_3",
+        "s07_1_4",
+        "s07_1_5",
+        "s07_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l07_2",
+      "unitId": "u07_family",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Polite about elders",
+      "ko": "어머니께서는",
+      "goal": "Use -시- and 께서 when the subject is an older person",
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_13",
+        "w07_14",
+        "w07_15",
+        "w07_16",
+        "w07_17",
+        "w07_18",
+        "w07_19",
+        "w07_20",
+        "w07_21",
+        "w07_22",
+        "w07_23",
+        "w07_24"
+      ],
+      "sentenceIds": [
+        "s07_2_1",
+        "s07_2_2",
+        "s07_2_3",
+        "s07_2_4",
+        "s07_2_5",
+        "s07_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l07_3",
+      "unitId": "u07_family",
+      "order": 3,
+      "kind": "listening",
+      "title": "Giving and receiving",
+      "ko": "할머니께 선물을 드려요",
+      "goal": "Say who you give something to and who you get something from",
+      "grammarIds": [
+        "g47"
+      ],
+      "wordIds": [
+        "w07_25",
+        "w07_26",
+        "w07_27",
+        "w07_28",
+        "w07_29",
+        "w07_30",
+        "w07_31",
+        "w07_32",
+        "w07_33",
+        "w07_34",
+        "w07_35",
+        "w07_36"
+      ],
+      "sentenceIds": [
+        "s07_3_1",
+        "s07_3_2",
+        "s07_3_3",
+        "s07_3_4",
+        "s07_3_5",
+        "s07_3_6"
+      ],
+      "dialogueId": "d07",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l07_4",
+      "unitId": "u07_family",
+      "order": 4,
+      "kind": "reading",
+      "title": "This is my family",
+      "ko": "우리 가족 사진",
+      "goal": "Read about a family and work out relationships and ages",
+      "grammarIds": [
+        "g22",
+        "g23",
+        "g24"
+      ],
+      "wordIds": [
+        "w07_37",
+        "w07_38",
+        "w07_39",
+        "w07_40",
+        "w07_41",
+        "w07_42",
+        "w07_43",
+        "w07_44",
+        "w07_45",
+        "w07_46",
+        "w07_47",
+        "w07_48"
+      ],
+      "sentenceIds": [
+        "s07_4_1",
+        "s07_4_2",
+        "s07_4_3",
+        "s07_4_4",
+        "s07_4_5",
+        "s07_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r07",
+      "minutes": 6
+    },
+    {
+      "id": "l07_5",
+      "unitId": "u07_family",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: meet the family",
+      "ko": "가족 소개",
+      "goal": "Use the whole unit without hints to introduce your family",
+      "grammarIds": [
+        "g22",
+        "g23",
+        "g24",
+        "g47"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g22",
+      "unitId": "u07_family",
+      "order": 1,
+      "label": "possessive",
+      "ko": "의",
+      "pattern": "N + 의",
+      "explanation": "의 marks the owner: 저의 어머니 = my mother. In speech it often sounds like 에 and is frequently dropped: 우리 가족 사진.",
+      "examples": [
+        {
+          "ko": "이분은 저의 어머니예요.",
+          "en": "This person is my mother."
+        },
+        {
+          "ko": "이 사진은 우리 가족의 사진이에요.",
+          "en": "This photo is a photo of my family."
+        }
+      ],
+      "mistake": "저에 어머니 ✗ → 저의 어머니 ✓"
+    },
+    {
+      "id": "g23",
+      "unitId": "u07_family",
+      "order": 2,
+      "label": "honorific ending",
+      "ko": "-(으)시-",
+      "pattern": "V-(으)시-",
+      "explanation": "Add -시- before the ending when the subject is older or a stranger: 가다 → 가세요, 있다 → 있으세요, 먹다 → 드세요. The subject marker becomes 께서.",
+      "examples": [
+        {
+          "ko": "어머니께서는 댁에 계세요.",
+          "en": "My mother is at home."
+        },
+        {
+          "ko": "할아버지께서는 일찍 주무세요.",
+          "en": "Grandfather goes to bed early."
+        }
+      ],
+      "mistake": "어머니가 계세요 ✗ → 어머니께서 계세요 ✓"
+    },
+    {
+      "id": "g24",
+      "unitId": "u07_family",
+      "order": 3,
+      "label": "age",
+      "ko": "살",
+      "pattern": "N + 살",
+      "explanation": "Age uses the native numbers plus 살: 열 살, 스무 살, 서른 살. For an older person you can also say 연세가 많으세요.",
+      "examples": [
+        {
+          "ko": "제 나이는 스무 살이에요.",
+          "en": "I am twenty years old."
+        },
+        {
+          "ko": "여동생은 몇 살이에요?",
+          "en": "How old is your little sister?"
+        }
+      ],
+      "mistake": "스물 살 ✗ → 스무 살 ✓ (스물 changes before a counter)"
+    },
+    {
+      "id": "g47",
+      "unitId": "u07_family",
+      "order": 4,
+      "label": "to / from a person",
+      "ko": "한테 / 에게",
+      "pattern": "N + 한테/에게",
+      "explanation": "에게 (한테 in speech) marks the person you give to. 한테서/에게서 marks the person you get something from. Use 께 for elders.",
+      "examples": [
+        {
+          "ko": "친구에게 선물을 보내요.",
+          "en": "I send a present to a friend."
+        },
+        {
+          "ko": "할머니께 편지를 드려요.",
+          "en": "I give a letter to my grandmother."
+        }
+      ],
+      "mistake": "할머니한테 편지를 드려요 ✗ → 할머니께 편지를 드려요 ✓"
+    }
+  ],
+  "words": [
+    {
+      "id": "w07_01",
+      "ko": "가족",
+      "rom": "gajok",
+      "en": "family",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_02",
+      "ko": "부모님",
+      "rom": "bumonim",
+      "en": "parents",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_03",
+      "ko": "아버지",
+      "rom": "abeoji",
+      "en": "father",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_04",
+      "ko": "어머니",
+      "rom": "eomeoni",
+      "en": "mother",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_05",
+      "ko": "할아버지",
+      "rom": "harabeoji",
+      "en": "grandfather",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_06",
+      "ko": "할머니",
+      "rom": "halmeoni",
+      "en": "grandmother",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_07",
+      "ko": "남동생",
+      "rom": "namdongsaeng",
+      "en": "younger brother",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_08",
+      "ko": "여동생",
+      "rom": "yeodongsaeng",
+      "en": "younger sister",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_09",
+      "ko": "아들",
+      "rom": "adeul",
+      "en": "son",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_10",
+      "ko": "딸",
+      "rom": "ttal",
+      "en": "daughter",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_11",
+      "ko": "이모",
+      "rom": "imo",
+      "en": "aunt (mother's side)",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_12",
+      "ko": "삼촌",
+      "rom": "samchon",
+      "en": "uncle",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_1"
+    },
+    {
+      "id": "w07_13",
+      "ko": "이분",
+      "rom": "ibun",
+      "en": "this person (polite)",
+      "pos": "pronoun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_14",
+      "ko": "어른",
+      "rom": "eoreun",
+      "en": "adult, elder",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_15",
+      "ko": "손님",
+      "rom": "sonnim",
+      "en": "guest",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_16",
+      "ko": "친척",
+      "rom": "chincheok",
+      "en": "relative",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_17",
+      "ko": "사촌",
+      "rom": "sachon",
+      "en": "cousin",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_18",
+      "ko": "아기",
+      "rom": "agi",
+      "en": "baby",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_19",
+      "ko": "아이",
+      "rom": "ai",
+      "en": "child",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_20",
+      "ko": "댁",
+      "rom": "daek",
+      "en": "home (polite)",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_21",
+      "ko": "성함",
+      "rom": "seongham",
+      "en": "name (polite)",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_22",
+      "ko": "연세",
+      "rom": "yeonse",
+      "en": "age (polite)",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_23",
+      "ko": "남편",
+      "rom": "nampyeon",
+      "en": "husband",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_24",
+      "ko": "아내",
+      "rom": "anae",
+      "en": "wife",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_2"
+    },
+    {
+      "id": "w07_25",
+      "ko": "드려요",
+      "rom": "deuryeoyo",
+      "en": "to give (humble)",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_26",
+      "ko": "받아요",
+      "rom": "badayo",
+      "en": "to receive",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_27",
+      "ko": "줘요",
+      "rom": "jwoyo",
+      "en": "to give",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_28",
+      "ko": "보내요",
+      "rom": "bonaeyo",
+      "en": "to send",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_29",
+      "ko": "전화해요",
+      "rom": "jeonhwahaeyo",
+      "en": "to call (on the phone)",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_30",
+      "ko": "초대장",
+      "rom": "chodaejang",
+      "en": "invitation card",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_31",
+      "ko": "소개해요",
+      "rom": "sogaehaeyo",
+      "en": "to introduce",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_32",
+      "ko": "계세요",
+      "rom": "gyeseyo",
+      "en": "to be, to stay (honorific)",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_33",
+      "ko": "드세요",
+      "rom": "deuseyo",
+      "en": "to eat (honorific)",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_34",
+      "ko": "주무세요",
+      "rom": "jumuseyo",
+      "en": "to sleep (honorific)",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_35",
+      "ko": "편지",
+      "rom": "pyeonji",
+      "en": "letter",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_36",
+      "ko": "선물",
+      "rom": "seonmul",
+      "en": "present, gift",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_3"
+    },
+    {
+      "id": "w07_37",
+      "ko": "나이",
+      "rom": "nai",
+      "en": "age",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_38",
+      "ko": "살",
+      "rom": "sal",
+      "en": "years old (age counter)",
+      "pos": "counter",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_39",
+      "ko": "어려요",
+      "rom": "eoryeoyo",
+      "en": "to be young",
+      "pos": "adjective",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_40",
+      "ko": "귀여워요",
+      "rom": "gwiyeowoyo",
+      "en": "to be cute",
+      "pos": "adjective",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_41",
+      "ko": "모두",
+      "rom": "modu",
+      "en": "all, everyone",
+      "pos": "adverb",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_42",
+      "ko": "키",
+      "rom": "ki",
+      "en": "height",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_43",
+      "ko": "머리",
+      "rom": "meori",
+      "en": "head, hair",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_44",
+      "ko": "얼굴",
+      "rom": "eolgul",
+      "en": "face",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_45",
+      "ko": "웃어요",
+      "rom": "useoyo",
+      "en": "to smile, to laugh",
+      "pos": "verb",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_46",
+      "ko": "행복해요",
+      "rom": "haengbokaeyo",
+      "en": "to be happy",
+      "pos": "adjective",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_47",
+      "ko": "함께",
+      "rom": "hamkke",
+      "en": "together",
+      "pos": "adverb",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    },
+    {
+      "id": "w07_48",
+      "ko": "사진",
+      "rom": "sajin",
+      "en": "photo",
+      "pos": "noun",
+      "unitId": "u07_family",
+      "lessonId": "l07_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s07_1_1",
+      "unitId": "u07_family",
+      "lessonId": "l07_1",
+      "korean": "이분은 저의 어머니예요.",
+      "romanization": "ibuneun jeoui eomeoniyeyo.",
+      "english": "This person is my mother.",
+      "literal": "As for this person, [she] is my mother.",
+      "gloss": [
+        {
+          "ko": "이분은",
+          "rom": "ibuneun",
+          "en": "this person (polite, topic)"
+        },
+        {
+          "ko": "저의",
+          "rom": "jeoui",
+          "en": "my (humble)"
+        },
+        {
+          "ko": "어머니예요",
+          "rom": "eomeoniyeyo",
+          "en": "is mother"
+        }
+      ],
+      "grammarIds": [
+        "g22"
+      ],
+      "wordIds": [
+        "w07_13",
+        "w07_04"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "This person is my grandmother.",
+        "This person is my older sister.",
+        "This person is not my mother."
+      ],
+      "notes": "이분 is the polite 'this person'; 이 사람 is plain."
+    },
+    {
+      "id": "s07_1_2",
+      "unitId": "u07_family",
+      "lessonId": "l07_1",
+      "korean": "할아버지의 성함은 김영수예요.",
+      "romanization": "harabeojiui seongnameun gimyeongsuyeyo.",
+      "english": "My grandfather's name is Kim Yeongsu.",
+      "literal": "As for grandfather's name, it is Kim Yeongsu.",
+      "gloss": [
+        {
+          "ko": "할아버지의",
+          "rom": "harabeojiui",
+          "en": "grandfather's"
+        },
+        {
+          "ko": "성함은",
+          "rom": "seongnameun",
+          "en": "name (polite, topic)"
+        },
+        {
+          "ko": "김영수예요",
+          "rom": "gimyeongsuyeyo",
+          "en": "is Kim Yeongsu"
+        }
+      ],
+      "grammarIds": [
+        "g22"
+      ],
+      "wordIds": [
+        "w07_05",
+        "w07_21"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My grandmother's name is Kim Yeongsu.",
+        "My grandfather's name is Kim Yeongho.",
+        "I don't know my grandfather's name."
+      ],
+      "notes": "Use 성함 instead of 이름 when the person is older than you."
+    },
+    {
+      "id": "s07_1_3",
+      "unitId": "u07_family",
+      "lessonId": "l07_1",
+      "korean": "이 사진은 우리 가족의 사진이에요.",
+      "romanization": "i sajineun uri gajogui sajinieyo.",
+      "english": "This photo is a photo of my family.",
+      "literal": "As for this photo, it is our family's photo.",
+      "gloss": [
+        {
+          "ko": "이",
+          "rom": "i",
+          "en": "this"
+        },
+        {
+          "ko": "사진은",
+          "rom": "sajineun",
+          "en": "photo (topic)"
+        },
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "가족의",
+          "rom": "gajogui",
+          "en": "family's"
+        },
+        {
+          "ko": "사진이에요",
+          "rom": "sajinieyo",
+          "en": "is a photo"
+        }
+      ],
+      "grammarIds": [
+        "g22"
+      ],
+      "wordIds": [
+        "w07_48",
+        "w07_01"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "This photo is a photo of my friend's family.",
+        "This is a photo of my house.",
+        "This photo is not of my family."
+      ],
+      "notes": "우리 가족 is the natural way to say 'my family'."
+    },
+    {
+      "id": "s07_1_4",
+      "unitId": "u07_family",
+      "lessonId": "l07_1",
+      "korean": "부모님 댁은 서울에 있으세요.",
+      "romanization": "bumonim daegeun seoure isseuseyo.",
+      "english": "My parents' home is in Seoul.",
+      "literal": "As for my parents' home, it is in Seoul.",
+      "gloss": [
+        {
+          "ko": "부모님",
+          "rom": "bumonim",
+          "en": "parents (polite)"
+        },
+        {
+          "ko": "댁은",
+          "rom": "daegeun",
+          "en": "home (polite, topic)"
+        },
+        {
+          "ko": "서울에",
+          "rom": "seoure",
+          "en": "in Seoul"
+        },
+        {
+          "ko": "있으세요",
+          "rom": "isseuseyo",
+          "en": "is (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_02",
+        "w07_20"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My parents' home is in Busan.",
+        "My grandparents' home is in Seoul.",
+        "My parents' home is not in Seoul."
+      ],
+      "notes": "계시다 is the honorific of 있다. 댁 is the polite word for someone's home."
+    },
+    {
+      "id": "s07_1_5",
+      "unitId": "u07_family",
+      "lessonId": "l07_1",
+      "korean": "할머니께서는 아직 연세가 많으세요.",
+      "romanization": "halmeonikkeseoneun ajik yeonsega maneuseyo.",
+      "english": "My grandmother is still old.",
+      "literal": "As for grandmother, her age is still much.",
+      "gloss": [
+        {
+          "ko": "할머니께서는",
+          "rom": "halmeonikkeseoneun",
+          "en": "grandmother (honorific, topic)"
+        },
+        {
+          "ko": "아직",
+          "rom": "ajik",
+          "en": "still"
+        },
+        {
+          "ko": "연세가",
+          "rom": "yeonsega",
+          "en": "age (polite, subject)"
+        },
+        {
+          "ko": "많으세요",
+          "rom": "maneuseyo",
+          "en": "is much (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_06",
+        "w07_22"
+      ],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "My grandmother is still young.",
+        "My grandfather is still old.",
+        "My grandmother is no longer old."
+      ],
+      "notes": "For elders, age is 연세 and 'old' is 연세가 많으세요, never 늙었어요."
+    },
+    {
+      "id": "s07_1_6",
+      "unitId": "u07_family",
+      "lessonId": "l07_1",
+      "korean": "삼촌의 아들은 제 사촌이에요.",
+      "romanization": "samchonui adeureun je sachonieyo.",
+      "english": "My uncle's son is my cousin.",
+      "literal": "As for uncle's son, he is my cousin.",
+      "gloss": [
+        {
+          "ko": "삼촌의",
+          "rom": "samchonui",
+          "en": "uncle's"
+        },
+        {
+          "ko": "아들은",
+          "rom": "adeureun",
+          "en": "son (topic)"
+        },
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "사촌이에요",
+          "rom": "sachonieyo",
+          "en": "is a cousin"
+        }
+      ],
+      "grammarIds": [
+        "g22"
+      ],
+      "wordIds": [
+        "w07_12",
+        "w07_09",
+        "w07_17"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My uncle's son is my brother.",
+        "My aunt's son is my cousin.",
+        "My uncle's daughter is my cousin."
+      ],
+      "notes": "제 is the humble form of 저의."
+    },
+    {
+      "id": "s07_2_1",
+      "unitId": "u07_family",
+      "lessonId": "l07_2",
+      "korean": "어머니께서는 지금 댁에 계세요.",
+      "romanization": "eomeonikkeseoneun jigeum daege gyeseyo.",
+      "english": "My mother is at home right now.",
+      "literal": "As for my mother, right now she is at home.",
+      "gloss": [
+        {
+          "ko": "어머니께서는",
+          "rom": "eomeonikkeseoneun",
+          "en": "mother (honorific, topic)"
+        },
+        {
+          "ko": "지금",
+          "rom": "jigeum",
+          "en": "now"
+        },
+        {
+          "ko": "댁에",
+          "rom": "daege",
+          "en": "at home (polite)"
+        },
+        {
+          "ko": "계세요",
+          "rom": "gyeseyo",
+          "en": "is (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_04",
+        "w07_20",
+        "w07_32"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My mother is at work right now.",
+        "My father is at home right now.",
+        "My mother is not at home right now."
+      ],
+      "notes": "께서 replaces 이/가 with an honored subject."
+    },
+    {
+      "id": "s07_2_2",
+      "unitId": "u07_family",
+      "lessonId": "l07_2",
+      "korean": "할아버지께서는 일찍 주무세요.",
+      "romanization": "harabeojikkeseoneun iljjik jumuseyo.",
+      "english": "My grandfather goes to bed early.",
+      "literal": "As for grandfather, early, he sleeps.",
+      "gloss": [
+        {
+          "ko": "할아버지께서는",
+          "rom": "harabeojikkeseoneun",
+          "en": "grandfather (honorific, topic)"
+        },
+        {
+          "ko": "일찍",
+          "rom": "iljjik",
+          "en": "early"
+        },
+        {
+          "ko": "주무세요",
+          "rom": "jumuseyo",
+          "en": "sleeps (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_05",
+        "w07_34"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My grandfather gets up early.",
+        "My grandmother goes to bed early.",
+        "My grandfather goes to bed late."
+      ],
+      "notes": "주무시다 is the honorific of 자다; never say 할아버지가 자요."
+    },
+    {
+      "id": "s07_2_3",
+      "unitId": "u07_family",
+      "lessonId": "l07_2",
+      "korean": "어른께서 먼저 드세요.",
+      "romanization": "eoreunkkeseo meonjeo deuseyo.",
+      "english": "The elders eat first.",
+      "literal": "The elders, first, eat.",
+      "gloss": [
+        {
+          "ko": "어른께서",
+          "rom": "eoreunkkeseo",
+          "en": "the elders (honorific, subject)"
+        },
+        {
+          "ko": "먼저",
+          "rom": "meonjeo",
+          "en": "first"
+        },
+        {
+          "ko": "드세요",
+          "rom": "deuseyo",
+          "en": "eat (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_14",
+        "w07_33"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "The children eat first.",
+        "The elders eat last.",
+        "The elders drink first."
+      ],
+      "notes": "드시다 is the honorific of 먹다. 먼저 = first, before others."
+    },
+    {
+      "id": "s07_2_4",
+      "unitId": "u07_family",
+      "lessonId": "l07_2",
+      "korean": "친척 어른께서 우리 집에 오세요.",
+      "romanization": "chincheok eoreunkkeseo uri jibe oseyo.",
+      "english": "A relative is coming to our house.",
+      "literal": "A relative elder comes to our house.",
+      "gloss": [
+        {
+          "ko": "친척",
+          "rom": "chincheok",
+          "en": "relative"
+        },
+        {
+          "ko": "어른께서",
+          "rom": "eoreunkkeseo",
+          "en": "elder (honorific, subject)"
+        },
+        {
+          "ko": "우리 집에",
+          "rom": "uri jibe",
+          "en": "to our house"
+        },
+        {
+          "ko": "오세요",
+          "rom": "oseyo",
+          "en": "comes (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_16",
+        "w07_14"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "A relative is leaving our house.",
+        "A friend is coming to our house.",
+        "A relative is coming tomorrow."
+      ],
+      "notes": "오세요 here is 오 + 시 + 어요, an honorific statement, not an instruction."
+    },
+    {
+      "id": "s07_2_5",
+      "unitId": "u07_family",
+      "lessonId": "l07_2",
+      "korean": "할아버지 연세가 어떻게 되세요?",
+      "romanization": "harabeoji yeonsega eotteoke doeseyo?",
+      "english": "How old is your grandfather?",
+      "literal": "How does your grandfather's age become?",
+      "gloss": [
+        {
+          "ko": "할아버지",
+          "rom": "harabeoji",
+          "en": "grandfather"
+        },
+        {
+          "ko": "연세가",
+          "rom": "yeonsega",
+          "en": "age (polite, subject)"
+        },
+        {
+          "ko": "어떻게",
+          "rom": "eotteoke",
+          "en": "how"
+        },
+        {
+          "ko": "되세요",
+          "rom": "doeseyo",
+          "en": "is (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_05",
+        "w07_22"
+      ],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "How old is your grandmother?",
+        "Where is your grandfather?",
+        "What is your grandfather's name?"
+      ],
+      "notes": "연세가 어떻게 되세요? is the polite way to ask an older person's age."
+    },
+    {
+      "id": "s07_2_6",
+      "unitId": "u07_family",
+      "lessonId": "l07_2",
+      "korean": "부모님 댁에 손님이 많으세요.",
+      "romanization": "bumonim daege sonnimi maneuseyo.",
+      "english": "There are many guests at my parents' home.",
+      "literal": "At my parents' home, guests are many.",
+      "gloss": [
+        {
+          "ko": "부모님",
+          "rom": "bumonim",
+          "en": "parents"
+        },
+        {
+          "ko": "댁에",
+          "rom": "daege",
+          "en": "at home (polite)"
+        },
+        {
+          "ko": "손님이",
+          "rom": "sonnimi",
+          "en": "guests (subject)"
+        },
+        {
+          "ko": "많으세요",
+          "rom": "maneuseyo",
+          "en": "are many (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_02",
+        "w07_20",
+        "w07_15"
+      ],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "There are many guests at my grandparents' home.",
+        "There are no guests at my parents' home.",
+        "There are many relatives at my parents' home."
+      ],
+      "notes": "With 많다 the honorific -시- can still appear when the subject is respected."
+    },
+    {
+      "id": "s07_3_1",
+      "unitId": "u07_family",
+      "lessonId": "l07_3",
+      "korean": "친구에게 선물을 보내요.",
+      "romanization": "chinguege seonmureul bonaeyo.",
+      "english": "I send a present to a friend.",
+      "literal": "To a friend, a present, I send.",
+      "gloss": [
+        {
+          "ko": "친구에게",
+          "rom": "chinguege",
+          "en": "to a friend"
+        },
+        {
+          "ko": "선물을",
+          "rom": "seonmureul",
+          "en": "present (object)"
+        },
+        {
+          "ko": "보내요",
+          "rom": "bonaeyo",
+          "en": "send"
+        }
+      ],
+      "grammarIds": [
+        "g47"
+      ],
+      "wordIds": [
+        "w07_36",
+        "w07_28"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I receive a present from a friend.",
+        "I send a letter to a friend.",
+        "I send a present to my cousin."
+      ],
+      "notes": "에게 marks the receiver. 한테 means the same in speech."
+    },
+    {
+      "id": "s07_3_2",
+      "unitId": "u07_family",
+      "lessonId": "l07_3",
+      "korean": "할머니께 편지를 드려요.",
+      "romanization": "halmeonikke pyeonjireul deuryeoyo.",
+      "english": "I give a letter to my grandmother.",
+      "literal": "To grandmother, a letter, I give (humbly).",
+      "gloss": [
+        {
+          "ko": "할머니께",
+          "rom": "halmeonikke",
+          "en": "to grandmother (honorific)"
+        },
+        {
+          "ko": "편지를",
+          "rom": "pyeonjireul",
+          "en": "letter (object)"
+        },
+        {
+          "ko": "드려요",
+          "rom": "deuryeoyo",
+          "en": "give (humble)"
+        }
+      ],
+      "grammarIds": [
+        "g47",
+        "g23"
+      ],
+      "wordIds": [
+        "w07_06",
+        "w07_35",
+        "w07_25"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I receive a letter from my grandmother.",
+        "I give a present to my grandmother.",
+        "I give a letter to my grandfather."
+      ],
+      "notes": "께 = 에게 for elders; 드리다 = 주다 when the receiver is respected."
+    },
+    {
+      "id": "s07_3_3",
+      "unitId": "u07_family",
+      "lessonId": "l07_3",
+      "korean": "저는 여동생한테 자주 전화해요.",
+      "romanization": "jeoneun yeodongsaenghante jaju jeonhwahaeyo.",
+      "english": "I call my little sister.",
+      "literal": "As for me, to my little sister, often, I telephone.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "여동생한테",
+          "rom": "yeodongsaenghante",
+          "en": "to my little sister"
+        },
+        {
+          "ko": "자주",
+          "rom": "jaju",
+          "en": "often"
+        },
+        {
+          "ko": "전화해요",
+          "rom": "jeonhwahaeyo",
+          "en": "call"
+        }
+      ],
+      "grammarIds": [
+        "g47"
+      ],
+      "wordIds": [
+        "w07_08",
+        "w07_29"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My little sister calls me.",
+        "I call my younger brother.",
+        "I don't call my little sister."
+      ],
+      "notes": "한테 is the spoken form of 에게."
+    },
+    {
+      "id": "s07_3_4",
+      "unitId": "u07_family",
+      "lessonId": "l07_3",
+      "korean": "남동생에게 책을 줘요.",
+      "romanization": "namdongsaengege chaegeul jwoyo.",
+      "english": "I give a book to my little brother.",
+      "literal": "To my little brother, a book, I give.",
+      "gloss": [
+        {
+          "ko": "남동생에게",
+          "rom": "namdongsaengege",
+          "en": "to my little brother"
+        },
+        {
+          "ko": "책을",
+          "rom": "chaegeul",
+          "en": "book (object)"
+        },
+        {
+          "ko": "줘요",
+          "rom": "jwoyo",
+          "en": "give"
+        }
+      ],
+      "grammarIds": [
+        "g47"
+      ],
+      "wordIds": [
+        "w07_07",
+        "w07_27"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "My little brother gives me a book.",
+        "I give a book to my little sister.",
+        "I receive a book from my little brother."
+      ],
+      "notes": "주다 contracts to 줘요 in the polite present."
+    },
+    {
+      "id": "s07_3_5",
+      "unitId": "u07_family",
+      "lessonId": "l07_3",
+      "korean": "친구한테서 편지를 받아요.",
+      "romanization": "chinguhanteseo pyeonjireul badayo.",
+      "english": "I receive a letter from a friend.",
+      "literal": "From a friend, a letter, I receive.",
+      "gloss": [
+        {
+          "ko": "친구한테서",
+          "rom": "chinguhanteseo",
+          "en": "from a friend"
+        },
+        {
+          "ko": "편지를",
+          "rom": "pyeonjireul",
+          "en": "letter (object)"
+        },
+        {
+          "ko": "받아요",
+          "rom": "badayo",
+          "en": "receive"
+        }
+      ],
+      "grammarIds": [
+        "g47"
+      ],
+      "wordIds": [
+        "w07_35",
+        "w07_26"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I send a letter to a friend.",
+        "I receive a present from a friend.",
+        "I receive a letter from my teacher."
+      ],
+      "notes": "한테서 = from a person. It is the partner of 한테."
+    },
+    {
+      "id": "s07_3_6",
+      "unitId": "u07_family",
+      "lessonId": "l07_3",
+      "korean": "친척에게 초대장을 보내요.",
+      "romanization": "chincheogege chodaejangeul bonaeyo.",
+      "english": "I send an invitation to my relatives.",
+      "literal": "To relatives, an invitation card, I send.",
+      "gloss": [
+        {
+          "ko": "친척에게",
+          "rom": "chincheogege",
+          "en": "to relatives"
+        },
+        {
+          "ko": "초대장을",
+          "rom": "chodaejangeul",
+          "en": "invitation card (object)"
+        },
+        {
+          "ko": "보내요",
+          "rom": "bonaeyo",
+          "en": "send"
+        }
+      ],
+      "grammarIds": [
+        "g47"
+      ],
+      "wordIds": [
+        "w07_16",
+        "w07_30",
+        "w07_28"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I receive an invitation from my relatives.",
+        "I send a letter to my relatives.",
+        "I send an invitation to my friends."
+      ],
+      "notes": "초대장 = invitation card; 초대하다 is the verb 'to invite'."
+    },
+    {
+      "id": "s07_4_1",
+      "unitId": "u07_family",
+      "lessonId": "l07_4",
+      "korean": "제 나이는 스무 살이에요.",
+      "romanization": "je naineun seumu sarieyo.",
+      "english": "I am twenty years old.",
+      "literal": "As for my age, it is twenty years.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "나이는",
+          "rom": "naineun",
+          "en": "age (topic)"
+        },
+        {
+          "ko": "스무 살이에요",
+          "rom": "seumu sarieyo",
+          "en": "is twenty years old"
+        }
+      ],
+      "grammarIds": [
+        "g24"
+      ],
+      "wordIds": [
+        "w07_37",
+        "w07_38"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I am twenty-two years old.",
+        "My sister is twenty years old.",
+        "I am not twenty years old."
+      ],
+      "notes": "스물 becomes 스무 before 살; age always uses native numbers."
+    },
+    {
+      "id": "s07_4_2",
+      "unitId": "u07_family",
+      "lessonId": "l07_4",
+      "korean": "여동생은 몇 살이에요?",
+      "romanization": "yeodongsaengeun myeot sarieyo?",
+      "english": "How old is your little sister?",
+      "literal": "As for your little sister, how many years is she?",
+      "gloss": [
+        {
+          "ko": "여동생은",
+          "rom": "yeodongsaengeun",
+          "en": "little sister (topic)"
+        },
+        {
+          "ko": "몇 살이에요",
+          "rom": "myeot sarieyo",
+          "en": "how old is she"
+        }
+      ],
+      "grammarIds": [
+        "g24"
+      ],
+      "wordIds": [
+        "w07_08",
+        "w07_38"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "How old is your little brother?",
+        "Where is your little sister?",
+        "How tall is your little sister?"
+      ],
+      "notes": "몇 살 = how many years old; 몇 is used with counters."
+    },
+    {
+      "id": "s07_4_3",
+      "unitId": "u07_family",
+      "lessonId": "l07_4",
+      "korean": "우리 아이의 얼굴은 아주 귀여워요.",
+      "romanization": "uri aiui eolgureun aju gwiyeowoyo.",
+      "english": "My child's face is very cute.",
+      "literal": "As for our child's face, it is very cute.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "아이의",
+          "rom": "aiui",
+          "en": "child's"
+        },
+        {
+          "ko": "얼굴은",
+          "rom": "eolgureun",
+          "en": "face (topic)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "귀여워요",
+          "rom": "gwiyeowoyo",
+          "en": "is cute"
+        }
+      ],
+      "grammarIds": [
+        "g22"
+      ],
+      "wordIds": [
+        "w07_19",
+        "w07_44",
+        "w07_40"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My child's face is very small.",
+        "My child's hair is very cute.",
+        "My child's face is not cute."
+      ],
+      "notes": "귀엽다 is irregular: 귀엽 + 어요 → 귀여워요."
+    },
+    {
+      "id": "s07_4_4",
+      "unitId": "u07_family",
+      "lessonId": "l07_4",
+      "korean": "할아버지의 키가 아주 크세요.",
+      "romanization": "harabeojiui kiga aju keuseyo.",
+      "english": "My grandfather is very tall.",
+      "literal": "Grandfather's height is very big.",
+      "gloss": [
+        {
+          "ko": "할아버지의",
+          "rom": "harabeojiui",
+          "en": "grandfather's"
+        },
+        {
+          "ko": "키가",
+          "rom": "kiga",
+          "en": "height (subject)"
+        },
+        {
+          "ko": "아주",
+          "rom": "aju",
+          "en": "very"
+        },
+        {
+          "ko": "크세요",
+          "rom": "keuseyo",
+          "en": "is big (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g22",
+        "g23"
+      ],
+      "wordIds": [
+        "w07_05",
+        "w07_42"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My grandfather is very short.",
+        "My grandmother is very tall.",
+        "My grandfather's height is not known."
+      ],
+      "notes": "Korean says 'the height is big', not 'he is tall'."
+    },
+    {
+      "id": "s07_4_5",
+      "unitId": "u07_family",
+      "lessonId": "l07_4",
+      "korean": "우리 가족의 사진을 함께 봐요.",
+      "romanization": "uri gajogui sajineul hamkke bwayo.",
+      "english": "We look at our family photos together.",
+      "literal": "Our family's photos, together, we look at.",
+      "gloss": [
+        {
+          "ko": "우리",
+          "rom": "uri",
+          "en": "our"
+        },
+        {
+          "ko": "가족의",
+          "rom": "gajogui",
+          "en": "family's"
+        },
+        {
+          "ko": "사진을",
+          "rom": "sajineul",
+          "en": "photos (object)"
+        },
+        {
+          "ko": "함께",
+          "rom": "hamkke",
+          "en": "together"
+        },
+        {
+          "ko": "봐요",
+          "rom": "bwayo",
+          "en": "look at"
+        }
+      ],
+      "grammarIds": [
+        "g22"
+      ],
+      "wordIds": [
+        "w07_01",
+        "w07_48",
+        "w07_47"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "We look at our family photos alone.",
+        "We take family photos together.",
+        "We don't look at our family photos together."
+      ],
+      "notes": "함께 is a slightly warmer 함께 than 같이."
+    },
+    {
+      "id": "s07_4_6",
+      "unitId": "u07_family",
+      "lessonId": "l07_4",
+      "korean": "할머니께서는 항상 행복하세요.",
+      "romanization": "halmeonikkeseoneun hangsang haengbokaseyo.",
+      "english": "My grandmother is always happy.",
+      "literal": "As for grandmother, always, she is happy.",
+      "gloss": [
+        {
+          "ko": "할머니께서는",
+          "rom": "halmeonikkeseoneun",
+          "en": "grandmother (honorific, topic)"
+        },
+        {
+          "ko": "항상",
+          "rom": "hangsang",
+          "en": "always"
+        },
+        {
+          "ko": "행복하세요",
+          "rom": "haengbokaseyo",
+          "en": "is happy (honorific)"
+        }
+      ],
+      "grammarIds": [
+        "g23"
+      ],
+      "wordIds": [
+        "w07_06",
+        "w07_46"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My grandmother is always busy.",
+        "My grandfather is always happy.",
+        "My grandmother is never happy."
+      ],
+      "notes": "행복하다 is a 하다 adjective, so the honorific is 행복하시- → 행복하세요."
+    }
+  ],
+  "dialogue": {
+    "id": "d07",
+    "unitId": "u07_family",
+    "title": "A family photo",
+    "setting": "Two friends look at a photo on a phone.",
+    "lines": [
+      {
+        "id": "d07_1",
+        "speaker": "A",
+        "ko": "이 사진은 우리 가족이에요.",
+        "rom": "i sajineun uri gajogiyeyo.",
+        "en": "This photo is my family."
+      },
+      {
+        "id": "d07_2",
+        "speaker": "B",
+        "ko": "이분이 누구예요?",
+        "rom": "ibuni nuguyeyo?",
+        "en": "Who is this person?"
+      },
+      {
+        "id": "d07_3",
+        "speaker": "A",
+        "ko": "저의 남편이에요. 회사원이에요.",
+        "rom": "jeoui nampyeoniyeyo. hoesawoniyeyo.",
+        "en": "He's my husband. He works at a company."
+      },
+      {
+        "id": "d07_4",
+        "speaker": "B",
+        "ko": "옆에 있는 아이는 몇 살이에요?",
+        "rom": "yeope inneun aineun myeot sarieyo?",
+        "en": "How old is the child next to him?"
+      },
+      {
+        "id": "d07_5",
+        "speaker": "A",
+        "ko": "세 살이에요. 제 딸이에요.",
+        "rom": "se sarieyo. je ttarieyo.",
+        "en": "She's three. She's my daughter."
+      },
+      {
+        "id": "d07_6",
+        "speaker": "B",
+        "ko": "정말 귀여워요. 이름이 뭐예요?",
+        "rom": "jeongmal gwiyeowoyo. ireumi mwoyeyo?",
+        "en": "She's really cute. What's her name?"
+      },
+      {
+        "id": "d07_7",
+        "speaker": "A",
+        "ko": "수아예요. 다음 주 토요일에 우리 집에 오세요.",
+        "rom": "suayeyo. daeum ju toyoire uri jibe oseyo.",
+        "en": "Sua. Come to our home next Saturday."
+      },
+      {
+        "id": "d07_8",
+        "speaker": "B",
+        "ko": "네, 고맙습니다. 그때 만나요.",
+        "rom": "ne, gomapseumnida. geuttae mannayo.",
+        "en": "Yes, thank you. See you then."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r07",
+    "unitId": "u07_family",
+    "title": "This is my family",
+    "ko": "안녕하세요. 제 가족을 소개해요. 우리 가족은 모두 여섯 명이에요. 아버지, 어머니, 남동생, 아내, 딸, 그리고 저예요. 우리는 서울에 함께 살아요. 아버지는 회사에 다니세요. 어머니는 집에서 일하세요. 남동생은 대학생이에요. 제 아내는 학교에서 일해요. 제 딸은 일곱 살이에요. 머리가 길어요. 눈도 아주 커요. 사촌의 아기는 아직 아주 어려요. 우리는 저녁을 함께 먹어요. 그때 모두 웃어요. 우리 집은 아주 행복해요. 이모와 삼촌도 자주 오세요. 할머니께서는 저에게 용돈을 주세요.",
+    "en": "Hello. Let me introduce my family. There are six people in my family. My father, my mother, my younger brother, my wife, my daughter and me. We live together in Seoul. My father works at a company. My mother works at home. My younger brother is a university student. My wife works at a school. My daughter is seven years old. Her hair is long. Her eyes are big too. My cousin's baby is still very young. We eat dinner together. Then everyone smiles. Our home is very happy. My aunt and uncle come often too. My grandmother gives me pocket money.",
+    "questions": [
+      {
+        "q": "How many people are in the family?",
+        "options": [
+          "Six",
+          "Five",
+          "Seven",
+          "Four"
+        ],
+        "answer": 0,
+        "why": "우리 가족은 모두 여섯 명이에요 = there are six people in my family."
+      },
+      {
+        "q": "How old is the daughter?",
+        "options": [
+          "Seven",
+          "Three",
+          "Six",
+          "Ten"
+        ],
+        "answer": 0,
+        "why": "제 딸은 일곱 살이에요 = my daughter is seven years old."
+      },
+      {
+        "q": "What does the grandmother give the writer?",
+        "options": [
+          "Pocket money",
+          "A letter",
+          "A photo",
+          "A present"
+        ],
+        "answer": 0,
+        "why": "할머니께서는 저에게 용돈을 주세요 = my grandmother gives me pocket money."
+      }
+    ]
+  }
+}

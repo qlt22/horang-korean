@@ -135,10 +135,10 @@ function heroHTML() {
     <div class="q-hero-foot">
       <span class="small muted">${
         slots === 0
-          ? 'Complete a node to fill a slot.'
+          ? 'Complete a lesson to fill a slot.'
           : slots >= 3
             ? '3 chests waiting. Open one now.'
-            : 'One more node fills the meter.'
+            : 'One more lesson fills the meter.'
       }</span>
       <button class="btn btn-primary btn-sm" data-open-chest type="button" ${
         slots ? '' : 'disabled'

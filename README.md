@@ -1,10 +1,10 @@
 # Horang 호랑
 
-**Korean, one quest at a time.** An MVP for an addictive Korean study app: 40 real beginner sentences, 3-minute nodes, crits, chests, streaks, a league, a 40-stamp Passport — and a spaced-repetition engine whose decay is the honest reason to come back tomorrow.
+**From Hangul to A1, one sentence at a time.** A complete CEFR A1 Korean course built as a game: 60 sessions, 288 sentences, 576 words, 48 grammar patterns, 13 task types, neural Korean audio, and a retention engine that uses real memory decay as the reason to come back.
 
 | The hook | The lesson | The proof |
 |---|---|---|
-| ![Welcome](docs/screenshots/00-welcome.png) | ![Lesson](docs/screenshots/03-lesson-say-it.png) | ![Retention Lab](docs/screenshots/18-demo-day30-full.png) |
+| ![Welcome](docs/screenshots/a1-00-welcome.png) | ![Lesson](docs/screenshots/a1-02-word-card.png) | ![Retention Lab](docs/screenshots/a1-demo-day60.png) |
 
 ---
 
@@ -16,102 +16,114 @@ No build step, no framework, no runtime dependencies.
 npm start          # → http://localhost:4173
 ```
 
-Then open the **Retention Lab** from the welcome screen (or `Me → Retention Lab`, or `#/demo`) and press **Run full 30 days**. That is the fastest way to see the whole concept: it time-travels the *real* app state through Day 0 → 30, including a 4-day lapse and a comeback.
+Then open the **Retention Lab** (`Me → Retention Lab`, or `#/demo`) and press **Run the whole A1 course**. It time-travels the real app state through 60 days — including a 4-day lapse and a comeback — and ends with 288/288 sentences, 12/12 unit badges and the A1 exam.
 
-### Reviewer tour (≈3 minutes)
+### Reviewer tour (≈4 minutes)
 
 | Time | Do this | What it proves |
 |---|---|---|
-| 0:00 | Land on the welcome screen | Value before signup: one headline, one button, no account |
-| 0:15 | Goal → time → name | 3 taps configure the whole experience |
-| 0:30 | **Start node 1** | The user's own name becomes sentence #0 (`저는 Lucas입니다`) — a real, stamped sentence |
-| 0:40 | Answer 11 exercises | Listen → pick → build → speak, instant feedback, combo, crit, XP, level-up |
-| 3:00 | **Node complete** | Stars, XP count-up, 3 new stamps, chest unlocked, quiet Day-1 streak |
-| 3:30 | Quick check (skippable) | Placement, not gatekeeping |
-| 4:00 | Home | Three unfinished bars, the path, Sentence of the Day, quests, next step |
-| 5:00 | `#/demo` → **Run full 30 days** | Retention proof: streak, league, decay, lapse, comeback, 40/40 Passport |
+| 0:00 | Welcome | Value before signup: 288 sentences, 60 sessions, A1 |
+| 0:15 | Goal → time → name | Three taps configure the course and the daily XP goal |
+| 0:30 | Start session 1 | Their own name becomes sentence #0 (`저는 Lucas입니다`) |
+| 0:40 | Word cards → listen → build → write → say | 13 task types, neural audio, instant feedback |
+| 3:00 | Session complete | XP, stars, "N new sentences met", words practised, chest |
+| 4:00 | Home | Daily plan, A1 progress, 12-unit course map |
+| 5:00 | `#/demo` → **Run the whole A1 course** | 60-day retention proof + A1 certificate |
 
 ---
 
-## What is implemented
+## The course
 
-| Mechanic | Where to see it | Why it works |
-|---|---|---|
-| Personalised sentence #0 (no signup) | Onboarding → name | Self-reference effect + endowed progress that is auditable |
-| 6 exercise types, 3 touches per sentence | Lesson | Encoding variety; production, not recognition alone |
-| Crits: 15/20/25 %, guaranteed 10th answer | Lesson, `+20 XP CRIT ×2` | Variable-ratio reinforcement |
-| Combo counter | Lesson (from ×3) | Immediate feedback + loss aversion on the streak of answers |
-| Chests: 3/day, 70/25/4.7/0.3 %, pity timers | Complete → Shop | Anticipatory reward; odds are published, chests are never sold for money |
-| Streak + 2 freezes, gifted Day 2/7 | Home, Profile | Loss aversion on an earned asset — with insurance, no guilt copy |
-| Daily goal 60/120/180 XP | Home | Goal gradient + a daily appointment |
-| Daily quests (11-template pool) | Quests | Zeigarnik effect + cumulative progress |
-| 40-stamp Passport | Passport | Sunk-cost/IKEA effect, but the asset *is* the learning record |
-| Week league, 30-person cohort, labelled Pacers | League (Day 7) | Social proof; pacers are explicitly labelled, never fake humans |
-| Vocabulary taught inline | Lesson *say it* gloss, complete-screen word bank, Passport Words (75 words) | Words are met in a sentence first, then drilled as a collection |
-| Grammar taught in contrast | `fill_blank` (은/는, 이/가, 을/를, -아요/-어요), grammar tags, pack Guidebook | One contrast at a time, always inside a real sentence |
-| SM-2-lite SRS + decay | Home fading alert, Profile memory health | The return trigger is real memory decay, not a guilt notification |
-| Lapse + comeback (Rekindle) | Home banner, Retention Lab | Restores half the streak; never confiscates XP, stamps or coins |
-| Retention Lab | `#/demo` | Proves the retention calendar on the real code paths |
+| | |
+|---|---|
+| Level | CEFR **A1**, designed for learners who can already read Hangul |
+| Units | 12: introductions · daily life · food · shopping · places · time · family · hobbies · past · plans · health · travel |
+| Sessions | **60** (per unit: vocabulary, grammar, listening, reading, checkpoint) |
+| Sentences | **288** with romanization, English, word-by-word gloss and 3 distractors |
+| Vocabulary | **576 entries** (520 unique), each with POS, audio and an example |
+| Grammar | **48 patterns**, each with a one-line explanation, 2 audio examples and a common mistake |
+| Dialogues | **12** (6–10 lines, two neural voices) |
+| Readings | **12** short passages with 3 comprehension questions each |
+| Assessment | 12 unit checkpoints (80 % to pass) + a 30-question final A1 exam + printable certificate |
 
-**Not in this MVP** (deliberately): accounts/backend, real-money store, ASR pronunciation scoring, boss-roleplay screens, friends/duels, notifications via a server (the reminder time is stored; the delivery layer is stubbed).
+### 13 task types
 
-**Scope guardrail:** the MVP teaches absolute-beginner sentences only. Per the brief, proficiency is **not** being expanded to B2 until the concept is signed off.
+`word_card` · `grammar_card` · `listen_pick` · `translate_pick` · `tile_build` · `fill_blank` · `type_answer` · `dictation` · `dialogue_reply` · `reading_q` · `word_pick` · `word_match` · `say_it`
+
+Lessons differ by kind: vocabulary opens with word cards, grammar starts with a pattern card and drills it, listening is audio-first with dictation and dialogue, reading is passage-first, and checkpoints are 12 mixed items with no hints.
+
+---
+
+## The Korean voice
+
+The MVP used `speechSynthesis`, which falls back to whatever the OS has installed (often a robotic formant voice). The A1 build ships **pre-generated Microsoft neural Korean audio**:
+
+- Narration: `ko-KR-SunHiNeural`
+- Second dialogue voice: `ko-KR-InJoonNeural`
+- ~1,050 clips, 24 kHz mono MP3, plus a slow version of every sentence
+- Committed to `app/audio/` so the app works offline with no key
+- Generated by `tools/generate-audio.mjs` (edge-tts). See `tools/README-audio.md`.
+
+Every Korean string has a clip id; the player falls back to `speechSynthesis` only if a file is missing.
+
+---
+
+## Engagement, beyond the MVP
+
+- **Daily plan** — three concrete wins (1 lesson, 10 reviews, 6 words) with a 60-coin completion bonus.
+- **Course map** — 12 units with a five-node rail; current unit open, completed units collapsed, locked units honest.
+- **Collection** — 288 sentences and 576 words, searchable, filterable, paginated, with mastery pips.
+- **Word SRS** — a separate trainer with due words, flashcards and a word bank that fills as you learn.
+- **Grammar library** — all 48 patterns, searchable, with audio examples and a direct practice link.
+- **Unit badges + A1 certificate** — 12 checkpoint badges and a printable final certificate.
+- Retained from the MVP: streak + freezes, chests with published odds, crits and combos, daily quests, weekly league with labelled pacers, honest memory decay, and the comeback offer.
+
+Design rules still enforced: no energy wall, no paid loot boxes, no fake users, no guilt copy, no confiscating earned progress. See `docs/CONCEPT.md`.
 
 ---
 
 ## Tests
 
 ```bash
-npm test           # starts a server, runs core + browser journey + retention lab
+npm test           # starts its own server, runs core + browser journey + 60-day lab
 ```
 
-- `tests/core.test.mjs` — **48 assertions** on the economy, SRS, unlock logic, decay, chests, quests, league, shop.
-- `tests/e2e.mjs` — **35 browser checks** in real Chromium: onboarding → 11-exercise node → complete → placement → home → quests → shop/chest → passport → profile → settings → league → retention lab → reload persistence → desktop 1440×900, including horizontal-overflow checks at 390 px. Fails on any console error.
-- `tests/demo.mjs` — runs the 30-day simulation and asserts the end state.
+- `tests/core.test.mjs` — **70 assertions**: content shape, task generation for all 13 types, grading, SRS, unlock rules, checkpoints, word mastery, economy.
+- `tests/e2e.mjs` — real Chromium: onboarding → four lesson kinds → checkpoint → home → collection → word trainer → grammar → exam gate → profile → reload → desktop 1440×900, with overflow checks.
+- `tests/demo.mjs` — runs the 60-day A1 simulation and asserts the end state.
+- `tools/validate-content.mjs` — 0 errors across 12 units (schema, refs, Hangul, particles, duplicates, batchim).
 
-Last full run: `docs/verification/test-run.txt` — **84 assertions passed, 0 failed, 0 console errors.**
-44 screenshots live in `docs/screenshots/`.
-
-### One observed 30-day run
-
-```
-day 30 · 7,110 XP · level 14 · 40/40 stamps
-streak 9 (best 17) · 5,438 coins · 14 chests opened
-league joined on Day 7 · 4-day lapse at Day 19 · streak repaired on return
-```
+Last full run: `docs/verification/test-run.txt`.
 
 ---
 
 ## Structure
 
 ```
-index.html                 app shell (mobile-first, 3-column at ≥1160px)
-server.js                  zero-dependency static server
-app/data/curriculum.js     40 sentences · 7 packs · 75 words · grammar spine
-app/js/core/store.js       state, economy, streak, quests, chests, league
-app/js/core/engine.js      14 nodes, session builder, 3-touch rule
-app/js/core/quiz.js        the six exercise generators + grading
-app/js/core/srs.js         tiers, intervals, decay
-app/js/core/clock.js       virtual clock (what the Retention Lab moves)
-app/js/core/ui.js          icons, mascot, overlays, confetti, rings
-app/js/screens/*.js        welcome · onboarding · home · lesson · complete ·
-                           quests · shop · league · passport · profile ·
-                           settings · demo
-docs/BUILD-SPEC.md         the contract the screens were built against
-docs/CONCEPT.md            the retention thesis, in detail
-docs/research/             three research specs (mechanics, curriculum, UX)
+index.html                  app shell (mobile-first, 3-column at ≥1160px)
+server.js                   zero-dependency static server
+app/data/a1.js              generated A1 course (489 KB)
+docs/content/a1/u*.json     the 12 authored unit files
+app/audio/                  ~1,050 bundled neural clips + manifest
+app/js/core/course.js       lookups, unlock rules, unit progress
+app/js/core/engine.js       60 sessions, lesson composition per kind
+app/js/core/quiz.js         13 task generators + grading
+app/js/core/store.js        economy, SRS, checkpoints, words, daily plan
+app/js/core/audio.js        bundled clip playback with speech fallback
+app/js/screens/*.js         welcome · onboarding · home · lesson · complete ·
+                            quests · shop · league · collection · profile ·
+                            settings · vocab · grammar · exam · demo
+tools/                      content validator, builder, neural audio generator
+docs/A1-CONTENT-SPEC.md     the content contract (units, grammar map, schema)
+docs/A1-BUILD-SPEC.md       the screen/task contract
+docs/CONCEPT.md             the retention thesis
+docs/research/              three research specs (mechanics, curriculum, UX)
 ```
 
 ---
 
-## Design rules that were enforced
+## Scope
 
-1. **Learning is never blocked.** No energy wall, no hearts on normal nodes. Focus is quarantined to bonus modes and is not implemented as a gate.
-2. **Every number is real.** No fake users, no fake scarcity, no fake counters. Pacers are labelled. Chest odds are published.
-3. **Loss frames describe real memory decay**, and decay never drops more than one tier per lapse.
-4. **No guilt copy.** No “we miss you”, no sad mascot, no day-count shaming.
-5. **Every session ends with a named next step** and exactly three unfinished artefacts on the hub.
+The course now covers **A1 end-to-end**. A2 content (past/future narration, connectors, honorifics in depth, longer texts) is **not** started — that waits for the next go-ahead.
 
----
-
-Made as a proof of concept. Korean content is polite-form, modern, and proofread against the curriculum spec; audio uses the browser's `ko-KR` voice.
+Audio licensing note: the clips are generated with Microsoft's Edge neural voices via `edge-tts` for this prototype. Before a commercial launch, move to a licensed TTS contract or record human voice actors with the same script and ids.

@@ -1,308 +1,365 @@
 [server] Horang running → http://localhost:4199
 
 ────────────────────────────────────────────────────────────────
-1/3 · Core logic
+1/5 · Content validation (12 units)
 ────────────────────────────────────────────────────────────────
 
-Curriculum
-  ✓ 40 sentences loaded — 40
-  ✓ 7 units → 14 nodes — 14 nodes
+u01.json
+  ✓ u01_intro: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u02.json
+  ✓ u02_daily: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u03.json
+  ✓ u03_food: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u04.json
+  ✓ u04_shopping: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u05.json
+  ✓ u05_places: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u06.json
+  ! u06.json/w06_03: word "반" also appears in u01.json/w01_40
+  ! u06.json/w06_07: word "밤" also appears in u02.json/w02_28
+  ! u06.json/w06_09: word "시계" also appears in u02.json/w02_06
+  ! u06.json/w06_25: word "출근해요" also appears in u02.json/w02_45
+  ! u06.json/w06_26: word "퇴근해요" also appears in u02.json/w02_46
+  ! u06.json/w06_27: word "시작해요" also appears in u02.json/w02_38
+  ! u06.json/w06_28: word "끝나요" also appears in u02.json/w02_39
+  ! u06.json/w06_32: word "쉬어요" also appears in u02.json/w02_22
+  ! u06.json/w06_35: word "일찍" also appears in u02.json/w02_30
+  ! u06.json/w06_45: word "주말" also appears in u02.json/w02_32
+  ✓ u06_time: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u07.json
+  ✓ u07_family: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u08.json
+  ! u08.json/w08_18: word "봐요" also appears in u02.json/w02_18
+  ! u08.json/w08_19: word "들어요" also appears in u02.json/w02_20
+  ! u08.json/w08_27: word "처음" also appears in u01.json/w01_35
+  ! u08.json/w08_28: word "어려워요" also appears in u01.json/w01_23
+  ! u08.json/w08_39: word "재미있어요" also appears in u01.json/w01_41
+  ! u08.json/w08_41: word "피곤해요" also appears in u02.json/w02_36
+  ! u08.json/w08_44: word "뭐" also appears in u01.json/w01_09
+  ✓ u08_hobbies: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u09.json
+  ! u09.json/w09_11: word "저녁" also appears in u02.json/w02_27
+  ! u09.json/w09_12: word "오후" also appears in u06.json/w06_05
+  ! u09.json/w09_24: word "약속" also appears in u06.json/w06_29
+  ! u09.json/w09_25: word "시장" also appears in u05.json/w05_07
+  ! u09.json/w09_26: word "극장" also appears in u05.json/w05_09
+  ! u09.json/w09_31: word "수업" also appears in u06.json/w06_30
+  ! u09.json/w09_33: word "도서관" also appears in u05.json/w05_01
+  ! u09.json/w09_34: word "같이" also appears in u05.json/w05_13
+  ! u09.json/w09_38: word "일찍" also appears in u02.json/w02_30
+  ! u09.json/w09_39: word "늦게" also appears in u02.json/w02_31
+  ! u09.json/w09_42: word "손님" also appears in u07.json/w07_15
+  ! u09.json/w09_43: word "편지" also appears in u07.json/w07_35
+  ✓ u09_past: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u10.json
+  ! u10.json/w10_01: word "주말" also appears in u02.json/w02_32
+  ! u10.json/w10_06: word "등산" also appears in u08.json/w08_06
+  ! u10.json/w10_10: word "공원" also appears in u05.json/w05_06
+  ! u10.json/w10_12: word "사진" also appears in u07.json/w07_48
+  ! u10.json/w10_13: word "점심" also appears in u02.json/w02_26
+  ! u10.json/w10_14: word "식당" also appears in u05.json/w05_10
+  ! u10.json/w10_15: word "생일" also appears in u06.json/w06_24
+  ! u10.json/w10_16: word "선물" also appears in u07.json/w07_36
+  ! u10.json/w10_19: word "함께" also appears in u07.json/w07_47
+  ! u10.json/w10_26: word "시간" also appears in u06.json/w06_11
+  ! u10.json/w10_28: word "자리" also appears in u01.json/w01_20
+  ! u10.json/w10_29: word "메뉴" also appears in u03.json/w03_17
+  ! u10.json/w10_33: word "사람" also appears in u01.json/w01_06
+  ! u10.json/w10_37: word "운동" also appears in u08.json/w08_02
+  ! u10.json/w10_38: word "수영" also appears in u08.json/w08_05
+  ✓ u10_plans: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u11.json
+  ! u11.json/w11_06: word "우산" also appears in u04.json/w04_08
+  ! u11.json/w11_16: word "약" also appears in u06.json/w06_12
+  ! u11.json/w11_17: word "병원" also appears in u05.json/w05_03
+  ! u11.json/w11_18: word "약국" also appears in u05.json/w05_04
+  ! u11.json/w11_20: word "머리" also appears in u07.json/w07_43
+  ! u11.json/w11_38: word "많이" also appears in u03.json/w03_36
+  ! u11.json/w11_39: word "조금" also appears in u01.json/w01_47
+  ✓ u11_health: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+u12.json
+  ! u12.json/w12_06: word "표" also appears in u05.json/w05_28
+  ! u12.json/w12_12: word "가방" also appears in u04.json/w04_05
+  ! u12.json/w12_21: word "나중에" also appears in u08.json/w08_48
+  ! u12.json/w12_22: word "지도" also appears in u05.json/w05_36
+  ! u12.json/w12_46: word "방" also appears in u02.json/w02_01
+  ✓ u12_travel: 24 sentences · 48 words · 4 grammar · 5 lessons
+
+Totals: 12 units · 60 sessions · 288 sentences · 576 words · 48 grammar · 12 dialogues · 12 readings
+
+✓ 0 errors, 56 warnings
+
+────────────────────────────────────────────────────────────────
+2/5 · Core logic
+────────────────────────────────────────────────────────────────
+
+A1 content
+  ✓ 12 units — 12
+  ✓ 60 sessions — 60
+  ✓ 288 sentences — 288
+  ✓ 576 word entries — 576
+  ✓ 520+ unique words — 520
+  ✓ 48 grammar points — 48
+  ✓ 12 dialogues with >=6 lines
+  ✓ 12 readings with 3 questions
+  ✓ every lesson has a goal
+  ✓ every unit has 5 sessions
+  ✓ unit kinds are ordered
   ✓ every sentence has Hangul
   ✓ every sentence has 3 distractors
+  ✓ no duplicate Korean sentences
+  ✓ grammar points all have 2 examples
 
-Level curve
-  ✓ L1→L2 costs 60 XP — 60
-  ✓ curve is monotonic
-  ✓ level from 0 XP is 1
+Task engine
+  ✓ all 60 lessons build
+  ✓ lessons have 7–16 tasks — 8–13
+  ✓ no duplicate task ids inside a lesson
+  ✓ type is generated: word_card
+  ✓ type is generated: grammar_card
+  ✓ type is generated: listen_pick
+  ✓ type is generated: translate_pick
+  ✓ type is generated: tile_build
+  ✓ type is generated: fill_blank
+  ✓ type is generated: type_answer
+  ✓ type is generated: dictation
+  ✓ type is generated: dialogue_reply
+  ✓ type is generated: reading_q
+  ✓ type is generated: word_pick
+  ✓ type is generated: word_match
+  ✓ type is generated: say_it
+  ✓ every task has a prompt
+  ✓ every graded task has an answer path
+  ✓ tile tasks have >=3 tiles
+  ✓ fill tasks have 2 options
+  ✓ checkpoints have 12 tasks
+  ✓ listening lessons contain dictation
+  ✓ reading lessons contain reading checks
+
+Grading
+  ✓ correct option grades true
+  ✓ wrong option grades false
+  ✓ exact typed answer is correct
+  ✓ one-character typo is accepted as near
+  ✓ empty answer is wrong
+  ✓ fill answer is one of its options
+
+Session + progression
+  ✓ lesson 1 starts
+  ✓ lesson 1 opens with sentence #0 — say_it
+  ✓ lesson completes with 3 stars — 3
+  ✓ lesson awards >= 100 XP — 218
+  ✓ lesson met 5+ new sentences — 7
+  ✓ XP total rises — 243
+  ✓ lesson 2 unlocks
+  ✓ lesson 4 is still locked early
+  ✓ chest slot filled — 1
+  ✓ after 4 lessons the checkpoint unlocks
+  ✓ next unit is unlocked after 4 lessons
+  ✓ checkpoint records a pass — {"passed":true,"score":92,"required":80,"unitId":"u01_intro","unitTitle":"Introductions"}
+  ✓ unit badge awarded — u01_intro
+
+Word mastery
+  ✓ word reaches tier 3 — 3
+  ✓ known word count counts tier>=3 — 1
+  ✓ due words include overdue word
+
+SRS + streak
+  ✓ 8-day lapse drops exactly one tier — 3
+  ✓ streak survives a normal day — 1
+  ✓ a 3-day lapse breaks or freezes the streak honestly
+
+Economy + meta
+  ✓ cosmetic purchase works
+  ✓ chest opens and pays coins — rare
+  ✓ 3 daily quests exist
+  ✓ daily plan has 3 parts
+  ✓ league seeds 30 labelled members
+  ✓ level curve matches the spec
   ✓ level from 140 XP is 3 — 3
 
-Node 1 session
-  ✓ session starts
-  ✓ node 1 has sentence #0 first — sentence0
-  ✓ session has >= 9 exercises — 11
-  ✓ no two identical exercise types in a row
-  ✓ three-touch rule on sentence 1 — listen_pick,translate_pick,say_it,speed_match
-  ✓ every item is self-describing
-  ✓ answers award XP — 0 → 140
-  ✓ 3 exposures mint a stamp
-  ✓ mastery reached tier 3 (no same-session inflation) — tier 3
-  ✓ combo tracked — combo 11
-  ✓ node completes with 3 stars (0 mistakes) — 3 stars
-  ✓ node bonus awarded — +50
-  ✓ streak hit 1 from daily goal — streak 1
-  ✓ daily goal flagged
-  ✓ chest slot filled — 1
-  ✓ node 2 now unlocked
-  ✓ node 3 still locked
-  ✓ stamp count is 3 — 3
-
-Chest + economy
-  ✓ first chest is scripted Rare — rare
-  ✓ chest pays coins — 76 coins
-  ✓ chest slot consumed
-  ✓ second chest cannot open with 0 slots
-
-Quests
-  ✓ 3 daily quests generated — 3
-  ✓ quests have targets + rewards
-  ✓ quest progress reads counters — 11
-
-Streak, lapse, freeze
-  ✓ next day keeps streak intact — streak 1
-  ✓ a missed day without freeze drops streak — streak 0
-  ✓ loss is recorded for the comeback screen — prev 1
-  ✓ freeze silently covers a missed day — freezes 1
-
-Memory decay
-  ✓ 8-day lapse drops exactly one tier — tier 3
-  ✓ streak still capped at one tier loss
-
-Review queue
-  ✓ overdue sentence enters review queue — 2 due
-  ✓ fading status computed — fading
-
-Pack progress
-  ✓ pack progress counts tier≥3 — 3/6
-
-League
-  ✓ league fills to 30 with pacers — 30
-  ✓ pacers are labelled, never fake humans
-  ✓ user rank computed — #19
-
-Shop
-  ✓ cosmetic purchase works — 1000 → 700
-  ✓ cannot buy twice
-  ✓ purchase is recorded as an event
-
-48 passed, 0 failed
+70 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-2/3 · Full browser journey (390×844 + 1440×900)
+3/5 · Audio bundle
 ────────────────────────────────────────────────────────────────
-▸ Welcome screen
-▸ Onboarding: goal → time → name → ready
-▸ Node 1: answering all exercises correctly
-▸ Node complete
-▸ Quick check placement quiz
-▸ Home hub
-▸ Daily quests
-▸ Shop + chest opening
-▸ Passport collection
+  ✓ expected clip count — 1352
+  ✓ every clip exists
+  ✓ no truncated clips (<3 KB)
+  ✓ manifest exists
+  ✓ manifest has both voices
+  ✓ manifest covers sentence clips
+  ✓ bundle size is sane (10–60 MB) — 20.6 MB
+
+7 passed, 0 failed
+
+────────────────────────────────────────────────────────────────
+4/5 · Full browser journey (390×844 + 1440×900)
+────────────────────────────────────────────────────────────────
+▸ Welcome
+▸ Onboarding
+▸ Lesson 1 · vocab (word cards + tasks)
+    · task 1/13 say_it
+    · task 2/13 word_card
+    · task 3/13 word_card
+    · task 4/13 word_card
+    · task 5/13 word_card
+    · task 6/13 listen_pick
+    · task 7/13 translate_pick
+    · task 8/13 translate_pick
+    · task 9/13 listen_pick
+    · task 10/13 type_answer
+    · task 11/13 listen_pick
+    · task 12/13 word_match
+    · task 13/13 say_it
+▸ Lesson 2 · grammar
+    · task 1/8 grammar_card
+    · task 2/8 fill_blank
+    · task 3/8 type_answer
+    · task 4/8 tile_build
+    · task 5/8 translate_pick
+    · task 6/8 type_answer
+    · task 7/8 fill_blank
+    · task 8/8 say_it
+▸ Lesson 3 · listening (dictation + dialogue)
+    · task 1/10 dictation
+    · task 2/10 listen_pick
+    · task 3/10 dictation
+    · task 4/10 listen_pick
+    · task 5/10 dialogue_reply
+    · task 6/10 listen_pick
+    · task 7/10 dialogue_reply
+    · task 8/10 listen_pick
+    · task 9/10 dialogue_reply
+    · task 10/10 say_it
+▸ Lesson 4 · reading
+    · task 1/10 reading_q
+    · task 2/10 translate_pick
+    · task 3/10 reading_q
+    · task 4/10 tile_build
+    · task 5/10 reading_q
+    · task 6/10 type_answer
+    · task 7/10 listen_pick
+    · task 8/10 translate_pick
+    · task 9/10 say_it
+    · task 10/10 translate_pick
+▸ Checkpoint (unit 1)
+    · task 1/12 listen_pick
+    · task 2/12 translate_pick
+    · task 3/12 tile_build
+    · task 4/12 type_answer
+    · task 5/12 fill_blank
+    · task 6/12 dictation
+    · task 7/12 listen_pick
+    · task 8/12 word_pick
+    · task 9/12 word_match
+    · task 10/12 word_pick
+    · task 11/12 word_pick
+    · task 12/12 word_pick
+▸ Home · course map + daily plan
+▸ Collection
+▸ Word trainer
+▸ Grammar library
+▸ A1 exam gate
 ▸ Profile
-▸ Settings
-▸ League
-▸ Retention lab
-▸ Reload persistence
+▸ Persistence
 ▸ Desktop 1440×900
 
-▸ Welcome screen
-  ✓ title is Horang
-  ✓ landing headline present
-▸ Onboarding: goal → time → name → ready
-  ✓ ready screen shows first node
-  ✓ profile name saved — Lucas
-  ✓ daily goal is 120 XP for 10 min — 120
-▸ Node 1: answering all exercises correctly
-  ✓ lesson session started with sentence #0 — sentence0
-  ✓ session has >= 9 exercises — 11
-  ✓ answered the full node — 11 exercises
-▸ Node complete
-  ✓ navigated to complete screen — http://localhost:4199/#/complete?node=0
-  ✓ summary computed — 3★ 180 XP
-  ✓ 3 stars for a perfect run — 3
-  ✓ stamps minted — 3
-▸ Quick check placement quiz
-  ✓ quiz opened — http://localhost:4199/#/onboarding?step=quiz
-  ✓ placement result shown — LV 4
-▸ Home hub
-  ✓ landed on home — http://localhost:4199/#/home
-  ✓ onboarding finished
-  ✓ streak incremented — 1
-  ✓ stamps persisted
-  ✓ chest slot earned — 2
-  ✓ daily quests created
+▸ Welcome
+  ✓ landing shows A1 scope
+▸ Onboarding
+  ✓ ready screen mentions the A1 course — A1 / One session. That's it. / Your first session is ready / 
+▸ Lesson 1 · vocab (word cards + tasks)
+  ✓ lesson 1 starts — 13 tasks
+  ✓ lesson kind is vocab — vocab
+  ✓ vocab lesson rendered word cards — say_it,word_card,listen_pick,translate_pick,type_answer,word_match
+  ✓ navigated to complete — http://localhost:4199/#/complete?node=0
+  ✓ lesson recorded in path
+  ✓ new sentences met — 7
+  ✓ XP awarded — 273
+  ✓ words were practised — 9
+▸ Lesson 2 · grammar
+  ✓ grammar lesson starts — grammar
+  ✓ grammar lesson has a grammar card — grammar_card,fill_blank,type_answer,tile_build,translate_pick,say_it
+  ✓ grammar lesson produces fill/type tasks — grammar_card,fill_blank,type_answer,tile_build,translate_pick,say_it
+▸ Lesson 3 · listening (dictation + dialogue)
+  ✓ listening lesson has dictation — dictation,listen_pick,dialogue_reply,say_it
+  ✓ listening lesson has dialogue
+  ✓ listening played through — dictation,listen_pick,dialogue_reply,say_it
+▸ Lesson 4 · reading
+  ✓ reading lesson has comprehension — reading_q,translate_pick,tile_build,type_answer,listen_pick,say_it
+  ✓ 3 sessions completed — 0,1,2,3
+▸ Checkpoint (unit 1)
+  ✓ checkpoint header visible
+  ✓ checkpoint badge earned — u01_intro
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T03:15:44.761Z"}
+▸ Home · course map + daily plan
+  ✓ home shows 60 sessions
+  ✓ home shows 288 sentences
+  ✓ home shows daily plan
+  ✓ home shows unit badges
   ✓ no horizontal overflow — home — 390/390
-▸ Daily quests
-  ✓ quests screen renders 3 quests
-  ✓ chest meter visible
-  ✓ no horizontal overflow — quests — 390/390
-▸ Shop + chest opening
-  ✓ no horizontal overflow — shop — 390/390
-▸ Passport collection
-  ✓ passport shows stamps
-  ✓ no horizontal overflow — passport — 390/390
+▸ Collection
+  ✓ collection says 288
+  ✓ collection has 3 tabs
+  ✓ no horizontal overflow — collection — 390/390
+  ✓ load more adds cards — 48
+▸ Word trainer
+  ✓ review button honestly disabled when nothing is due
+  ✓ flashcards open with a word
+▸ Grammar library
+  ✓ 48 patterns listed
+  ✓ grammar card expands with examples
+▸ A1 exam gate
+  ✓ exam is gated at 1/12 badges — FINAL ASSESSMENT
+
+A1 exam
+
+The certificate opens when all 12 unit badges are ear
 ▸ Profile
-  ✓ profile shows level
-  ✓ profile shows accuracy
+  ✓ profile shows A1 totals
   ✓ no horizontal overflow — profile — 390/390
-▸ Settings
-  ✓ settings rendered — http://localhost:4199/#/settings
-▸ League
-  ✓ league explains day-7 gate or shows rows
-▸ Retention lab
-  ✓ no horizontal overflow — retention lab — 390/390
-▸ Reload persistence
+▸ Persistence
   ✓ state survives reload
-  ✓ streak survives reload — 1
+  ✓ badge survives reload
 ▸ Desktop 1440×900
+  ✓ desktop has no horizontal overflow
 
 CONSOLE ERRORS: none
 
 ALL CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-3/3 · Retention Lab (30-day simulation)
+5/5 · Retention Lab (60-day A1 simulation)
 ────────────────────────────────────────────────────────────────
-url http://localhost:4199/#/demo
---- lab head ---
-PROOF, NOT PROMISES
-Retention Lab
-DAY 0
-This is the real app.
+start day 0
+{
+  day: 60,
+  sessions: 60,
+  badges: 12,
+  met: 288,
+  strong: 89,
+  words: 149,
+  xp: 20512,
+  level: 22,
+  streak: 19,
+  best: 38,
+  coins: 16030,
+  chests: 72,
+  league: 1,
+  timeline: 61,
+  xpDays: 57
+}
+errors none
 
-Every button moves the virtual clock forward and runs the same code paths a learner hits: sessions, XP, chests, streaks, memory decay, leagues. Nothing below is mocked.
-
-+1 day
-+1 skipped day
-Run full 30 days
-STREAK
-1 🔥
-LEVEL
-4
-STAMPS
-3/40
-FADING
-0
-COINS
-385
-LEAGUE
-—
-NOTIFICATION PREVIEW
-GOOD AFTERNOON
-✦
-Horang
-
-Day 1. One 3-minute run keeps the streak.
-
-Trigger #5: fixed cue at the chosen reminder time
-
-One a day. Quiet hours 22:00
-
---- after full run ---
-day: 30 xp: 7460 level: 14
-streak: 9 best: 18
-stamps: 40
-coins: 6657 chests opened: 29
-league joined: true rank: 1 tier: Bronze
-timeline days: 31
-xpByDay entries: 27
-stampsByDay entries: 14
-events: 300
-fading now: {"fading":0,"wilting":0,"dropped":0,"due":0,"total":0}
-
---- lab at day 30 (excerpt) ---
-PROOF, NOT PROMISES
-Retention Lab
-DAY 30
-This is the real app.
-
-Every button moves the virtual clock forward and runs the same code paths a learner hits: sessions, XP, chests, streaks, memory decay, leagues. Nothing below is mocked.
-
-+1 day
-+1 skipped day
-Run full 30 days
-STREAK
-9 🔥
-LEVEL
-14
-STAMPS
-40/40
-FADING
-0
-COINS
-6,657
-LEAGUE
-#1
-NOTIFICATION PREVIEW
-GOOD AFTERNOON
-🎯
-Horang
-
-One quest step from done: Complete 1 node.
-
-Trigger #4: goal gradient on a daily quest
-
-One a day. Quiet hours 22:00–08:00. No guilt verbs. The number is always real.
-
-The first 90 seconds
-the draw-in
-0:00
-One headline, one button
-No signup, no pricing, no nav. The only decision is “start”.
-ZERO COMMITMENT
-0:12
-Three taps: goal, time, name
-Configures the XP goal and the reminder before any lesson exists.
-IMPLEMENTATION INTENTION
-0:26
-저는 [their name]입니다 — really spoken
-Their own name becomes sentence #0, with a
-
---- home after lab ---
-9
-6,657
-13
-🐯
-Daily goal
-Goal hit · 190 XP
-Daily goal done · see you tomorrow
-Practice 10
-Review
-CLOSING IN
-3 NEAREST
-Chest
-1/3
-Daily quests
-0/3
-Level 14
-70 XP left
-PACK 7
-마무리 Wrap-up & boss round
-Guidebook
-Pack 1 · 인사 Greetings
-6/6 met
-NODE 1
-NODE 2
-CHEST
-Pack 2 · 자기소개 Introducing yourself
-6/6 met
-NODE 3
-NODE 4
-CHEST
-Pack 3 · 음식 Food & ordering
-6/6 met
-NODE 5
-CHEST
-NODE 6
-CHEST
-Pack 4 · 일상 Daily routine
-6/6 met
-NODE 7
-NODE 8
-CHEST
-Pack 5 · 길 찾기 Places & directions
-6/6 met
-NODE 9
-NODE 10
-CHEST
-Pack 6 · 기분 Feelings & small talk
-6/6 met
-NODE 11
-NODE 12
-CHEST
-Pack 7 · 마무리 Wrap-up & boss round
-4/4
-
-CONSOLE ERRORS: none
-
-✓ All suites passed  (core=0 e2e=0 demo=0)
+✓ All suites passed  (content=0 core=0 audio=0 e2e=0 demo=0)

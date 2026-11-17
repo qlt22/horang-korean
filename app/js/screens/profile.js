@@ -1,75 +1,108 @@
-// S18 · Me / profile & stats. Every number is read from state — no placeholders.
+// Me · the A1 profile: level, streak, totals, 5-week heatmap, unit badges,
+// achievements, memory health and the A1 certificate. Every number is derived.
 import {
   state,
   levelInfo,
-  stampCount,
   decayReport,
   weekDaysActive,
+  knownWordCount,
   APP_VERSION,
   RANKS,
   GOALS,
 } from '../core/store.js';
-import { NODES } from '../core/engine.js';
+import { UNITS, LESSONS, SENTENCES, WORDS, GRAMMAR } from '../core/course.js';
 import * as ui from '../core/ui.js';
 import * as clock from '../core/clock.js';
 import router from '../core/router.js';
 
 /* ---------- derivations ---------- */
-function wordsSeen() {
-  return Object.keys(state.mastery).filter((id) => id !== 'sentence0').length;
+const UNIT_COUNT = UNITS.length;
+const BADGE_TONES = ['coral', 'indigo', 'mint', 'amber'];
+
+function sessionsDone() {
+  return (state.path?.completedNodes || []).length;
+}
+function sentencesMet() {
+  return SENTENCES.filter((s) => (state.mastery[s.id]?.tier || 0) >= 1).length;
+}
+/** Same rule the Collection uses for its STRONG seals: tier 3+. Keeping one
+ *  definition means the profile and the library can never disagree. */
+function sentencesStrong() {
+  return SENTENCES.filter((s) => (state.mastery[s.id]?.tier || 0) >= 3).length;
+}
+function badgesEarned() {
+  return UNITS.filter((u) => (state.badges || []).includes(u.id)).length;
 }
 function accuracy() {
   const a = state.stats.answers || 0;
   return a ? Math.round((state.stats.correct / a) * 100) : 0;
 }
-/** A node counts as a 3-star run when it is finished and every sentence in it
- *  was stamped without a single wrong answer on record. Honest, derived — we
- *  never store a synthetic "stars" number. */
-function perfectNodeDone() {
-  if (state.counters.stars3 > 0) return true;
-  return NODES.some(
-    (n) =>
-      state.path.completedNodes.includes(n.index) &&
-      n.sentenceIds.every((id) => {
-        const m = state.mastery[id];
-        return m && m.wrong === 0 && m.tier >= 3;
-      })
-  );
+function examBest() {
+  const candidates = [
+    state.exam?.best,
+    state.exam?.score,
+    state.examResult?.best,
+    state.examResult?.score,
+    state.flags?.examBest,
+    state.flags?.examScore,
+  ];
+  const n = candidates.find((v) => typeof v === 'number' && Number.isFinite(v));
+  return typeof n === 'number' ? n : null;
 }
 function nextRank(level) {
   return [...RANKS].reverse().find((r) => r.min > level) || null;
 }
+function nextBadge() {
+  return UNITS.find((u) => !(state.badges || []).includes(u.id)) || null;
+}
 
-/* ---------- achievements ---------- */
+/* ---------- achievements (A1 edition, computed from real counters) ---------- */
 function achievements() {
-  const stamps = stampCount();
+  const sessions = sessionsDone();
+  const strong = sentencesStrong();
+  const badges = badgesEarned();
   const best = state.streak.best || 0;
   const xp = state.xpTotal || 0;
-  const perfect = perfectNodeDone();
+  const bestExam = examBest();
+  const examPassed = bestExam !== null && bestExam >= 80;
+  const strongTier = (n, name, icon, tone) => ({
+    key: `strong${n}`,
+    name,
+    icon,
+    tone,
+    need: `Reach Strong on ${n} sentences.`,
+    cur: Math.min(strong, n),
+    target: n,
+    done: strong >= n,
+  });
   return [
     {
       key: 'first',
-      name: 'First Sentence',
-      icon: 'book',
+      name: 'First session',
+      icon: 'play',
       tone: 'coral',
-      need: 'Stamp your first sentence.',
-      cur: Math.min(stamps, 1),
+      need: 'Finish your first A1 session.',
+      cur: Math.min(sessions, 1),
       target: 1,
-      done: stamps >= 1,
+      done: sessions >= 1,
     },
+    strongTier(5, '5 strong', 'star', 'mint'),
+    strongTier(10, '10 strong', 'star', 'mint'),
+    strongTier(20, '20 strong', 'star', 'indigo'),
+    strongTier(40, '40 strong', 'trophy', 'coral'),
     {
-      key: 'streak3',
-      name: '3-Day Spark',
-      icon: 'flame',
+      key: 'badge',
+      name: 'Unit badge',
+      icon: 'passport',
       tone: 'amber',
-      need: 'Reach a 3-day streak.',
-      cur: Math.min(best, 3),
-      target: 3,
-      done: best >= 3,
+      need: 'Pass any unit checkpoint.',
+      cur: Math.min(badges, 1),
+      target: 1,
+      done: badges >= 1,
     },
     {
       key: 'streak7',
-      name: 'Week Habit',
+      name: '7-day streak',
       icon: 'flame',
       tone: 'amber',
       need: 'Reach a 7-day streak.',
@@ -79,33 +112,13 @@ function achievements() {
     },
     {
       key: 'streak30',
-      name: '30 Days',
+      name: '30-day streak',
       icon: 'crown',
       tone: 'indigo',
       need: 'Reach a 30-day streak.',
       cur: Math.min(best, 30),
       target: 30,
       done: best >= 30,
-    },
-    {
-      key: 'stamps10',
-      name: 'Ten Stamps',
-      icon: 'passport',
-      tone: 'mint',
-      need: 'Collect 10 stamps.',
-      cur: Math.min(stamps, 10),
-      target: 10,
-      done: stamps >= 10,
-    },
-    {
-      key: 'stamps40',
-      name: 'Full Passport',
-      icon: 'trophy',
-      tone: 'coral',
-      need: 'Collect all 40 stamps.',
-      cur: Math.min(stamps, 40),
-      target: 40,
-      done: stamps >= 40,
     },
     {
       key: 'xp1k',
@@ -118,14 +131,14 @@ function achievements() {
       done: xp >= 1000,
     },
     {
-      key: 'perfect',
-      name: 'Perfect Node',
-      icon: 'star',
-      tone: 'amber',
-      need: 'Finish a node with 3 stars.',
-      cur: perfect ? 1 : 0,
-      target: 1,
-      done: perfect,
+      key: 'exam',
+      name: 'A1 certificate',
+      icon: 'trophy',
+      tone: 'mint',
+      need: 'Pass the A1 exam at 80% or higher.',
+      cur: bestExam === null ? 0 : Math.min(bestExam, 80),
+      target: 80,
+      done: examPassed,
     },
   ];
 }
@@ -163,19 +176,94 @@ function goalLabel() {
   return GOALS[state.profile.goal]?.label || 'Just curious';
 }
 
+/* ---------- small blocks ---------- */
+function badgeStrip() {
+  const earned = badgesEarned();
+  const next = nextBadge();
+  const cells = UNITS.map((u) => {
+    const on = (state.badges || []).includes(u.id);
+    const tone = BADGE_TONES[(u.order - 1) % BADGE_TONES.length];
+    return `<button class="pf-badge tone-${tone} ${on ? 'is-on' : 'is-off'}" type="button"
+      data-go="passport" data-params='{"tab":"badges"}'
+      aria-label="Unit ${u.order} ${ui.esc(u.title)} badge — ${on ? 'earned' : 'locked'}"
+      title="Unit ${u.order} · ${ui.esc(u.title)}">
+      ${on ? String(u.order).padStart(2, '0') : ui.icon('lock', 12)}
+    </button>`;
+  }).join('');
+  return `<section class="card pf-badges" aria-label="Unit badges">
+    <div class="pf-card-head">
+      <h3 class="pf-card-title">Unit badges</h3>
+      <button class="g-link" type="button" data-go="passport" data-params='{"tab":"badges"}'>
+        ${earned} / ${UNIT_COUNT} · Collection ${ui.icon('chevron', 14)}
+      </button>
+    </div>
+    <div class="pf-badge-grid">${cells}</div>
+    <p class="pf-badges-note">${
+      next
+        ? `Next up: Unit ${next.order} · ${ui.esc(next.ko)} — pass the checkpoint for the badge.`
+        : `All ${UNIT_COUNT} badges earned. The A1 certificate is unlocked.`
+    }</p>
+  </section>`;
+}
+
+function examCard() {
+  const earned = badgesEarned();
+  const unlocked = earned >= UNIT_COUNT;
+  const best = examBest();
+  if (!unlocked) {
+    return `<section class="card pf-exam is-locked" aria-label="A1 exam, locked">
+      <div class="pf-exam-art">${ui.icon('lock', 24)}</div>
+      <div class="pf-exam-body">
+        <div class="pf-card-head">
+          <h3 class="pf-card-title">A1 Certificate</h3>
+          <span class="pf-card-note">${earned} / ${UNIT_COUNT} badges</span>
+        </div>
+        <p class="pf-exam-copy">Pass all ${UNIT_COUNT} unit checkpoints to unlock the final exam. Learning is never blocked by a test — this is the last step, not a gate.</p>
+        <div class="bar bar--thin pf-exam-bar"><i style="width:${(earned / UNIT_COUNT) * 100}%"></i></div>
+        <p class="pf-exam-note">${UNIT_COUNT - earned} badge${UNIT_COUNT - earned === 1 ? '' : 's'} to go</p>
+      </div>
+    </section>`;
+  }
+  return `<section class="card pf-exam is-open" aria-label="A1 exam">
+    <div class="pf-exam-art">${ui.icon('trophy', 26)}</div>
+    <div class="pf-exam-body">
+      <div class="pf-card-head">
+        <h3 class="pf-card-title">A1 Certificate</h3>
+        <span class="pf-card-note">${best === null ? 'Not taken yet' : `Best ${best}%`}</span>
+      </div>
+      <p class="pf-exam-copy">${
+        best === null
+          ? 'All 12 badges are in. 30 mixed questions, 80% to pass.'
+          : best >= 80
+            ? `Passed with ${best}%. Retake any time — the best score is kept.`
+            : `Best ${best}% — 80% passes. Your weak units are worth one more review.`
+      }</p>
+      <button class="btn btn-primary btn-block mt-4" type="button" data-go="exam">
+        ${ui.icon('play', 18)} ${best === null ? 'Take the A1 exam' : 'Retake the exam'}
+      </button>
+    </div>
+  </section>`;
+}
+
 export default {
   id: 'profile',
   title: 'Me',
   nav: 'profile', // the shell's tab id is the screen id (main.js TABS) — 'me' never matches
   hideNav: false,
+
   render() {
     const info = levelInfo();
-    const stamps = stampCount();
-    const words = wordsSeen();
-    const mins = state.stats.minutes || 0;
+    const strong = sentencesStrong();
+    const badges = badgesEarned();
+    const sessions = sessionsDone();
+    const known = knownWordCount();
     const acc = accuracy();
     const decay = decayReport();
-    const activeDays = weekDaysActive().map((on, i) => (on ? i : -1)).filter((i) => i >= 0);
+    const cells = heatmap();
+    const achs = achievements();
+    const unlocked = achs.filter((a) => a.done).length;
+    const name = state.profile.name || 'Explorer';
+    const streak = state.streak.current || 0;
     const next = nextRank(info.level);
     const levelTease = next
       ? `${next.min - info.level} level${next.min - info.level === 1 ? '' : 's'} to ${next.label}`
@@ -183,12 +271,6 @@ export default {
     const joinedLeague =
       (!!state.flags.leagueJoined || state.league.joinedDay != null) && state.league.members.length > 0;
     const leagueReady = state.day >= 7;
-    const cells = heatmap();
-    const achs = achievements();
-    const unlocked = achs.filter((a) => a.done).length;
-    const name = state.profile.name || 'Explorer';
-    const streak = state.streak.current || 0;
-
     const memoryTone = decay.total > 0 ? 'warm' : 'calm';
 
     return `
@@ -213,7 +295,7 @@ export default {
           <div class="pf-id-text">
             <h2 class="pf-name">${ui.esc(name)}</h2>
             <p class="pf-rank">LV ${info.level} <span class="pf-dot">·</span> ${ui.esc(info.rankKo)} ${ui.esc(info.rank)}</p>
-            <p class="pf-meta">${ui.esc(goalLabel())} <span class="pf-dot">·</span> joined Day ${state.day}</p>
+            <p class="pf-meta">${ui.esc(goalLabel())} <span class="pf-dot">·</span> Day ${state.day} of A1</p>
           </div>
         </header>
 
@@ -244,22 +326,22 @@ export default {
               state.streak.freezes ? ` <span class="pf-freeze">${ui.icon('snow', 13)} ${state.streak.freezes}</span>` : ''
             }</p>
           </div>
-          ${ui.weekStrip(activeDays, clock.weekdayIndex())}
+          ${ui.weekStrip(weekDaysActive(), clock.weekdayIndex())}
         </section>
 
         <!-- 4 · totals -->
         <div class="pf-totals">
           <div class="pf-stat">
-            <span class="pf-stat-label">Stamps</span>
-            <span class="pf-stat-value"><b data-count="${stamps}">${ui.fmt(stamps)}</b><i>/40</i></span>
+            <span class="pf-stat-label">Sessions</span>
+            <span class="pf-stat-value"><b data-count="${sessions}">${ui.fmt(sessions)}</b><i>/${LESSONS.length}</i></span>
           </div>
           <div class="pf-stat">
-            <span class="pf-stat-label">Words</span>
-            <span class="pf-stat-value"><b data-count="${words}">${ui.fmt(words)}</b></span>
+            <span class="pf-stat-label">Sentences met</span>
+            <span class="pf-stat-value"><b data-count="${sentencesMet()}">${ui.fmt(sentencesMet())}</b><i>/${SENTENCES.length}</i></span>
           </div>
           <div class="pf-stat">
-            <span class="pf-stat-label">Minutes</span>
-            <span class="pf-stat-value"><b data-count="${mins}">${ui.fmt(mins)}</b></span>
+            <span class="pf-stat-label">Words known</span>
+            <span class="pf-stat-value"><b data-count="${known}">${ui.fmt(known)}</b><i>/${WORDS.length}</i></span>
           </div>
           <div class="pf-stat">
             <span class="pf-stat-label">Accuracy</span>
@@ -299,7 +381,10 @@ export default {
           </div>
         </section>
 
-        <!-- 6 · achievements -->
+        <!-- 6 · unit badges -->
+        ${badgeStrip()}
+
+        <!-- 7 · achievements -->
         <section class="pf-ach" aria-label="Achievements">
           <div class="pf-card-head">
             <h3 class="pf-card-title">Achievements</h3>
@@ -311,8 +396,8 @@ export default {
                 (a) => `<button class="pf-ach-item ${a.done ? 'is-on' : 'is-locked'} tone-${a.tone}" type="button"
                     data-ach="${a.key}" aria-label="${ui.esc(a.name)} — ${a.done ? 'unlocked' : 'locked'}">
                   <span class="pf-ach-badge">
-                    ${ui.icon(a.icon, 26)}
-                    ${a.done ? '' : `<span class="pf-ach-lock">${ui.icon('lock', 12)}</span>`}
+                    ${ui.icon(a.icon, 24)}
+                    ${a.done ? '' : `<span class="pf-ach-lock">${ui.icon('lock', 11)}</span>`}
                   </span>
                   <span class="pf-ach-name">${ui.esc(a.name)}</span>
                 </button>`
@@ -321,18 +406,18 @@ export default {
           </div>
         </section>
 
-        <!-- 7 · memory health -->
+        <!-- 8 · memory health -->
         <section class="card pf-memory pf-memory--${memoryTone}" aria-label="Memory health">
           <div class="pf-card-head">
             <h3 class="pf-card-title">${ui.icon('refresh', 16)} Memory health</h3>
             <span class="pf-card-note">${decay.due} due now</span>
           </div>
           <p class="pf-mem-copy">${
-            words === 0
-              ? 'Nothing to review yet. Your first node starts the memory map.'
+            sentencesMet() === 0
+              ? 'Nothing to review yet. Your first session starts the memory map.'
               : decay.total
                 ? 'Faded sentences come back stronger after one review — nothing here is lost.'
-                : 'Every sentence is holding. Review keeps it that way.'
+                : 'Every sentence is holding. A short review keeps it that way.'
           }</p>
           <div class="pf-mem-grid">
             <div class="pf-mem-cell"><b>${decay.fading}</b><span>Fading</span></div>
@@ -345,44 +430,75 @@ export default {
           </button>
         </section>
 
-        <!-- 8 · league -->
-        ${
-          joinedLeague
-            ? `<button class="card card-press pf-row-card" type="button" data-go="league">
-                <span class="pf-row-ico pf-row-ico--amber">${ui.icon('trophy', 22)}</span>
-                <span class="pf-row-body">
-                  <span class="pf-row-title">${ui.esc(state.league.tier)} League</span>
-                  <span class="pf-row-sub">${state.league.rank ? `#${state.league.rank} of ${state.league.members.length}` : 'Placing…'} · ${ui.fmt(state.league.xpWeek)} XP this week</span>
-                </span>
-                <span class="chev">${ui.icon('chevron', 18)}</span>
-              </button>`
-            : leagueReady
+        <!-- 9 · A1 exam -->
+        ${examCard()}
+
+        <!-- 10 · links -->
+        <div class="pf-links">
+          <button class="card card-press pf-row-card" type="button" data-go="passport" data-params='{"tab":"sentences"}'>
+            <span class="pf-row-ico pf-row-ico--coral">${ui.icon('passport', 21)}</span>
+            <span class="pf-row-body">
+              <span class="pf-row-title">Collection</span>
+              <span class="pf-row-sub">${ui.fmt(sentencesMet())} / ${SENTENCES.length} sentences · ${ui.fmt(strong)} strong</span>
+            </span>
+            <span class="chev">${ui.icon('chevron', 18)}</span>
+          </button>
+
+          <button class="card card-press pf-row-card" type="button" data-go="vocab">
+            <span class="pf-row-ico pf-row-ico--amber">${ui.icon('book', 21)}</span>
+            <span class="pf-row-body">
+              <span class="pf-row-title">Words</span>
+              <span class="pf-row-sub">${ui.fmt(WORDS.length)} entries · ${ui.fmt(known)} known</span>
+            </span>
+            <span class="chev">${ui.icon('chevron', 18)}</span>
+          </button>
+
+          <button class="card card-press pf-row-card" type="button" data-go="grammar">
+            <span class="pf-row-ico pf-row-ico--indigo">${ui.icon('quests', 21)}</span>
+            <span class="pf-row-body">
+              <span class="pf-row-title">Grammar</span>
+              <span class="pf-row-sub">${GRAMMAR.length} points across ${UNIT_COUNT} units</span>
+            </span>
+            <span class="chev">${ui.icon('chevron', 18)}</span>
+          </button>
+
+          ${
+            joinedLeague
               ? `<button class="card card-press pf-row-card" type="button" data-go="league">
-                  <span class="pf-row-ico pf-row-ico--amber">${ui.icon('trophy', 22)}</span>
+                  <span class="pf-row-ico pf-row-ico--amber">${ui.icon('trophy', 21)}</span>
                   <span class="pf-row-body">
-                    <span class="pf-row-title">League is ready</span>
-                    <span class="pf-row-sub">Day 7 passed — join this week's board</span>
+                    <span class="pf-row-title">${ui.esc(state.league.tier)} League</span>
+                    <span class="pf-row-sub">${state.league.rank ? `#${state.league.rank} of ${state.league.members.length}` : 'Placing…'} · ${ui.fmt(state.league.xpWeek)} XP this week</span>
                   </span>
                   <span class="chev">${ui.icon('chevron', 18)}</span>
                 </button>`
-              : `<div class="card pf-row-card pf-row-card--locked" aria-label="League locked">
-                  <span class="pf-row-ico">${ui.icon('lock', 20)}</span>
-                  <span class="pf-row-body">
-                    <span class="pf-row-title">League unlocks Day 7</span>
-                    <span class="pf-row-sub">You're on Day ${state.day}. Keep the streak alive.</span>
-                  </span>
-                </div>`
-        }
+              : leagueReady
+                ? `<button class="card card-press pf-row-card" type="button" data-go="league">
+                    <span class="pf-row-ico pf-row-ico--amber">${ui.icon('trophy', 21)}</span>
+                    <span class="pf-row-body">
+                      <span class="pf-row-title">League is ready</span>
+                      <span class="pf-row-sub">Day 7 passed — join this week's board</span>
+                    </span>
+                    <span class="chev">${ui.icon('chevron', 18)}</span>
+                  </button>`
+                : `<div class="card pf-row-card pf-row-card--locked" aria-label="League locked">
+                    <span class="pf-row-ico">${ui.icon('lock', 20)}</span>
+                    <span class="pf-row-body">
+                      <span class="pf-row-title">League unlocks Day 7</span>
+                      <span class="pf-row-sub">You're on Day ${state.day}. Keep the streak alive.</span>
+                    </span>
+                  </div>`
+          }
 
-        <!-- 9 · settings -->
-        <button class="card card-press pf-row-card" type="button" data-settings>
-          <span class="pf-row-ico">${ui.icon('settings', 21)}</span>
-          <span class="pf-row-body">
-            <span class="pf-row-title">Settings</span>
-            <span class="pf-row-sub">Goal, reminders, sound, account</span>
-          </span>
-          <span class="chev">${ui.icon('chevron', 18)}</span>
-        </button>
+          <button class="card card-press pf-row-card" type="button" data-settings>
+            <span class="pf-row-ico">${ui.icon('settings', 21)}</span>
+            <span class="pf-row-body">
+              <span class="pf-row-title">Settings</span>
+              <span class="pf-row-sub">Goal, romanization, reminders, sound</span>
+            </span>
+            <span class="chev">${ui.icon('chevron', 18)}</span>
+          </button>
+        </div>
 
         <div class="pf-lab">
           <button class="btn btn-ghost pf-lab-btn" type="button" data-go="demo">
@@ -393,7 +509,7 @@ export default {
         <footer class="pf-foot">
           <span>Horang v${ui.esc(APP_VERSION)}</span>
           <span class="pf-foot-dot">·</span>
-          <span>made for Korean learners</span>
+          <span>${badges} / ${UNIT_COUNT} unit badges</span>
         </footer>
       </div>
     </section>`;
@@ -403,14 +519,10 @@ export default {
     const reduce = document.body.classList.contains('reduce-motion');
 
     // Staggered entrance — 6 items max per motion spec, then settle.
-    const items = root.querySelectorAll('.pf-stagger > *');
-    items.forEach((el, i) => {
+    root.querySelectorAll('.pf-stagger > *').forEach((el, i) => {
       if (reduce) return;
       el.style.animationDelay = `${Math.min(i, 6) * 55}ms`;
     });
-
-    // XP bar grows in from the left (600ms, ease-out) — width is server-rendered.
-    // (Pure CSS animation so the value is correct even before the first frame.)
 
     // Number tickers.
     root.querySelectorAll('[data-count]').forEach((el) => {
@@ -423,8 +535,7 @@ export default {
       else ui.countUp(el, 0, to, 700);
     });
 
-    const goSettings = () => router.go('settings');
-    root.querySelectorAll('[data-settings]').forEach((b) => b.addEventListener('click', goSettings));
+    root.querySelectorAll('[data-settings]').forEach((b) => b.addEventListener('click', () => router.go('settings')));
 
     root.querySelector('[data-review]')?.addEventListener('click', () => {
       router.go('lesson', { kind: 'review' });

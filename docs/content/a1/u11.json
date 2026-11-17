@@ -1,0 +1,853 @@
+{
+  "unit": {
+    "id": "u11_health",
+    "order": 11,
+    "title": "Health & weather",
+    "ko": "건강",
+    "canDo": [
+      "Describe the weather today and tomorrow",
+      "Say where it hurts and what you need",
+      "Give advice with -아/어야 해요",
+      "Tell someone not to do something with -지 마세요"
+    ],
+    "grammarIds": ["g39", "g40", "g41", "g42"]
+  },
+  "lessons": [
+    {
+      "id": "l11_1",
+      "unitId": "u11_health",
+      "order": 1,
+      "kind": "vocab",
+      "title": "Hot, cold, clear, cloudy",
+      "ko": "오늘 날씨 어때요?",
+      "goal": "Use rain, snow, wind and the four everyday weather adjectives",
+      "grammarIds": ["g39"],
+      "wordIds": ["w11_01", "w11_02", "w11_03", "w11_04", "w11_05", "w11_06", "w11_07", "w11_08", "w11_09", "w11_10", "w11_11", "w11_12"],
+      "sentenceIds": ["s11_1_1", "s11_1_2", "s11_1_3", "s11_1_4", "s11_1_5", "s11_1_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l11_2",
+      "unitId": "u11_health",
+      "order": 2,
+      "kind": "grammar",
+      "title": "It hurts here",
+      "ko": "머리가 아파요",
+      "goal": "Name body parts, say what hurts and say what you must do",
+      "grammarIds": ["g41", "g39"],
+      "wordIds": ["w11_13", "w11_14", "w11_15", "w11_16", "w11_17", "w11_18", "w11_19", "w11_20", "w11_21", "w11_22", "w11_23", "w11_24"],
+      "sentenceIds": ["s11_2_1", "s11_2_2", "s11_2_3", "s11_2_4", "s11_2_5", "s11_2_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 7
+    },
+    {
+      "id": "l11_3",
+      "unitId": "u11_health",
+      "order": 3,
+      "kind": "listening",
+      "title": "At the pharmacy",
+      "ko": "약국에서",
+      "goal": "Understand symptoms and advice, and hear what not to do",
+      "grammarIds": ["g40", "g42"],
+      "wordIds": ["w11_25", "w11_26", "w11_27", "w11_28", "w11_29", "w11_30", "w11_31", "w11_32", "w11_33", "w11_34", "w11_35", "w11_36"],
+      "sentenceIds": ["s11_3_1", "s11_3_2", "s11_3_3", "s11_3_4", "s11_3_5", "s11_3_6"],
+      "dialogueId": "d11",
+      "readingId": null,
+      "minutes": 8
+    },
+    {
+      "id": "l11_4",
+      "unitId": "u11_health",
+      "order": 4,
+      "kind": "reading",
+      "title": "Today's weather and your body",
+      "ko": "오늘의 날씨",
+      "goal": "Read a short forecast and match each day to the right advice",
+      "grammarIds": ["g39", "g40", "g41"],
+      "wordIds": ["w11_37", "w11_38", "w11_39", "w11_40", "w11_41", "w11_42", "w11_43", "w11_44", "w11_45", "w11_46", "w11_47", "w11_48"],
+      "sentenceIds": ["s11_4_1", "s11_4_2", "s11_4_3", "s11_4_4", "s11_4_5", "s11_4_6"],
+      "dialogueId": null,
+      "readingId": "r11",
+      "minutes": 7
+    },
+    {
+      "id": "l11_5",
+      "unitId": "u11_health",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Weather, body, advice",
+      "ko": "건강 이야기",
+      "goal": "Describe weather, say what hurts, and give or refuse advice without hints",
+      "grammarIds": ["g39", "g40", "g41", "g42"],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g39",
+      "unitId": "u11_health",
+      "order": 1,
+      "label": "if / when (-면)",
+      "ko": "-면",
+      "pattern": "V-면",
+      "explanation": "Attach -면 to a verb or adjective stem for 'if' or 'when': 비가 오면, 아프면. The second clause gives the result or the advice.",
+      "examples": [
+        { "ko": "비가 오면 우산을 쓰세요.", "en": "If it rains, use an umbrella." },
+        { "ko": "몸이 아프면 병원에 가세요.", "en": "If you feel sick, go to the hospital." }
+      ],
+      "mistake": "오으면 ✗ → 오면 ✓"
+    },
+    {
+      "id": "g40",
+      "unitId": "u11_health",
+      "order": 2,
+      "label": "will / probably (-겠-)",
+      "ko": "-겠-",
+      "pattern": "V-겠어요",
+      "explanation": "-겠- adds the speaker's intention or a careful guess. In weather talk it means 'it looks like it will…'; in 알겠어요 it means 'understood'.",
+      "examples": [
+        { "ko": "내일은 비가 오겠어요.", "en": "It will probably rain tomorrow." },
+        { "ko": "네, 알겠어요.", "en": "Yes, I understand." }
+      ],
+      "mistake": "오겠다요 ✗ → 오겠어요 ✓"
+    },
+    {
+      "id": "g41",
+      "unitId": "u11_health",
+      "order": 3,
+      "label": "must (-아/어야 해요)",
+      "ko": "-아/어야 해요",
+      "pattern": "V-아/어야 해요",
+      "explanation": "Use -아/어야 해요 when something is necessary: 먹어야 해요, 가야 해요. 하다 verbs become 해야 해요.",
+      "examples": [
+        { "ko": "약을 먹어야 해요.", "en": "I have to take medicine." },
+        { "ko": "오늘은 일찍 자야 해요.", "en": "I have to go to bed early today." }
+      ],
+      "mistake": "먹야 해요 ✗ → 먹어야 해요 ✓"
+    },
+    {
+      "id": "g42",
+      "unitId": "u11_health",
+      "order": 4,
+      "label": "don't (-지 마세요)",
+      "ko": "-지 마세요",
+      "pattern": "V-지 마세요",
+      "explanation": "Attach -지 마세요 to a verb stem for a polite 'please don't': 가지 마세요, 걱정하지 마세요. It is the negative of -(으)세요.",
+      "examples": [
+        { "ko": "찬물을 마시지 마세요.", "en": "Don't drink cold water." },
+        { "ko": "걱정하지 마세요.", "en": "Don't worry." }
+      ],
+      "mistake": "안 마시지 마세요 ✗ (double negative) → 마시지 마세요 ✓"
+    }
+  ],
+  "words": [
+    { "id": "w11_01", "ko": "비", "rom": "bi", "en": "rain", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_02", "ko": "눈", "rom": "nun", "en": "snow", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_03", "ko": "바람", "rom": "baram", "en": "wind", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_04", "ko": "구름", "rom": "gureum", "en": "cloud", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_05", "ko": "하늘", "rom": "haneul", "en": "sky", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_06", "ko": "우산", "rom": "usan", "en": "umbrella", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_07", "ko": "겨울", "rom": "gyeoul", "en": "winter", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_08", "ko": "여름", "rom": "yeoreum", "en": "summer", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_09", "ko": "더워요", "rom": "deowoyo", "en": "it is hot", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_10", "ko": "추워요", "rom": "chuwoyo", "en": "it is cold", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_11", "ko": "시원해요", "rom": "siwonhaeyo", "en": "it is cool", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_12", "ko": "맑아요", "rom": "malgayo", "en": "it is clear", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_1" },
+    { "id": "w11_13", "ko": "감기", "rom": "gamgi", "en": "a cold (illness)", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_14", "ko": "열", "rom": "yeol", "en": "fever", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_15", "ko": "기침", "rom": "gichim", "en": "cough", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_16", "ko": "약", "rom": "yak", "en": "medicine", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_17", "ko": "병원", "rom": "byeongwon", "en": "hospital", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_18", "ko": "약국", "rom": "yakguk", "en": "pharmacy", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_19", "ko": "아파요", "rom": "apayo", "en": "it hurts", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_20", "ko": "머리", "rom": "meori", "en": "head", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_21", "ko": "속", "rom": "sok", "en": "stomach (inside)", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_22", "ko": "목", "rom": "mok", "en": "throat, neck", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_23", "ko": "몸", "rom": "mom", "en": "body", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_24", "ko": "빨리", "rom": "ppalli", "en": "quickly", "pos": "adverb", "unitId": "u11_health", "lessonId": "l11_2" },
+    { "id": "w11_25", "ko": "흐려요", "rom": "heuryeoyo", "en": "it is cloudy", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_26", "ko": "기온", "rom": "gion", "en": "temperature", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_27", "ko": "소나기", "rom": "sonagi", "en": "sudden shower", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_28", "ko": "장마", "rom": "jangma", "en": "rainy season", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_29", "ko": "마스크", "rom": "maseukeu", "en": "mask", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_30", "ko": "콧물", "rom": "konmul", "en": "runny nose", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_31", "ko": "어지러워요", "rom": "eojireowoyo", "en": "I feel dizzy", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_32", "ko": "쉬세요", "rom": "swiseyo", "en": "please rest", "pos": "verb", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_33", "ko": "따뜻한 물", "rom": "ttatteutan mul", "en": "warm water", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_34", "ko": "조심하세요", "rom": "josimhaseyo", "en": "please be careful", "pos": "verb", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_35", "ko": "걱정", "rom": "geokjeong", "en": "worry", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_36", "ko": "돌아요", "rom": "dorayo", "en": "goes around (illness)", "pos": "verb", "unitId": "u11_health", "lessonId": "l11_3" },
+    { "id": "w11_37", "ko": "예보", "rom": "yebo", "en": "forecast", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_38", "ko": "많이", "rom": "mani", "en": "a lot", "pos": "adverb", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_39", "ko": "조금", "rom": "jogeum", "en": "a little", "pos": "adverb", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_40", "ko": "나빠요", "rom": "nappayo", "en": "it is bad", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_41", "ko": "좋아져요", "rom": "joajyeoyo", "en": "it gets better", "pos": "verb", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_42", "ko": "잠", "rom": "jam", "en": "sleep", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_43", "ko": "공기", "rom": "gonggi", "en": "air", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_44", "ko": "따뜻해요", "rom": "ttatteutaeyo", "en": "it is warm", "pos": "adjective", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_45", "ko": "휴가", "rom": "hyuga", "en": "time off, vacation", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_46", "ko": "걸렸어요", "rom": "geollyeosseoyo", "en": "caught (an illness)", "pos": "verb", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_47", "ko": "기운", "rom": "giun", "en": "energy", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_4" },
+    { "id": "w11_48", "ko": "건강", "rom": "geongang", "en": "health", "pos": "noun", "unitId": "u11_health", "lessonId": "l11_4" }
+  ],
+  "sentences": [
+    {
+      "id": "s11_1_1",
+      "unitId": "u11_health",
+      "lessonId": "l11_1",
+      "korean": "오늘은 하늘이 맑아요. 사진을 찍겠어요.",
+      "romanization": "oneureun haneuri malgayo. sajineul jjikgesseoyo.",
+      "english": "The sky is clear today. I'm going to take photos.",
+      "literal": "Today, the sky is clear. Photos take-will.",
+      "gloss": [
+        { "ko": "오늘은", "rom": "oneureun", "en": "today (topic)" },
+        { "ko": "하늘이", "rom": "haneuri", "en": "the sky (subject)" },
+        { "ko": "맑아요", "rom": "malgayo", "en": "is clear" },
+        { "ko": "사진을", "rom": "sajineul", "en": "photos (object)" },
+        { "ko": "찍겠어요", "rom": "jjikgesseoyo", "en": "will take (a photo)" }
+      ],
+      "grammarIds": ["g40"],
+      "wordIds": ["w11_05", "w11_12"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "The sky is cloudy today. I'm going to take photos.",
+        "The sky is clear today. I'm not going to take photos.",
+        "The sky was clear yesterday. I took photos."
+      ],
+      "notes": "The subject marker 이 follows 하늘 because it ends in a consonant."
+    },
+    {
+      "id": "s11_1_2",
+      "unitId": "u11_health",
+      "lessonId": "l11_1",
+      "korean": "비가 오면 우산을 사야 해요.",
+      "romanization": "biga omyeon usaneul saya haeyo.",
+      "english": "If it rains, you have to buy an umbrella.",
+      "literal": "If rain comes, an umbrella buy-must.",
+      "gloss": [
+        { "ko": "비가", "rom": "biga", "en": "rain (subject)" },
+        { "ko": "오면", "rom": "omyeon", "en": "if it comes" },
+        { "ko": "우산을", "rom": "usaneul", "en": "an umbrella (object)" },
+        { "ko": "사야 해요", "rom": "saya haeyo", "en": "must buy" }
+      ],
+      "grammarIds": ["g39", "g41"],
+      "wordIds": ["w11_01", "w11_06"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "If it rains, you have to buy a mask.",
+        "If it snows, you have to buy an umbrella.",
+        "If it rains, you don't have to buy an umbrella."
+      ],
+      "notes": "Korean says 'rain comes': 비가 와요, so the condition is 비가 오면."
+    },
+    {
+      "id": "s11_1_3",
+      "unitId": "u11_health",
+      "lessonId": "l11_1",
+      "korean": "여름에는 정말 더워요. 물을 많이 마셔야 해요.",
+      "romanization": "yeoreumeneun jeongmal deowoyo. mureul mani masyeoya haeyo.",
+      "english": "In summer it is really hot. You have to drink a lot of water.",
+      "literal": "In summer, really it-is-hot. Water a lot drink-must.",
+      "gloss": [
+        { "ko": "여름에는", "rom": "yeoreumeneun", "en": "in summer (topic)" },
+        { "ko": "정말", "rom": "jeongmal", "en": "really" },
+        { "ko": "더워요", "rom": "deowoyo", "en": "it is hot" },
+        { "ko": "물을", "rom": "mureul", "en": "water (object)" },
+        { "ko": "마셔야 해요", "rom": "masyeoya haeyo", "en": "must drink" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_08", "w11_09"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "In summer it is really cold. You have to drink a lot of water.",
+        "In summer it is really hot. You must not drink water.",
+        "In winter it is really hot. You have to drink a lot of water."
+      ],
+      "notes": "덥다 changes its ㅂ to 우: 덥 + 어요 = 더워요."
+    },
+    {
+      "id": "s11_1_4",
+      "unitId": "u11_health",
+      "lessonId": "l11_1",
+      "korean": "서울은 겨울에 아주 추워요. 따뜻하게 입어야 해요.",
+      "romanization": "seoureun gyeoure aju chuwoyo. ttatteuthage ibeoya haeyo.",
+      "english": "Seoul is very cold in winter. You have to dress warmly.",
+      "literal": "As for Seoul, in winter very it-is-cold. Warmly dress-must.",
+      "gloss": [
+        { "ko": "서울은", "rom": "seoureun", "en": "Seoul (topic)" },
+        { "ko": "겨울에", "rom": "gyeoure", "en": "in winter" },
+        { "ko": "아주", "rom": "aju", "en": "very" },
+        { "ko": "추워요", "rom": "chuwoyo", "en": "it is cold" },
+        { "ko": "입어야 해요", "rom": "ibeoya haeyo", "en": "must wear" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_07", "w11_10"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Seoul is very cold in summer. You have to dress warmly.",
+        "Seoul is very cold in winter. You don't have to dress warmly.",
+        "Busan is very cold in winter. You have to dress warmly."
+      ],
+      "notes": "춥다 follows the same ㅂ rule: 춥 + 어요 = 추워요."
+    },
+    {
+      "id": "s11_1_5",
+      "unitId": "u11_health",
+      "lessonId": "l11_1",
+      "korean": "오늘은 바람이 시원해요. 산책해도 좋겠어요.",
+      "romanization": "oneureun barami siwonhaeyo. sanchaekhaedo jokesseoyo.",
+      "english": "The wind is cool today. It would be nice to take a walk.",
+      "literal": "Today, the wind is cool. Even walking would-be-good.",
+      "gloss": [
+        { "ko": "오늘은", "rom": "oneureun", "en": "today (topic)" },
+        { "ko": "바람이", "rom": "barami", "en": "the wind (subject)" },
+        { "ko": "시원해요", "rom": "siwonhaeyo", "en": "is cool, is refreshing" },
+        { "ko": "산책해도", "rom": "sanchaekhaedo", "en": "even if I walk" },
+        { "ko": "좋겠어요", "rom": "jokesseoyo", "en": "it would be nice" }
+      ],
+      "grammarIds": ["g40"],
+      "wordIds": ["w11_03", "w11_11"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "The wind is cold today. It would be nice to take a walk.",
+        "The wind is cool today. It would not be nice to take a walk.",
+        "The wind was cool yesterday. It was nice to take a walk."
+      ],
+      "notes": "시원해요 is the good kind of cool, like a breeze or a cold drink."
+    },
+    {
+      "id": "s11_1_6",
+      "unitId": "u11_health",
+      "lessonId": "l11_1",
+      "korean": "겨울에는 눈이 많이 와요. 운전하지 마세요.",
+      "romanization": "gyeoureneun nuni mani wayo. unjeonhaji maseyo.",
+      "english": "It snows a lot in winter. Don't drive.",
+      "literal": "In winter, snow comes a lot. Do-not-drive.",
+      "gloss": [
+        { "ko": "겨울에는", "rom": "gyeoureneun", "en": "in winter (topic)" },
+        { "ko": "눈이", "rom": "nuni", "en": "snow (subject)" },
+        { "ko": "많이", "rom": "mani", "en": "a lot" },
+        { "ko": "와요", "rom": "wayo", "en": "comes" },
+        { "ko": "운전하지 마세요", "rom": "unjeonhaji maseyo", "en": "don't drive" }
+      ],
+      "grammarIds": ["g42"],
+      "wordIds": ["w11_07", "w11_02", "w11_38"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "It rains a lot in winter. Don't drive.",
+        "It snows a lot in summer. Don't drive.",
+        "It snows a lot in winter. Please drive carefully."
+      ],
+      "notes": "눈 is snow and also 'eye'. In weather sentences the subject marker makes it clear."
+    },
+    {
+      "id": "s11_2_1",
+      "unitId": "u11_health",
+      "lessonId": "l11_2",
+      "korean": "머리가 아파요. 이 약을 먹어야 해요.",
+      "romanization": "meoriga apayo. i yageul meogeoya haeyo.",
+      "english": "I have a headache. I have to take this medicine.",
+      "literal": "The head hurts. This medicine eat-must.",
+      "gloss": [
+        { "ko": "머리가", "rom": "meoriga", "en": "the head (subject)" },
+        { "ko": "아파요", "rom": "apayo", "en": "hurts" },
+        { "ko": "이 약을", "rom": "i yageul", "en": "this medicine (object)" },
+        { "ko": "먹어야 해요", "rom": "meogeoya haeyo", "en": "must take" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_20", "w11_19", "w11_16"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I have a headache. I must not take this medicine.",
+        "My stomach hurts. I have to take this medicine.",
+        "I had a headache. I had to take this medicine."
+      ],
+      "notes": "Korean says 'the head hurts', not 'I have a headache'. The body part is the subject."
+    },
+    {
+      "id": "s11_2_2",
+      "unitId": "u11_health",
+      "lessonId": "l11_2",
+      "korean": "목이 아프고 기침이 나서 집에서 쉬어야 해요.",
+      "romanization": "moki apeugo gichimi naseo jibeseo swieoya haeyo.",
+      "english": "My throat hurts and I have a cough, so I have to rest at home.",
+      "literal": "Throat hurts-and, cough comes-because, at home rest-must.",
+      "gloss": [
+        { "ko": "목이", "rom": "moki", "en": "the throat (subject)" },
+        { "ko": "아프고", "rom": "apeugo", "en": "hurts and" },
+        { "ko": "기침이", "rom": "gichimi", "en": "a cough (subject)" },
+        { "ko": "나서", "rom": "naseo", "en": "comes, so" },
+        { "ko": "쉬어야 해요", "rom": "swieoya haeyo", "en": "must rest" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_22", "w11_15"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "My throat hurts and I have a cough, so I have to go to work.",
+        "My throat is fine and I have a cough, so I have to rest at home.",
+        "My head hurts and I have a cough, so I have to rest at home."
+      ],
+      "notes": "기침이 나다 is the fixed phrase for 'to cough'; the cough 'comes out'."
+    },
+    {
+      "id": "s11_2_3",
+      "unitId": "u11_health",
+      "lessonId": "l11_2",
+      "korean": "열이 있으면 약을 먹어야 해요.",
+      "romanization": "yeori isseumyeon yageul meogeoya haeyo.",
+      "english": "If you have a fever, you have to take medicine.",
+      "literal": "If a fever exists, medicine eat-must.",
+      "gloss": [
+        { "ko": "열이", "rom": "yeori", "en": "a fever (subject)" },
+        { "ko": "있으면", "rom": "isseumyeon", "en": "if there is" },
+        { "ko": "약을", "rom": "yageul", "en": "medicine (object)" },
+        { "ko": "먹어야 해요", "rom": "meogeoya haeyo", "en": "must take, must eat" }
+      ],
+      "grammarIds": ["g39", "g41"],
+      "wordIds": ["w11_14", "w11_16"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "If you have a fever, you must buy medicine.",
+        "If you have a cough, you must take medicine.",
+        "If you have a fever, you don't have to take medicine."
+      ],
+      "notes": "Koreans 'eat' medicine: 약을 먹어요."
+    },
+    {
+      "id": "s11_2_4",
+      "unitId": "u11_health",
+      "lessonId": "l11_2",
+      "korean": "약국에서 약을 사야 해요.",
+      "romanization": "yakgugeseo yageul saya haeyo.",
+      "english": "I have to buy medicine at the pharmacy.",
+      "literal": "At the pharmacy, medicine buy-must.",
+      "gloss": [
+        { "ko": "약국에서", "rom": "yakgugeseo", "en": "at the pharmacy" },
+        { "ko": "약을", "rom": "yageul", "en": "medicine (object)" },
+        { "ko": "사야 해요", "rom": "saya haeyo", "en": "must buy" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_18", "w11_16"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I have to buy medicine at the hospital.",
+        "I bought medicine at the pharmacy.",
+        "I don't have to buy medicine."
+      ],
+      "notes": "사다 + -아야 해요 = 사야 해요. The ㄹ of the stem does not appear."
+    },
+    {
+      "id": "s11_2_5",
+      "unitId": "u11_health",
+      "lessonId": "l11_2",
+      "korean": "몸이 안 좋으면 따뜻한 물을 마셔야 해요.",
+      "romanization": "momi an joeumyeon ttatteutan mureul masyeoya haeyo.",
+      "english": "If you don't feel well, you have to drink warm water.",
+      "literal": "If the body is not good, warm water drink-must.",
+      "gloss": [
+        { "ko": "몸이", "rom": "momi", "en": "the body (subject)" },
+        { "ko": "안 좋으면", "rom": "an joeumyeon", "en": "if it is not good" },
+        { "ko": "따뜻한 물을", "rom": "ttatteutan mureul", "en": "warm water (object)" },
+        { "ko": "마셔야 해요", "rom": "masyeoya haeyo", "en": "must drink" }
+      ],
+      "grammarIds": ["g39", "g41"],
+      "wordIds": ["w11_23", "w11_33"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "If you don't feel well, you must drink cold water.",
+        "If you feel good, you have to drink warm water.",
+        "If you don't feel well, you must not drink water."
+      ],
+      "notes": "Two endings stack here: 안 좋으면 sets the condition, 마셔야 해요 gives the duty."
+    },
+    {
+      "id": "s11_2_6",
+      "unitId": "u11_health",
+      "lessonId": "l11_2",
+      "korean": "감기에는 마스크를 써야 해요.",
+      "romanization": "gamgieneun maseukeureul sseoya haeyo.",
+      "english": "For a cold, you have to wear a mask.",
+      "literal": "For a cold, a mask wear-must.",
+      "gloss": [
+        { "ko": "감기에는", "rom": "gamgieneun", "en": "for a cold" },
+        { "ko": "마스크를", "rom": "maseukeureul", "en": "a mask (object)" },
+        { "ko": "써야 해요", "rom": "sseoya haeyo", "en": "must wear" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_13", "w11_29"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "For a cold, you don't have to wear a mask.",
+        "For a fever, you have to wear a mask.",
+        "For a cold, you have to take off your mask."
+      ],
+      "notes": "에는 here means 'for / in the case of', not a location."
+    },
+    {
+      "id": "s11_3_1",
+      "unitId": "u11_health",
+      "lessonId": "l11_3",
+      "korean": "오후에는 하늘이 흐려요. 우산을 준비해야 해요.",
+      "romanization": "ohuneun haneuri heuryeoyo. usaneul junbihaeya haeyo.",
+      "english": "In the afternoon the sky is cloudy. You have to get an umbrella ready.",
+      "literal": "In the afternoon, the sky is cloudy. An umbrella prepare-must.",
+      "gloss": [
+        { "ko": "오후에는", "rom": "ohuneun", "en": "in the afternoon (topic)" },
+        { "ko": "하늘이", "rom": "haneuri", "en": "the sky (subject)" },
+        { "ko": "흐려요", "rom": "heuryeoyo", "en": "is cloudy" },
+        { "ko": "우산을", "rom": "usaneul", "en": "an umbrella (object)" },
+        { "ko": "준비해야 해요", "rom": "junbihaeya haeyo", "en": "must prepare" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_05", "w11_25", "w11_06"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "In the morning the sky is cloudy. You have to get an umbrella ready.",
+        "In the afternoon the sky is clear. You have to get an umbrella ready.",
+        "In the afternoon the sky is cloudy. You don't have to get an umbrella ready."
+      ],
+      "notes": "흐리다 → 흐려요: the ㅣ becomes ㅕ before -어요."
+    },
+    {
+      "id": "s11_3_2",
+      "unitId": "u11_health",
+      "lessonId": "l11_3",
+      "korean": "기온이 낮으면 아주 추워요.",
+      "romanization": "gioni najeumyeon aju chuwoyo.",
+      "english": "If the temperature is low, it is very cold.",
+      "literal": "If the temperature is low, very it-is-cold.",
+      "gloss": [
+        { "ko": "기온이", "rom": "gioni", "en": "the temperature (subject)" },
+        { "ko": "낮으면", "rom": "najeumyeon", "en": "if it is low" },
+        { "ko": "아주", "rom": "aju", "en": "very" },
+        { "ko": "추워요", "rom": "chuwoyo", "en": "it is cold" }
+      ],
+      "grammarIds": ["g39"],
+      "wordIds": ["w11_26", "w11_10"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "If the temperature is high, it is very cold.",
+        "If the temperature is low, it is very hot.",
+        "If the temperature is low, it is very warm."
+      ],
+      "notes": "낮다 is 'to be low'; its opposite is 높다, 'to be high'."
+    },
+    {
+      "id": "s11_3_3",
+      "unitId": "u11_health",
+      "lessonId": "l11_3",
+      "korean": "장마에는 우산이 있어야 해요.",
+      "romanization": "jangmeneun usani isseoya haeyo.",
+      "english": "During the rainy season you have to have an umbrella.",
+      "literal": "In the rainy season, an umbrella must-exist.",
+      "gloss": [
+        { "ko": "장마에는", "rom": "jangmeneun", "en": "in the rainy season" },
+        { "ko": "우산이", "rom": "usani", "en": "an umbrella (subject)" },
+        { "ko": "있어야 해요", "rom": "isseoya haeyo", "en": "must have, must exist" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_28", "w11_06"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "During the rainy season you don't need an umbrella.",
+        "During the rainy season you have to have a mask.",
+        "During winter you have to have an umbrella."
+      ],
+      "notes": "장마 is the long rainy season in early summer, usually in June and July."
+    },
+    {
+      "id": "s11_3_4",
+      "unitId": "u11_health",
+      "lessonId": "l11_3",
+      "korean": "오후에 소나기가 오겠어요. 조심하세요.",
+      "romanization": "ohue sonagiga ogesseoyo. josimhaseyo.",
+      "english": "There will probably be a sudden shower in the afternoon. Be careful.",
+      "literal": "In the afternoon a shower come-will. Be-careful.",
+      "gloss": [
+        { "ko": "오후에", "rom": "ohue", "en": "in the afternoon" },
+        { "ko": "소나기가", "rom": "sonagiga", "en": "a sudden shower (subject)" },
+        { "ko": "오겠어요", "rom": "ogesseoyo", "en": "will probably come" },
+        { "ko": "조심하세요", "rom": "josimhaseyo", "en": "please be careful" }
+      ],
+      "grammarIds": ["g40"],
+      "wordIds": ["w11_27", "w11_34"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "There will probably be a sudden shower in the morning.",
+        "There will probably be clear skies in the afternoon.",
+        "There was a sudden shower in the afternoon."
+      ],
+      "notes": "소나기 is a short, heavy shower that stops quickly - not 장마."
+    },
+    {
+      "id": "s11_3_5",
+      "unitId": "u11_health",
+      "lessonId": "l11_3",
+      "korean": "감기에는 약을 먹고 찬물을 마시지 마세요.",
+      "romanization": "gamgieneun yageul meokgo chanmureul masiji maseyo.",
+      "english": "For a cold, take medicine and don't drink cold water.",
+      "literal": "For a cold, medicine eat-and, cold water do-not-drink.",
+      "gloss": [
+        { "ko": "감기에는", "rom": "gamgieneun", "en": "for a cold" },
+        { "ko": "약을", "rom": "yageul", "en": "medicine (object)" },
+        { "ko": "먹고", "rom": "meokgo", "en": "take and" },
+        { "ko": "찬물을", "rom": "chanmureul", "en": "cold water (object)" },
+        { "ko": "마시지 마세요", "rom": "masiji maseyo", "en": "don't drink" }
+      ],
+      "grammarIds": ["g42"],
+      "wordIds": ["w11_13", "w11_16"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "For a cold, take medicine and drink cold water.",
+        "For a fever, take medicine and don't drink cold water.",
+        "For a cold, don't take medicine and don't drink cold water."
+      ],
+      "notes": "-지 마세요 is the negative of -(으)세요: 마시세요 → 마시지 마세요."
+    },
+    {
+      "id": "s11_3_6",
+      "unitId": "u11_health",
+      "lessonId": "l11_3",
+      "korean": "몸이 안 좋으면 쉬세요.",
+      "romanization": "momi an joeumyeon swiseyo.",
+      "english": "If you don't feel well, rest.",
+      "literal": "If the body is not good, rest-please.",
+      "gloss": [
+        { "ko": "몸이", "rom": "momi", "en": "the body (subject)" },
+        { "ko": "안 좋으면", "rom": "an joeumyeon", "en": "if it is not good" },
+        { "ko": "쉬세요", "rom": "swiseyo", "en": "please rest" }
+      ],
+      "grammarIds": ["g39"],
+      "wordIds": ["w11_23", "w11_32"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "If you don't feel well, go to work.",
+        "If you feel good, rest.",
+        "If you don't feel well, don't rest."
+      ],
+      "notes": "안 좋다 is softer than 나쁘다 and is the usual way to say 'not feeling well'."
+    },
+    {
+      "id": "s11_4_1",
+      "unitId": "u11_health",
+      "lessonId": "l11_4",
+      "korean": "감기에 걸렸어요. 그래서 기운이 없어요. 물을 많이 마셔야 해요.",
+      "romanization": "gamgie geollyeosseoyo. geuraeseo giuni eopseoyo. mureul mani masyeoya haeyo.",
+      "english": "I caught a cold. So I have no energy. I have to drink a lot of water.",
+      "literal": "On a cold was-caught. So, energy does-not-exist. Water a lot drink-must.",
+      "gloss": [
+        { "ko": "감기에 걸렸어요", "rom": "gamgie geollyeosseoyo", "en": "caught a cold" },
+        { "ko": "기운이", "rom": "giuni", "en": "energy (subject)" },
+        { "ko": "없어요", "rom": "eopseoyo", "en": "there isn't" },
+        { "ko": "물을", "rom": "mureul", "en": "water (object)" },
+        { "ko": "마셔야 해요", "rom": "masyeoya haeyo", "en": "must drink" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_13", "w11_47"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I caught a cold. So I have a lot of energy. I have to drink a lot of water.",
+        "I caught a cold. So I have no energy. I have to go to work.",
+        "I have a fever. So I have no energy. I have to drink a lot of water."
+      ],
+      "notes": "감기에 걸리다 is the fixed phrase: literally 'get caught on a cold'."
+    },
+    {
+      "id": "s11_4_2",
+      "unitId": "u11_health",
+      "lessonId": "l11_4",
+      "korean": "잠을 많이 자면 건강에 좋아요.",
+      "romanization": "jameul mani jamyeon geongange joayo.",
+      "english": "Sleeping a lot is good for your health.",
+      "literal": "If you sleep a lot, it is good for health.",
+      "gloss": [
+        { "ko": "잠을", "rom": "jameul", "en": "sleep (object)" },
+        { "ko": "많이", "rom": "mani", "en": "a lot" },
+        { "ko": "자면", "rom": "jamyeon", "en": "if you sleep" },
+        { "ko": "건강에", "rom": "geongange", "en": "for health" },
+        { "ko": "좋아요", "rom": "joayo", "en": "is good" }
+      ],
+      "grammarIds": ["g39"],
+      "wordIds": ["w11_42", "w11_38", "w11_48"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Sleeping a lot is bad for your health.",
+        "Sleeping a little is good for your health.",
+        "Eating a lot is good for your health."
+      ],
+      "notes": "건강에 좋다 is the set phrase for 'good for your health'."
+    },
+    {
+      "id": "s11_4_3",
+      "unitId": "u11_health",
+      "lessonId": "l11_4",
+      "korean": "오늘은 공기가 나빠요. 마스크를 써야 해요.",
+      "romanization": "oneureun gonggiga nappayo. maseukeureul sseoya haeyo.",
+      "english": "The air is bad today. You have to wear a mask.",
+      "literal": "Today, the air is bad. A mask wear-must.",
+      "gloss": [
+        { "ko": "오늘은", "rom": "oneureun", "en": "today (topic)" },
+        { "ko": "공기가", "rom": "gonggiga", "en": "the air (subject)" },
+        { "ko": "나빠요", "rom": "nappayo", "en": "is bad" },
+        { "ko": "마스크를", "rom": "maseukeureul", "en": "a mask (object)" },
+        { "ko": "써야 해요", "rom": "sseoya haeyo", "en": "must wear" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_43", "w11_40", "w11_29"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "The air is good today. You have to wear a mask.",
+        "The air is bad today. You don't have to wear a mask.",
+        "The water is bad today. You have to wear a mask."
+      ],
+      "notes": "나쁘다 → 나빠요. It is the opposite of 좋아요."
+    },
+    {
+      "id": "s11_4_4",
+      "unitId": "u11_health",
+      "lessonId": "l11_4",
+      "korean": "비가 오면 공기가 좋아져요.",
+      "romanization": "biga omyeon gonggiga joajyeoyo.",
+      "english": "When it rains, the air gets better.",
+      "literal": "If rain comes, the air becomes-good.",
+      "gloss": [
+        { "ko": "비가", "rom": "biga", "en": "rain (subject)" },
+        { "ko": "오면", "rom": "omyeon", "en": "if it comes" },
+        { "ko": "공기가", "rom": "gonggiga", "en": "the air (subject)" },
+        { "ko": "좋아져요", "rom": "joajyeoyo", "en": "gets better" }
+      ],
+      "grammarIds": ["g39"],
+      "wordIds": ["w11_01", "w11_43", "w11_41"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "When it rains, the air gets worse.",
+        "When it snows, the air gets better.",
+        "When it rains, the air gets cold."
+      ],
+      "notes": "좋아지다 = become good; the -지- turns an adjective into a change."
+    },
+    {
+      "id": "s11_4_5",
+      "unitId": "u11_health",
+      "lessonId": "l11_4",
+      "korean": "오늘은 조금 따뜻해요. 산책을 하겠어요.",
+      "romanization": "oneureun jogeum ttatteutaeyo. sanchaekeul hagesseoyo.",
+      "english": "It is a little warm today. I'm going to take a walk.",
+      "literal": "Today, a little it-is-warm. A walk do-will.",
+      "gloss": [
+        { "ko": "오늘은", "rom": "oneureun", "en": "today (topic)" },
+        { "ko": "조금", "rom": "jogeum", "en": "a little" },
+        { "ko": "따뜻해요", "rom": "ttatteutaeyo", "en": "it is warm" },
+        { "ko": "산책을", "rom": "sanchaekeul", "en": "a walk (object)" },
+        { "ko": "하겠어요", "rom": "hagesseoyo", "en": "I will do" }
+      ],
+      "grammarIds": ["g40"],
+      "wordIds": ["w11_39", "w11_44"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "It is a little cold today. I'm going to take a walk.",
+        "It is a little warm today. I'm not going to take a walk.",
+        "It was a little warm yesterday. I took a walk."
+      ],
+      "notes": "따뜻하다 → 따뜻해요. It sits between 시원해요 and 더워요."
+    },
+    {
+      "id": "s11_4_6",
+      "unitId": "u11_health",
+      "lessonId": "l11_4",
+      "korean": "예보를 보고 우산을 준비해야 해요.",
+      "romanization": "yeboreul bogo usaneul junbihaeya haeyo.",
+      "english": "You have to check the forecast and get an umbrella ready.",
+      "literal": "The forecast look-at-and, an umbrella prepare-must.",
+      "gloss": [
+        { "ko": "예보를", "rom": "yeboreul", "en": "the forecast (object)" },
+        { "ko": "보고", "rom": "bogo", "en": "look at and" },
+        { "ko": "우산을", "rom": "usaneul", "en": "an umbrella (object)" },
+        { "ko": "준비해야 해요", "rom": "junbihaeya haeyo", "en": "must prepare" }
+      ],
+      "grammarIds": ["g41"],
+      "wordIds": ["w11_37", "w11_06"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "You have to check the forecast and leave your umbrella at home.",
+        "You have to check the forecast and buy a mask.",
+        "I checked the forecast and prepared an umbrella."
+      ],
+      "notes": "일기예보 is the full word for a weather forecast; 예보 alone is enough here."
+    }
+  ],
+  "dialogue": {
+    "id": "d11",
+    "unitId": "u11_health",
+    "title": "At the pharmacy",
+    "setting": "A customer describes symptoms to a pharmacist in winter.",
+    "lines": [
+      { "id": "d11_1", "speaker": "A", "ko": "어디가 아프세요?", "rom": "eodiga apeseoyo?", "en": "Where does it hurt?" },
+      { "id": "d11_2", "speaker": "B", "ko": "머리가 아프고 콧물이 나요.", "rom": "meoriga apeugo konmuri nayo.", "en": "My head hurts and I have a runny nose." },
+      { "id": "d11_3", "speaker": "A", "ko": "열도 있어요?", "rom": "yeoldo isseoyo?", "en": "Do you have a fever too?" },
+      { "id": "d11_4", "speaker": "B", "ko": "네, 조금 있어요. 그리고 어지러워요.", "rom": "ne, jogeum isseoyo. geurigo eojireowoyo.", "en": "Yes, a little. And I feel dizzy." },
+      { "id": "d11_5", "speaker": "A", "ko": "감기예요. 따뜻한 물을 많이 드세요.", "rom": "gamgiyeyo. ttatteutan mureul mani deuseyo.", "en": "It's a cold. Please drink a lot of warm water." },
+      { "id": "d11_6", "speaker": "B", "ko": "속이 아파서 아침을 못 먹었어요.", "rom": "sogi apaseo achimeul mot meogeosseoyo.", "en": "My stomach hurt, so I couldn't eat breakfast." },
+      { "id": "d11_7", "speaker": "A", "ko": "걱정하지 마세요. 오늘은 푹 쉬세요.", "rom": "geokjeonghaji maseyo. oneureun puk swiseyo.", "en": "Don't worry. Get a good rest today." },
+      { "id": "d11_8", "speaker": "B", "ko": "네, 알겠어요.", "rom": "ne, algesseoyo.", "en": "Yes, I understand." }
+    ]
+  },
+  "reading": {
+    "id": "r11",
+    "unitId": "u11_health",
+    "title": "Today's weather and your body",
+    "ko": "오늘 서울은 구름이 많아요. 오후에는 비가 와요. 기온은 어제보다 낮아요. 바람도 많이 불어요. 그래서 조금 추워요. 내일은 비가 그치고 하늘이 맑아요. 주말에는 따뜻해요. 요즘은 감기가 많이 돌아요. 몸이 안 좋으면 병원에 빨리 가세요. 집에서 푹 쉬고 따뜻한 물을 많이 마시세요. 그리고 잠을 일찍 자세요. 오후에는 우산을 꼭 준비하세요. 휴가에는 따뜻한 곳에서 쉬세요.",
+    "en": "Today in Seoul there are a lot of clouds. In the afternoon it rains. The temperature is lower than yesterday. The wind is strong too. So it is a little cold. Tomorrow the rain stops and the sky is clear. On the weekend it is warm. These days colds are going around a lot. If you don't feel well, go to the hospital quickly. Rest at home and drink a lot of warm water. And go to bed early. In the afternoon, be sure to have an umbrella ready. During your time off, rest somewhere warm.",
+    "questions": [
+      {
+        "q": "What is the weather like in Seoul today?",
+        "options": ["Cloudy, with rain in the afternoon", "Sunny all day", "Snowy and very cold", "Windy but dry"],
+        "answer": 0,
+        "why": "구름이 많아요. 오후에는 비가 와요 = There are many clouds and it rains in the afternoon."
+      },
+      {
+        "q": "What should you do if you don't feel well?",
+        "options": ["Go to the hospital quickly", "Go to work", "Drink cold water", "Sleep late"],
+        "answer": 0,
+        "why": "몸이 안 좋으면 병원에 빨리 가세요."
+      },
+      {
+        "q": "What will the weather be like tomorrow?",
+        "options": ["The rain will stop and the sky will be clear", "It will snow", "It will get colder", "It will be cloudy all day"],
+        "answer": 0,
+        "why": "내일은 비가 그치고 하늘이 맑아요 = Tomorrow the rain stops and the sky is clear."
+      }
+    ]
+  }
+}

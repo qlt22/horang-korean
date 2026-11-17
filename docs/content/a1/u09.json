@@ -1,0 +1,835 @@
+{
+  "unit": {
+    "id": "u09_past",
+    "order": 9,
+    "title": "Yesterday",
+    "ko": "어제",
+    "canDo": [
+      "Say what you did yesterday with past-tense verbs",
+      "Put two actions in order with -고",
+      "Give a reason with 그래서",
+      "Contrast two facts with -지만"
+    ],
+    "grammarIds": ["g30", "g31", "g32", "g33"]
+  },
+  "lessons": [
+    {
+      "id": "l09_1",
+      "unitId": "u09_past",
+      "order": 1,
+      "kind": "vocab",
+      "title": "What did you do yesterday?",
+      "ko": "어제 뭐 했어요?",
+      "goal": "Use yesterday, last week and the basic past-tense verbs for going, coming, eating and meeting",
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_01", "w09_02", "w09_03", "w09_04", "w09_05", "w09_06", "w09_07", "w09_08", "w09_09", "w09_10", "w09_11", "w09_12"],
+      "sentenceIds": ["s09_1_1", "s09_1_2", "s09_1_3", "s09_1_4", "s09_1_5", "s09_1_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l09_2",
+      "unitId": "u09_past",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Make it past tense",
+      "ko": "갔어요, 먹었어요",
+      "goal": "Change present polite verbs into the past with the right vowel, then chain two actions with -고",
+      "grammarIds": ["g30", "g31"],
+      "wordIds": ["w09_13", "w09_14", "w09_15", "w09_16", "w09_17", "w09_18", "w09_19", "w09_20", "w09_21", "w09_22", "w09_23", "w09_24"],
+      "sentenceIds": ["s09_2_1", "s09_2_2", "s09_2_3", "s09_2_4", "s09_2_5", "s09_2_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 7
+    },
+    {
+      "id": "l09_3",
+      "unitId": "u09_past",
+      "order": 3,
+      "kind": "listening",
+      "title": "A friend's afternoon",
+      "ko": "어제 하루",
+      "goal": "Follow a short conversation about yesterday and hear the order of events",
+      "grammarIds": ["g30", "g31", "g32"],
+      "wordIds": ["w09_25", "w09_26", "w09_27", "w09_28", "w09_29", "w09_30", "w09_31", "w09_32", "w09_33", "w09_34", "w09_35", "w09_36"],
+      "sentenceIds": ["s09_3_1", "s09_3_2", "s09_3_3", "s09_3_4", "s09_3_5", "s09_3_6"],
+      "dialogueId": "d09",
+      "readingId": null,
+      "minutes": 8
+    },
+    {
+      "id": "l09_4",
+      "unitId": "u09_past",
+      "order": 4,
+      "kind": "reading",
+      "title": "A long day",
+      "ko": "어제 일기",
+      "goal": "Read a short diary and find the reason, the contrast and the late night",
+      "grammarIds": ["g32", "g33"],
+      "wordIds": ["w09_37", "w09_38", "w09_39", "w09_40", "w09_41", "w09_42", "w09_43", "w09_44", "w09_45", "w09_46", "w09_47", "w09_48"],
+      "sentenceIds": ["s09_4_1", "s09_4_2", "s09_4_3", "s09_4_4", "s09_4_5", "s09_4_6"],
+      "dialogueId": null,
+      "readingId": "r09",
+      "minutes": 7
+    },
+    {
+      "id": "l09_5",
+      "unitId": "u09_past",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Tell your own yesterday",
+      "ko": "어제 이야기",
+      "goal": "Use tense, order, reason and contrast together without hints",
+      "grammarIds": ["g30", "g31", "g32", "g33"],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g30",
+      "unitId": "u09_past",
+      "order": 1,
+      "label": "past tense (았/었어요)",
+      "ko": "-았/었어요",
+      "pattern": "V-았/었어요",
+      "explanation": "Add -았어요 after ㅏ or ㅗ and -었어요 after the other vowels. 하다 verbs always become 했어요: 가다 → 갔어요, 먹다 → 먹었어요, 하다 → 했어요.",
+      "examples": [
+        { "ko": "어제 친구를 만났어요.", "en": "I met a friend yesterday." },
+        { "ko": "밤에는 책을 읽었어요.", "en": "At night I read a book." }
+      ],
+      "mistake": "먹았어요 ✗ → 먹었어요 ✓"
+    },
+    {
+      "id": "g31",
+      "unitId": "u09_past",
+      "order": 2,
+      "label": "and then (-고)",
+      "ko": "-고",
+      "pattern": "V-고",
+      "explanation": "Attach -고 to a verb stem to put two actions in one sentence. The tense goes on the last verb only: 청소하고 빨래했어요.",
+      "examples": [
+        { "ko": "청소하고 빨래했어요.", "en": "I cleaned and did the laundry." },
+        { "ko": "수업이 끝나고 도서관에 갔어요.", "en": "Class ended and I went to the library." }
+      ],
+      "mistake": "청소했고 빨래했어요 △ → 청소하고 빨래했어요 ✓"
+    },
+    {
+      "id": "g32",
+      "unitId": "u09_past",
+      "order": 3,
+      "label": "so (그래서)",
+      "ko": "그래서",
+      "pattern": "clause + 그래서 + clause",
+      "explanation": "Put the reason first, then 그래서, then the result. It links two full clauses, so each side has its own verb.",
+      "examples": [
+        { "ko": "약속이 많았어요. 그래서 바빴어요.", "en": "I had a lot of appointments. So I was busy." },
+        { "ko": "늦게 잤어요. 그래서 피곤했어요.", "en": "I went to bed late. So I was tired." }
+      ],
+      "mistake": "바빴어요 그래서 약속이 많았어요 ✗ → 약속이 많았어요. 그래서 바빴어요 ✓"
+    },
+    {
+      "id": "g33",
+      "unitId": "u09_past",
+      "order": 4,
+      "label": "but (-지만)",
+      "ko": "-지만",
+      "pattern": "V-지만",
+      "explanation": "Attach -지만 to the stem to say 'although A, B'. The first half is a fact you accept, the second half is the surprise.",
+      "examples": [
+        { "ko": "시험은 어려웠지만 재미있었어요.", "en": "The exam was difficult but interesting." },
+        { "ko": "카페는 조용했지만 음악이 좋았어요.", "en": "The cafe was quiet but the music was good." }
+      ],
+      "mistake": "바쁘지만어요 ✗ → 바쁘지만 ✓"
+    }
+  ],
+  "words": [
+    { "id": "w09_01", "ko": "어제", "rom": "eoje", "en": "yesterday", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_02", "ko": "어젯밤", "rom": "eojenbam", "en": "last night", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_03", "ko": "지난주", "rom": "jinanju", "en": "last week", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_04", "ko": "그저께", "rom": "geujeokke", "en": "the day before yesterday", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_05", "ko": "만났어요", "rom": "mannasseoyo", "en": "met", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_06", "ko": "먹었어요", "rom": "meogeosseoyo", "en": "ate", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_07", "ko": "갔어요", "rom": "gasseoyo", "en": "went", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_08", "ko": "왔어요", "rom": "wasseoyo", "en": "came", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_09", "ko": "봤어요", "rom": "bwasseoyo", "en": "watched, saw", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_10", "ko": "샀어요", "rom": "sasseoyo", "en": "bought", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_11", "ko": "저녁", "rom": "jeonyeok", "en": "evening, dinner", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_12", "ko": "오후", "rom": "ohu", "en": "afternoon", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_1" },
+    { "id": "w09_13", "ko": "마셨어요", "rom": "masyeosseoyo", "en": "drank", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_14", "ko": "읽었어요", "rom": "ilgeosseoyo", "en": "read", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_15", "ko": "들었어요", "rom": "deureosseoyo", "en": "listened", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_16", "ko": "썼어요", "rom": "sseosseoyo", "en": "wrote", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_17", "ko": "잤어요", "rom": "jasseoyo", "en": "slept", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_18", "ko": "일어났어요", "rom": "ireonasseoyo", "en": "got up", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_19", "ko": "공부했어요", "rom": "gongbuhaesseoyo", "en": "studied", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_20", "ko": "요리했어요", "rom": "yorihaesseoyo", "en": "cooked", "pos": "verb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_21", "ko": "벌써", "rom": "beolsseo", "en": "already", "pos": "adverb", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_22", "ko": "바빴어요", "rom": "bappasseoyo", "en": "was busy", "pos": "adjective", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_23", "ko": "숙제", "rom": "sukje", "en": "homework", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_24", "ko": "약속", "rom": "yaksok", "en": "appointment, plan", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_2" },
+    { "id": "w09_25", "ko": "시장", "rom": "sijang", "en": "market", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_26", "ko": "극장", "rom": "geukjang", "en": "movie theater", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_27", "ko": "산책", "rom": "sanchaek", "en": "a walk", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_28", "ko": "늦잠", "rom": "neutjam", "en": "sleeping in", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_29", "ko": "청소", "rom": "cheongso", "en": "cleaning", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_30", "ko": "빨래", "rom": "beollae", "en": "laundry", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_31", "ko": "수업", "rom": "sueop", "en": "class", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_32", "ko": "시험", "rom": "siheom", "en": "exam", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_33", "ko": "도서관", "rom": "doseogwan", "en": "library", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_34", "ko": "같이", "rom": "gachi", "en": "together", "pos": "adverb", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_35", "ko": "재미있었어요", "rom": "jaemiisseosseoyo", "en": "was fun, was interesting", "pos": "adjective", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_36", "ko": "먼저", "rom": "meonjeo", "en": "first", "pos": "adverb", "unitId": "u09_past", "lessonId": "l09_3" },
+    { "id": "w09_37", "ko": "피곤했어요", "rom": "pigonhaesseoyo", "en": "was tired", "pos": "adjective", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_38", "ko": "일찍", "rom": "iljjik", "en": "early", "pos": "adverb", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_39", "ko": "늦게", "rom": "neutge", "en": "late", "pos": "adverb", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_40", "ko": "조용했어요", "rom": "joyonghaesseoyo", "en": "was quiet", "pos": "adjective", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_41", "ko": "많았어요", "rom": "manasseoyo", "en": "there were many", "pos": "adjective", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_42", "ko": "손님", "rom": "sonnim", "en": "guest, customer", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_43", "ko": "편지", "rom": "pyeonji", "en": "letter", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_44", "ko": "어려웠어요", "rom": "eoryeowosseoyo", "en": "was difficult", "pos": "adjective", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_45", "ko": "그래서", "rom": "geuraeseo", "en": "so, therefore", "pos": "adverb", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_46", "ko": "하루", "rom": "haru", "en": "a day", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_47", "ko": "좋았어요", "rom": "joasseoyo", "en": "was good", "pos": "adjective", "unitId": "u09_past", "lessonId": "l09_4" },
+    { "id": "w09_48", "ko": "과일", "rom": "gwail", "en": "fruit", "pos": "noun", "unitId": "u09_past", "lessonId": "l09_4" }
+  ],
+  "sentences": [
+    {
+      "id": "s09_1_1",
+      "unitId": "u09_past",
+      "lessonId": "l09_1",
+      "korean": "어제 친구를 만났어요.",
+      "romanization": "eoje chingureul mannasseoyo.",
+      "english": "I met a friend yesterday.",
+      "literal": "Yesterday, a friend met.",
+      "gloss": [
+        { "ko": "어제", "rom": "eoje", "en": "yesterday" },
+        { "ko": "친구를", "rom": "chingureul", "en": "a friend (object)" },
+        { "ko": "만났어요", "rom": "mannasseoyo", "en": "met" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_01", "w09_05"],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I met a friend today.",
+        "I didn't meet a friend yesterday.",
+        "I will meet a friend tomorrow."
+      ],
+      "notes": "만나다 drops its ㄷ and takes -았어요: 만나 + 았어요 = 만났어요."
+    },
+    {
+      "id": "s09_1_2",
+      "unitId": "u09_past",
+      "lessonId": "l09_1",
+      "korean": "어젯밤에 라면을 먹었어요.",
+      "romanization": "eojenbam-e ramyeoneul meogeosseoyo.",
+      "english": "I ate ramen last night.",
+      "literal": "Last night, ramen ate.",
+      "gloss": [
+        { "ko": "어젯밤에", "rom": "eojenbam-e", "en": "last night" },
+        { "ko": "라면을", "rom": "ramyeoneul", "en": "ramen (object)" },
+        { "ko": "먹었어요", "rom": "meogeosseoyo", "en": "ate" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_02", "w09_06"],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I ate ramen this morning.",
+        "I didn't eat ramen last night.",
+        "I made ramen last night."
+      ],
+      "notes": "먹다 has ㅓ, so it takes -었어요, not -았어요."
+    },
+    {
+      "id": "s09_1_3",
+      "unitId": "u09_past",
+      "lessonId": "l09_1",
+      "korean": "지난주에 시장에 갔어요.",
+      "romanization": "jinanju-e sijang-e gasseoyo.",
+      "english": "I went to the market last week.",
+      "literal": "Last week, to the market went.",
+      "gloss": [
+        { "ko": "지난주에", "rom": "jinanju-e", "en": "last week" },
+        { "ko": "시장에", "rom": "sijang-e", "en": "to the market" },
+        { "ko": "갔어요", "rom": "gasseoyo", "en": "went" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_03", "w09_07"],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I went to the market yesterday.",
+        "I didn't go to the market last week.",
+        "I will go to the market next week."
+      ],
+      "notes": "가다 has ㅏ, so 가 + 았어요 = 갔어요. The ㅏ merges into ㅆ."
+    },
+    {
+      "id": "s09_1_4",
+      "unitId": "u09_past",
+      "lessonId": "l09_1",
+      "korean": "그저께 친구가 우리 집에 왔어요.",
+      "romanization": "geujeokke chinguga uri jib-e wasseoyo.",
+      "english": "A friend came to our house the day before yesterday.",
+      "literal": "The day before yesterday, a friend to our house came.",
+      "gloss": [
+        { "ko": "그저께", "rom": "geujeokke", "en": "the day before yesterday" },
+        { "ko": "친구가", "rom": "chinguga", "en": "a friend (subject)" },
+        { "ko": "우리 집에", "rom": "uri jib-e", "en": "to our house" },
+        { "ko": "왔어요", "rom": "wasseoyo", "en": "came" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_04", "w09_08"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "A friend came to our house yesterday.",
+        "I went to a friend's house the day before yesterday.",
+        "A friend didn't come to our house."
+      ],
+      "notes": "오다 → 오 + 았어요 = 왔어요. The subject takes 가 because 친구 is the one who came."
+    },
+    {
+      "id": "s09_1_5",
+      "unitId": "u09_past",
+      "lessonId": "l09_1",
+      "korean": "저녁에 영화를 봤어요.",
+      "romanization": "jeonyeog-e yeonghwareul bwasseoyo.",
+      "english": "I watched a movie in the evening.",
+      "literal": "In the evening, a movie watched.",
+      "gloss": [
+        { "ko": "저녁에", "rom": "jeonyeog-e", "en": "in the evening" },
+        { "ko": "영화를", "rom": "yeonghwareul", "en": "a movie (object)" },
+        { "ko": "봤어요", "rom": "bwasseoyo", "en": "watched" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_11", "w09_09"],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I watched a movie last week.",
+        "I didn't watch a movie in the evening.",
+        "I listened to music in the evening."
+      ],
+      "notes": "보다 → 보 + 았어요 = 봤어요. Same shape as 왔어요 but from a different verb."
+    },
+    {
+      "id": "s09_1_6",
+      "unitId": "u09_past",
+      "lessonId": "l09_1",
+      "korean": "어제 오후에 신발을 샀어요.",
+      "romanization": "eoje ohu-e sinbareul sasseoyo.",
+      "english": "I bought shoes yesterday afternoon.",
+      "literal": "Yesterday afternoon, shoes bought.",
+      "gloss": [
+        { "ko": "어제", "rom": "eoje", "en": "yesterday" },
+        { "ko": "오후에", "rom": "ohu-e", "en": "in the afternoon" },
+        { "ko": "신발을", "rom": "sinbareul", "en": "shoes (object)" },
+        { "ko": "샀어요", "rom": "sasseoyo", "en": "bought" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_01", "w09_12", "w09_10"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I bought shoes this morning.",
+        "I didn't buy shoes yesterday afternoon.",
+        "I bought a bag yesterday afternoon."
+      ],
+      "notes": "사다 → 사 + 았어요 = 샀어요. Time words can sit before or after the subject."
+    },
+    {
+      "id": "s09_2_1",
+      "unitId": "u09_past",
+      "lessonId": "l09_2",
+      "korean": "어제 커피를 두 잔 마셨어요.",
+      "romanization": "eoje keopireul du jan masyeosseoyo.",
+      "english": "I drank two cups of coffee yesterday.",
+      "literal": "Yesterday, coffee two cups drank.",
+      "gloss": [
+        { "ko": "어제", "rom": "eoje", "en": "yesterday" },
+        { "ko": "커피를", "rom": "keopireul", "en": "coffee (object)" },
+        { "ko": "두 잔", "rom": "du jan", "en": "two cups" },
+        { "ko": "마셨어요", "rom": "masyeosseoyo", "en": "drank" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_01", "w09_13"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I drank one cup of coffee yesterday.",
+        "I didn't drink coffee yesterday.",
+        "I drink two cups of coffee every day."
+      ],
+      "notes": "마시다 ends in ㅣ, so it takes -었어요: 마시 + 었어요 = 마셨어요."
+    },
+    {
+      "id": "s09_2_2",
+      "unitId": "u09_past",
+      "lessonId": "l09_2",
+      "korean": "밤에는 책을 읽고 일찍 잤어요.",
+      "romanization": "bameneun chaegeul ilgo iljjik jasseoyo.",
+      "english": "At night I read a book and went to bed early.",
+      "literal": "At night, a book read-and, early slept.",
+      "gloss": [
+        { "ko": "밤에는", "rom": "bameneun", "en": "at night (topic)" },
+        { "ko": "책을", "rom": "chaegeul", "en": "a book (object)" },
+        { "ko": "읽고", "rom": "ilgo", "en": "read and" },
+        { "ko": "일찍", "rom": "iljjik", "en": "early" },
+        { "ko": "잤어요", "rom": "jasseoyo", "en": "slept" }
+      ],
+      "grammarIds": ["g30", "g31"],
+      "wordIds": ["w09_17", "w09_38"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "At night I read a book and went to bed late.",
+        "In the morning I read a book and went to bed early.",
+        "I didn't read a book last night."
+      ],
+      "notes": "Only the last verb carries the past tense: 읽고 is neutral, 잤어요 is past."
+    },
+    {
+      "id": "s09_2_3",
+      "unitId": "u09_past",
+      "lessonId": "l09_2",
+      "korean": "도서관에서 두 시간 공부했어요.",
+      "romanization": "doseogwaneseo du sigan gongbuhaesseoyo.",
+      "english": "I studied for two hours at the library.",
+      "literal": "At the library, two hours studied.",
+      "gloss": [
+        { "ko": "도서관에서", "rom": "doseogwaneseo", "en": "at the library" },
+        { "ko": "두 시간", "rom": "du sigan", "en": "two hours" },
+        { "ko": "공부했어요", "rom": "gongbuhaesseoyo", "en": "studied" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_33", "w09_19"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I studied for three hours at the library.",
+        "I didn't study at the library.",
+        "I will study for two hours at the library."
+      ],
+      "notes": "All 하다 verbs take 했어요 in the past: 공부하다 → 공부했어요."
+    },
+    {
+      "id": "s09_2_4",
+      "unitId": "u09_past",
+      "lessonId": "l09_2",
+      "korean": "친구가 우리 집에서 저녁을 요리했어요.",
+      "romanization": "chinguga uri jibeseo jeonyeogeul yorihaesseoyo.",
+      "english": "A friend cooked dinner at our house.",
+      "literal": "A friend, at our house, dinner cooked.",
+      "gloss": [
+        { "ko": "친구가", "rom": "chinguga", "en": "a friend (subject)" },
+        { "ko": "우리 집에서", "rom": "uri jibeseo", "en": "at our house" },
+        { "ko": "저녁을", "rom": "jeonyeogeul", "en": "dinner (object)" },
+        { "ko": "요리했어요", "rom": "yorihaesseoyo", "en": "cooked" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_11", "w09_20"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I cooked dinner at a friend's house.",
+        "A friend cooked lunch at our house.",
+        "A friend didn't cook dinner at our house."
+      ],
+      "notes": "에서 marks where the action happened, so 집에서 = at our house."
+    },
+    {
+      "id": "s09_2_5",
+      "unitId": "u09_past",
+      "lessonId": "l09_2",
+      "korean": "숙제를 벌써 다 했어요.",
+      "romanization": "sukjereul beolsseo da haesseoyo.",
+      "english": "I already finished all my homework.",
+      "literal": "Homework already all did.",
+      "gloss": [
+        { "ko": "숙제를", "rom": "sukjereul", "en": "homework (object)" },
+        { "ko": "벌써", "rom": "beolsseo", "en": "already" },
+        { "ko": "다", "rom": "da", "en": "all" },
+        { "ko": "했어요", "rom": "haesseoyo", "en": "did" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_23", "w09_21"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I haven't finished my homework yet.",
+        "I did my homework late.",
+        "I will finish all my homework soon."
+      ],
+      "notes": "벌써 marks surprise that something is already done; it pairs naturally with 다."
+    },
+    {
+      "id": "s09_2_6",
+      "unitId": "u09_past",
+      "lessonId": "l09_2",
+      "korean": "지난주는 아주 바빴어요.",
+      "romanization": "jinanju-neun aju bappasseoyo.",
+      "english": "Last week was very busy.",
+      "literal": "As for last week, very was-busy.",
+      "gloss": [
+        { "ko": "지난주는", "rom": "jinanju-neun", "en": "last week (topic)" },
+        { "ko": "아주", "rom": "aju", "en": "very" },
+        { "ko": "바빴어요", "rom": "bappasseoyo", "en": "was busy" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_03", "w09_22"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Last week was not busy.",
+        "This week is very busy.",
+        "Last week I was very tired."
+      ],
+      "notes": "Adjectives take the same past ending: 바쁘다 → 바빴어요."
+    },
+    {
+      "id": "s09_3_1",
+      "unitId": "u09_past",
+      "lessonId": "l09_3",
+      "korean": "시장에서 친구를 만났어요.",
+      "romanization": "sijangeseo chingureul mannasseoyo.",
+      "english": "I met a friend at the market.",
+      "literal": "At the market, a friend met.",
+      "gloss": [
+        { "ko": "시장에서", "rom": "sijangeseo", "en": "at the market" },
+        { "ko": "친구를", "rom": "chingureul", "en": "a friend (object)" },
+        { "ko": "만났어요", "rom": "mannasseoyo", "en": "met" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_25", "w09_05"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I met a friend at the theater.",
+        "I met a friend at the market today.",
+        "I didn't meet a friend at the market."
+      ],
+      "notes": "The place of the action takes 에서, not 에."
+    },
+    {
+      "id": "s09_3_2",
+      "unitId": "u09_past",
+      "lessonId": "l09_3",
+      "korean": "오후에 극장에서 영화를 봤어요.",
+      "romanization": "ohu-e geukjangeseo yeonghwareul bwasseoyo.",
+      "english": "In the afternoon I watched a movie at the theater.",
+      "literal": "In the afternoon, at the theater, a movie watched.",
+      "gloss": [
+        { "ko": "오후에", "rom": "ohu-e", "en": "in the afternoon" },
+        { "ko": "극장에서", "rom": "geukjangeseo", "en": "at the theater" },
+        { "ko": "영화를", "rom": "yeonghwareul", "en": "a movie (object)" },
+        { "ko": "봤어요", "rom": "bwasseoyo", "en": "watched" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_12", "w09_26"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I watched a movie at home in the afternoon.",
+        "I watched a movie at the theater in the morning.",
+        "I didn't watch a movie at the theater."
+      ],
+      "notes": "Two time and place phrases can stack before the verb."
+    },
+    {
+      "id": "s09_3_3",
+      "unitId": "u09_past",
+      "lessonId": "l09_3",
+      "korean": "저녁에 친구와 같이 산책했어요.",
+      "romanization": "jeonyeog-e chinguwa gachi sanchaekhaesseoyo.",
+      "english": "In the evening I took a walk with a friend.",
+      "literal": "In the evening, with a friend together walked.",
+      "gloss": [
+        { "ko": "저녁에", "rom": "jeonyeog-e", "en": "in the evening" },
+        { "ko": "친구와", "rom": "chinguwa", "en": "with a friend" },
+        { "ko": "같이", "rom": "gachi", "en": "together" },
+        { "ko": "산책했어요", "rom": "sanchaekhaesseoyo", "en": "took a walk" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_11", "w09_27", "w09_34"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "In the evening I took a walk alone.",
+        "In the morning I took a walk with a friend.",
+        "I didn't take a walk with a friend."
+      ],
+      "notes": "친구 ends in a vowel, so 'with a friend' is 친구와, not 친구과."
+    },
+    {
+      "id": "s09_3_4",
+      "unitId": "u09_past",
+      "lessonId": "l09_3",
+      "korean": "늦잠을 자고 열한 시에 일어났어요.",
+      "romanization": "neujameul jago yeolhan si-e ireonasseoyo.",
+      "english": "I slept in and got up at eleven.",
+      "literal": "Sleeping-in slept-and, at eleven o'clock got up.",
+      "gloss": [
+        { "ko": "늦잠을", "rom": "neujameul", "en": "sleeping in (object)" },
+        { "ko": "자고", "rom": "jago", "en": "slept and" },
+        { "ko": "열한 시에", "rom": "yeolhan si-e", "en": "at eleven o'clock" },
+        { "ko": "일어났어요", "rom": "ireonasseoyo", "en": "got up" }
+      ],
+      "grammarIds": ["g30", "g31"],
+      "wordIds": ["w09_28", "w09_18"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I got up early and went to bed at eleven.",
+        "I slept in and got up at seven.",
+        "I didn't sleep in yesterday."
+      ],
+      "notes": "늦잠을 자다 is the fixed phrase for sleeping in; 열한 is the native number for the hour."
+    },
+    {
+      "id": "s09_3_5",
+      "unitId": "u09_past",
+      "lessonId": "l09_3",
+      "korean": "수업이 끝나고 도서관에서 공부했어요.",
+      "romanization": "sueobi kkeutnago doseogwaneseo gongbuhaesseoyo.",
+      "english": "Class ended and I studied at the library.",
+      "literal": "Class ended-and, at the library studied.",
+      "gloss": [
+        { "ko": "수업이", "rom": "sueobi", "en": "class (subject)" },
+        { "ko": "끝나고", "rom": "kkeutnago", "en": "ended and" },
+        { "ko": "도서관에서", "rom": "doseogwaneseo", "en": "at the library" },
+        { "ko": "공부했어요", "rom": "gongbuhaesseoyo", "en": "studied" }
+      ],
+      "grammarIds": ["g30", "g31"],
+      "wordIds": ["w09_31", "w09_33", "w09_19"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Class started and I studied at the library.",
+        "Class ended and I went home.",
+        "I studied at the library before class."
+      ],
+      "notes": "-고 can join two different subjects: 수업이 끝나고 = class ended, and then…"
+    },
+    {
+      "id": "s09_3_6",
+      "unitId": "u09_past",
+      "lessonId": "l09_3",
+      "korean": "시험은 어려웠지만 재미있었어요.",
+      "romanization": "siheomeun eoryeowotjiman jaemiisseosseoyo.",
+      "english": "The exam was difficult but interesting.",
+      "literal": "As for the exam, it-was-difficult-but it-was-interesting.",
+      "gloss": [
+        { "ko": "시험은", "rom": "siheomeun", "en": "the exam (topic)" },
+        { "ko": "어려웠지만", "rom": "eoryeowotjiman", "en": "was difficult but" },
+        { "ko": "재미있었어요", "rom": "jaemiisseosseoyo", "en": "was interesting" }
+      ],
+      "grammarIds": ["g30", "g33"],
+      "wordIds": ["w09_32", "w09_35"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "The exam was easy but boring.",
+        "The exam was difficult and I failed it.",
+        "The exam was interesting but very long."
+      ],
+      "notes": "어렵다 → 어려웠지만. The ㅂ in the stem becomes 우 before the ending."
+    },
+    {
+      "id": "s09_4_1",
+      "unitId": "u09_past",
+      "lessonId": "l09_4",
+      "korean": "어제는 하루가 길었지만 재미있었어요.",
+      "romanization": "eojeneun haruga gireotjiman jaemiisseosseoyo.",
+      "english": "Yesterday was a long day, but it was fun.",
+      "literal": "As for yesterday, the day was-long-but it-was-fun.",
+      "gloss": [
+        { "ko": "어제는", "rom": "eojeneun", "en": "yesterday (topic)" },
+        { "ko": "하루가", "rom": "haruga", "en": "the day (subject)" },
+        { "ko": "길었지만", "rom": "gireotjiman", "en": "was long but" },
+        { "ko": "재미있었어요", "rom": "jaemiisseosseoyo", "en": "was fun" }
+      ],
+      "grammarIds": ["g30", "g33"],
+      "wordIds": ["w09_01", "w09_46", "w09_35"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Yesterday was a long day, and it was fun.",
+        "Yesterday was a short day, but it was fun.",
+        "Yesterday was a long day, but it was boring."
+      ],
+      "notes": "Korean often frames a day as 'the day was long' rather than 'I had a long day'."
+    },
+    {
+      "id": "s09_4_2",
+      "unitId": "u09_past",
+      "lessonId": "l09_4",
+      "korean": "아침에 일찍 일어났어요.",
+      "romanization": "achime iljjik ireonasseoyo.",
+      "english": "I got up early in the morning.",
+      "literal": "In the morning, early got up.",
+      "gloss": [
+        { "ko": "아침에", "rom": "achime", "en": "in the morning" },
+        { "ko": "일찍", "rom": "iljjik", "en": "early" },
+        { "ko": "일어났어요", "rom": "ireonasseoyo", "en": "got up" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_38", "w09_18"],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I got up late in the morning.",
+        "I got up early in the evening.",
+        "I didn't get up early."
+      ],
+      "notes": "일찍 is 'early'; 늦게 is 'late'. They sit right before the verb."
+    },
+    {
+      "id": "s09_4_3",
+      "unitId": "u09_past",
+      "lessonId": "l09_4",
+      "korean": "저녁에는 정말 피곤했어요.",
+      "romanization": "jeonyeogeneun jeongmal pigonhaesseoyo.",
+      "english": "In the evening I was really tired.",
+      "literal": "In the evening, really was-tired.",
+      "gloss": [
+        { "ko": "저녁에는", "rom": "jeonyeogeneun", "en": "in the evening (topic)" },
+        { "ko": "정말", "rom": "jeongmal", "en": "really" },
+        { "ko": "피곤했어요", "rom": "pigonhaesseoyo", "en": "was tired" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_11", "w09_37"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "In the evening I was really busy.",
+        "In the morning I was really tired.",
+        "In the evening I wasn't tired."
+      ],
+      "notes": "피곤하다 is an adjective, so 'I am tired' is literally 'I am tired-ness'."
+    },
+    {
+      "id": "s09_4_4",
+      "unitId": "u09_past",
+      "lessonId": "l09_4",
+      "korean": "카페는 조용했어요. 음악도 좋았어요.",
+      "romanization": "kapeneun joyonghaesseoyo. eumakdo joasseoyo.",
+      "english": "The cafe was quiet. The music was good too.",
+      "literal": "The cafe was quiet. The music also was good.",
+      "gloss": [
+        { "ko": "카페는", "rom": "kapeneun", "en": "the cafe (topic)" },
+        { "ko": "조용했어요", "rom": "joyonghaesseoyo", "en": "was quiet" },
+        { "ko": "음악도", "rom": "eumakdo", "en": "the music too" },
+        { "ko": "좋았어요", "rom": "joasseoyo", "en": "was good" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_40", "w09_47"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "The cafe was noisy. The music was good too.",
+        "The cafe was quiet. The music was bad.",
+        "The cafe was quiet. The food was good too."
+      ],
+      "notes": "The topic marker 는 contrasts the cafe with something else; 도 adds 'also'."
+    },
+    {
+      "id": "s09_4_5",
+      "unitId": "u09_past",
+      "lessonId": "l09_4",
+      "korean": "친구에게 편지를 썼어요.",
+      "romanization": "chinguege pyeonjireul sseosseoyo.",
+      "english": "I wrote a letter to a friend.",
+      "literal": "To a friend, a letter wrote.",
+      "gloss": [
+        { "ko": "친구에게", "rom": "chinguege", "en": "to a friend" },
+        { "ko": "편지를", "rom": "pyeonjireul", "en": "a letter (object)" },
+        { "ko": "썼어요", "rom": "sseosseoyo", "en": "wrote" }
+      ],
+      "grammarIds": ["g30"],
+      "wordIds": ["w09_43", "w09_16"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I got a letter from a friend.",
+        "I wrote a letter to my teacher.",
+        "I didn't write a letter."
+      ],
+      "notes": "에게 marks the person you send something to; 쓰다 becomes 썼어요."
+    },
+    {
+      "id": "s09_4_6",
+      "unitId": "u09_past",
+      "lessonId": "l09_4",
+      "korean": "그래서 집에 늦게 왔어요.",
+      "romanization": "geuraeseo jib-e neutge wasseoyo.",
+      "english": "So I came home late.",
+      "literal": "So, to home late came.",
+      "gloss": [
+        { "ko": "그래서", "rom": "geuraeseo", "en": "so" },
+        { "ko": "집에", "rom": "jib-e", "en": "home" },
+        { "ko": "늦게", "rom": "neutge", "en": "late" },
+        { "ko": "왔어요", "rom": "wasseoyo", "en": "came" }
+      ],
+      "grammarIds": ["g32", "g30"],
+      "wordIds": ["w09_45", "w09_39"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "But I came home late.",
+        "So I came home early.",
+        "So I went home late."
+      ],
+      "notes": "그래서 never sits inside a clause: it opens the result sentence."
+    }
+  ],
+  "dialogue": {
+    "id": "d09",
+    "unitId": "u09_past",
+    "title": "Cleaning and the market",
+    "setting": "Two coworkers catch up on Monday morning about the weekend.",
+    "lines": [
+      { "id": "d09_1", "speaker": "A", "ko": "어제 뭐 했어요?", "rom": "eoje mwo haesseoyo?", "en": "What did you do yesterday?" },
+      { "id": "d09_2", "speaker": "B", "ko": "먼저 청소하고 빨래했어요.", "rom": "meonjeo cheongsohago beollaehaesseoyo.", "en": "First I cleaned and did the laundry." },
+      { "id": "d09_3", "speaker": "A", "ko": "저녁에도 집에 있었어요?", "rom": "jeonyeogedo jib-e isseosseoyo?", "en": "Were you at home in the evening too?" },
+      { "id": "d09_4", "speaker": "B", "ko": "아니요, 저녁에 시장에 갔어요.", "rom": "aniyo, jeonyeoge sijang-e gasseoyo.", "en": "No, I went to the market in the evening." },
+      { "id": "d09_5", "speaker": "A", "ko": "시장에서 뭐 샀어요?", "rom": "sijangeseo mwo sasseoyo?", "en": "What did you buy at the market?" },
+      { "id": "d09_6", "speaker": "B", "ko": "과일을 샀어요. 사람이 아주 많았어요.", "rom": "gwaireul sasseoyo. sarami aju manasseoyo.", "en": "I bought fruit. There were a lot of people." },
+      { "id": "d09_7", "speaker": "A", "ko": "저도 시장에 가고 싶어요.", "rom": "jeodo sijang-e gago sipeoyo.", "en": "I want to go to the market too." },
+      { "id": "d09_8", "speaker": "B", "ko": "그러면 다음 주에 같이 가요.", "rom": "geureomyeon daeum jue gachi gayo.", "en": "Then let's go together next week." }
+    ]
+  },
+  "reading": {
+    "id": "r09",
+    "unitId": "u09_past",
+    "title": "A long day",
+    "ko": "어제는 아주 바빴어요. 아침에 일찍 일어났어요. 오전에는 손님을 세 명 만났어요. 약속이 많았어요. 점심을 먹고 회사 근처 시장에 갔어요. 시장은 정말 컸어요. 사람이 많았지만 과일이 아주 싸고 맛있었어요. 시장 옆 카페는 조용했어요. 저녁에는 한국어 숙제가 어려웠어요. 그래서 두 시간 공부했어요. 밤에 책을 읽었어요. 음악도 들었어요. 그리고 열한 시에 집에 왔어요. 열두 시에 잤어요.",
+    "en": "Yesterday was very busy. I got up early in the morning. In the morning I met three customers. I had a lot of appointments. I ate lunch and went to the market near the office. The market was really big. There were a lot of people, but the fruit was very cheap and delicious. The cafe next to the market was quiet. In the evening my Korean homework was difficult. So I studied for two hours. At night I read a book. I listened to music too. And I came home at eleven. I went to bed at twelve.",
+    "questions": [
+      {
+        "q": "What did the writer do in the morning?",
+        "options": ["Met three customers", "Went to the market", "Studied Korean", "Read a book"],
+        "answer": 0,
+        "why": "오전에는 손님을 세 명 만났어요 = In the morning I met three customers."
+      },
+      {
+        "q": "Why did the writer study for two hours?",
+        "options": ["The homework was difficult", "The exam was tomorrow", "The market was closed", "A friend came over"],
+        "answer": 0,
+        "why": "숙제가 어려웠어요. 그래서 두 시간 공부했어요."
+      },
+      {
+        "q": "What time did the writer go to bed?",
+        "options": ["At twelve", "At ten", "At eleven", "At one"],
+        "answer": 0,
+        "why": "열두 시에 잤어요 = I went to bed at twelve."
+      }
+    ]
+  }
+}

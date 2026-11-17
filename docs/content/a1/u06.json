@@ -1,0 +1,1901 @@
+{
+  "unit": {
+    "id": "u06_time",
+    "order": 6,
+    "title": "Time & dates",
+    "ko": "시간",
+    "canDo": [
+      "Tell the time with native and Sino numbers",
+      "Say the days of the week and a date",
+      "Say from when until when you do something",
+      "Say what you do when a certain time comes"
+    ],
+    "grammarIds": [
+      "g19",
+      "g20",
+      "g21",
+      "g48"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "l06_1",
+      "unitId": "u06_time",
+      "order": 1,
+      "kind": "vocab",
+      "title": "What time is it?",
+      "ko": "지금 몇 시예요?",
+      "goal": "Say the hour and the minutes, and name the parts of the day",
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_01",
+        "w06_02",
+        "w06_03",
+        "w06_04",
+        "w06_05",
+        "w06_06",
+        "w06_07",
+        "w06_08",
+        "w06_09",
+        "w06_10",
+        "w06_11",
+        "w06_12"
+      ],
+      "sentenceIds": [
+        "s06_1_1",
+        "s06_1_2",
+        "s06_1_3",
+        "s06_1_4",
+        "s06_1_5",
+        "s06_1_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 5
+    },
+    {
+      "id": "l06_2",
+      "unitId": "u06_time",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Days and dates",
+      "ko": "오늘은 무슨 요일이에요?",
+      "goal": "Use the seven days of the week and say the date with 년, 월 and 일",
+      "grammarIds": [
+        "g20"
+      ],
+      "wordIds": [
+        "w06_13",
+        "w06_14",
+        "w06_15",
+        "w06_16",
+        "w06_17",
+        "w06_18",
+        "w06_19",
+        "w06_20",
+        "w06_21",
+        "w06_22",
+        "w06_23",
+        "w06_24"
+      ],
+      "sentenceIds": [
+        "s06_2_1",
+        "s06_2_2",
+        "s06_2_3",
+        "s06_2_4",
+        "s06_2_5",
+        "s06_2_6"
+      ],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l06_3",
+      "unitId": "u06_time",
+      "order": 3,
+      "kind": "listening",
+      "title": "A day on the clock",
+      "ko": "아홉 시부터 다섯 시까지",
+      "goal": "Follow a schedule from one time to another",
+      "grammarIds": [
+        "g19",
+        "g21"
+      ],
+      "wordIds": [
+        "w06_25",
+        "w06_26",
+        "w06_27",
+        "w06_28",
+        "w06_29",
+        "w06_30",
+        "w06_31",
+        "w06_32",
+        "w06_33",
+        "w06_34",
+        "w06_35",
+        "w06_36"
+      ],
+      "sentenceIds": [
+        "s06_3_1",
+        "s06_3_2",
+        "s06_3_3",
+        "s06_3_4",
+        "s06_3_5",
+        "s06_3_6"
+      ],
+      "dialogueId": "d06",
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l06_4",
+      "unitId": "u06_time",
+      "order": 4,
+      "kind": "reading",
+      "title": "My week",
+      "ko": "나의 한 주",
+      "goal": "Read a weekly schedule and work out when things happen",
+      "grammarIds": [
+        "g19",
+        "g21",
+        "g48"
+      ],
+      "wordIds": [
+        "w06_37",
+        "w06_38",
+        "w06_39",
+        "w06_40",
+        "w06_41",
+        "w06_42",
+        "w06_43",
+        "w06_44",
+        "w06_45",
+        "w06_46",
+        "w06_47",
+        "w06_48"
+      ],
+      "sentenceIds": [
+        "s06_4_1",
+        "s06_4_2",
+        "s06_4_3",
+        "s06_4_4",
+        "s06_4_5",
+        "s06_4_6"
+      ],
+      "dialogueId": null,
+      "readingId": "r06",
+      "minutes": 6
+    },
+    {
+      "id": "l06_5",
+      "unitId": "u06_time",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Checkpoint: your schedule",
+      "ko": "하루 시간표",
+      "goal": "Use the whole unit without hints to talk about your day",
+      "grammarIds": [
+        "g19",
+        "g20",
+        "g21",
+        "g48"
+      ],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g19",
+      "unitId": "u06_time",
+      "order": 1,
+      "label": "telling the time",
+      "ko": "시 / 분",
+      "pattern": "N시 N분",
+      "explanation": "Hours take native numbers (한 시, 두 시, 세 시) and minutes take Sino numbers (오 분, 삼십 분). 반 means half past.",
+      "examples": [
+        {
+          "ko": "지금은 두 시 삼십 분이에요.",
+          "en": "It is 2:30 now."
+        },
+        {
+          "ko": "회의는 세 시에 시작해요.",
+          "en": "The meeting starts at three."
+        }
+      ],
+      "mistake": "두 시 스무 분 ✗ → 두 시 이십 분 ✓ (minutes are Sino)"
+    },
+    {
+      "id": "g20",
+      "unitId": "u06_time",
+      "order": 2,
+      "label": "days and dates",
+      "ko": "요일 / 날짜",
+      "pattern": "월요일 / N월 N일",
+      "explanation": "The days end in -요일. Dates go big to small: 년, 월, 일, all with Sino numbers. 오월 십일 = May 10.",
+      "examples": [
+        {
+          "ko": "수요일은 수업이 없어요.",
+          "en": "There is no class on Wednesday."
+        },
+        {
+          "ko": "제 생일은 오월 십일이에요.",
+          "en": "My birthday is May 10."
+        }
+      ],
+      "mistake": "오월 십일일 ✗ → 오월 십일 ✓ (일 is already the day)"
+    },
+    {
+      "id": "g21",
+      "unitId": "u06_time",
+      "order": 3,
+      "label": "from … until …",
+      "ko": "부터 / 까지",
+      "pattern": "N부터 N까지",
+      "explanation": "부터 marks the start and 까지 the end. They often travel together: 아홉 시부터 다섯 시까지 = from nine to five.",
+      "examples": [
+        {
+          "ko": "아홉 시부터 다섯 시까지 일해요.",
+          "en": "I work from nine to five."
+        },
+        {
+          "ko": "월요일부터 금요일까지 회의가 있어요.",
+          "en": "I have meetings from Monday to Friday."
+        }
+      ],
+      "mistake": "아홉 시에부터 ✗ → 아홉 시부터 ✓"
+    },
+    {
+      "id": "g48",
+      "unitId": "u06_time",
+      "order": 4,
+      "label": "when I do…",
+      "ko": "-(으)ㄹ 때",
+      "pattern": "V-(으)ㄹ 때",
+      "explanation": "Take 다 off the verb: after a consonant add -을 때, after a vowel add -ㄹ 때. 시간이 있을 때 = when I have time.",
+      "examples": [
+        {
+          "ko": "시간이 있을 때 쉬어요.",
+          "en": "When I have time, I rest."
+        },
+        {
+          "ko": "수업이 끝날 때 전화해요.",
+          "en": "I call when class ends."
+        }
+      ],
+      "mistake": "끝나을 때 ✗ → 끝날 때 ✓"
+    }
+  ],
+  "words": [
+    {
+      "id": "w06_01",
+      "ko": "시",
+      "rom": "si",
+      "en": "o'clock (hour counter)",
+      "pos": "counter",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_02",
+      "ko": "분",
+      "rom": "bun",
+      "en": "minute (counter)",
+      "pos": "counter",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_03",
+      "ko": "반",
+      "rom": "ban",
+      "en": "half",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_04",
+      "ko": "오전",
+      "rom": "ojeon",
+      "en": "morning, a.m.",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_05",
+      "ko": "오후",
+      "rom": "ohu",
+      "en": "afternoon, p.m.",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_06",
+      "ko": "낮",
+      "rom": "nat",
+      "en": "daytime",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_07",
+      "ko": "밤",
+      "rom": "bam",
+      "en": "night",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_08",
+      "ko": "새벽",
+      "rom": "saebyeok",
+      "en": "dawn, very early morning",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_09",
+      "ko": "시계",
+      "rom": "sigye",
+      "en": "clock, watch",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_10",
+      "ko": "알람",
+      "rom": "allam",
+      "en": "alarm",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_11",
+      "ko": "시간",
+      "rom": "sigan",
+      "en": "time, hour",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_12",
+      "ko": "약",
+      "rom": "yak",
+      "en": "about, approximately",
+      "pos": "adverb",
+      "unitId": "u06_time",
+      "lessonId": "l06_1"
+    },
+    {
+      "id": "w06_13",
+      "ko": "월요일",
+      "rom": "woryoil",
+      "en": "Monday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_14",
+      "ko": "화요일",
+      "rom": "hwayoil",
+      "en": "Tuesday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_15",
+      "ko": "수요일",
+      "rom": "suyoil",
+      "en": "Wednesday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_16",
+      "ko": "목요일",
+      "rom": "mogyoil",
+      "en": "Thursday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_17",
+      "ko": "금요일",
+      "rom": "geumyoil",
+      "en": "Friday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_18",
+      "ko": "토요일",
+      "rom": "toyoil",
+      "en": "Saturday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_19",
+      "ko": "일요일",
+      "rom": "iryoil",
+      "en": "Sunday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_20",
+      "ko": "주",
+      "rom": "ju",
+      "en": "week",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_21",
+      "ko": "년",
+      "rom": "nyeon",
+      "en": "year",
+      "pos": "counter",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_22",
+      "ko": "월",
+      "rom": "wol",
+      "en": "month (in dates)",
+      "pos": "counter",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_23",
+      "ko": "일",
+      "rom": "il",
+      "en": "day (in dates)",
+      "pos": "counter",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_24",
+      "ko": "생일",
+      "rom": "saengil",
+      "en": "birthday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_2"
+    },
+    {
+      "id": "w06_25",
+      "ko": "출근해요",
+      "rom": "chulgeunhaeyo",
+      "en": "to go to work",
+      "pos": "verb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_26",
+      "ko": "퇴근해요",
+      "rom": "toegeunhaeyo",
+      "en": "to leave work",
+      "pos": "verb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_27",
+      "ko": "시작해요",
+      "rom": "sijakaeyo",
+      "en": "to start",
+      "pos": "verb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_28",
+      "ko": "끝나요",
+      "rom": "kkeunnayo",
+      "en": "to end, to finish",
+      "pos": "verb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_29",
+      "ko": "약속",
+      "rom": "yaksok",
+      "en": "appointment, promise",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_30",
+      "ko": "수업",
+      "rom": "sueop",
+      "en": "class, lesson",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_31",
+      "ko": "회의",
+      "rom": "hoeui",
+      "en": "meeting",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_32",
+      "ko": "쉬어요",
+      "rom": "swieoyo",
+      "en": "to rest",
+      "pos": "verb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_33",
+      "ko": "준비해요",
+      "rom": "junbihaeyo",
+      "en": "to prepare",
+      "pos": "verb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_34",
+      "ko": "늦어요",
+      "rom": "neujeoyo",
+      "en": "to be late",
+      "pos": "adjective",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_35",
+      "ko": "일찍",
+      "rom": "iljjik",
+      "en": "early",
+      "pos": "adverb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_36",
+      "ko": "자주",
+      "rom": "jaju",
+      "en": "often",
+      "pos": "adverb",
+      "unitId": "u06_time",
+      "lessonId": "l06_3"
+    },
+    {
+      "id": "w06_37",
+      "ko": "부터",
+      "rom": "buteo",
+      "en": "from",
+      "pos": "particle",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_38",
+      "ko": "까지",
+      "rom": "kkaji",
+      "en": "until, up to",
+      "pos": "particle",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_39",
+      "ko": "동안",
+      "rom": "dongan",
+      "en": "during, for (a period)",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_40",
+      "ko": "걸려요",
+      "rom": "geollyeoyo",
+      "en": "to take (time)",
+      "pos": "verb",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_41",
+      "ko": "오래",
+      "rom": "orae",
+      "en": "a long time",
+      "pos": "adverb",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_42",
+      "ko": "곧",
+      "rom": "got",
+      "en": "soon",
+      "pos": "adverb",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_43",
+      "ko": "다음",
+      "rom": "daeum",
+      "en": "next",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_44",
+      "ko": "이번",
+      "rom": "ibeon",
+      "en": "this (time)",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_45",
+      "ko": "주말",
+      "rom": "jumal",
+      "en": "weekend",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_46",
+      "ko": "평일",
+      "rom": "pyeongil",
+      "en": "weekday",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_47",
+      "ko": "시간표",
+      "rom": "siganpyo",
+      "en": "timetable, schedule",
+      "pos": "noun",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    },
+    {
+      "id": "w06_48",
+      "ko": "매주",
+      "rom": "maeju",
+      "en": "every week",
+      "pos": "adverb",
+      "unitId": "u06_time",
+      "lessonId": "l06_4"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s06_1_1",
+      "unitId": "u06_time",
+      "lessonId": "l06_1",
+      "korean": "지금은 두 시 삼십 분이에요.",
+      "romanization": "jigeumeun du si samsip bunieyo.",
+      "english": "It is 2:30 now.",
+      "literal": "As for now, two hours thirty minutes it is.",
+      "gloss": [
+        {
+          "ko": "지금은",
+          "rom": "jigeumeun",
+          "en": "now (topic)"
+        },
+        {
+          "ko": "두 시",
+          "rom": "du si",
+          "en": "two o'clock"
+        },
+        {
+          "ko": "삼십 분",
+          "rom": "samsip bun",
+          "en": "thirty minutes"
+        },
+        {
+          "ko": "이에요",
+          "rom": "ieyo",
+          "en": "it is"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_01",
+        "w06_02"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "It is 3:20 now.",
+        "It is 2:13 now.",
+        "It is not 2:30 yet."
+      ],
+      "notes": "두 is the native number for the hour; 삼십 is the Sino number for the minutes."
+    },
+    {
+      "id": "s06_1_2",
+      "unitId": "u06_time",
+      "lessonId": "l06_1",
+      "korean": "회의는 세 시에 시작해요.",
+      "romanization": "hoeuineun se sie sijakaeyo.",
+      "english": "The meeting starts at three.",
+      "literal": "As for the meeting, at three o'clock, it starts.",
+      "gloss": [
+        {
+          "ko": "회의는",
+          "rom": "hoeuineun",
+          "en": "the meeting (topic)"
+        },
+        {
+          "ko": "세 시에",
+          "rom": "se sie",
+          "en": "at three o'clock"
+        },
+        {
+          "ko": "시작해요",
+          "rom": "sijakaeyo",
+          "en": "start"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_31",
+        "w06_01",
+        "w06_27"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "The meeting ends at three.",
+        "The class starts at three.",
+        "The meeting starts at four."
+      ],
+      "notes": "A time always takes 에: 세 시에 = at three."
+    },
+    {
+      "id": "s06_1_3",
+      "unitId": "u06_time",
+      "lessonId": "l06_1",
+      "korean": "알람이 일곱 시에 울려요.",
+      "romanization": "allami ilgop sie ullyeoyo.",
+      "english": "The alarm rings at seven.",
+      "literal": "The alarm, at seven o'clock, rings.",
+      "gloss": [
+        {
+          "ko": "알람이",
+          "rom": "allami",
+          "en": "alarm (subject)"
+        },
+        {
+          "ko": "일곱 시에",
+          "rom": "ilgop sie",
+          "en": "at seven o'clock"
+        },
+        {
+          "ko": "울려요",
+          "rom": "ullyeoyo",
+          "en": "rings"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_10",
+        "w06_01"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "The alarm rings at eight.",
+        "The alarm does not ring at seven.",
+        "The clock stops at seven."
+      ],
+      "notes": "일곱 is the native number used with the hour."
+    },
+    {
+      "id": "s06_1_4",
+      "unitId": "u06_time",
+      "lessonId": "l06_1",
+      "korean": "점심은 열두 시 반에 먹어요.",
+      "romanization": "jeomsimeun yeoldu si bane meogeoyo.",
+      "english": "I eat lunch at half past twelve.",
+      "literal": "As for lunch, at twelve thirty, I eat.",
+      "gloss": [
+        {
+          "ko": "점심은",
+          "rom": "jeomsimeun",
+          "en": "lunch (topic)"
+        },
+        {
+          "ko": "열두 시 반에",
+          "rom": "yeoldu si bane",
+          "en": "at half past twelve"
+        },
+        {
+          "ko": "먹어요",
+          "rom": "meogeoyo",
+          "en": "eat"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_01",
+        "w06_03"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I eat lunch at half past eleven.",
+        "I eat dinner at half past twelve.",
+        "I don't eat lunch at half past twelve."
+      ],
+      "notes": "반 after the hour means half past: 열두 시 반 = 12:30."
+    },
+    {
+      "id": "s06_1_5",
+      "unitId": "u06_time",
+      "lessonId": "l06_1",
+      "korean": "수업은 오후 네 시에 끝나요.",
+      "romanization": "sueobeun ohu ne sie kkeunnayo.",
+      "english": "Class ends at four in the afternoon.",
+      "literal": "As for class, at four in the afternoon, it ends.",
+      "gloss": [
+        {
+          "ko": "수업은",
+          "rom": "sueobeun",
+          "en": "class (topic)"
+        },
+        {
+          "ko": "오후",
+          "rom": "ohu",
+          "en": "afternoon"
+        },
+        {
+          "ko": "네 시에",
+          "rom": "ne sie",
+          "en": "at four o'clock"
+        },
+        {
+          "ko": "끝나요",
+          "rom": "kkeunnayo",
+          "en": "ends"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_30",
+        "w06_05",
+        "w06_01",
+        "w06_28"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Class starts at four in the afternoon.",
+        "Class ends at four in the morning.",
+        "Class ends at five in the afternoon."
+      ],
+      "notes": "오후 goes before the time: 오후 네 시 = 4 p.m."
+    },
+    {
+      "id": "s06_1_6",
+      "unitId": "u06_time",
+      "lessonId": "l06_1",
+      "korean": "저는 밤 열한 시에 자요.",
+      "romanization": "jeoneun bam yeolhan sie jayo.",
+      "english": "I go to bed at eleven at night.",
+      "literal": "As for me, at eleven at night, I sleep.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "밤",
+          "rom": "bam",
+          "en": "night"
+        },
+        {
+          "ko": "열한 시에",
+          "rom": "yeolhan sie",
+          "en": "at eleven o'clock"
+        },
+        {
+          "ko": "자요",
+          "rom": "jayo",
+          "en": "sleep"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_07",
+        "w06_01"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I get up at eleven at night.",
+        "I go to bed at ten at night.",
+        "I don't sleep at eleven at night."
+      ],
+      "notes": "열한 is eleven: 열 (ten) + 한 (one)."
+    },
+    {
+      "id": "s06_2_1",
+      "unitId": "u06_time",
+      "lessonId": "l06_2",
+      "korean": "수요일은 수업이 없어요.",
+      "romanization": "suyoireun sueobi eopseoyo.",
+      "english": "There is no class on Wednesday.",
+      "literal": "As for Wednesday, a class does not exist.",
+      "gloss": [
+        {
+          "ko": "수요일은",
+          "rom": "suyoireun",
+          "en": "Wednesday (topic)"
+        },
+        {
+          "ko": "수업이",
+          "rom": "sueobi",
+          "en": "class (subject)"
+        },
+        {
+          "ko": "없어요",
+          "rom": "eopseoyo",
+          "en": "there is not"
+        }
+      ],
+      "grammarIds": [
+        "g20"
+      ],
+      "wordIds": [
+        "w06_15",
+        "w06_30"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "There is no class on Thursday.",
+        "There is a class on Wednesday.",
+        "The class on Wednesday is long."
+      ],
+      "notes": "요일 names are made of the Sino element plus 요일: 수 + 요일."
+    },
+    {
+      "id": "s06_2_2",
+      "unitId": "u06_time",
+      "lessonId": "l06_2",
+      "korean": "제 생일은 오월 십일이에요.",
+      "romanization": "je saengireun owol sibirieyo.",
+      "english": "My birthday is May 10.",
+      "literal": "As for my birthday, it is May tenth.",
+      "gloss": [
+        {
+          "ko": "제",
+          "rom": "je",
+          "en": "my"
+        },
+        {
+          "ko": "생일은",
+          "rom": "saengireun",
+          "en": "birthday (topic)"
+        },
+        {
+          "ko": "오월",
+          "rom": "owol",
+          "en": "May"
+        },
+        {
+          "ko": "십일이에요",
+          "rom": "sibirieyo",
+          "en": "it is the tenth"
+        }
+      ],
+      "grammarIds": [
+        "g20"
+      ],
+      "wordIds": [
+        "w06_24",
+        "w06_22",
+        "w06_23"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "My birthday is May 1.",
+        "My birthday is October 10.",
+        "My birthday is not in May."
+      ],
+      "notes": "Months are Sino numbers + 월: 오월 = May, 십일월 = November."
+    },
+    {
+      "id": "s06_2_3",
+      "unitId": "u06_time",
+      "lessonId": "l06_2",
+      "korean": "주말에는 약속이 많아요.",
+      "romanization": "jumareneun yaksogi manayo.",
+      "english": "I have a lot of appointments on weekends.",
+      "literal": "On weekends, appointments are many.",
+      "gloss": [
+        {
+          "ko": "주말에는",
+          "rom": "jumareneun",
+          "en": "on weekends"
+        },
+        {
+          "ko": "약속이",
+          "rom": "yaksogi",
+          "en": "appointments (subject)"
+        },
+        {
+          "ko": "많아요",
+          "rom": "manayo",
+          "en": "are many"
+        }
+      ],
+      "grammarIds": [
+        "g20"
+      ],
+      "wordIds": [
+        "w06_45",
+        "w06_29"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I have a lot of appointments on weekdays.",
+        "I have no appointments on weekends.",
+        "I have a lot of meetings on weekends."
+      ],
+      "notes": "에는 combines the time marker with the topic marker."
+    },
+    {
+      "id": "s06_2_4",
+      "unitId": "u06_time",
+      "lessonId": "l06_2",
+      "korean": "이번 주 금요일에 회의가 있어요.",
+      "romanization": "ibeon ju geumyoire hoeuiga isseoyo.",
+      "english": "There is a meeting this Friday.",
+      "literal": "This week, on Friday, a meeting exists.",
+      "gloss": [
+        {
+          "ko": "이번 주",
+          "rom": "ibeon ju",
+          "en": "this week"
+        },
+        {
+          "ko": "금요일에",
+          "rom": "geumyoire",
+          "en": "on Friday"
+        },
+        {
+          "ko": "회의가",
+          "rom": "hoeuiga",
+          "en": "meeting (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there is"
+        }
+      ],
+      "grammarIds": [
+        "g20"
+      ],
+      "wordIds": [
+        "w06_44",
+        "w06_20",
+        "w06_17",
+        "w06_31"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "There is a meeting next Friday.",
+        "There is a class this Friday.",
+        "There is no meeting this Friday."
+      ],
+      "notes": "이번 = this one (the current week); 다음 = next."
+    },
+    {
+      "id": "s06_2_5",
+      "unitId": "u06_time",
+      "lessonId": "l06_2",
+      "korean": "다음 주에 시험이 있어요.",
+      "romanization": "daeum jue siheomi isseoyo.",
+      "english": "I have an exam next week.",
+      "literal": "Next week, an exam exists.",
+      "gloss": [
+        {
+          "ko": "다음 주에",
+          "rom": "daeum jue",
+          "en": "next week"
+        },
+        {
+          "ko": "시험이",
+          "rom": "siheomi",
+          "en": "exam (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there is"
+        }
+      ],
+      "grammarIds": [
+        "g20"
+      ],
+      "wordIds": [
+        "w06_43",
+        "w06_20"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I had an exam last week.",
+        "I have an exam this week.",
+        "I have no exam next week."
+      ],
+      "notes": "시험 keeps the subject marker 이 because it ends in ㅁ."
+    },
+    {
+      "id": "s06_2_6",
+      "unitId": "u06_time",
+      "lessonId": "l06_2",
+      "korean": "오늘은 이천이십육 년 십일월 십칠 일이에요.",
+      "romanization": "oneureun icheonisibyuk nyeon sibirwol sipchirieyo.",
+      "english": "Today is November 17, 2026.",
+      "literal": "As for today, it is the year 2026, month eleven, day seventeen.",
+      "gloss": [
+        {
+          "ko": "오늘은",
+          "rom": "oneureun",
+          "en": "today (topic)"
+        },
+        {
+          "ko": "이천이십육 년",
+          "rom": "icheonisibyuk nyeon",
+          "en": "the year 2026"
+        },
+        {
+          "ko": "십일월",
+          "rom": "sibirwol",
+          "en": "November (month 11)"
+        },
+        {
+          "ko": "십칠 일이에요",
+          "rom": "sipchirieyo",
+          "en": "it is the seventeenth"
+        }
+      ],
+      "grammarIds": [
+        "g20"
+      ],
+      "wordIds": [
+        "w06_21",
+        "w06_22",
+        "w06_23"
+      ],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Today is November 7, 2026.",
+        "Today is October 17, 2026.",
+        "Today is November 17, 2025."
+      ],
+      "notes": "Dates run from the biggest unit to the smallest: 년 → 월 → 일."
+    },
+    {
+      "id": "s06_3_1",
+      "unitId": "u06_time",
+      "lessonId": "l06_3",
+      "korean": "저는 아홉 시부터 다섯 시까지 일해요.",
+      "romanization": "jeoneun ahop sibuteo daseot sikkaji ilhaeyo.",
+      "english": "I work from nine to five.",
+      "literal": "As for me, from nine o'clock until five o'clock, I work.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "아홉 시부터",
+          "rom": "ahop sibuteo",
+          "en": "from nine o'clock"
+        },
+        {
+          "ko": "다섯 시까지",
+          "rom": "daseot sikkaji",
+          "en": "until five o'clock"
+        },
+        {
+          "ko": "일해요",
+          "rom": "ilhaeyo",
+          "en": "work"
+        }
+      ],
+      "grammarIds": [
+        "g19",
+        "g21"
+      ],
+      "wordIds": [
+        "w06_01",
+        "w06_37",
+        "w06_38"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I work from five to nine.",
+        "I work from nine to six.",
+        "I don't work from nine to five."
+      ],
+      "notes": "부터 and 까지 wrap the whole period: start부터 end까지."
+    },
+    {
+      "id": "s06_3_2",
+      "unitId": "u06_time",
+      "lessonId": "l06_3",
+      "korean": "점심시간은 한 시부터 두 시까지예요.",
+      "romanization": "jeomsimsiganeun han sibuteo du sikkajiyeyo.",
+      "english": "Lunch break is from one to two.",
+      "literal": "As for lunch time, it is from one until two.",
+      "gloss": [
+        {
+          "ko": "점심시간은",
+          "rom": "jeomsimsiganeun",
+          "en": "lunch time (topic)"
+        },
+        {
+          "ko": "한 시부터",
+          "rom": "han sibuteo",
+          "en": "from one o'clock"
+        },
+        {
+          "ko": "두 시까지예요",
+          "rom": "du sikkajiyeyo",
+          "en": "it is until two"
+        }
+      ],
+      "grammarIds": [
+        "g19",
+        "g21"
+      ],
+      "wordIds": [
+        "w06_11",
+        "w06_01",
+        "w06_37",
+        "w06_38"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Lunch break is from two to one.",
+        "Lunch break is from twelve to one.",
+        "Lunch break is from one to three."
+      ],
+      "notes": "한 시 is 'one o'clock' with the native number 한."
+    },
+    {
+      "id": "s06_3_3",
+      "unitId": "u06_time",
+      "lessonId": "l06_3",
+      "korean": "저는 보통 여섯 시에 퇴근해요.",
+      "romanization": "jeoneun botong yeoseot sie toegeunhaeyo.",
+      "english": "I usually leave work at six.",
+      "literal": "As for me, usually at six o'clock, I leave work.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "보통",
+          "rom": "botong",
+          "en": "usually"
+        },
+        {
+          "ko": "여섯 시에",
+          "rom": "yeoseot sie",
+          "en": "at six o'clock"
+        },
+        {
+          "ko": "퇴근해요",
+          "rom": "toegeunhaeyo",
+          "en": "leave work"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_01",
+        "w06_26"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I usually go to work at six.",
+        "I usually leave work at seven.",
+        "I rarely leave work at six."
+      ],
+      "notes": "출근하다 = arrive at work; 퇴근하다 = leave work."
+    },
+    {
+      "id": "s06_3_4",
+      "unitId": "u06_time",
+      "lessonId": "l06_3",
+      "korean": "약속이 일곱 시에 있어요.",
+      "romanization": "yaksogi ilgop sie isseoyo.",
+      "english": "I have an appointment at seven.",
+      "literal": "An appointment exists at seven o'clock.",
+      "gloss": [
+        {
+          "ko": "약속이",
+          "rom": "yaksogi",
+          "en": "appointment (subject)"
+        },
+        {
+          "ko": "일곱 시에",
+          "rom": "ilgop sie",
+          "en": "at seven o'clock"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "there is"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_29",
+        "w06_01"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I have an appointment at six.",
+        "I have a meeting at seven.",
+        "I have no appointment at seven."
+      ],
+      "notes": "Korean says 'an appointment exists' rather than 'I have an appointment'."
+    },
+    {
+      "id": "s06_3_5",
+      "unitId": "u06_time",
+      "lessonId": "l06_3",
+      "korean": "아침 회의는 아홉 시 삼십 분에 시작해요.",
+      "romanization": "achim hoeuineun ahop si samsip bune sijakaeyo.",
+      "english": "The morning meeting starts at 9:30.",
+      "literal": "The morning meeting, at nine hours thirty minutes, starts.",
+      "gloss": [
+        {
+          "ko": "아침 회의는",
+          "rom": "achim hoeuineun",
+          "en": "the morning meeting (topic)"
+        },
+        {
+          "ko": "아홉 시",
+          "rom": "ahop si",
+          "en": "nine o'clock"
+        },
+        {
+          "ko": "삼십 분에",
+          "rom": "samsip bune",
+          "en": "at thirty minutes"
+        },
+        {
+          "ko": "시작해요",
+          "rom": "sijakaeyo",
+          "en": "starts"
+        }
+      ],
+      "grammarIds": [
+        "g19"
+      ],
+      "wordIds": [
+        "w06_31",
+        "w06_01",
+        "w06_02",
+        "w06_27"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "The morning meeting starts at 9:13.",
+        "The morning meeting ends at 9:30.",
+        "The evening meeting starts at 9:30."
+      ],
+      "notes": "에 goes after the whole time expression, not after 시."
+    },
+    {
+      "id": "s06_3_6",
+      "unitId": "u06_time",
+      "lessonId": "l06_3",
+      "korean": "저는 열한 시까지 회사에 있어요.",
+      "romanization": "jeoneun yeolhan sikkaji hoesae isseoyo.",
+      "english": "I stay at the office until eleven.",
+      "literal": "As for me, until eleven o'clock, I am at the company.",
+      "gloss": [
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "열한 시까지",
+          "rom": "yeolhan sikkaji",
+          "en": "until eleven o'clock"
+        },
+        {
+          "ko": "회사에",
+          "rom": "hoesae",
+          "en": "at the office"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "am, stay"
+        }
+      ],
+      "grammarIds": [
+        "g19",
+        "g21"
+      ],
+      "wordIds": [
+        "w06_01",
+        "w06_38"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I stay at the office until ten.",
+        "I leave the office at eleven.",
+        "I don't stay at the office until eleven."
+      ],
+      "notes": "까지 marks the end point; 있어요 here means 'stay', not 'exist'."
+    },
+    {
+      "id": "s06_4_1",
+      "unitId": "u06_time",
+      "lessonId": "l06_4",
+      "korean": "시간이 있을 때 저는 쉬어요.",
+      "romanization": "sigani isseul ttae jeoneun swieoyo.",
+      "english": "When I have time, I rest.",
+      "literal": "When time exists, I rest.",
+      "gloss": [
+        {
+          "ko": "시간이",
+          "rom": "sigani",
+          "en": "time (subject)"
+        },
+        {
+          "ko": "있을 때",
+          "rom": "isseul ttae",
+          "en": "when there is"
+        },
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "쉬어요",
+          "rom": "swieoyo",
+          "en": "rest"
+        }
+      ],
+      "grammarIds": [
+        "g48"
+      ],
+      "wordIds": [
+        "w06_11",
+        "w06_32"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "When I have time, I work.",
+        "When I am busy, I rest.",
+        "I rest because I have time."
+      ],
+      "notes": "있다 ends in a consonant, so it takes -을 때: 있을 때."
+    },
+    {
+      "id": "s06_4_2",
+      "unitId": "u06_time",
+      "lessonId": "l06_4",
+      "korean": "수업이 끝날 때 저는 약속이 있어요.",
+      "romanization": "sueobi kkeunnal ttae jeoneun yaksogi isseoyo.",
+      "english": "When class ends, I have an appointment.",
+      "literal": "When class ends, I have an appointment.",
+      "gloss": [
+        {
+          "ko": "수업이",
+          "rom": "sueobi",
+          "en": "class (subject)"
+        },
+        {
+          "ko": "끝날 때",
+          "rom": "kkeunnal ttae",
+          "en": "when it ends"
+        },
+        {
+          "ko": "저는",
+          "rom": "jeoneun",
+          "en": "I (topic)"
+        },
+        {
+          "ko": "약속이",
+          "rom": "yaksogi",
+          "en": "appointment (subject)"
+        },
+        {
+          "ko": "있어요",
+          "rom": "isseoyo",
+          "en": "have"
+        }
+      ],
+      "grammarIds": [
+        "g48"
+      ],
+      "wordIds": [
+        "w06_30",
+        "w06_28",
+        "w06_29"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "When class starts, I have an appointment.",
+        "When class ends, I go home.",
+        "When class ends, I have no appointment."
+      ],
+      "notes": "끝나다 ends in a vowel, so it takes -ㄹ 때: 끝날 때."
+    },
+    {
+      "id": "s06_4_3",
+      "unitId": "u06_time",
+      "lessonId": "l06_4",
+      "korean": "약속에 늦을 때는 미리 전화해요.",
+      "romanization": "yaksoge neujeul ttaeneun miri jeonhwahaeyo.",
+      "english": "When I am late for an appointment, I call ahead.",
+      "literal": "When I am late for an appointment, in advance, I call.",
+      "gloss": [
+        {
+          "ko": "약속에",
+          "rom": "yaksoge",
+          "en": "for an appointment"
+        },
+        {
+          "ko": "늦을 때는",
+          "rom": "neujeul ttaeneun",
+          "en": "when I am late"
+        },
+        {
+          "ko": "미리",
+          "rom": "miri",
+          "en": "in advance"
+        },
+        {
+          "ko": "전화해요",
+          "rom": "jeonhwahaeyo",
+          "en": "call"
+        }
+      ],
+      "grammarIds": [
+        "g48"
+      ],
+      "wordIds": [
+        "w06_29",
+        "w06_34"
+      ],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "When I am late for an appointment, I don't call.",
+        "When I arrive early, I call ahead.",
+        "When I am late for work, I call ahead."
+      ],
+      "notes": "때는 adds a contrast: 'on the occasions when…'."
+    },
+    {
+      "id": "s06_4_4",
+      "unitId": "u06_time",
+      "lessonId": "l06_4",
+      "korean": "아침부터 저녁까지 시간표가 꽉 차 있어요.",
+      "romanization": "achimbuteo jeonyeokkaji sigampyoga kkwak cha isseoyo.",
+      "english": "My schedule is full from morning to evening.",
+      "literal": "From morning until evening, the timetable is tightly filled.",
+      "gloss": [
+        {
+          "ko": "아침부터",
+          "rom": "achimbuteo",
+          "en": "from morning"
+        },
+        {
+          "ko": "저녁까지",
+          "rom": "jeonyeokkaji",
+          "en": "until evening"
+        },
+        {
+          "ko": "시간표가",
+          "rom": "sigampyoga",
+          "en": "timetable (subject)"
+        },
+        {
+          "ko": "꽉 차 있어요",
+          "rom": "kkwak cha isseoyo",
+          "en": "is completely full"
+        }
+      ],
+      "grammarIds": [
+        "g21"
+      ],
+      "wordIds": [
+        "w06_37",
+        "w06_38",
+        "w06_47"
+      ],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "My schedule is empty from morning to evening.",
+        "My schedule is full from noon to evening.",
+        "My timetable changes from morning to evening."
+      ],
+      "notes": "부터 and 까지 are not limited to clock times — days and parts of the day work too."
+    },
+    {
+      "id": "s06_4_5",
+      "unitId": "u06_time",
+      "lessonId": "l06_4",
+      "korean": "회사에서 집까지 한 시간 걸려요.",
+      "romanization": "hoesaeseo jipkkaji han sigan geollyeoyo.",
+      "english": "It takes an hour from work to home.",
+      "literal": "From the office to home, one hour is taken.",
+      "gloss": [
+        {
+          "ko": "회사에서",
+          "rom": "hoesaeseo",
+          "en": "from the office"
+        },
+        {
+          "ko": "집까지",
+          "rom": "jipkkaji",
+          "en": "to home"
+        },
+        {
+          "ko": "한 시간",
+          "rom": "han sigan",
+          "en": "one hour"
+        },
+        {
+          "ko": "걸려요",
+          "rom": "geollyeoyo",
+          "en": "takes (time)"
+        }
+      ],
+      "grammarIds": [
+        "g21"
+      ],
+      "wordIds": [
+        "w06_11",
+        "w06_38",
+        "w06_40"
+      ],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "It takes two hours from work to home.",
+        "It takes an hour from home to work.",
+        "It takes an hour from work to the station."
+      ],
+      "notes": "걸리다 = to take time. The duration goes before the verb."
+    },
+    {
+      "id": "s06_4_6",
+      "unitId": "u06_time",
+      "lessonId": "l06_4",
+      "korean": "토요일에는 열두 시까지 자요.",
+      "romanization": "toyoireneun yeoldu sikkaji jayo.",
+      "english": "On Saturdays I sleep until twelve.",
+      "literal": "On Saturday, until twelve o'clock, I sleep.",
+      "gloss": [
+        {
+          "ko": "토요일에는",
+          "rom": "toyoireneun",
+          "en": "on Saturday"
+        },
+        {
+          "ko": "열두 시까지",
+          "rom": "yeoldu sikkaji",
+          "en": "until twelve o'clock"
+        },
+        {
+          "ko": "자요",
+          "rom": "jayo",
+          "en": "sleep"
+        }
+      ],
+      "grammarIds": [
+        "g19",
+        "g21"
+      ],
+      "wordIds": [
+        "w06_18",
+        "w06_01",
+        "w06_38"
+      ],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "On Sundays I sleep until twelve.",
+        "On Saturdays I get up at twelve.",
+        "On Saturdays I don't sleep until twelve."
+      ],
+      "notes": "에는 = 에 (time) + 는 (topic), common with days."
+    }
+  ],
+  "dialogue": {
+    "id": "d06",
+    "unitId": "u06_time",
+    "title": "Finding a time",
+    "setting": "Two colleagues arrange a meeting in a café.",
+    "lines": [
+      {
+        "id": "d06_1",
+        "speaker": "A",
+        "ko": "이번 주 금요일에 시간이 있어요?",
+        "rom": "ibeon ju geumyoire sigani isseoyo?",
+        "en": "Do you have time this Friday?"
+      },
+      {
+        "id": "d06_2",
+        "speaker": "B",
+        "ko": "금요일 오전은 바빠요. 오후는 괜찮아요.",
+        "rom": "geumyoil ojeoneun bappayo. ohuneun gwaenchanayo.",
+        "en": "Friday morning is busy. The afternoon is fine."
+      },
+      {
+        "id": "d06_3",
+        "speaker": "A",
+        "ko": "그럼 세 시 반에 만나요.",
+        "rom": "geureom se si bane mannayo.",
+        "en": "Then let's meet at half past three."
+      },
+      {
+        "id": "d06_4",
+        "speaker": "B",
+        "ko": "좋아요. 세 시에 회의가 끝나요.",
+        "rom": "joayo. se sie hoeuiga kkeunnayo.",
+        "en": "Good. My meeting ends at three."
+      },
+      {
+        "id": "d06_5",
+        "speaker": "A",
+        "ko": "주말에는 시간이 있어요?",
+        "rom": "jumareneun sigani isseoyo?",
+        "en": "Do you have time on the weekend?"
+      },
+      {
+        "id": "d06_6",
+        "speaker": "B",
+        "ko": "토요일 오후에는 시간이 있어요.",
+        "rom": "toyoil ohuneeneun sigani isseoyo.",
+        "en": "I have time on Saturday afternoon."
+      },
+      {
+        "id": "d06_7",
+        "speaker": "A",
+        "ko": "좋아요. 그럼 토요일에도 만나요.",
+        "rom": "joayo. geureom toyoiredo mannayo.",
+        "en": "Great. Then let's meet on Saturday too."
+      },
+      {
+        "id": "d06_8",
+        "speaker": "B",
+        "ko": "네, 그때 봐요.",
+        "rom": "ne, geuttae bwayo.",
+        "en": "Yes, see you then."
+      }
+    ]
+  },
+  "reading": {
+    "id": "r06",
+    "unitId": "u06_time",
+    "title": "My week",
+    "ko": "저는 평일에는 아홉 시에 출근해요. 아침에 시계를 보고 일어나요. 집에서 회사까지 약 사십 분 걸려요. 일은 아홉 시부터 여섯 시까지예요. 낮에는 회의가 많아요. 회의는 보통 한 시간 동안 해요. 가끔 아주 오래 걸려요. 저는 매주 월요일과 수요일에 회의가 있어요. 화요일과 목요일에는 수업이 있어요. 수업은 한 시간 반 동안 해요. 가끔 새벽까지 일해요. 그때는 아주 피곤해요. 아침 약속에 가끔 늦어요. 저녁은 집에서 준비해요. 저는 보통 일찍 자요. 토요일에는 열두 시까지 자요. 일요일에는 책을 읽어요. 다음 주에 시험이 있어요. 요즘은 자주 공부해요. 지금은 여덟 시 오십 분이에요. 회의가 곧 시작해요.",
+    "en": "On weekdays I go to work at nine. I look at the clock and get up in the morning. It takes about forty minutes from home to work. Work is from nine to six. During the day I have a lot of meetings. A meeting usually lasts one hour. Sometimes it takes a very long time. Every week I have meetings on Monday and Wednesday. On Tuesday and Thursday I have a class. The class lasts an hour and a half. Sometimes I work until dawn. Then I am very tired. I am sometimes late for morning appointments. I prepare dinner at home. I usually go to bed early. On Saturday I sleep until twelve. On Sunday I read books. I have an exam next week. These days I study often. It is 8:50 now. The meeting starts soon.",
+    "questions": [
+      {
+        "q": "What time does the writer go to work?",
+        "options": [
+          "At nine",
+          "At eight",
+          "At six",
+          "At ten"
+        ],
+        "answer": 0,
+        "why": "평일에는 아홉 시에 출근해요 = on weekdays I go to work at nine."
+      },
+      {
+        "q": "How long does a meeting usually last?",
+        "options": [
+          "One hour",
+          "Two hours",
+          "Thirty minutes",
+          "An hour and a half"
+        ],
+        "answer": 0,
+        "why": "회의는 보통 한 시간 동안 해요 = a meeting usually lasts one hour."
+      },
+      {
+        "q": "What does the writer do on Sunday?",
+        "options": [
+          "Reads books",
+          "Sleeps until noon",
+          "Goes to work",
+          "Studies for an exam"
+        ],
+        "answer": 0,
+        "why": "일요일에는 책을 읽어요 = on Sunday I read books."
+      }
+    ]
+  }
+}

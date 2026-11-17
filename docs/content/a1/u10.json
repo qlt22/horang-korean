@@ -1,0 +1,825 @@
+{
+  "unit": {
+    "id": "u10_plans",
+    "order": 10,
+    "title": "Plans & invitations",
+    "ko": "계획",
+    "canDo": [
+      "Say what you are going to do this weekend",
+      "Suggest something with -(으)ㄹ까요?",
+      "Invite someone politely with -(으)세요",
+      "Give a reason with -아/어서"
+    ],
+    "grammarIds": ["g34", "g35", "g36", "g37"]
+  },
+  "lessons": [
+    {
+      "id": "l10_1",
+      "unitId": "u10_plans",
+      "order": 1,
+      "kind": "vocab",
+      "title": "This weekend",
+      "ko": "주말에 뭐 할 거예요?",
+      "goal": "Talk about weekend plans with time words and outdoor places",
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_01", "w10_02", "w10_03", "w10_04", "w10_05", "w10_06", "w10_07", "w10_08", "w10_09", "w10_10", "w10_11", "w10_12"],
+      "sentenceIds": ["s10_1_1", "s10_1_2", "s10_1_3", "s10_1_4", "s10_1_5", "s10_1_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 6
+    },
+    {
+      "id": "l10_2",
+      "unitId": "u10_plans",
+      "order": 2,
+      "kind": "grammar",
+      "title": "Will you, shall we",
+      "ko": "갈 거예요, 갈까요?",
+      "goal": "Use -(으)ㄹ 거예요 for plans and -(으)ㄹ까요? for suggestions, then add -(으)세요",
+      "grammarIds": ["g34", "g35", "g37"],
+      "wordIds": ["w10_13", "w10_14", "w10_15", "w10_16", "w10_17", "w10_18", "w10_19", "w10_20", "w10_21", "w10_22", "w10_23", "w10_24"],
+      "sentenceIds": ["s10_2_1", "s10_2_2", "s10_2_3", "s10_2_4", "s10_2_5", "s10_2_6"],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 7
+    },
+    {
+      "id": "l10_3",
+      "unitId": "u10_plans",
+      "order": 3,
+      "kind": "listening",
+      "title": "A table for four",
+      "ko": "저녁 예약",
+      "goal": "Follow a phone reservation and catch the time, the seats and the order",
+      "grammarIds": ["g34", "g35", "g37"],
+      "wordIds": ["w10_25", "w10_26", "w10_27", "w10_28", "w10_29", "w10_30", "w10_31", "w10_32", "w10_33", "w10_34", "w10_35", "w10_36"],
+      "sentenceIds": ["s10_3_1", "s10_3_2", "s10_3_3", "s10_3_4", "s10_3_5", "s10_3_6"],
+      "dialogueId": "d10",
+      "readingId": null,
+      "minutes": 8
+    },
+    {
+      "id": "l10_4",
+      "unitId": "u10_plans",
+      "order": 4,
+      "kind": "reading",
+      "title": "My weekend plan",
+      "ko": "주말 계획",
+      "goal": "Read a plan for the weekend and find what happens, why and when",
+      "grammarIds": ["g34", "g36"],
+      "wordIds": ["w10_37", "w10_38", "w10_39", "w10_40", "w10_41", "w10_42", "w10_43", "w10_44", "w10_45", "w10_46", "w10_47", "w10_48"],
+      "sentenceIds": ["s10_4_1", "s10_4_2", "s10_4_3", "s10_4_4", "s10_4_5", "s10_4_6"],
+      "dialogueId": null,
+      "readingId": "r10",
+      "minutes": 7
+    },
+    {
+      "id": "l10_5",
+      "unitId": "u10_plans",
+      "order": 5,
+      "kind": "checkpoint",
+      "title": "Make a plan, invite a friend",
+      "ko": "계획 이야기",
+      "goal": "Plan, suggest, invite and explain a reason without hints",
+      "grammarIds": ["g34", "g35", "g36", "g37"],
+      "wordIds": [],
+      "sentenceIds": [],
+      "dialogueId": null,
+      "readingId": null,
+      "minutes": 8
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g34",
+      "unitId": "u10_plans",
+      "order": 1,
+      "label": "going to (-(으)ㄹ 거예요)",
+      "ko": "-(으)ㄹ 거예요",
+      "pattern": "V-(으)ㄹ 거예요",
+      "explanation": "Add -(으)ㄹ 거예요 to a verb stem for a plan or a future fact: 갈 거예요, 먹을 거예요. Use it for real plans, not for what is happening right now.",
+      "examples": [
+        { "ko": "이번 주말에 등산을 갈 거예요.", "en": "I'm going to go hiking this weekend." },
+        { "ko": "다음 주에 영화를 볼 거예요.", "en": "I'm going to watch a movie next week." }
+      ],
+      "mistake": "갈거예요 ✗ (spacing) → 갈 거예요 ✓"
+    },
+    {
+      "id": "g35",
+      "unitId": "u10_plans",
+      "order": 2,
+      "label": "shall we? (-(으)ㄹ까요?)",
+      "ko": "-(으)ㄹ까요?",
+      "pattern": "V-(으)ㄹ까요?",
+      "explanation": "Use -(으)ㄹ까요? to ask 'shall we…?' or to wonder 'should I…?'. The answer is usually 네, 좋아요 or 아니요, 힘들어요.",
+      "examples": [
+        { "ko": "점심에 식당에 갈까요?", "en": "Shall we go to a restaurant for lunch?" },
+        { "ko": "제가 케이크를 살까요?", "en": "Shall I buy the cake?" }
+      ],
+      "mistake": "갈가요 ✗ → 갈까요 ✓"
+    },
+    {
+      "id": "g36",
+      "unitId": "u10_plans",
+      "order": 3,
+      "label": "because (-아/어서)",
+      "ko": "-아/어서",
+      "pattern": "V-아/어서",
+      "explanation": "Use -아/어서 when the first clause is the reason: 시간이 없어서 늦을 거예요. The tense is not added here, and a second 그래서 is not needed.",
+      "examples": [
+        { "ko": "시간이 없어서 늦을 거예요.", "en": "I'll be late because I have no time." },
+        { "ko": "사람이 많아서 자리가 없을 거예요.", "en": "There won't be seats because there are a lot of people." }
+      ],
+      "mistake": "없어서 그래서 ✗ (one reason is enough) → 없어서 ✓"
+    },
+    {
+      "id": "g37",
+      "unitId": "u10_plans",
+      "order": 4,
+      "label": "please do (-(으)세요)",
+      "ko": "-(으)세요",
+      "pattern": "V-(으)세요",
+      "explanation": "Attach -(으)세요 to a verb stem to ask someone politely to do something: 주문하세요, 기다리세요. It is also the everyday honorific ending.",
+      "examples": [
+        { "ko": "메뉴를 보고 주문하세요.", "en": "Please look at the menu and order." },
+        { "ko": "여기에서 기다리세요.", "en": "Please wait here." }
+      ],
+      "mistake": "주문으세요 ✗ → 주문하세요 ✓"
+    }
+  ],
+  "words": [
+    { "id": "w10_01", "ko": "주말", "rom": "jumal", "en": "weekend", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_02", "ko": "다음 주", "rom": "daeum ju", "en": "next week", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_03", "ko": "모레", "rom": "more", "en": "the day after tomorrow", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_04", "ko": "이번 주", "rom": "ibeon ju", "en": "this week", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_05", "ko": "계획", "rom": "gyehoek", "en": "plan", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_06", "ko": "등산", "rom": "deungsan", "en": "hiking", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_07", "ko": "캠핑", "rom": "kaemping", "en": "camping", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_08", "ko": "바다", "rom": "bada", "en": "sea", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_09", "ko": "산", "rom": "san", "en": "mountain", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_10", "ko": "공원", "rom": "gongwon", "en": "park", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_11", "ko": "영화관", "rom": "yeonghwagwan", "en": "movie theater", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_12", "ko": "사진", "rom": "sajin", "en": "photo", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_1" },
+    { "id": "w10_13", "ko": "점심", "rom": "jeomsim", "en": "lunch", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_14", "ko": "식당", "rom": "sikdang", "en": "restaurant", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_15", "ko": "생일", "rom": "saengil", "en": "birthday", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_16", "ko": "선물", "rom": "seonmul", "en": "gift", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_17", "ko": "파티", "rom": "pati", "en": "party", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_18", "ko": "케이크", "rom": "keikeu", "en": "cake", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_19", "ko": "함께", "rom": "hamkke", "en": "together", "pos": "adverb", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_20", "ko": "꼭", "rom": "kkok", "en": "surely, definitely", "pos": "adverb", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_21", "ko": "기다릴 거예요", "rom": "gidaril geoyeyo", "en": "will wait", "pos": "verb", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_22", "ko": "전화할 거예요", "rom": "jeonhwahal geoyeyo", "en": "will call", "pos": "verb", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_23", "ko": "준비할 거예요", "rom": "junbihal geoyeyo", "en": "will prepare", "pos": "verb", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_24", "ko": "다음에", "rom": "daeume", "en": "next time", "pos": "adverb", "unitId": "u10_plans", "lessonId": "l10_2" },
+    { "id": "w10_25", "ko": "예약", "rom": "yeyak", "en": "reservation", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_26", "ko": "시간", "rom": "sigan", "en": "time", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_27", "ko": "저녁 식사", "rom": "jeonyeok siksa", "en": "dinner", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_28", "ko": "자리", "rom": "jari", "en": "seat", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_29", "ko": "메뉴", "rom": "menyu", "en": "menu", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_30", "ko": "주문", "rom": "jumun", "en": "order", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_31", "ko": "늦을 거예요", "rom": "neujeul geoyeyo", "en": "will be late", "pos": "verb", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_32", "ko": "도착할 거예요", "rom": "dochakhal geoyeyo", "en": "will arrive", "pos": "verb", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_33", "ko": "사람", "rom": "saram", "en": "person, people", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_34", "ko": "전화", "rom": "jeonhwa", "en": "phone call", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_35", "ko": "몇 시", "rom": "myeot si", "en": "what time", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_36", "ko": "파스타", "rom": "paseuta", "en": "pasta", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_3" },
+    { "id": "w10_37", "ko": "운동", "rom": "undong", "en": "exercise", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_38", "ko": "수영", "rom": "suyeong", "en": "swimming", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_39", "ko": "자전거", "rom": "jajeongeo", "en": "bicycle", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_40", "ko": "맛집", "rom": "matjip", "en": "good restaurant", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_41", "ko": "즐거울 거예요", "rom": "jeulgeoul geoyeyo", "en": "will be fun", "pos": "adjective", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_42", "ko": "바쁠 거예요", "rom": "bappeul geoyeyo", "en": "will be busy", "pos": "adjective", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_43", "ko": "다음 달", "rom": "daeum dal", "en": "next month", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_44", "ko": "방학", "rom": "banghak", "en": "school vacation", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_45", "ko": "쉴 거예요", "rom": "swil geoyeyo", "en": "will rest", "pos": "verb", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_46", "ko": "계획표", "rom": "gyehoekpyo", "en": "schedule, plan sheet", "pos": "noun", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_47", "ko": "아무", "rom": "amu", "en": "any, no (with a negative)", "pos": "adjective", "unitId": "u10_plans", "lessonId": "l10_4" },
+    { "id": "w10_48", "ko": "푹", "rom": "puk", "en": "deeply, fully", "pos": "adverb", "unitId": "u10_plans", "lessonId": "l10_4" }
+  ],
+  "sentences": [
+    {
+      "id": "s10_1_1",
+      "unitId": "u10_plans",
+      "lessonId": "l10_1",
+      "korean": "이번 주말에 등산을 갈 거예요.",
+      "romanization": "ibeon jumare deungsaneul gal geoyeyo.",
+      "english": "I'm going to go hiking this weekend.",
+      "literal": "This weekend, hiking go-will.",
+      "gloss": [
+        { "ko": "이번 주말에", "rom": "ibeon jumare", "en": "this weekend" },
+        { "ko": "등산을", "rom": "deungsaneul", "en": "hiking (object)" },
+        { "ko": "갈 거예요", "rom": "gal geoyeyo", "en": "will go" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_01", "w10_06"],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "I went hiking this weekend.",
+        "I'm going to go hiking next weekend.",
+        "I'm not going to go hiking this weekend."
+      ],
+      "notes": "등산을 가다 is the fixed phrase: 'go hiking', not 등산을 하다 alone."
+    },
+    {
+      "id": "s10_1_2",
+      "unitId": "u10_plans",
+      "lessonId": "l10_1",
+      "korean": "모레는 공원에서 사진을 찍을 거예요.",
+      "romanization": "moreneun gongwoneseo sajineul jjigeul geoyeyo.",
+      "english": "The day after tomorrow I'm going to take photos in the park.",
+      "literal": "As for the day after tomorrow, in the park photos take-will.",
+      "gloss": [
+        { "ko": "모레는", "rom": "moreneun", "en": "the day after tomorrow (topic)" },
+        { "ko": "공원에서", "rom": "gongwoneseo", "en": "in the park" },
+        { "ko": "사진을", "rom": "sajineul", "en": "photos (object)" },
+        { "ko": "찍을 거예요", "rom": "jjigeul geoyeyo", "en": "will take (a photo)" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_03", "w10_10", "w10_12"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm going to take photos at the beach the day after tomorrow.",
+        "I took photos in the park last week.",
+        "I'm going to take photos in the park tomorrow."
+      ],
+      "notes": "찍다 is used for photos; 사진을 찍어요 = take a photo."
+    },
+    {
+      "id": "s10_1_3",
+      "unitId": "u10_plans",
+      "lessonId": "l10_1",
+      "korean": "다음 주에 영화관에서 영화를 볼 거예요.",
+      "romanization": "daeum jue yeonghwagwaneseo yeonghwareul bol geoyeyo.",
+      "english": "Next week I'm going to watch a movie at the cinema.",
+      "literal": "Next week, at the cinema, a movie watch-will.",
+      "gloss": [
+        { "ko": "다음 주에", "rom": "daeum jue", "en": "next week" },
+        { "ko": "영화관에서", "rom": "yeonghwagwaneseo", "en": "at the cinema" },
+        { "ko": "영화를", "rom": "yeonghwareul", "en": "a movie (object)" },
+        { "ko": "볼 거예요", "rom": "bol geoyeyo", "en": "will watch" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_02", "w10_11"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm going to watch a movie at home next week.",
+        "I'm going to watch a play at the cinema next week.",
+        "I'm not going to watch a movie next week."
+      ],
+      "notes": "보다 has no final consonant before the ending, so the ㄹ is added directly: 보 + ㄹ = 볼."
+    },
+    {
+      "id": "s10_1_4",
+      "unitId": "u10_plans",
+      "lessonId": "l10_1",
+      "korean": "바다에서 캠핑을 할 거예요.",
+      "romanization": "badaeseo kaempingeul hal geoyeyo.",
+      "english": "I'm going to go camping at the sea.",
+      "literal": "At the sea, camping do-will.",
+      "gloss": [
+        { "ko": "바다에서", "rom": "badaeseo", "en": "at the sea" },
+        { "ko": "캠핑을", "rom": "kaempingeul", "en": "camping (object)" },
+        { "ko": "할 거예요", "rom": "hal geoyeyo", "en": "will do" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_08", "w10_07"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm going to go camping in the mountains.",
+        "I went camping at the sea.",
+        "I'm not going to go camping at the sea."
+      ],
+      "notes": "캠핑을 하다 = go camping; 하다 keeps its 했 form in the past but not here."
+    },
+    {
+      "id": "s10_1_5",
+      "unitId": "u10_plans",
+      "lessonId": "l10_1",
+      "korean": "주말에 산에 올라갈 거예요.",
+      "romanization": "jumare sane ollagal geoyeyo.",
+      "english": "On the weekend I'm going to go up the mountain.",
+      "literal": "On the weekend, up the mountain go-up-will.",
+      "gloss": [
+        { "ko": "주말에", "rom": "jumare", "en": "on the weekend" },
+        { "ko": "산에", "rom": "sane", "en": "up the mountain" },
+        { "ko": "올라갈 거예요", "rom": "ollagal geoyeyo", "en": "will go up" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_01", "w10_09"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm going to go up the mountain next month.",
+        "I'm going to go down the mountain on the weekend.",
+        "I'm not going to go up the mountain on the weekend."
+      ],
+      "notes": "Korean says 'go up' with 올라가다; the place takes 에."
+    },
+    {
+      "id": "s10_1_6",
+      "unitId": "u10_plans",
+      "lessonId": "l10_1",
+      "korean": "이번 주에 계획을 세울 거예요.",
+      "romanization": "ibeon jue gyehoekeul seul geoyeyo.",
+      "english": "I'm going to make a plan this week.",
+      "literal": "This week, a plan make-will.",
+      "gloss": [
+        { "ko": "이번 주에", "rom": "ibeon jue", "en": "this week" },
+        { "ko": "계획을", "rom": "gyehoekeul", "en": "a plan (object)" },
+        { "ko": "세울 거예요", "rom": "seul geoyeyo", "en": "will make, will set" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_04", "w10_05"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I made a plan last week.",
+        "I'm going to make a plan next month.",
+        "I'm not going to make a plan this week."
+      ],
+      "notes": "계획을 세우다 is the natural verb: 'to set a plan'."
+    },
+    {
+      "id": "s10_2_1",
+      "unitId": "u10_plans",
+      "lessonId": "l10_2",
+      "korean": "점심에 식당에 갈까요?",
+      "romanization": "jeomsime sikdang-e galkkayo?",
+      "english": "Shall we go to a restaurant for lunch?",
+      "literal": "For lunch, to a restaurant go-shall?",
+      "gloss": [
+        { "ko": "점심에", "rom": "jeomsime", "en": "at lunch" },
+        { "ko": "식당에", "rom": "sikdang-e", "en": "to a restaurant" },
+        { "ko": "갈까요?", "rom": "galkkayo?", "en": "shall we go?" }
+      ],
+      "grammarIds": ["g35"],
+      "wordIds": ["w10_13", "w10_14"],
+      "register": "polite",
+      "difficulty": 1,
+      "distractors": [
+        "Shall we go to a cafe for lunch?",
+        "Did we go to a restaurant for lunch?",
+        "I'm going to go to a restaurant for lunch."
+      ],
+      "notes": "갈까요? asks for the other person's opinion, so both people are included."
+    },
+    {
+      "id": "s10_2_2",
+      "unitId": "u10_plans",
+      "lessonId": "l10_2",
+      "korean": "제 생일 파티에 꼭 올 거예요?",
+      "romanization": "je saengil patie kkok ol geoyeyo?",
+      "english": "Are you definitely coming to my birthday party?",
+      "literal": "To my birthday party, surely come-will?",
+      "gloss": [
+        { "ko": "제", "rom": "je", "en": "my (humble)" },
+        { "ko": "생일 파티에", "rom": "saengil patie", "en": "to the birthday party" },
+        { "ko": "꼭", "rom": "kkok", "en": "surely, for sure" },
+        { "ko": "올 거예요?", "rom": "ol geoyeyo?", "en": "will you come?" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_15", "w10_17", "w10_20"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Are you coming to my birthday dinner?",
+        "Did you come to my birthday party?",
+        "I'm coming to your birthday party."
+      ],
+      "notes": "With a rising tone, -(으)ㄹ 거예요? asks about the other person's plan."
+    },
+    {
+      "id": "s10_2_3",
+      "unitId": "u10_plans",
+      "lessonId": "l10_2",
+      "korean": "케이크는 제가 준비할 거예요.",
+      "romanization": "keikeuneun jega junbihal geoyeyo.",
+      "english": "I'll prepare the cake.",
+      "literal": "As for the cake, I prepare-will.",
+      "gloss": [
+        { "ko": "케이크는", "rom": "keikeuneun", "en": "the cake (topic)" },
+        { "ko": "제가", "rom": "jega", "en": "I (subject, humble)" },
+        { "ko": "준비할 거예요", "rom": "junbihal geoyeyo", "en": "will prepare" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_18", "w10_23"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I will buy the cake.",
+        "You will prepare the cake.",
+        "I prepared the cake."
+      ],
+      "notes": "제가 marks 'I' as the doer, which answers 'who?'. The subject marker 가 goes after 제."
+    },
+    {
+      "id": "s10_2_4",
+      "unitId": "u10_plans",
+      "lessonId": "l10_2",
+      "korean": "선물은 함께 살까요?",
+      "romanization": "seonmureun hamkke salkkayo?",
+      "english": "Shall we buy the gift together?",
+      "literal": "As for the gift, together buy-shall?",
+      "gloss": [
+        { "ko": "선물은", "rom": "seonmureun", "en": "the gift (topic)" },
+        { "ko": "함께", "rom": "hamkke", "en": "together" },
+        { "ko": "살까요?", "rom": "salkkayo?", "en": "shall we buy?" }
+      ],
+      "grammarIds": ["g35"],
+      "wordIds": ["w10_16", "w10_19"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Shall we buy the gift alone?",
+        "Shall we buy the flowers together?",
+        "We bought the gift together."
+      ],
+      "notes": "함께 and 같이 both mean 'together'; 함께 is a little more formal."
+    },
+    {
+      "id": "s10_2_5",
+      "unitId": "u10_plans",
+      "lessonId": "l10_2",
+      "korean": "식당에서 기다릴 거예요.",
+      "romanization": "sikdangeseo gidaril geoyeyo.",
+      "english": "I'll wait at the restaurant.",
+      "literal": "At the restaurant, wait-will.",
+      "gloss": [
+        { "ko": "식당에서", "rom": "sikdangeseo", "en": "at the restaurant" },
+        { "ko": "기다릴 거예요", "rom": "gidaril geoyeyo", "en": "will wait" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_14", "w10_21"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'll wait at the cinema.",
+        "I waited at the restaurant.",
+        "I won't wait at the restaurant."
+      ],
+      "notes": "기다리다 has no final consonant, so 기다리 + ㄹ = 기다릴."
+    },
+    {
+      "id": "s10_2_6",
+      "unitId": "u10_plans",
+      "lessonId": "l10_2",
+      "korean": "점심에 전화할 거예요.",
+      "romanization": "jeomsime jeonhwahal geoyeyo.",
+      "english": "I'll call at lunchtime.",
+      "literal": "At lunch, a phone call do-will.",
+      "gloss": [
+        { "ko": "점심에", "rom": "jeomsime", "en": "at lunchtime" },
+        { "ko": "전화할 거예요", "rom": "jeonhwahal geoyeyo", "en": "will call" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_13", "w10_22"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'll call in the evening.",
+        "I called at lunchtime.",
+        "I won't call at lunchtime."
+      ],
+      "notes": "전화하다 = make a phone call; 전화할 거예요 = I'll call."
+    },
+    {
+      "id": "s10_3_1",
+      "unitId": "u10_plans",
+      "lessonId": "l10_3",
+      "korean": "저녁 식사는 미리 예약하세요.",
+      "romanization": "jeonyeok siksaneun miri yeyakhaseyo.",
+      "english": "Please reserve dinner in advance.",
+      "literal": "As for dinner, in advance reserve-please.",
+      "gloss": [
+        { "ko": "저녁 식사는", "rom": "jeonyeok siksaneun", "en": "dinner (topic)" },
+        { "ko": "미리", "rom": "miri", "en": "in advance" },
+        { "ko": "예약하세요", "rom": "yeyakhaseyo", "en": "please reserve" }
+      ],
+      "grammarIds": ["g37"],
+      "wordIds": ["w10_27", "w10_25"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Please reserve lunch.",
+        "I reserved dinner.",
+        "Please don't reserve dinner."
+      ],
+      "notes": "예약하다 takes -(으)세요 when you are telling someone politely to book: 예약하세요."
+    },
+    {
+      "id": "s10_3_2",
+      "unitId": "u10_plans",
+      "lessonId": "l10_3",
+      "korean": "몇 시에 도착할 거예요?",
+      "romanization": "myeot si-e dochakhal geoyeyo?",
+      "english": "What time will you arrive?",
+      "literal": "At what time arrive-will?",
+      "gloss": [
+        { "ko": "몇 시에", "rom": "myeot si-e", "en": "at what time" },
+        { "ko": "도착할 거예요?", "rom": "dochakhal geoyeyo?", "en": "will you arrive?" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_35", "w10_32"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "What time did you arrive?",
+        "Where will you arrive?",
+        "What time will you leave?"
+      ],
+      "notes": "몇 시에 asks the clock time; 도착하다 is to arrive at a place."
+    },
+    {
+      "id": "s10_3_3",
+      "unitId": "u10_plans",
+      "lessonId": "l10_3",
+      "korean": "주말에는 자리가 없을 거예요.",
+      "romanization": "jumareneun jariga eopseul geoyeyo.",
+      "english": "There won't be any seats on the weekend.",
+      "literal": "On the weekend, seats not-exist-will.",
+      "gloss": [
+        { "ko": "주말에는", "rom": "jumareneun", "en": "on the weekend (topic)" },
+        { "ko": "자리가", "rom": "jariga", "en": "seats (subject)" },
+        { "ko": "없을 거예요", "rom": "eopseul geoyeyo", "en": "there won't be" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_01", "w10_28"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "There will be seats on the weekend.",
+        "There are no seats today.",
+        "There will be a lot of people on the weekend."
+      ],
+      "notes": "없다 becomes 없을 거예요; the subject takes 가 because 자리 ends in a vowel."
+    },
+    {
+      "id": "s10_3_4",
+      "unitId": "u10_plans",
+      "lessonId": "l10_3",
+      "korean": "시간이 없어서 늦을 거예요.",
+      "romanization": "sigani eopseoseo neujeul geoyeyo.",
+      "english": "I'll be late because I have no time.",
+      "literal": "Time not-exist-because, late-will.",
+      "gloss": [
+        { "ko": "시간이", "rom": "sigani", "en": "time (subject)" },
+        { "ko": "없어서", "rom": "eopseoseo", "en": "because there isn't" },
+        { "ko": "늦을 거예요", "rom": "neujeul geoyeyo", "en": "will be late" }
+      ],
+      "grammarIds": ["g36", "g34"],
+      "wordIds": ["w10_26", "w10_31"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I'll be late because I have time.",
+        "I'll be early because I have no time.",
+        "I was late because I had no time."
+      ],
+      "notes": "-아/어서 gives the reason and is never followed by 그래서 in the same sentence."
+    },
+    {
+      "id": "s10_3_5",
+      "unitId": "u10_plans",
+      "lessonId": "l10_3",
+      "korean": "메뉴를 보고 주문할까요?",
+      "romanization": "menyureul bogo jumunhalkkayo?",
+      "english": "Shall we look at the menu and order?",
+      "literal": "Menu look-and, order-shall?",
+      "gloss": [
+        { "ko": "메뉴를", "rom": "menyureul", "en": "the menu (object)" },
+        { "ko": "보고", "rom": "bogo", "en": "look at and" },
+        { "ko": "주문할까요?", "rom": "jumunhalkkayo?", "en": "shall we order?" }
+      ],
+      "grammarIds": ["g35"],
+      "wordIds": ["w10_29", "w10_30"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "Shall we order without looking at the menu?",
+        "Shall we pay and look at the menu?",
+        "We looked at the menu and ordered."
+      ],
+      "notes": "-고 chains the two actions and only the last one carries 까요."
+    },
+    {
+      "id": "s10_3_6",
+      "unitId": "u10_plans",
+      "lessonId": "l10_3",
+      "korean": "다음에 이 식당에 갈까요?",
+      "romanization": "daeume i sikdang-e galkkayo?",
+      "english": "Shall we go to this restaurant next time?",
+      "literal": "Next time, to this restaurant go-shall?",
+      "gloss": [
+        { "ko": "다음에", "rom": "daeume", "en": "next time" },
+        { "ko": "이 식당에", "rom": "i sikdang-e", "en": "to this restaurant" },
+        { "ko": "갈까요?", "rom": "galkkayo?", "en": "shall we go?" }
+      ],
+      "grammarIds": ["g35"],
+      "wordIds": ["w10_24", "w10_14"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Shall we go to this restaurant today?",
+        "Shall we go to the cinema next time?",
+        "We went to this restaurant last time."
+      ],
+      "notes": "이 식당 = this restaurant; 다음에 = next time, not 'next week'."
+    },
+    {
+      "id": "s10_4_1",
+      "unitId": "u10_plans",
+      "lessonId": "l10_4",
+      "korean": "주말에는 공원에서 자전거를 탈 거예요.",
+      "romanization": "jumareneun gongwoneseo jajeongnyeoreul tal geoyeyo.",
+      "english": "On the weekend I'm going to ride a bike in the park.",
+      "literal": "On the weekend, in the park, a bicycle ride-will.",
+      "gloss": [
+        { "ko": "주말에는", "rom": "jumareneun", "en": "on the weekend (topic)" },
+        { "ko": "공원에서", "rom": "gongwoneseo", "en": "in the park" },
+        { "ko": "자전거를", "rom": "jajeongnyeoreul", "en": "a bicycle (object)" },
+        { "ko": "탈 거예요", "rom": "tal geoyeyo", "en": "will ride" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_01", "w10_10", "w10_39"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm going to ride a bike at the beach on the weekend.",
+        "I rode a bike in the park on the weekend.",
+        "I'm not going to ride a bike on the weekend."
+      ],
+      "notes": "타다 is used for bikes, buses and trains: 자전거를 타요."
+    },
+    {
+      "id": "s10_4_2",
+      "unitId": "u10_plans",
+      "lessonId": "l10_4",
+      "korean": "방학은 다음 달에 시작할 거예요.",
+      "romanization": "banghageun daeum dare sijakhal geoyeyo.",
+      "english": "School vacation will start next month.",
+      "literal": "As for vacation, next month start-will.",
+      "gloss": [
+        { "ko": "방학은", "rom": "banghageun", "en": "school vacation (topic)" },
+        { "ko": "다음 달에", "rom": "daeum dare", "en": "next month" },
+        { "ko": "시작할 거예요", "rom": "sijakhal geoyeyo", "en": "will start" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_44", "w10_43"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "School vacation will start next week.",
+        "School vacation ended last month.",
+        "School vacation will start next year."
+      ],
+      "notes": "시작하다 is a 하다 verb, so it follows the same future shape: 시작할 거예요."
+    },
+    {
+      "id": "s10_4_3",
+      "unitId": "u10_plans",
+      "lessonId": "l10_4",
+      "korean": "방학에는 푹 쉬세요.",
+      "romanization": "banghakeneun puk swiseyo.",
+      "english": "Get a good rest during vacation.",
+      "literal": "During vacation, deeply rest-please.",
+      "gloss": [
+        { "ko": "방학에는", "rom": "banghakeneun", "en": "during vacation (topic)" },
+        { "ko": "푹", "rom": "puk", "en": "deeply, fully" },
+        { "ko": "쉬세요", "rom": "swiseyo", "en": "please rest" }
+      ],
+      "grammarIds": ["g37"],
+      "wordIds": ["w10_44", "w10_48"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "Get a good rest during the semester.",
+        "Study hard during vacation.",
+        "Don't rest during vacation."
+      ],
+      "notes": "푹 쉬세요 is the everyday phrase for 'get a proper rest'."
+    },
+    {
+      "id": "s10_4_4",
+      "unitId": "u10_plans",
+      "lessonId": "l10_4",
+      "korean": "계획표를 만들어서 운동을 할 거예요.",
+      "romanization": "gyehoekpyoreul mandeureoseo undongeul hal geoyeyo.",
+      "english": "I'm going to make a schedule and then exercise.",
+      "literal": "A schedule make-because, exercise do-will.",
+      "gloss": [
+        { "ko": "계획표를", "rom": "gyehoekpyoreul", "en": "a schedule (object)" },
+        { "ko": "만들어서", "rom": "mandeureoseo", "en": "make and then" },
+        { "ko": "운동을", "rom": "undongeul", "en": "exercise (object)" },
+        { "ko": "할 거예요", "rom": "hal geoyeyo", "en": "will do" }
+      ],
+      "grammarIds": ["g36", "g34"],
+      "wordIds": ["w10_46", "w10_37"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I'm going to make a schedule and study.",
+        "I made a schedule and exercised.",
+        "I'm going to exercise without a schedule."
+      ],
+      "notes": "-아/어서 can also mean 'do A and then B' when the two steps are close together."
+    },
+    {
+      "id": "s10_4_5",
+      "unitId": "u10_plans",
+      "lessonId": "l10_4",
+      "korean": "주말 저녁에는 맛집에서 먹을 거예요.",
+      "romanization": "jumal jeonyeogeneun matjibeseo meogeul geoyeyo.",
+      "english": "On Saturday evening I'm going to eat at a good restaurant.",
+      "literal": "On weekend evening, at a good restaurant eat-will.",
+      "gloss": [
+        { "ko": "주말 저녁에는", "rom": "jumal jeonyeogeneun", "en": "on weekend evening (topic)" },
+        { "ko": "맛집에서", "rom": "matjibeseo", "en": "at a good restaurant" },
+        { "ko": "먹을 거예요", "rom": "meogeul geoyeyo", "en": "will eat" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_01", "w10_40"],
+      "register": "polite",
+      "difficulty": 2,
+      "distractors": [
+        "I'm going to eat at home on Saturday evening.",
+        "I ate at a good restaurant on the weekend.",
+        "I'm going to eat at a good restaurant on Wednesday evening."
+      ],
+      "notes": "맛집 literally means a 'taste house' - a restaurant people recommend."
+    },
+    {
+      "id": "s10_4_6",
+      "unitId": "u10_plans",
+      "lessonId": "l10_4",
+      "korean": "일요일에는 아무 계획이 없어요. 그래서 집에서 쉴 거예요.",
+      "romanization": "iryoireneun amu gyehoeki eopseoyo. geuraeseo jibeseo swil geoyeyo.",
+      "english": "I have no plans on Sunday. So I'm going to rest at home.",
+      "literal": "On Sunday, any plan does-not-exist. So, at home rest-will.",
+      "gloss": [
+        { "ko": "일요일에는", "rom": "iryoireneun", "en": "on Sunday (topic)" },
+        { "ko": "아무", "rom": "amu", "en": "any" },
+        { "ko": "계획이", "rom": "gyehoeki", "en": "plan (subject)" },
+        { "ko": "없어요", "rom": "eopseoyo", "en": "there isn't" },
+        { "ko": "쉴 거예요", "rom": "swil geoyeyo", "en": "will rest" }
+      ],
+      "grammarIds": ["g34"],
+      "wordIds": ["w10_47", "w10_05", "w10_45"],
+      "register": "polite",
+      "difficulty": 3,
+      "distractors": [
+        "I have a lot of plans on Sunday. So I'm going to rest at home.",
+        "I have no plans on Sunday. So I'm going to work at home.",
+        "I had no plans on Sunday. So I rested at home."
+      ],
+      "notes": "아무 needs a negative verb: 아무 계획이 없어요 = I have no plans at all."
+    }
+  ],
+  "dialogue": {
+    "id": "d10",
+    "unitId": "u10_plans",
+    "title": "A table for four",
+    "setting": "A phone call to reserve a table for dinner.",
+    "lines": [
+      { "id": "d10_1", "speaker": "A", "ko": "여보세요. 오늘 저녁 예약하고 싶어요.", "rom": "yeoboseyo. oneul jeonyeok yeyakhago sipeoyo.", "en": "Hello. I'd like to reserve a table for tonight." },
+      { "id": "d10_2", "speaker": "B", "ko": "네, 몇 시에 오실 거예요?", "rom": "ne, myeot si-e osil geoyeyo?", "en": "Sure. What time will you come?" },
+      { "id": "d10_3", "speaker": "A", "ko": "일곱 시에 갈 거예요. 네 명이에요.", "rom": "ilgop si-e gal geoyeyo. ne myeongieyo.", "en": "I'll come at seven. There are four of us." },
+      { "id": "d10_4", "speaker": "B", "ko": "네, 자리 있어요.", "rom": "ne, jari isseoyo.", "en": "Yes, we have a table." },
+      { "id": "d10_5", "speaker": "A", "ko": "메뉴는 전화로 주문할 수 있어요?", "rom": "menyuneun jeonhwaro jumunhal su isseoyo?", "en": "Can I order from the menu by phone?" },
+      { "id": "d10_6", "speaker": "B", "ko": "네, 전화로 주문하세요.", "rom": "ne, jeonhwaro jumunhaseyo.", "en": "Yes, please order by phone." },
+      { "id": "d10_7", "speaker": "A", "ko": "좋아요. 그럼 파스타 두 개를 주문할 거예요.", "rom": "joayo. geureom paseuta du gaereul jumunhal geoyeyo.", "en": "Good. Then I'll order two pastas." },
+      { "id": "d10_8", "speaker": "B", "ko": "네, 일곱 시에 기다릴 거예요.", "rom": "ne, ilgop si-e gidaril geoyeyo.", "en": "Yes, we'll be waiting at seven." }
+    ]
+  },
+  "reading": {
+    "id": "r10",
+    "unitId": "u10_plans",
+    "title": "My weekend plan",
+    "ko": "이번 주말은 아주 바쁠 거예요. 토요일 아침에는 수영을 할 거예요. 점심에는 친구와 맛집에 갈 거예요. 사람이 많을 거예요. 오후에는 공원에서 자전거를 탈 거예요. 저녁에는 집에서 영화를 볼 거예요. 일요일에는 아무 계획이 없어요. 그래서 푹 쉴 거예요. 일요일 밤에는 일찍 잘 거예요. 다음 달에는 방학이 시작돼요. 방학에는 제주도에 갈 거예요. 아주 즐거울 거예요.",
+    "en": "This weekend is going to be very busy. On Saturday morning I'm going to swim. At lunch I'm going to a good restaurant with a friend. There will be a lot of people. In the afternoon I'm going to ride a bike in the park. In the evening I'm going to watch a movie at home. On Sunday I have no plans. So I'm going to rest properly. On Sunday night I'm going to go to bed early. Next month school vacation starts. During vacation I'm going to Jeju Island. It's going to be a lot of fun.",
+    "questions": [
+      {
+        "q": "What will the writer do on Saturday morning?",
+        "options": ["Go swimming", "Ride a bike", "Watch a movie", "Rest at home"],
+        "answer": 0,
+        "why": "토요일 아침에는 수영을 할 거예요 = On Saturday morning I'm going to swim."
+      },
+      {
+        "q": "Why will the writer rest on Sunday?",
+        "options": ["There are no plans", "It will rain", "Vacation starts", "A friend is coming"],
+        "answer": 0,
+        "why": "일요일에는 아무 계획이 없어요. 그래서 푹 쉴 거예요."
+      },
+      {
+        "q": "Where will the writer go during vacation?",
+        "options": ["Jeju Island", "Busan", "The park", "The cinema"],
+        "answer": 0,
+        "why": "방학에는 제주도에 갈 거예요 = During vacation I'm going to Jeju Island."
+      }
+    ]
+  }
+}

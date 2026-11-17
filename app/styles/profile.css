@@ -7,8 +7,7 @@
 
 /* base.css only makes #screen scrollable at >=1160px; at phone widths the
    shell grows past the viewport and the bottom nav drifts off-screen. Scope a
-   proper app scrollport to the two screens this file owns (reported to the
-   core owner). */
+   proper app scrollport to the screens this file owns. */
 @media (max-width: 1159px) {
   .app-shell:has(.profile),
   .app-shell:has(.settings) {
@@ -287,11 +286,14 @@
   gap: 1px;
 }
 .pf-stat-label {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .pf-stat-value {
   font-size: 24px;
@@ -302,7 +304,7 @@
 }
 .pf-stat-value i {
   font-style: normal;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 800;
   color: var(--ink-500);
   margin-left: 1px;
@@ -435,6 +437,73 @@ button.pf-hm-cell.is-today:hover {
   display: block;
 }
 
+/* unit badges strip */
+.pf-badges {
+  padding: 16px;
+}
+.pf-badges .g-link {
+  font-size: 11.5px;
+  padding: 4px 2px;
+  gap: 2px;
+}
+.pf-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 13px;
+}
+.pf-badge {
+  aspect-ratio: 1;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid transparent;
+  transition: transform var(--dur-1) var(--ease-snap);
+}
+.pf-badge:active {
+  transform: scale(0.92);
+}
+.pf-badge.is-on {
+  background: var(--tone-soft);
+  color: var(--tone-ink);
+  border-color: var(--tone);
+  box-shadow: 0 2px 0 var(--tone);
+}
+.pf-badge.is-off {
+  background: var(--cream-100);
+  color: var(--ink-300);
+  border: 1px dashed var(--line-strong);
+}
+.pf-badge.tone-coral {
+  --tone-soft: var(--coral-100);
+  --tone-ink: var(--coral-800);
+  --tone: var(--coral-300);
+}
+.pf-badge.tone-indigo {
+  --tone-soft: var(--indigo-100);
+  --tone-ink: var(--indigo-700);
+  --tone: var(--indigo-300);
+}
+.pf-badge.tone-mint {
+  --tone-soft: var(--mint-100);
+  --tone-ink: var(--mint-700);
+  --tone: var(--mint-400);
+}
+.pf-badge.tone-amber {
+  --tone-soft: var(--amber-100);
+  --tone-ink: var(--amber-700);
+  --tone: var(--amber-400);
+}
+.pf-badges-note {
+  margin-top: 11px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-500);
+}
+
 /* achievements */
 .pf-ach {
   background: var(--white);
@@ -445,8 +514,8 @@ button.pf-hm-cell.is-today:hover {
 }
 .pf-ach-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 15px 8px;
+  grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
+  gap: 15px 6px;
   margin-top: 15px;
 }
 .pf-ach-item {
@@ -458,9 +527,9 @@ button.pf-hm-cell.is-today:hover {
 }
 .pf-ach-badge {
   position: relative;
-  width: 64px;
-  height: 64px;
-  border-radius: 20px;
+  width: 58px;
+  height: 58px;
+  border-radius: 19px;
   display: grid;
   place-items: center;
   background: var(--cream-100);
@@ -502,10 +571,10 @@ button.pf-hm-cell.is-today:hover {
 }
 .pf-ach-lock {
   position: absolute;
-  right: 2px;
-  bottom: 2px;
-  width: 19px;
-  height: 19px;
+  right: 1px;
+  bottom: 1px;
+  width: 18px;
+  height: 18px;
   border-radius: 999px;
   display: grid;
   place-items: center;
@@ -514,12 +583,12 @@ button.pf-hm-cell.is-today:hover {
   border: 1px solid var(--line-strong);
 }
 .pf-ach-name {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
   line-height: 1.25;
   text-align: center;
   color: var(--ink-700);
-  max-width: 92px;
+  max-width: 82px;
 }
 .pf-ach-item.is-locked .pf-ach-name {
   color: var(--ink-300);
@@ -571,7 +640,76 @@ button.pf-hm-cell.is-today:hover {
   color: var(--ink-500);
 }
 
-/* league + settings rows */
+/* A1 exam card */
+.pf-exam {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 16px;
+}
+.pf-exam.is-locked {
+  background: var(--cream-100);
+  border: 1px dashed var(--line-strong);
+  box-shadow: none;
+}
+.pf-exam.is-open {
+  background: linear-gradient(150deg, var(--indigo-900), var(--indigo-800));
+  color: var(--cream-50);
+  border: 0;
+  box-shadow: var(--shadow-3);
+}
+.pf-exam-art {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  background: var(--cream-200);
+  color: var(--ink-500);
+}
+.pf-exam.is-open .pf-exam-art {
+  background: rgba(255, 248, 239, 0.12);
+  color: var(--amber-400);
+}
+.pf-exam-body {
+  flex: 1;
+  min-width: 0;
+}
+.pf-exam.is-open .pf-card-title {
+  color: var(--cream-50);
+}
+.pf-exam.is-open .pf-card-note {
+  color: var(--amber-400);
+}
+.pf-exam-copy {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-500);
+}
+.pf-exam.is-open .pf-exam-copy {
+  color: rgba(255, 248, 239, 0.76);
+}
+.pf-exam-bar {
+  margin-top: 10px;
+}
+.pf-exam-note {
+  margin-top: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  font-variant-numeric: tabular-nums;
+}
+
+/* links + settings rows */
+.pf-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .pf-row-card {
   display: flex;
   align-items: center;
@@ -590,9 +728,17 @@ button.pf-hm-cell.is-today:hover {
   color: var(--ink-700);
   flex: 0 0 auto;
 }
+.pf-row-ico--coral {
+  background: var(--coral-100);
+  color: var(--coral-800);
+}
 .pf-row-ico--amber {
   background: var(--amber-100);
   color: var(--amber-700);
+}
+.pf-row-ico--indigo {
+  background: var(--indigo-100);
+  color: var(--indigo-700);
 }
 .pf-row-body {
   flex: 1;

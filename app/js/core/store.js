@@ -1,7 +1,9 @@
 // Horang game state. Single source of truth; everything persists to localStorage.
-import { NODES, UNIT_META, buildSession, sentence0, starsFor, nodeUnlocked } from './engine.js';
+import { NODES, UNIT_META, buildSession, sentence0, starsFor, nodeUnlocked, nextLessonIndex } from './engine.js';
+import { lessonAt, UNIT_BY_ID, lessonsOf, unitProgress as courseUnitProgress } from './course.js';
 import { blankMastery, grade, dueStatus, decayCheck, nextDueLabel } from './srs.js';
 import { SENTENCES, BY_ID } from './quiz.js';
+import { WORD_BY_ID, wordsOf } from './course.js';
 import * as clock from './clock.js';
 import { nowMs, today, DAY } from './clock.js';
 
@@ -36,16 +38,17 @@ export const INVENTORY_SEED = [
 
 export const QUEST_POOL = [
   { key: 'correct', title: 'Answer {n} correctly', metric: 'correct', target: 5, icon: 'check' },
-  { key: 'node', title: 'Complete {n} node', metric: 'nodes', target: 1, icon: 'quests' },
+  { key: 'node', title: 'Complete {n} lesson', metric: 'nodes', target: 1, icon: 'quests' },
   { key: 'goal', title: 'Hit your daily XP goal', metric: 'xp', target: null, icon: 'target' },
   { key: 'crit', title: 'Earn {n} crits', metric: 'crits', target: 2, icon: 'sparkle' },
   { key: 'fading', title: 'Review {n} fading sentences', metric: 'fadingReviews', target: 3, icon: 'refresh' },
   { key: 'combo', title: 'Get a {n}-answer combo', metric: 'comboBest', target: 5, icon: 'flame' },
-  { key: 'stars3', title: 'Finish a node with 3 stars', metric: 'stars3', target: 1, icon: 'star' },
+  { key: 'stars3', title: 'Finish a lesson with 3 stars', metric: 'stars3', target: 1, icon: 'star' },
   { key: 'listen', title: 'Listen to {n} sentences', metric: 'listens', target: 5, icon: 'sound' },
   { key: 'say', title: 'Say {n} sentences out loud', metric: 'said', target: 3, icon: 'user' },
-  { key: 'speed', title: 'Score 8+ in Speed Match', metric: 'speed8', target: 1, icon: 'clock' },
   { key: 'new', title: 'Learn {n} new sentences', metric: 'newSentences', target: 2, icon: 'sparkle' },
+  { key: 'words', title: 'Practise {n} words', metric: 'words', target: 6, icon: 'book' },
+  { key: 'reading', title: 'Finish a reading check', metric: 'reading', target: 1, icon: 'book' },
 ];
 
 // ---------- level curve ----------
@@ -107,6 +110,9 @@ function freshCounters() {
     speed8: 0,
     xp: 0,
     chests: 0,
+    reviews: 0,
+    words: 0,
+    reading: 0,
   };
 }
 
@@ -132,6 +138,9 @@ export function freshState() {
     focusUpdatedAt: nowMs(),
     streak: { current: 0, best: 0, lastGoalDate: null, freezes: 0, repairUsedAt: null },
     mastery: {},
+    wordMastery: {},
+    checkpoints: {},
+    badges: [],
     path: { completedNodes: [], currentNode: 0 },
     session: null,
     lastSummary: null,
@@ -176,6 +185,8 @@ export function freshState() {
       bookmarks: [],
       boosterUntil: null,
       weeklyXpClaimed: null,
+      dailyBonusDate: null,
+      unitIntro: {},
     },
     settings: { sound: true, haptics: true, reducedMotion: false, romanization: 'auto' },
     day: 0,
@@ -269,6 +280,51 @@ export function getSentence(id) {
 export function masteryOf(id) {
   return state.mastery[id] || blankMastery(id, state.day);
 }
+export function ensureWord(id) {
+  if (!state.wordMastery[id]) {
+    state.wordMastery[id] = { tier: 0, seen: 0, correct: 0, wrong: 0, dueAt: 0, lastSeenAt: 0 };
+  }
+  return state.wordMastery[id];
+}
+export function recordWord(wordId, correct) {
+  const w = ensureWord(wordId);
+  const t = nowMs();
+  w.seen++;
+  w.lastSeenAt = t;
+  if (correct) {
+    w.correct++;
+    if (w.tier < 5) w.tier++;
+    w.dueAt = t + [0, 4 * 3600000, 86400000, 3 * 86400000, 7 * 86400000, 21 * 86400000][w.tier];
+  } else {
+    w.wrong++;
+    w.tier = Math.max(0, w.tier - 1);
+    w.dueAt = t + 10 * 60000;
+  }
+  if (state.counters.date === today()) state.counters.words++;
+  save();
+  return w;
+}
+export function markWordSeen(wordId) {
+  if (!wordId) return null;
+  const w = ensureWord(wordId);
+  if (w.tier === 0) {
+    w.tier = 1;
+    w.seen++;
+    w.dueAt = nowMs() + 86400000;
+    if (state.counters.date === today()) state.counters.words++;
+    save();
+  }
+  return w;
+}
+export function dueWords() {
+  const t = nowMs();
+  return Object.entries(state.wordMastery)
+    .filter(([, w]) => w.tier > 0 && w.dueAt <= t)
+    .map(([id, w]) => ({ id, word: WORD_BY_ID[id], mastery: w }));
+}
+export function knownWordCount() {
+  return Object.values(state.wordMastery).filter((w) => w.tier >= 3).length;
+}
 export function dueSentences() {
   const t = nowMs();
   return Object.entries(state.mastery)
@@ -292,9 +348,17 @@ export function stampCount() {
 }
 export function packProgress(unitId) {
   const unit = UNIT_META.find((u) => u.id === unitId);
-  if (!unit) return { met: 0, total: 0, pct: 0 };
-  const met = unit.sentence_ids.filter((id) => state.mastery[id]?.tier >= 3).length;
-  return { met, total: unit.sentence_ids.length, pct: (met / unit.sentence_ids.length) * 100 };
+  if (!unit) return { met: 0, strong: 0, total: 0, pct: 0 };
+  const ids = unit.sentence_ids;
+  const met = ids.filter((id) => state.mastery[id]?.tier >= 1).length;
+  const strong = ids.filter((id) => state.mastery[id]?.tier >= 3).length;
+  return {
+    met,
+    strong,
+    total: ids.length,
+    pct: ids.length ? (met / ids.length) * 100 : 0,
+    strongPct: ids.length ? (strong / ids.length) * 100 : 0,
+  };
 }
 export function currentUnit() {
   const node = NODES[Math.min(state.path.currentNode, NODES.length - 1)];
@@ -343,8 +407,42 @@ export function addGems(n) {
 }
 
 // ---------- answers ----------
-export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = false, critOverride = null }) {
+export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = false, critOverride = null, wordId = null }) {
+  if (!sentenceId) {
+    const s0 = state.session;
+    if (s0) {
+      s0.answers = (s0.answers || 0) + 1;
+      s0.correct += correct ? 1 : 0;
+      s0.wrong += correct ? 0 : 1;
+      s0.combo = correct ? (s0.combo || 0) + 1 : 0;
+      s0.bestCombo = Math.max(s0.bestCombo || 0, s0.combo || 0);
+    }
+    const xp = correct ? 8 : 0;
+    if (xp) {
+      if (s0) s0.xp = (s0.xp || 0) + xp;
+      addXP(xp, 'answer');
+    }
+    if (correct) state.stats.correct++;
+    state.stats.answers++;
+    state.counters.correct += correct ? 1 : 0;
+    const w = wordId ? recordWord(wordId, correct) : null;
+    if (correct && type === 'reading_q') state.counters.reading = (state.counters.reading || 0) + 1;
+    save();
+    return {
+      xp,
+      crit: false,
+      correct,
+      tier: w ? w.tier : 0,
+      tierBefore: w ? w.tier : 0,
+      stampMinted: false,
+      combo: s0 ? s0.combo : 0,
+      totalXp: state.xpTotal,
+      coins: state.coins,
+      word: !!w,
+    };
+  }
   const m = ensureMastery(sentenceId);
+  if (state.session?.kind && state.session.kind !== 'node' && correct) state.counters.reviews++;
   const s = state.session;
   const wasNew = m.exposures === 0;
   const statusBefore = dueStatus(m, nowMs());
@@ -410,8 +508,15 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
     state.counters.comboBest = Math.max(state.counters.comboBest, 0);
   }
   state.stats.answers++;
-  if (xp) addXP(xp, 'answer');
+  if (xp) {
+    addXP(xp, 'answer');
+    if (s) s.xp = (s.xp || 0) + xp;
+  }
 
+  if (s) {
+    if (graded.tierBefore === 0 && graded.tier > 0) s.met.push(sentenceId);
+    if (graded.tierBefore < 3 && graded.tier >= 3) s.strong.push(sentenceId);
+  }
   if (graded.stampMinted && sentenceId !== 'sentence0') {
     state.stats.stampsByDay[today()] = (state.stats.stampsByDay[today()] || 0) + 1;
     logEvent('stamp_earned', { sentenceId, day: state.day });
@@ -433,7 +538,7 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
 
 // ---------- sessions ----------
 export function startSession(kind = 'node', params = {}) {
-  if (kind === 'node' && !isNodeUnlocked(params.nodeIndex ?? 0)) return null;
+  if (kind === 'node' && !isNodeUnlocked(params.nodeIndex ?? 0, state.path.completedNodes)) return null;
   const built = buildSession(kind, params, state.mastery, state.profile.name);
   built.combo = 0;
   built.bestCombo = 0;
@@ -461,12 +566,14 @@ export function completeNode() {
   if (!s) return null;
   const nodeIndex = s.nodeIndex ?? 0;
   const node = NODES[nodeIndex];
+  const lesson = lessonAt(nodeIndex);
   const stars = starsFor(s.wrong);
   const accuracy = s.answers ? s.correct / s.answers : 0;
   const seconds = Math.round((nowMs() - s.startedAt) / 1000);
 
   const answerXp = s.xp || 0;
   const isNode = (s.kind || 'node') === 'node';
+  const isCheckpoint = isNode && lesson?.kind === 'checkpoint';
   let bonusXp = isNode ? 30 + (stars === 3 ? 20 : 0) : 20;
   let coins = isNode ? 30 + (stars === 3 ? 10 : 0) : 50; // Daily Run completion +50
   // 3-node daily taper (nodes only)
@@ -491,11 +598,39 @@ export function completeNode() {
   const lvl = addXP(bonusXp, 'node');
   state.coins += coins;
 
-  const stamped = (node?.sentenceIds || []).filter((id) => state.mastery[id]?.isStamp);
+  const stamped = (s.strong || []).map((id) => BY_ID[id]?.id || id).filter(Boolean);
+  const checkpointPassed = isCheckpoint ? accuracy >= 0.8 : null;
+  if (isCheckpoint) {
+    const uid = lesson.unitId;
+    const prev = state.checkpoints[uid];
+    if (!prev || (checkpointPassed && !prev.passed)) {
+      state.checkpoints[uid] = { passed: checkpointPassed, score: Math.round(accuracy * 100), at: clock.now().toISOString() };
+    }
+    if (checkpointPassed && !state.badges.includes(uid)) {
+      state.badges.push(uid);
+      addXP(40, 'badge');
+      state.gems += 1;
+      logEvent('unit_badge', { unitId: uid });
+    }
+  }
   const summary = {
     kind: s.kind || 'node',
+    lessonKind: lesson?.kind || s.lessonKind || 'node',
+    lessonId: lesson?.id || null,
+    unitId: lesson?.unitId || null,
+    unitTitle: lesson ? UNIT_BY_ID[lesson.unitId]?.title : null,
+    checkpoint: isCheckpoint
+      ? { passed: checkpointPassed, score: Math.round(accuracy * 100), required: 80, unitId: lesson.unitId, unitTitle: UNIT_BY_ID[lesson.unitId]?.title }
+      : null,
     nodeIndex: isNode ? nodeIndex : null,
-    nodeTitle: node && isNode ? `Node ${nodeIndex + 1} · ${node.unitTitle}` : (s.kind === 'review' ? 'Review run' : s.kind === 'daily' ? 'Daily Run' : 'Practice'),
+    nodeTitle:
+      node && isNode
+        ? `${lesson?.title || 'Session'} · ${node.unitTitle}`
+        : s.kind === 'review'
+          ? 'Review run'
+          : s.kind === 'daily'
+            ? 'Daily Run'
+            : 'Practice',
     unitTitle: node?.unitTitle || '',
     stars,
     accuracy,
@@ -507,8 +642,10 @@ export function completeNode() {
     bonusXp,
     coins,
     xp: answerXp + bonusXp,
-    stamps: stamped,
-    newStamps: stamped.filter((id) => (state.stats.stampsByDay[today()] || 0) > 0),
+    stamps: (s.strong || []).filter(Boolean),
+    strong: (s.strong || []).filter(Boolean),
+    met: (s.met || []).filter(Boolean),
+    newStamps: (s.strong || []).filter(Boolean),
     chestFilled: isNode && state.chest.slots > 0,
     bestCombo: s.bestCombo || s.combo || 0,
     levelsUp: lvl.levelsUp,
@@ -886,11 +1023,60 @@ export function nextBestAction() {
   const due = dueSentences();
   if (due.length) return { label: `Review ${due.length} fading sentence${due.length > 1 ? 's' : ''}`, screen: 'lesson', params: { kind: 'review' }, tone: 'amber' };
   if (state.chest.slots > 0) return { label: `Open your chest (${state.chest.slots})`, screen: 'shop', params: {}, tone: 'amber' };
-  if (state.path.currentNode >= NODES.length) {
-    return { label: 'All 40 sentences met — keep them warm', screen: 'lesson', params: { kind: 'review' }, tone: 'mint' };
+  const next = nextLessonIndex(state.path.completedNodes);
+  const node = NODES[next];
+  if (state.path.completedNodes.length >= NODES.length) {
+    return { label: 'A1 course complete — keep it warm', screen: 'lesson', params: { kind: 'review' }, tone: 'mint' };
   }
-  const node = NODES[state.path.currentNode] || NODES[0];
-  return { label: `Continue Node ${node.index + 1}`, screen: 'lesson', params: { node: node.index }, tone: 'coral' };
+  return { label: `Continue: ${node?.title || 'next lesson'}`, screen: 'lesson', params: { node: next }, tone: 'coral' };
+}
+
+export function dailyPlan() {
+  const goal = {
+    lesson: 1,
+    review: 10,
+    words: 6,
+  };
+  const items = [
+    {
+      id: 'lesson',
+      label: state.counters.nodes >= goal.lesson ? 'Lesson done' : 'Finish 1 lesson',
+      icon: 'play',
+      progress: Math.min(goal.lesson, state.counters.nodes || 0),
+      target: goal.lesson,
+      screen: 'lesson',
+      params: { node: nextLessonIndex(state.path.completedNodes) },
+    },
+    {
+      id: 'review',
+      label: 'Review 10 sentences',
+      icon: 'refresh',
+      progress: Math.min(goal.review, state.counters.reviews || 0),
+      target: goal.review,
+      screen: 'lesson',
+      params: { kind: 'review' },
+    },
+    {
+      id: 'words',
+      label: 'Practise 6 words',
+      icon: 'book',
+      progress: Math.min(goal.words, state.counters.words || 0),
+      target: goal.words,
+      screen: 'vocab',
+      params: {},
+    },
+  ];
+  const done = items.every((x) => x.progress >= x.target);
+  return { items, done, claimed: state.flags.dailyBonusDate === today() };
+}
+export function claimDailyBonus() {
+  if (state.flags.dailyBonusDate === today()) return false;
+  state.flags.dailyBonusDate = today();
+  state.coins += 60;
+  addXP(30, 'daily');
+  fillChest();
+  save();
+  return true;
 }
 
 export function exportData() {
@@ -930,9 +1116,18 @@ export default {
   levelFromXp,
   masteryOf,
   ensureMastery,
+  ensureWord,
+  recordWord,
+  markWordSeen,
+  dueWords,
+  knownWordCount,
+  dailyPlan,
+  claimDailyBonus,
   getSentence,
   sentenceOfTheDay,
   weekDaysActive,
   nextBestAction,
   exportData,
+  WORD_BY_ID,
+  wordsOf,
 };

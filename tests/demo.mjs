@@ -1,52 +1,51 @@
-// Retention Lab verification: runs the real 30-day simulation through the UI.
+// 60-day A1 retention simulation through the real UI.
 import { chromium } from 'playwright';
 import fs from 'node:fs';
-
 const BASE = process.env.BASE || 'http://localhost:4173';
 const OUT = 'docs/screenshots';
 const CHROME = process.env.CHROME_PATH || '/home/luat/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome';
 fs.mkdirSync(OUT, { recursive: true });
+const b = await chromium.launch({ executablePath: CHROME });
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+const p = await ctx.newPage();
+const errs = [];
+p.on('pageerror', (e) => errs.push('PAGEERROR ' + e.message));
+p.on('console', (m) => m.type() === 'error' && !/Failed to load resource|404/.test(m.text()) && errs.push(m.text()));
 
-const browser = await chromium.launch({ executablePath: CHROME });
-const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
-const page = await ctx.newPage();
-const errors = [];
-page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
-page.on('pageerror', (e) => errors.push('PAGEERROR ' + e.message));
+await p.goto(BASE + '/#/demo', { waitUntil: 'networkidle' });
+await p.waitForTimeout(900);
+console.log('start day', await p.evaluate(() => window.horang.state.day));
+await p.screenshot({ path: `${OUT}/a1-demo-day0.png` });
 
-await page.goto(BASE + '/#/demo', { waitUntil: 'networkidle' });
-await page.waitForTimeout(900);
-console.log('url', page.url());
-const head = await page.locator('#screen').innerText();
-console.log('--- lab head ---\n' + head.slice(0, 500));
-await page.screenshot({ path: `${OUT}/17-demo-day0.png` });
-
-// Full run to Day 30
-await page.locator('[data-full]').click();
-await page.waitForTimeout(2500);
-const st = await page.evaluate(() => JSON.parse(JSON.stringify(window.horang.state)));
-console.log('\n--- after full run ---');
-console.log('day:', st.day, 'xp:', st.xpTotal, 'level:', st.level);
-console.log('streak:', st.streak.current, 'best:', st.streak.best);
-console.log('stamps:', Object.entries(st.mastery).filter(([k, m]) => k !== 'sentence0' && m.isStamp).length);
-console.log('coins:', st.coins, 'chests opened:', st.chest.totalOpened);
-console.log('league joined:', st.flags.leagueJoined, 'rank:', st.league.rank, 'tier:', st.league.tier);
-console.log('timeline days:', st.timeline.length);
-console.log('xpByDay entries:', Object.keys(st.stats.xpByDay).length);
-console.log('stampsByDay entries:', Object.keys(st.stats.stampsByDay).length);
-console.log('events:', st.events.length);
-console.log('fading now:', JSON.stringify(await page.evaluate(() => window.horang.store.decayReport())));
-const txt = await page.locator('#screen').innerText();
-console.log('\n--- lab at day 30 (excerpt) ---\n' + txt.slice(0, 900));
-await page.screenshot({ path: `${OUT}/18-demo-day30.png` });
-await page.screenshot({ path: `${OUT}/18b-demo-day30-full.png`, fullPage: true });
-
-// Home as it looks after the simulated 30 days
-await page.goto(BASE + '/#/home', { waitUntil: 'networkidle' });
-await page.waitForTimeout(900);
-await page.screenshot({ path: `${OUT}/19-home-day30.png` });
-const homeTxt = await page.locator('#screen').innerText();
-console.log('\n--- home after lab ---\n' + homeTxt.slice(0, 600));
-
-console.log('\nCONSOLE ERRORS:', errors.length ? errors.join('\n') : 'none');
-await browser.close();
+await p.locator('[data-full]').click();
+await p.waitForTimeout(4000);
+const st = await p.evaluate(() => JSON.parse(JSON.stringify(window.horang.state)));
+const met = Object.values(st.mastery).filter((m) => m.tier >= 1).length - (st.mastery.sentence0 ? 1 : 0);
+const strong = Object.values(st.mastery).filter((m) => m.tier >= 3).length;
+console.log({
+  day: st.day,
+  sessions: st.path.completedNodes.length,
+  badges: st.badges.length,
+  met,
+  strong,
+  words: Object.keys(st.wordMastery).length,
+  xp: st.xpTotal,
+  level: st.level,
+  streak: st.streak.current,
+  best: st.streak.best,
+  coins: st.coins,
+  chests: st.chest.totalOpened,
+  league: st.league.rank,
+  timeline: st.timeline.length,
+  xpDays: Object.keys(st.stats?.xpByDay || {}).length,
+});
+await p.screenshot({ path: `${OUT}/a1-demo-day60.png` });
+await p.evaluate(() => { document.getElementById('screen').scrollTop = document.getElementById('screen').scrollHeight * 0.45; });
+await p.waitForTimeout(400);
+await p.screenshot({ path: `${OUT}/a1-demo-timeline.png` });
+await p.evaluate(() => { document.getElementById('screen').scrollTop = 0; });
+await p.goto(BASE + '/#/home', { waitUntil: 'networkidle' });
+await p.waitForTimeout(900);
+await p.screenshot({ path: `${OUT}/a1-home-day60.png` });
+console.log('errors', errs.length ? errs : 'none');
+await b.close();

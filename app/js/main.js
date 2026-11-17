@@ -4,7 +4,7 @@ import * as audio from './core/audio.js';
 import * as store from './core/store.js';
 import { state, refreshDay, subscribe, levelInfo, stampCount, decayReport, weekDaysActive } from './core/store.js';
 import { router } from './core/router.js';
-import { NODES, UNIT_META } from './core/engine.js';
+import { NODES, UNIT_META, SENTENCES } from './core/engine.js';
 import * as clock from './core/clock.js';
 
 import welcome from './screens/welcome.js';
@@ -19,14 +19,17 @@ import passport from './screens/passport.js';
 import profile from './screens/profile.js';
 import settings from './screens/settings.js';
 import demo from './screens/demo.js';
+import vocab from './screens/vocab.js';
+import grammar from './screens/grammar.js';
+import exam from './screens/exam.js';
 
-const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo };
+const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo, vocab, grammar, exam };
 
 const TABS = [
   { id: 'home', label: 'Learn', icon: 'home' },
   { id: 'quests', label: 'Quests', icon: 'quests' },
   { id: 'shop', label: 'Shop', icon: 'shop' },
-  { id: 'passport', label: 'Passport', icon: 'passport' },
+  { id: 'passport', label: 'Collection', icon: 'passport' },
   { id: 'profile', label: 'Me', icon: 'user' },
 ];
 
@@ -58,11 +61,18 @@ function renderSidePanels() {
       </div>
       <div class="panel-card">
         <h3>The loop</h3>
-        <div class="panel-stat"><span>1 · 3-minute node</span><b>+130 XP</b></div>
+        <div class="panel-stat"><span>1 · 6-minute lesson</span><b>+150 XP</b></div>
         <div class="panel-stat"><span>2 · crits &amp; chests</span><b>variable</b></div>
         <div class="panel-stat"><span>3 · streak &amp; goal</span><b>daily</b></div>
-        <div class="panel-stat"><span>4 · sentences fade</span><b>come back</b></div>
+        <div class="panel-stat"><span>4 · 288 sentences fade</span><b>come back</b></div>
         <p class="panel-note">Every session ends with an unfinished bar and a named next step. That is the retention engine — not a guilt-trip notification.</p>
+      </div>
+      <div class="panel-card">
+        <h3>Course</h3>
+        <div class="panel-stat"><span>Units</span><b>12 · A1</b></div>
+        <div class="panel-stat"><span>Sessions</span><b>${state.path.completedNodes.length} / ${NODES.length}</b></div>
+        <div class="panel-stat"><span>Words</span><b>576</b></div>
+        <div class="panel-stat"><span>Grammar</span><b>48 points</b></div>
       </div>
       <div class="panel-card">
         <h3>Show a reviewer</h3>
@@ -84,7 +94,7 @@ function renderSidePanels() {
         <div class="panel-stat"><span>Name</span><b>${ui.esc(state.profile.name || 'Explorer')}</b></div>
         <div class="panel-stat"><span>Level</span><b>${info.level} · ${info.rank}</b></div>
         <div class="panel-stat"><span>Streak</span><b>${state.streak.current} 🔥</b></div>
-        <div class="panel-stat"><span>Stamps</span><b>${stamps} / 40</b></div>
+        <div class="panel-stat"><span>Sentences strong</span><b>${stamps} / ${SENTENCES.length}</b></div>
         <div class="panel-stat"><span>Memory</span><b>${fadingLine}</b></div>
         <div class="panel-stat"><span>Coins / gems</span><b>${ui.fmt(state.coins)} / ${state.gems}</b></div>
         <div class="panel-stat"><span>Day</span><b>Day ${state.day}</b></div>
@@ -92,7 +102,7 @@ function renderSidePanels() {
       <div class="panel-card">
         <h3>Today</h3>
         <div class="panel-stat"><span>Goal</span><b>${Math.min(state.counters.xp, state.profile.dailyGoalXp)} / ${state.profile.dailyGoalXp} XP</b></div>
-        <div class="panel-stat"><span>Next node</span><b>${courseDone ? 'All met' : `Node ${(nextNode?.index ?? 0) + 1}`}</b></div>
+        <div class="panel-stat"><span>Next session</span><b>${courseDone ? 'All met' : `Session ${(nextNode?.index ?? 0) + 1}`}</b></div>
         <div class="panel-stat"><span>Up next</span><b>${courseDone ? 'Review &amp; retain' : unit ? unit.title : ''}</b></div>
         <div class="panel-quote">“${state.streak.current > 0 ? `Day ${state.streak.current}. One 3-minute run keeps it.` : 'One sentence is enough to start the streak.'}”</div>
       </div>

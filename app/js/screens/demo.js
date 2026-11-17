@@ -14,11 +14,13 @@ import {
   levelInfo,
   stampCount,
   decayReport,
+  markWordSeen,
+  recordWord,
   replaceState,
   exportData,
 } from '../core/store.js';
 import * as clock from '../core/clock.js';
-import { NODES } from '../core/engine.js';
+import { NODES, SENTENCES } from '../core/engine.js';
 import * as ui from '../core/ui.js';
 import * as audio from '../core/audio.js';
 import { router } from '../core/router.js';
@@ -31,64 +33,72 @@ const MILESTONES = [
     tag: 'Hook',
     title: 'First 90 seconds',
     body:
-      'No signup. Four taps. Their own name becomes sentence #0 — really spoken, really stamped. First win at ~50s, first level-up before the first node ends.',
-    sees: 'Passport 1/40 · Level 2 · scripted Rare chest · 3 unfinished bars',
+      'No signup. Four taps. Their own name becomes sentence #0 — really spoken, really recorded. First win at ~50s, first level-up before the first lesson ends.',
+    sees: 'Sentence #0 · Level 2 · scripted Rare chest · 3 unfinished bars',
   },
   {
     day: 1,
     tag: 'Return',
     title: 'It remembers me',
     body:
-      'The notification names a real, decaying thing: “3 sentences are fading.” The streak freeze arrives as insurance, not a nag. Sentence of the Day opens a curiosity gap.',
-    sees: 'Streak 2 · freeze gifted · 3 fading sentences · chest 2/3',
+      'The notification names a real, decaying thing: “5 sentences are fading.” The streak freeze arrives as insurance, not a nag. Sentence of the Day opens a curiosity gap and the word bank starts to fill.',
+    sees: 'Streak 2 · freeze gifted · fading sentences · chest 2/3',
   },
   {
     day: 3,
     tag: 'Identity',
     title: 'I am the kind of person who does this',
     body:
-      'Streak 3 makes the habit part of the self-image. The weekly quest card is live, Speed Match is in rotation, and the first cosmetic is already affordable with earned coins — spending feels like a trophy, not a purchase.',
-    sees: 'Streak 3 · weekly quests live · first cosmetic affordable',
+      'Streak 3 makes the habit part of the self-image. The daily plan gives a shape to the session, the first unit badge is close, and the first cosmetic is already affordable with earned coins.',
+    sees: 'Streak 3 · daily plan · Unit 1 badge close · shop affordable',
   },
   {
     day: 7,
     tag: 'Status',
     title: 'I am competing and I have a record',
     body:
-      'League placement drops them into a 30-person cohort with top-5 promotion and a labelled pacer benchmark. Streak 7 pays a freeze, and the profile is now a real record of minutes, accuracy and stamps.',
+      'League placement drops them into a 30-person cohort with top-5 promotion and a labelled pacer benchmark. Streak 7 pays a freeze, and the profile is now a real record of sessions, accuracy and words.',
     sees: '30-person league · top 5 promote · streak 7 · freeze gifted',
   },
   {
     day: 14,
     tag: 'Competence',
-    title: 'I can survive a real situation',
+    title: 'I can survive a café',
     body:
-      'Two weeks of 3-minute runs cover a café, a subway and a first meeting. Most of the Passport is stamped, and the phrases are things they have now said out loud rather than flashcards they recognised.',
-    sees: '≈40/40 stamps · most sentences Strong · 14-day habit',
-  },
-  {
-    day: 19,
-    tag: 'Lapse',
-    title: 'Life happens (4 days skipped)',
-    body:
-      'Nothing is confiscated. Freezes absorb what they can, the streak breaks honestly, and the app keeps the asset visible: your sentences are still yours.',
-    sees: 'Streak stopped · no lost stamps, XP, coins or mastery',
-  },
-  {
-    day: 22,
-    tag: 'Comeback',
-    title: 'Rekindle',
-    body:
-      'Return is framed around what is still owned, never days missed. The home screen offers a free streak repair (half the old streak) and a one-sentence warm-up. The loss frame describes real memory decay.',
-    sees: '“Your streak stopped at 17” · free repair → half back · warm-up',
+      'Two weeks of lessons cover introductions, daily life, food and money. The first checkpoints are passed, and the phrases are things they have said out loud rather than flashcards they recognised.',
+    sees: '2–3 unit badges · 70+ sentences met · words with pips',
   },
   {
     day: 30,
-    tag: 'Investment',
-    title: 'I built something',
+    tag: 'Halfway',
+    title: 'Half the course is behind me',
     body:
-      'A full 40/40 Passport, a rebuilt streak, thousands of coins, a league record and a stats page that never resets. Hanbok Horang is affordable. This is the moment to ask for a share — they have something to show.',
-    sees: '40/40 stamps · level 14 · rebuilt streak · stats that never reset',
+      'Roughly half of the 60 sessions and half the 288 sentences are met. The collection is a real library, the league has a history, and the A1 certificate is suddenly visible on the horizon.',
+    sees: '≈6 unit badges · ~150 sentences met · level 15+',
+  },
+  {
+    day: 41,
+    tag: 'Lapse',
+    title: 'Life happens (4 days skipped)',
+    body:
+      'Nothing is confiscated. Freezes absorb what they can, the streak breaks honestly, and the app keeps the asset visible: your sentences, words, badges and XP are still yours.',
+    sees: 'Streak stopped · no lost badges, XP, coins or mastery',
+  },
+  {
+    day: 44,
+    tag: 'Comeback',
+    title: 'Rekindle',
+    body:
+      'Return is framed around what is still owned, never days missed. The home screen offers a free streak repair (half the old streak) and a one-lesson warm-up. The loss frame describes real memory decay.',
+    sees: '“Your streak stopped at N” · free repair · warm-up',
+  },
+  {
+    day: 60,
+    tag: 'A1',
+    title: 'I am an A1 Korean speaker',
+    body:
+      'All 12 unit badges, 288 sentences met, 576 words in the bank and a 30-question final exam passed. The certificate has their name on it — and the next course is a choice, not a default.',
+    sees: '12/12 badges · 288/288 met · A1 certificate · share card',
   },
 ];
 
@@ -105,6 +115,8 @@ function daySnapshot() {
     streak: state.streak.current,
     best: state.streak.best,
     stamps: stampCount(),
+    badges: (state.badges || []).length,
+    met: SENTENCES.filter((x) => (state.mastery[x.id]?.tier || 0) >= 1).length,
     level: info.level,
     fading: d.total,
     coins: state.coins,
@@ -156,10 +168,22 @@ function simulateSession({ perfect = false } = {}) {
   if (!session) return { answered: 0 };
   let answered = 0;
   const items = session.items.slice();
+  const isCp = next.kind === 'checkpoint';
   items.forEach((it) => {
-    const correct = perfect ? true : Math.random() > 0.09;
+    if (it.ungraded) {
+      if (it.type === 'word_card' && it.wordId) {
+        try { markWordSeen(it.wordId); } catch { /* ignore */ }
+      }
+      return;
+    }
+    if (it.type === 'word_match' && it.pairs) {
+      it.pairs.forEach((p) => {
+        try { recordWord(p.id, true); } catch { /* ignore */ }
+      });
+    }
+    const correct = perfect || isCp ? true : Math.random() > 0.09;
     try {
-      recordAnswer({ sentenceId: it.sentenceId, type: it.type, correct, ms: 1400 });
+      recordAnswer({ sentenceId: it.sentenceId || null, wordId: it.wordId || null, type: it.type, correct, ms: 1400 });
       answered++;
     } catch {
       /* keep the lab rolling */
@@ -183,8 +207,9 @@ function simulateReview() {
   const s = startSession('review', {});
   if (!s) return;
   s.items.slice().forEach((it) => {
+    if (it.ungraded) return;
     try {
-      recordAnswer({ sentenceId: it.sentenceId, type: it.type, correct: Math.random() > 0.12, ms: 1600 });
+      recordAnswer({ sentenceId: it.sentenceId || null, wordId: it.wordId || null, type: it.type, correct: Math.random() > 0.12, ms: 1600 });
     } catch {
       /* ignore */
     }
@@ -221,10 +246,9 @@ function advanceOneDay({ skip = false } = {}) {
   refreshDay();
   if (!skip) {
     simulateSession();
-    // Daily Run = new material + due reviews. Reviews keep the memory tiers alive.
+    // A real learner adds a second lesson every third day; reviews keep memory alive.
+    if (state.day % 3 === 0 && state.path.currentNode < NODES.length) simulateSession();
     if (state.day % 2 === 1) simulateReview();
-    // Serious learners do a second short run some days.
-    if (state.day % 5 === 0 && state.path.currentNode < NODES.length) simulateSession();
     // Once the 40 sentences are all met, a real learner keeps reviewing to hit the goal.
     let guard = 0;
     while (state.counters.xp < state.profile.dailyGoalXp && guard++ < 4) simulateReview();
@@ -237,9 +261,9 @@ function advanceOneDay({ skip = false } = {}) {
 
 function advanceTo(target) {
   let guard = 0;
-  while (state.day < target && guard++ < 90) {
+  while (state.day < target && guard++ < 140) {
     // Build the lapse on purpose: days 18–21 are skipped.
-    const skip = state.day + 1 >= 18 && state.day + 1 <= 21;
+    const skip = state.day + 1 >= 38 && state.day + 1 <= 41;
     advanceOneDay({ skip });
   }
   applyUnlocks();
@@ -298,7 +322,7 @@ function sparkline() {
   (state.timeline || []).forEach((t) => {
     byDay[t.day] = t.xp;
   });
-  const maxDay = Math.max(30, state.day);
+  const maxDay = Math.max(60, state.day);
   const max = Math.max(150, ...Object.values(byDay));
   let bars = '';
   for (let d = 0; d <= maxDay; d++) {
@@ -308,7 +332,7 @@ function sparkline() {
     bars += `<i class="${cls}" style="height:${h}px" title="Day ${d}: ${xp} XP"></i>`;
   }
   return `<div class="lab-spark">${bars}</div>
-    <div class="lab-spark-x"><span>Day 0</span><span>Day 15</span><span>Day 30</span></div>`;
+    <div class="lab-spark-x"><span>Day 0</span><span>Day 30</span><span>Day 60</span></div>`;
 }
 
 function milestoneRow(m) {
@@ -357,8 +381,8 @@ export default {
 
       <div class="lab-hero">
         <div class="lab-hero-copy">
-          <h2>This is the real app.</h2>
-          <p>Every button moves the virtual clock forward and runs the <b>same code paths</b> a learner hits: sessions, XP, chests, streaks, memory decay, leagues. Nothing below is mocked.</p>
+          <h2>This is the real A1 course.</h2>
+          <p>Every button moves the virtual clock forward and runs the <b>same code paths</b> a learner hits: 60 sessions, 288 sentences, 576 words, 12 badges, XP, chests, streaks, memory decay, leagues. Nothing below is mocked.</p>
         </div>
         <div class="lab-hero-mascot">${ui.mascot(84, 'think')}</div>
       </div>
@@ -366,15 +390,15 @@ export default {
       <div class="lab-actions">
         <button class="btn btn-primary btn-sm" data-day="1" type="button">+1 day</button>
         <button class="btn btn-secondary btn-sm" data-skip="1" type="button">+1 skipped day</button>
-        <button class="btn btn-ink btn-sm" data-full type="button">Run full 30 days</button>
+        <button class="btn btn-ink btn-sm" data-full type="button">Run the whole A1 course</button>
       </div>
 
       <div class="lab-stats">
         <div><span>Streak</span><b>${snap.streak} 🔥</b></div>
         <div><span>Level</span><b>${snap.level}</b></div>
-        <div><span>Stamps</span><b>${snap.stamps}/40</b></div>
-        <div><span>Fading</span><b>${d.total}</b></div>
-        <div><span>Coins</span><b>${ui.fmt(state.coins)}</b></div>
+        <div><span>Badges</span><b>${snap.badges}/12</b></div>
+        <div><span>Met</span><b>${snap.met}/288</b></div>
+        <div><span>Words</span><b>${Object.keys(state.wordMastery || {}).length}/576</b></div>
         <div><span>League</span><b>${league.joinedDay != null ? (league.rank ? '#' + league.rank : league.tier) : '—'}</b></div>
       </div>
 
@@ -430,7 +454,7 @@ export default {
           <li><b>Draw-in:</b> value before signup + a personalised first sentence (endowed progress that is auditable).</li>
           <li><b>Habit:</b> a fixed cue, three unfinished bars, and a notification that names a real number.</li>
           <li><b>Loss that is honest:</b> sentences decay because memory decays. Nothing already earned is confiscated.</li>
-          <li><b>Investment:</b> 40 stamps, a league record, cosmetics and stats are all the learning record itself.</li>
+          <li><b>Investment:</b> 288 sentences, 576 words, 12 badges, a league record and stats are all the learning record itself.</li>
           <li><b>Comeback:</b> a lapse costs the streak, never the asset — and the return offer restores half.</li>
         </ul>
         <p class="lab-proof-foot">Reviewer note: a fresh visit seeds a demo learner (Lucas) so Day 0 has something real to show; your own save is backed up and <b>Restore my progress</b> puts it back. Open <b>Me → Retention Lab</b> any time.</p>
@@ -504,11 +528,11 @@ export default {
 
     root.querySelector('[data-full]')?.addEventListener('click', () => {
       if (state.day === 0 && isBare()) seedDay0();
-      advanceTo(30);
+      advanceTo(60);
       audio.sfx('streak');
       ui.confetti({ count: 40 });
       router.refresh();
-      ui.toast('30 days simulated through the real engine', { icon: 'trophy', tone: 'mint' });
+      ui.toast('60 days simulated through the real engine', { icon: 'trophy', tone: 'mint' });
     });
 
     root.querySelector('[data-reset]')?.addEventListener('click', () => {
