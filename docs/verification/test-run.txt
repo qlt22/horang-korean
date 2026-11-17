@@ -158,9 +158,9 @@ Session + progression
   ✓ lesson 1 starts
   ✓ lesson 1 opens with sentence #0 — say_it
   ✓ lesson completes with 3 stars — 3
-  ✓ lesson awards >= 100 XP — 258
+  ✓ lesson awards >= 100 XP — 218
   ✓ lesson met 5+ new sentences — 7
-  ✓ XP total rises — 263
+  ✓ XP total rises — 243
   ✓ lesson 2 unlocks
   ✓ lesson 4 is still locked early
   ✓ chest slot filled — 1
@@ -199,9 +199,10 @@ Economy + meta
   ✓ manifest exists
   ✓ manifest has both voices
   ✓ manifest covers sentence clips
-  ✓ bundle size is sane (10–60 MB) — 20.6 MB
+  ✓ bundle size is sane (20–80 MB) — 43.8 MB
+  ✓ clips are encoded at 96 kbps — 96000 bps
 
-7 passed, 0 failed
+8 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
 4/7 · Engagement alternatives (branch)
@@ -381,7 +382,7 @@ ALL LAB CHECKS PASSED
 ▸ Checkpoint (unit 1)
   ✓ checkpoint header visible
   ✓ checkpoint badge earned — u01_intro
-  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T03:36:10.395Z"}
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T15:26:46.633Z"}
 ▸ Home · course map + daily plan
   ✓ home shows 60 sessions
   ✓ home shows 288 sentences
@@ -427,13 +428,13 @@ start day 0
   sessions: 60,
   badges: 12,
   met: 288,
-  strong: 90,
+  strong: 92,
   words: 149,
-  xp: 20480,
+  xp: 20466,
   level: 22,
   streak: 19,
   best: 38,
-  coins: 15567,
+  coins: 15498,
   chests: 72,
   league: 1,
   timeline: 61,

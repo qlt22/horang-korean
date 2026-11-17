@@ -29,23 +29,23 @@ if (!fs.existsSync(EDGE)) {
 }
 
 const jobs = [];
-const add = (kind, id, text, { voice = VOICE_MAIN, rate = '+0%', dir = kind } = {}) => {
+const add = (kind, id, text, { voice = VOICE_MAIN, rate = '+0%', pitch = '-2Hz', dir = kind } = {}) => {
   if (!text) return;
-  jobs.push({ kind, id, text, voice, rate, file: path.join(OUT, dir, `${id}.mp3`) });
+  jobs.push({ kind, id, text, voice, rate, pitch, file: path.join(OUT, dir, `${id}.mp3`) });
 };
 
 for (const s of data.sentences) {
-  add('s', s.id, s.korean);
-  add('s', `${s.id}-slow`, s.audio?.text || s.korean, { rate: '-18%' });
+  add('s', s.id, s.korean, { rate: '-6%' });
+  add('s', `${s.id}-slow`, s.audio?.text || s.korean, { rate: '-24%' });
 }
-for (const w of data.words) add('w', w.id, w.ko, { rate: '-8%' });
+for (const w of data.words) add('w', w.id, w.ko, { rate: '-10%', pitch: '-1Hz' });
 for (const d of data.dialogues) {
   d.lines.forEach((l) =>
-    add('d', l.id, l.ko, { voice: l.speaker === 'B' ? VOICE_SECOND : VOICE_MAIN })
+    add('d', l.id, l.ko, { voice: l.speaker === 'B' ? VOICE_SECOND : VOICE_MAIN, rate: l.speaker === 'B' ? '-2%' : '-4%' })
   );
 }
 for (const g of data.grammar) {
-  (g.examples || []).forEach((ex, i) => add('g', `${g.id}_${i + 1}`, ex.ko));
+  (g.examples || []).forEach((ex, i) => add('g', `${g.id}_${i + 1}`, ex.ko, { rate: '-6%' }));
 }
 
 const filtered = only ? jobs.filter((j) => only.includes(j.kind)) : jobs;
@@ -63,6 +63,8 @@ function run(job) {
       job.voice,
       '--rate',
       job.rate,
+      '--pitch',
+      job.pitch || '-2Hz',
       '--text',
       job.text,
       '--write-media',

@@ -129,7 +129,7 @@ function bindGlobal() {
     const say = e.target.closest('[data-say]');
     if (say) {
       e.preventDefault();
-      audio.speak(say.dataset.say, { rate: Number(say.dataset.rate) || 0.86 });
+      audio.neuralSpeak(say.dataset.say, { rate: '-6%' });
       say.classList.add('is-speaking');
       setTimeout(() => say.classList.remove('is-speaking'), 700);
       return;

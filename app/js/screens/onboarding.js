@@ -679,6 +679,14 @@ function saveName(skip = false) {
   state.profile.name = name;
   state.profile.avatar = picked.avatar || state.profile.avatar || 'tiger';
   save();
+  // Warm the neural clip for their personalised first sentence so it is instant.
+  try {
+    fetch(`/api/tts?text=${encodeURIComponent(`저는 ${name}입니다.`)}&voice=${audio.getVoice()}&rate=-6%`).catch(
+      () => {}
+    );
+  } catch {
+    /* offline: the lesson falls back gracefully */
+  }
   audio.sfx('tap');
   setStep('ready');
 }
