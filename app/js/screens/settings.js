@@ -12,6 +12,7 @@ import * as audio from '../core/audio.js';
 import * as clock from '../core/clock.js';
 import router from '../core/router.js';
 
+const VOICE_LIST = Object.values(audio.VOICES);
 const MIN_BY_GOAL = { 60: 5, 120: 10, 180: 15 };
 const GOAL_COPY = {
   60: 'A quick win. One node a day.',
@@ -124,6 +125,27 @@ export default {
                 <span class="st-row-sub">Less movement, same feedback</span>
               </span>
               ${switchBtn('reducedMotion', s.reducedMotion, 'Reduce motion')}
+            </div>
+
+            <div class="st-field st-field--voice">
+              <div class="st-field-head">
+                <span class="st-row-title">Korean voice</span>
+                <span class="st-field-value" data-voice-label>${ui.esc(
+                  (audio.VOICES[audio.getVoice()] || VOICE_LIST[0]).name
+                )}</span>
+              </div>
+              <div class="st-voice-grid">
+                ${VOICE_LIST.map(
+                  (v) => `<button class="st-voice ${audio.getVoice() === v.id ? 'is-on' : ''}" data-voice="${v.id}" type="button">
+                    <b>${ui.esc(v.name)} <em>${ui.esc(v.ko)}</em></b>
+                    <span>${ui.esc(v.line)}</span>
+                  </button>`
+                ).join('')}
+              </div>
+              <button class="btn btn-secondary btn-sm btn-block mt-2" data-voice-sample type="button">
+                ${ui.icon('sound', 16)} Hear a sample
+              </button>
+              <p class="st-hint">SunHi is bundled and instant. InJoon and Hyunsu use the neural endpoint and are cached after the first play.</p>
             </div>
 
             <div class="st-field st-field--roman">
@@ -325,6 +347,25 @@ export default {
         save();
       });
     });
+
+    /* ---------- voice picker ---------- */
+    const playSample = (voice) =>
+      audio.neuralSpeak('안녕하세요. 저는 루카스입니다. 오늘 날씨가 정말 좋아요.', { voice, rate: '-6%' });
+    root.querySelectorAll('[data-voice]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const v = b.dataset.voice;
+        audio.setVoice(v);
+        state.settings.voice = v;
+        save();
+        audio.sfx('tap');
+        root.querySelectorAll('[data-voice]').forEach((x) => x.classList.toggle('is-on', x.dataset.voice === v));
+        const label = root.querySelector('[data-voice-label]');
+        if (label) label.textContent = audio.VOICES[v].name;
+        ui.toast(`Voice: ${audio.VOICES[v].name} ${audio.VOICES[v].ko}`, { icon: 'sound', tone: 'mint' });
+        playSample(v);
+      })
+    );
+    root.querySelector('[data-voice-sample]')?.addEventListener('click', () => playSample(audio.getVoice()));
 
     /* ---------- romanization segmented control ---------- */
     root.querySelectorAll('[data-roman]').forEach((btn) => {

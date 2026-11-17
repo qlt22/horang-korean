@@ -113,6 +113,7 @@ function boot() {
   buildTabs();
   refreshDay();
   audio.setEnabled(state.settings.sound);
+  if (state.settings.voice && audio.getVoice() !== state.settings.voice) audio.setVoice(state.settings.voice);
   ui.initReducedMotion(state.settings.reducedMotion);
   router.register(SCREENS);
   const start = state.flags.onboardingDone ? 'home' : 'welcome';

@@ -188,7 +188,7 @@ export function freshState() {
       dailyBonusDate: null,
       unitIntro: {},
     },
-    settings: { sound: true, haptics: true, reducedMotion: false, romanization: 'auto' },
+    settings: { sound: true, haptics: true, reducedMotion: false, romanization: 'auto', voice: 'sunhi' },
     day: 0,
     events: [],
     timeline: [],

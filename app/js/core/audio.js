@@ -6,6 +6,67 @@ let voiceReady = false;
 let currentUtter = null;
 let currentAudio = null;
 const CLIP_BASE = 'app/audio';
+const VOICE_KEY = 'horang.voice';
+
+export const VOICES = {
+  sunhi: { id: 'sunhi', name: 'SunHi', ko: '선희', line: 'Female · clear and bright (bundled, instant)' },
+  injoon: { id: 'injoon', name: 'InJoon', ko: '인준', line: 'Male · calm and low (streams once, then cached)' },
+  hyunsu: { id: 'hyunsu', name: 'Hyunsu', ko: '현수', line: 'Male · warm and conversational (streams once)' },
+};
+
+export function getVoice() {
+  try {
+    const v = localStorage.getItem(VOICE_KEY);
+    return VOICES[v] ? v : 'sunhi';
+  } catch {
+    return 'sunhi';
+  }
+}
+export function setVoice(id) {
+  if (!VOICES[id]) return false;
+  try {
+    localStorage.setItem(VOICE_KEY, id);
+  } catch {
+    /* ignore */
+  }
+  return true;
+}
+
+function ttsUrl(text, voice, rate) {
+  return `/api/tts?text=${encodeURIComponent(text)}&voice=${encodeURIComponent(
+    voice || getVoice()
+  )}&rate=${encodeURIComponent(rate || '-6%')}`;
+}
+
+/**
+ * Stream a neural clip for arbitrary text (names, new content) from the local
+ * /api/tts endpoint. Falls back to the OS voice only if the server has no TTS.
+ */
+export function neuralSpeak(text, opts = {}) {
+  if (!enabled || !text) {
+    opts.onend?.();
+    return false;
+  }
+  stopSpeaking();
+  try {
+    const a = new Audio(ttsUrl(text, opts.voice, opts.rate));
+    currentAudio = a;
+    a.onended = () => {
+      if (currentAudio === a) currentAudio = null;
+      opts.onend?.();
+    };
+    a.onerror = () => {
+      if (currentAudio === a) currentAudio = null;
+      speak(text, { onend: opts.onend });
+    };
+    const p = a.play();
+    if (p && p.catch) p.catch(() => speak(text, { onend: opts.onend }));
+    return true;
+  } catch {
+    speak(text, { onend: opts.onend });
+    return false;
+  }
+}
 
 function loadVoices() {
   if (!('speechSynthesis' in window)) return;
@@ -81,7 +142,14 @@ export function stopSpeaking() {
  * Falls back to speechSynthesis with the same text if the file is missing.
  */
 export function playClip(kind, id, opts = {}) {
+  const text = opts.fallbackText || '';
+  const voice = opts.voice || getVoice();
+  const rate = kind === 's-slow' ? '-24%' : kind === 'w' ? '-10%' : '-6%';
+  // Bundled clips are SunHi. Any other chosen voice streams the same text through
+  // the neural endpoint, so the voice setting is real everywhere, not just on words.
+  if (voice !== 'sunhi' && text) return neuralSpeak(text, { voice, rate, onend: opts.onend });
   if (!id) {
+    if (text) return neuralSpeak(text, { voice, rate, onend: opts.onend });
     opts.onend?.();
     return false;
   }
@@ -99,7 +167,7 @@ export function playClip(kind, id, opts = {}) {
     };
     a.onerror = () => {
       if (currentAudio === a) currentAudio = null;
-      if (opts.fallbackText) speak(opts.fallbackText, { rate: kind === 's-slow' ? 0.7 : 0.86, onend: opts.onend });
+      if (text) neuralSpeak(text, { voice, rate, onend: opts.onend });
       else opts.onend?.();
     };
     const p = a.play();
@@ -120,7 +188,7 @@ export function playTask(ex, opts = {}) {
     const text = ex.korean || ex.audioText || '';
     return playClip(kind, ex.clipId, { ...opts, fallbackText: text });
   }
-  if (ex.korean) return speak(ex.korean, opts);
+  if (ex.korean) return neuralSpeak(ex.korean, opts);
   return false;
 }
 
@@ -228,4 +296,4 @@ export function unlock() {
   ac();
 }
 
-export default { speak, stopSpeaking, sfx, setEnabled, isEnabled, supported, unlock, hasKoreanVoice, playClip, playTask };
+export default { speak, stopSpeaking, sfx, setEnabled, isEnabled, supported, unlock, hasKoreanVoice, playClip, playTask, neuralSpeak, getVoice, setVoice, VOICES };

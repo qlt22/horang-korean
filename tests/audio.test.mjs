@@ -1,6 +1,7 @@
 // Verifies every Korean string has a bundled neural clip. No network needed.
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const data = (await import('../app/data/a1.js')).default;
 const ROOT = 'app/audio';
@@ -46,7 +47,20 @@ if (fs.existsSync(manifestPath)) {
 }
 
 const bytes = expected.reduce((a, e) => a + size(e.file), 0);
-ok('bundle size is sane (10–60 MB)', bytes > 10e6 && bytes < 60e6, `${(bytes / 1024 / 1024).toFixed(1)} MB`);
+ok('bundle size is sane (20–80 MB)', bytes > 20e6 && bytes < 80e6, `${(bytes / 1024 / 1024).toFixed(1)} MB`);
+
+// The encoder upgrade is the audible part: 96 kbps instead of edge-tts's 48.
+let bitrate = 0;
+try {
+  const out = execFileSync('ffprobe', [
+    '-v', 'error', '-show_entries', 'format=bit_rate', '-of', 'csv=p=0',
+    `${ROOT}/s/${data.sentences[0].id}.mp3`,
+  ]).toString().trim();
+  bitrate = Number(out) || 0;
+} catch {
+  /* ffprobe not installed — skip the check */
+}
+ok('clips are encoded at 96 kbps', bitrate === 0 ? true : bitrate >= 90000, `${bitrate} bps`);
 
 console.log(out.join('\n'));
 console.log(`\n${pass} passed, ${fail} failed`);

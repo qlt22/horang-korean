@@ -1161,3 +1161,64 @@ button.pf-hm-cell.is-today:hover {
     gap: 8px;
   }
 }
+
+/* ---------- voice picker (settings) ---------- */
+.st-voice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.st-voice {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  box-shadow: var(--depth-neutral);
+  transition: transform 90ms var(--ease-snap), box-shadow 90ms, border-color 150ms;
+}
+.st-voice:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+.st-voice b {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+}
+.st-voice b em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink-500);
+  font-size: 11px;
+  margin-left: 4px;
+}
+.st-voice span {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-500);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.st-voice.is-on {
+  border-color: var(--coral-500);
+  background: var(--coral-100);
+  box-shadow: 0 4px 0 var(--coral-700);
+  position: relative;
+}
+.st-voice.is-on::after {
+  content: '✓';
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--coral-500);
+  color: var(--ink-900);
+  font-size: 11px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
