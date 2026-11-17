@@ -158,9 +158,9 @@ Session + progression
   ✓ lesson 1 starts
   ✓ lesson 1 opens with sentence #0 — say_it
   ✓ lesson completes with 3 stars — 3
-  ✓ lesson awards >= 100 XP — 218
+  ✓ lesson awards >= 100 XP — 258
   ✓ lesson met 5+ new sentences — 7
-  ✓ XP total rises — 243
+  ✓ XP total rises — 263
   ✓ lesson 2 unlocks
   ✓ lesson 4 is still locked early
   ✓ chest slot filled — 1
@@ -382,7 +382,7 @@ ALL LAB CHECKS PASSED
 ▸ Checkpoint (unit 1)
   ✓ checkpoint header visible
   ✓ checkpoint badge earned — u01_intro
-  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T15:26:46.633Z"}
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T15:32:54.852Z"}
 ▸ Home · course map + daily plan
   ✓ home shows 60 sessions
   ✓ home shows 288 sentences
@@ -428,13 +428,13 @@ start day 0
   sessions: 60,
   badges: 12,
   met: 288,
-  strong: 92,
+  strong: 96,
   words: 149,
-  xp: 20466,
+  xp: 20852,
   level: 22,
   streak: 19,
   best: 38,
-  coins: 15498,
+  coins: 15861,
   chests: 72,
   league: 1,
   timeline: 61,
