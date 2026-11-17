@@ -55,6 +55,8 @@ export function go(id, params = {}, opts = {}) {
 
   const root = document.getElementById('screen');
   root.scrollTop = 0;
+  // Overlays live on <body>; a route change must not leave a sheet behind.
+  document.querySelectorAll('.scrim').forEach((el) => el.remove());
   const activeTab = mod.nav || null;
   root.innerHTML = `<div class="screen-host">${mod.render(params) || ''}</div>`;
   document.getElementById('tabbar').hidden = !!mod.hideNav;
