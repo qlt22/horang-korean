@@ -1,0 +1,162 @@
+/* S0 Welcome */
+.welcome {
+  position: relative;
+  padding: 0 24px 28px;
+  overflow: hidden;
+  justify-content: space-between;
+  min-height: 100dvh;
+}
+.welcome-blobs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(52px);
+}
+.blob--coral {
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 107, 74, 0.35);
+  top: -90px;
+  left: -90px;
+}
+.blob--mint {
+  width: 260px;
+  height: 260px;
+  background: rgba(123, 224, 195, 0.32);
+  bottom: 40px;
+  right: -100px;
+}
+.glyph {
+  position: absolute;
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--ink-900);
+  opacity: 0.06;
+  animation: floaty 4s ease-in-out infinite alternate;
+}
+.glyph--1 {
+  top: 18%;
+  right: 12%;
+  animation-delay: 0s;
+}
+.glyph--2 {
+  top: 46%;
+  left: 8%;
+  animation-delay: 0.8s;
+  font-size: 52px;
+}
+.glyph--3 {
+  bottom: 22%;
+  right: 18%;
+  animation-delay: 1.6s;
+  font-size: 44px;
+}
+.welcome-top {
+  position: relative;
+  z-index: 1;
+  padding-top: calc(28px + env(safe-area-inset-top));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo-mark {
+  width: 96px;
+  height: 96px;
+  border-radius: 28px;
+  background: var(--coral-500);
+  box-shadow: var(--depth-brand), inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  display: grid;
+  place-items: center;
+  color: var(--ink-900);
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  padding-bottom: 6px;
+}
+.wordmark {
+  margin-top: 20px;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.tagline {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink-500);
+}
+.welcome-mascot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  margin: 6px 0;
+  animation: floaty 3.6s ease-in-out infinite alternate;
+}
+.welcome-mid {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.welcome-proof {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.welcome-proof .pill {
+  font-size: 12px;
+  font-weight: 700;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+}
+.welcome-proof .pill svg {
+  width: 14px;
+  height: 14px;
+}
+.welcome-h {
+  font-size: clamp(27px, 7.2vw, 33px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  max-width: 20ch;
+  margin: 0 auto;
+}
+.welcome-sub {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-500);
+  max-width: 32ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.welcome-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.welcome-micro {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-500);
+}
+@media (max-height: 720px) {
+  .welcome-mascot {
+    display: none;
+  }
+  .welcome {
+    gap: 12px;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "horang",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Horang \u2014 an addictive Korean study app MVP. 40 beginner sentences, streaks, chests, and a memory engine.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node tests/run-all.mjs",
+    "test:core": "node tests/core.test.mjs",
+    "test:e2e": "node tests/e2e.mjs",
+    "test:demo": "node tests/demo.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.45.0"
+  }
+}

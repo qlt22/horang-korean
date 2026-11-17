@@ -1,0 +1,308 @@
+[server] Horang running → http://localhost:4199
+
+────────────────────────────────────────────────────────────────
+1/3 · Core logic
+────────────────────────────────────────────────────────────────
+
+Curriculum
+  ✓ 40 sentences loaded — 40
+  ✓ 7 units → 14 nodes — 14 nodes
+  ✓ every sentence has Hangul
+  ✓ every sentence has 3 distractors
+
+Level curve
+  ✓ L1→L2 costs 60 XP — 60
+  ✓ curve is monotonic
+  ✓ level from 0 XP is 1
+  ✓ level from 140 XP is 3 — 3
+
+Node 1 session
+  ✓ session starts
+  ✓ node 1 has sentence #0 first — sentence0
+  ✓ session has >= 9 exercises — 11
+  ✓ no two identical exercise types in a row
+  ✓ three-touch rule on sentence 1 — listen_pick,translate_pick,say_it,speed_match
+  ✓ every item is self-describing
+  ✓ answers award XP — 0 → 140
+  ✓ 3 exposures mint a stamp
+  ✓ mastery reached tier 3 (no same-session inflation) — tier 3
+  ✓ combo tracked — combo 11
+  ✓ node completes with 3 stars (0 mistakes) — 3 stars
+  ✓ node bonus awarded — +50
+  ✓ streak hit 1 from daily goal — streak 1
+  ✓ daily goal flagged
+  ✓ chest slot filled — 1
+  ✓ node 2 now unlocked
+  ✓ node 3 still locked
+  ✓ stamp count is 3 — 3
+
+Chest + economy
+  ✓ first chest is scripted Rare — rare
+  ✓ chest pays coins — 76 coins
+  ✓ chest slot consumed
+  ✓ second chest cannot open with 0 slots
+
+Quests
+  ✓ 3 daily quests generated — 3
+  ✓ quests have targets + rewards
+  ✓ quest progress reads counters — 11
+
+Streak, lapse, freeze
+  ✓ next day keeps streak intact — streak 1
+  ✓ a missed day without freeze drops streak — streak 0
+  ✓ loss is recorded for the comeback screen — prev 1
+  ✓ freeze silently covers a missed day — freezes 1
+
+Memory decay
+  ✓ 8-day lapse drops exactly one tier — tier 3
+  ✓ streak still capped at one tier loss
+
+Review queue
+  ✓ overdue sentence enters review queue — 2 due
+  ✓ fading status computed — fading
+
+Pack progress
+  ✓ pack progress counts tier≥3 — 3/6
+
+League
+  ✓ league fills to 30 with pacers — 30
+  ✓ pacers are labelled, never fake humans
+  ✓ user rank computed — #19
+
+Shop
+  ✓ cosmetic purchase works — 1000 → 700
+  ✓ cannot buy twice
+  ✓ purchase is recorded as an event
+
+48 passed, 0 failed
+
+────────────────────────────────────────────────────────────────
+2/3 · Full browser journey (390×844 + 1440×900)
+────────────────────────────────────────────────────────────────
+▸ Welcome screen
+▸ Onboarding: goal → time → name → ready
+▸ Node 1: answering all exercises correctly
+▸ Node complete
+▸ Quick check placement quiz
+▸ Home hub
+▸ Daily quests
+▸ Shop + chest opening
+▸ Passport collection
+▸ Profile
+▸ Settings
+▸ League
+▸ Retention lab
+▸ Reload persistence
+▸ Desktop 1440×900
+
+▸ Welcome screen
+  ✓ title is Horang
+  ✓ landing headline present
+▸ Onboarding: goal → time → name → ready
+  ✓ ready screen shows first node
+  ✓ profile name saved — Lucas
+  ✓ daily goal is 120 XP for 10 min — 120
+▸ Node 1: answering all exercises correctly
+  ✓ lesson session started with sentence #0 — sentence0
+  ✓ session has >= 9 exercises — 11
+  ✓ answered the full node — 11 exercises
+▸ Node complete
+  ✓ navigated to complete screen — http://localhost:4199/#/complete?node=0
+  ✓ summary computed — 3★ 180 XP
+  ✓ 3 stars for a perfect run — 3
+  ✓ stamps minted — 3
+▸ Quick check placement quiz
+  ✓ quiz opened — http://localhost:4199/#/onboarding?step=quiz
+  ✓ placement result shown — LV 4
+▸ Home hub
+  ✓ landed on home — http://localhost:4199/#/home
+  ✓ onboarding finished
+  ✓ streak incremented — 1
+  ✓ stamps persisted
+  ✓ chest slot earned — 2
+  ✓ daily quests created
+  ✓ no horizontal overflow — home — 390/390
+▸ Daily quests
+  ✓ quests screen renders 3 quests
+  ✓ chest meter visible
+  ✓ no horizontal overflow — quests — 390/390
+▸ Shop + chest opening
+  ✓ no horizontal overflow — shop — 390/390
+▸ Passport collection
+  ✓ passport shows stamps
+  ✓ no horizontal overflow — passport — 390/390
+▸ Profile
+  ✓ profile shows level
+  ✓ profile shows accuracy
+  ✓ no horizontal overflow — profile — 390/390
+▸ Settings
+  ✓ settings rendered — http://localhost:4199/#/settings
+▸ League
+  ✓ league explains day-7 gate or shows rows
+▸ Retention lab
+  ✓ no horizontal overflow — retention lab — 390/390
+▸ Reload persistence
+  ✓ state survives reload
+  ✓ streak survives reload — 1
+▸ Desktop 1440×900
+
+CONSOLE ERRORS: none
+
+ALL CHECKS PASSED
+
+────────────────────────────────────────────────────────────────
+3/3 · Retention Lab (30-day simulation)
+────────────────────────────────────────────────────────────────
+url http://localhost:4199/#/demo
+--- lab head ---
+PROOF, NOT PROMISES
+Retention Lab
+DAY 0
+This is the real app.
+
+Every button moves the virtual clock forward and runs the same code paths a learner hits: sessions, XP, chests, streaks, memory decay, leagues. Nothing below is mocked.
+
++1 day
++1 skipped day
+Run full 30 days
+STREAK
+1 🔥
+LEVEL
+4
+STAMPS
+3/40
+FADING
+0
+COINS
+385
+LEAGUE
+—
+NOTIFICATION PREVIEW
+GOOD AFTERNOON
+✦
+Horang
+
+Day 1. One 3-minute run keeps the streak.
+
+Trigger #5: fixed cue at the chosen reminder time
+
+One a day. Quiet hours 22:00
+
+--- after full run ---
+day: 30 xp: 7460 level: 14
+streak: 9 best: 18
+stamps: 40
+coins: 6657 chests opened: 29
+league joined: true rank: 1 tier: Bronze
+timeline days: 31
+xpByDay entries: 27
+stampsByDay entries: 14
+events: 300
+fading now: {"fading":0,"wilting":0,"dropped":0,"due":0,"total":0}
+
+--- lab at day 30 (excerpt) ---
+PROOF, NOT PROMISES
+Retention Lab
+DAY 30
+This is the real app.
+
+Every button moves the virtual clock forward and runs the same code paths a learner hits: sessions, XP, chests, streaks, memory decay, leagues. Nothing below is mocked.
+
++1 day
++1 skipped day
+Run full 30 days
+STREAK
+9 🔥
+LEVEL
+14
+STAMPS
+40/40
+FADING
+0
+COINS
+6,657
+LEAGUE
+#1
+NOTIFICATION PREVIEW
+GOOD AFTERNOON
+🎯
+Horang
+
+One quest step from done: Complete 1 node.
+
+Trigger #4: goal gradient on a daily quest
+
+One a day. Quiet hours 22:00–08:00. No guilt verbs. The number is always real.
+
+The first 90 seconds
+the draw-in
+0:00
+One headline, one button
+No signup, no pricing, no nav. The only decision is “start”.
+ZERO COMMITMENT
+0:12
+Three taps: goal, time, name
+Configures the XP goal and the reminder before any lesson exists.
+IMPLEMENTATION INTENTION
+0:26
+저는 [their name]입니다 — really spoken
+Their own name becomes sentence #0, with a
+
+--- home after lab ---
+9
+6,657
+13
+🐯
+Daily goal
+Goal hit · 190 XP
+Daily goal done · see you tomorrow
+Practice 10
+Review
+CLOSING IN
+3 NEAREST
+Chest
+1/3
+Daily quests
+0/3
+Level 14
+70 XP left
+PACK 7
+마무리 Wrap-up & boss round
+Guidebook
+Pack 1 · 인사 Greetings
+6/6 met
+NODE 1
+NODE 2
+CHEST
+Pack 2 · 자기소개 Introducing yourself
+6/6 met
+NODE 3
+NODE 4
+CHEST
+Pack 3 · 음식 Food & ordering
+6/6 met
+NODE 5
+CHEST
+NODE 6
+CHEST
+Pack 4 · 일상 Daily routine
+6/6 met
+NODE 7
+NODE 8
+CHEST
+Pack 5 · 길 찾기 Places & directions
+6/6 met
+NODE 9
+NODE 10
+CHEST
+Pack 6 · 기분 Feelings & small talk
+6/6 met
+NODE 11
+NODE 12
+CHEST
+Pack 7 · 마무리 Wrap-up & boss round
+4/4
+
+CONSOLE ERRORS: none
+
+✓ All suites passed  (core=0 e2e=0 demo=0)
