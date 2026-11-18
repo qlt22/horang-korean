@@ -10,6 +10,7 @@ import {
   UNITS,
   UNIT_BY_ID,
   lessonsOf,
+  lessonUnlocked,
 } from '../core/course.js';
 
 let rootEl = null;
@@ -262,7 +263,16 @@ function practiseUnit(unitId) {
   const unit = UNIT_BY_ID[unitId];
   if (!unit) return;
   const first = lessonsOf(unit.id).slice().sort((a, b) => a.order - b.order)[0];
-  if (first) router.go('lesson', { node: first.nodeIndex });
+  if (!first) return;
+  // Grammar is reference material for the whole course; opening a locked
+  // lesson would strand the learner on a dead "still locked" screen.
+  if (!lessonUnlocked(first.nodeIndex, state.path?.completedNodes || [])) {
+    ui.toast(`Unit ${unit.order} opens after Unit ${Math.max(1, unit.order - 1)}’s lessons.`, {
+      icon: 'lock',
+    });
+    return;
+  }
+  router.go('lesson', { node: first.nodeIndex });
 }
 
 export default {
@@ -293,7 +303,13 @@ export default {
       if (practise) return practiseUnit(practise.dataset.practise);
 
       const act = e.target.closest('[data-act]');
-      if (act?.dataset.act === 'clear') return clearFilters();
+      if (act?.dataset.act === 'clear') {
+        if (!query.trim() && unitFilter === 'all') {
+          ui.toast('Filters are already clear', { icon: 'check' });
+          return;
+        }
+        return clearFilters();
+      }
 
       const chip = e.target.closest('[data-gunit]');
       if (chip) {

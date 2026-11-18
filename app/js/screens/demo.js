@@ -469,9 +469,10 @@ export default {
   },
   mount(root) {
     // One backup per lab visit, taken BEFORE any time travel, so "Restore my
-    // progress" is real even for a learner who already has a save.
+    // progress" is real even for a learner who already has a save. Re-create it
+    // whenever a prior backup was already consumed by Restore.
     try {
-      if (!localStorage.getItem(BACKUP_KEY) && state.flags.onboardingDone && !state.flags.demoUsed) {
+      if (!localStorage.getItem(BACKUP_KEY) && state.flags.onboardingDone) {
         localStorage.setItem(BACKUP_KEY, exportData());
       }
     } catch {
@@ -480,7 +481,7 @@ export default {
     const jump = async (target) => {
       if (!state.flags.demoUsed) {
         try {
-          localStorage.setItem(BACKUP_KEY, exportData());
+          if (!localStorage.getItem(BACKUP_KEY)) localStorage.setItem(BACKUP_KEY, exportData());
         } catch {
           /* ignore */
         }
@@ -555,7 +556,8 @@ export default {
         }
         replaceState(JSON.parse(raw));
         localStorage.removeItem(BACKUP_KEY);
-        router.go('home');
+        const onboarded = !!state.flags.onboardingDone;
+        router.go(onboarded ? 'home' : 'welcome');
         ui.toast('Your pre-lab progress is back', { tone: 'mint' });
       } catch {
         ui.toast('Could not restore the save', { tone: 'amber' });

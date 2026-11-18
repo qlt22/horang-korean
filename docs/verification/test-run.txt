@@ -1,7 +1,7 @@
 [server] Horang running → http://localhost:4199
 
 ────────────────────────────────────────────────────────────────
-1/7 · Content validation (12 units)
+1/10 · Content validation (12 units)
 ────────────────────────────────────────────────────────────────
 
 u01.json
@@ -101,7 +101,7 @@ Totals: 12 units · 60 sessions · 288 sentences · 576 words · 48 grammar · 1
 ✓ 0 errors, 56 warnings
 
 ────────────────────────────────────────────────────────────────
-2/7 · Core logic
+2/10 · Core logic
 ────────────────────────────────────────────────────────────────
 
 A1 content
@@ -158,12 +158,12 @@ Session + progression
   ✓ lesson 1 starts
   ✓ lesson 1 opens with sentence #0 — say_it
   ✓ lesson completes with 3 stars — 3
-  ✓ lesson awards >= 100 XP — 258
+  ✓ lesson awards >= 100 XP — 148
   ✓ lesson met 5+ new sentences — 7
-  ✓ XP total rises — 263
+  ✓ XP total rises — 283
   ✓ lesson 2 unlocks
   ✓ lesson 4 is still locked early
-  ✓ chest slot filled — 1
+  ✓ chest slot filled — 2
   ✓ after 4 lessons the checkpoint unlocks
   ✓ next unit is unlocked after 4 lessons
   ✓ checkpoint records a pass — {"passed":true,"score":92,"required":80,"unitId":"u01_intro","unitTitle":"Introductions"}
@@ -191,7 +191,123 @@ Economy + meta
 70 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-3/7 · Audio bundle
+3/10 · Core edge cases
+────────────────────────────────────────────────────────────────
+
+Session builder invariants
+  ✓ every session has at least 1 item — 0 empty
+  ✓ every item has a player-supported type — []
+  ✓ no item has a null/empty prompt
+  ✓ every graded item has a valid answer path
+  ✓ no duplicate item ids
+  ✓ all targeted grammar practices have >= 4 items
+  ✓ unknown grammar practice still builds a playable session
+  ✓ all items can be graded with their own correct answer
+
+Unlock progression
+  ✓ lesson 0 starts
+  ✓ lesson 1 is locked at boot
+  ✓ nextLessonIndex starts at 0
+  ✓ session 6 unlocked after checkpoint 5
+  ✓ session 11 unlocked after checkpoint 10
+  ✓ session 16 unlocked after checkpoint 15
+  ✓ session 21 unlocked after checkpoint 20
+  ✓ session 26 unlocked after checkpoint 25
+  ✓ session 31 unlocked after checkpoint 30
+  ✓ session 36 unlocked after checkpoint 35
+  ✓ session 41 unlocked after checkpoint 40
+  ✓ session 46 unlocked after checkpoint 45
+  ✓ session 51 unlocked after checkpoint 50
+  ✓ session 56 unlocked after checkpoint 55
+  ✓ all 60 sessions completed — 60
+  ✓ course completion detected
+  ✓ course pointer is past the final lesson — 60
+  ✓ no dangling session after the final lesson
+  ✓ nextLessonIndex never returns a locked node on a full save
+  ✓ nextLessonIndex returns an unlocked node for partial saves — []
+
+completeNode double-call
+  ✓ second completeNode returns null
+  ✓ second call does not award XP
+  ✓ second call does not award coins
+  ✓ second call does not push duplicate node
+  ✓ second call does not fill another chest
+  ✓ session is null after completion
+  ✓ repeated answers do not throw
+  ✓ duplicated answers still complete
+  ✓ session cleared after duplicated-answer completion
+  ✓ completeNode with no session returns null
+
+recordAnswer edges
+  ✓ recordAnswer tolerates null ids and no session
+  ✓ recordAnswer tolerates a sentence answer with no session
+  ✓ session XP is not double-counted by recordAnswer — session=10 res=10
+  ✓ answer XP is added to total XP — 10
+  ✓ recordAnswer repairs old sessions without mistakes/met/strong
+  ✓ completeNode handles old sessions without met/strong
+  ✓ checkpoint accuracy uses graded answers — 0.8333333333333334
+  ✓ checkpoint pass >= 80 — {"passed":true,"score":83,"required":80,"unitId":"u01_intro","unitTitle":"Introductions"}
+  ✓ checkpoint fail recorded — {"passed":false,"score":50,"required":80,"unitId":"u01_intro","unitTitle":"Introductions"}
+  ✓ failing a checkpoint does not lock the next unit
+
+Random answer runs
+  ✓ 20 randomized wrong/correct runs complete cleanly — 0 bad
+  ✓ retrying a passed checkpoint keeps one badge
+  ✓ retrying a passed checkpoint does not rewrite the pass record
+
+Reward edges
+  ✓ daily goal awards once per day
+  ✓ daily goal does not pay coins twice
+  ✓ daily goal starts the streak — 1
+  ✓ quest completes on the first check
+  ✓ quest reward is not paid twice
+
+Save/load robustness
+  ✓ boots from invalid JSON without crashing
+  ✓   invalid JSON: usable profile/path/counters
+  ✓ boots from null literal without crashing
+  ✓   null literal: usable profile/path/counters
+  ✓ boots from empty object without crashing
+  ✓   empty object: usable profile/path/counters
+  ✓ boots from version 2 with almost nothing without crashing
+  ✓   version 2 with almost nothing: usable profile/path/counters
+  ✓ boots from version 2 with broken nested fields without crashing
+  ✓   version 2 with broken nested fields: usable profile/path/counters
+  ✓ boots from version 2 with a partial session without crashing
+  ✓   version 2 with a partial session: usable profile/path/counters
+  ✓ boots from old version 1 save without crashing
+  ✓   old version 1 save: usable profile/path/counters
+  ✓ replaceState fills missing nested defaults
+  ✓ replaceState keeps provided path progress
+  ✓ replaceState keeps provided profile name
+  ✓ replaceState fills path.currentNode — 2
+  ✓ replaceState leaves no null containers
+  ✓ old v1 key migrates without crashing
+  ✓ old v1 key preserves XP and progress
+  ✓ migration writes a v2 save
+  ✓ corrupt session drops unsupported items — 1
+  ✓ corrupt session gets safe arrays and index
+  ✓ corrupt session is still resumable
+  ✓ resetState returns a usable state
+  ✓ resetState keeps settings by default
+
+83 passed, 0 failed
+  ✓ mastery map survives reload — 1
+  ✓ mastery tier survives reload
+  ✓ word mastery survives reload
+  ✓ checkpoints survive reload
+  ✓ badges survive reload
+  ✓ exam pass survives reload
+  ✓ bookmarks survive reload
+  ✓ xpByDay survives reload
+  ✓ engagement mode survives reload
+  ✓ inventory ownership survives reload
+  ✓ corrupted save boots to a usable state
+
+11 passed, 0 failed
+
+────────────────────────────────────────────────────────────────
+4/10 · Audio bundle
 ────────────────────────────────────────────────────────────────
   ✓ expected clip count — 1352
   ✓ every clip exists
@@ -205,7 +321,7 @@ Economy + meta
 8 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-4/7 · Engagement alternatives (branch)
+5/10 · Engagement alternatives (branch)
 ────────────────────────────────────────────────────────────────
 
 Lab shell
@@ -260,7 +376,7 @@ Mode does not break the core
 35 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-5/7 · Engagement Lab UI
+6/10 · Engagement Lab UI
 ────────────────────────────────────────────────────────────────
   ✓ lab lists four modes
   ✓ lab explains the test method
@@ -270,7 +386,7 @@ Mode does not break the core
   ✓ star opens a grammar sheet — 도 N + 도  Add 도 to a noun to mean 'also / too'. It replaces 은
   ✓ targeted practice starts a real session — {"kind":"practice","target":"g14","n":6}
   ✓ three bounty tiers
-  ✓ accepting pins a bounty — 2026-11-17-listen10
+  ✓ accepting pins a bounty — 2026-11-18-typed5
   ✓ board promises no penalty
   ✓ four pace-setters listed — 5 incl you
   ✓ role can be chosen — scribe
@@ -284,13 +400,528 @@ CONSOLE ERRORS: none
 ALL LAB CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-6/7 · Full browser journey (390×844 + 1440×900)
+7/10 · Lesson CTA + advance flow
+────────────────────────────────────────────────────────────────
+  ✓ onboarding starts lesson 0 — 13 tasks
+
+=== node 0 (0) · strict ===
+  ✓ L0 #1/13 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L0 #1/13 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #1/13 say_it: advanced exactly one task — 0 → 1
+  ✓ L0 #2/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #2/13 word_card: advanced exactly one card — 1 → 2
+  ✓ L0 #3/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #3/13 word_card: advanced exactly one card — 2 → 3
+  ✓ L0 #4/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #4/13 word_card: advanced exactly one card — 3 → 4
+  ✓ L0 #5/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #5/13 word_card: advanced exactly one card — 4 → 5
+  ✓ L0 #6/13 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #6/13 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #6/13 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #6/13 listen_pick: advanced exactly one task — 5 → 6
+  ✓ L0 #7/13 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #7/13 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #7/13 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #7/13 translate_pick: advanced exactly one task — 6 → 7
+  ✓ L0 #8/13 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #8/13 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #8/13 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #8/13 translate_pick: advanced exactly one task — 7 → 8
+  ✓ L0 #9/13 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #9/13 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #9/13 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #9/13 listen_pick: advanced exactly one task — 8 → 9
+  ✓ L0 #10/13 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L0 #10/13 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #10/13 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #10/13 type_answer: advanced exactly one task — 9 → 10
+  ✓ L0 #11/13 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #11/13 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #11/13 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #11/13 listen_pick: advanced exactly one task — 10 → 11
+  ✓ L0 #12/13 word_match: CTA visible before answering — "Match the pairstap the words"
+  ✓ L0 #12/13 word_match: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #12/13 word_match: advanced exactly one task — 11 → 12
+  ✓ L0 #13/13 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L0 #13/13 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #13/13 say_it: advanced exactly one task — 12 → complete
+  ✓ node 0 reached #/complete — #/complete?node=0
+
+=== node 1 (1) · strict ===
+  ✓ L1 #1/8 grammar_card: CTA visible before answering — "Got it"
+  ✓ L1 #1/8 grammar_card: advanced exactly one card — 0 → 1
+  ✓ L1 #2/8 fill_blank: CTA visible before answering — "Choose the missing wordtap an option"
+  ✓ L1 #2/8 fill_blank: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #2/8 fill_blank: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #2/8 fill_blank: advanced exactly one task — 1 → 2
+  ✓ L1 #3/8 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L1 #3/8 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #3/8 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #3/8 type_answer: advanced exactly one task — 2 → 3
+  ✓ L1 #4/8 tile_build: CTA visible before answering — "Build the sentencetap an option"
+  ✓ L1 #4/8 tile_build: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #4/8 tile_build: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #4/8 tile_build: advanced exactly one task — 3 → 4
+  ✓ L1 #5/8 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L1 #5/8 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #5/8 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #5/8 translate_pick: advanced exactly one task — 4 → 5
+  ✓ L1 #6/8 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L1 #6/8 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #6/8 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #6/8 type_answer: advanced exactly one task — 5 → 6
+  ✓ L1 #7/8 fill_blank: CTA visible before answering — "Choose the missing wordtap an option"
+  ✓ L1 #7/8 fill_blank: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #7/8 fill_blank: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #7/8 fill_blank: advanced exactly one task — 6 → 7
+  ✓ L1 #8/8 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L1 #8/8 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #8/8 say_it: advanced exactly one task — 7 → complete
+  ✓ node 1 reached #/complete — #/complete?node=1
+
+=== node 2 (2) · strict ===
+  ✓ L2 #1/10 dictation: CTA visible before answering — "Type your answertap an option"
+  ✓ L2 #1/10 dictation: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #1/10 dictation: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #1/10 dictation: advanced exactly one task — 0 → 1
+  ✓ L2 #2/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #2/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #2/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #2/10 listen_pick: advanced exactly one task — 1 → 2
+  ✓ L2 #3/10 dictation: CTA visible before answering — "Type your answertap an option"
+  ✓ L2 #3/10 dictation: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #3/10 dictation: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #3/10 dictation: advanced exactly one task — 2 → 3
+  ✓ L2 #4/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #4/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #4/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #4/10 listen_pick: advanced exactly one task — 3 → 4
+  ✓ L2 #5/10 dialogue_reply: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #5/10 dialogue_reply: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #5/10 dialogue_reply: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #5/10 dialogue_reply: advanced exactly one task — 4 → 5
+  ✓ L2 #6/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #6/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #6/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #6/10 listen_pick: advanced exactly one task — 5 → 6
+  ✓ L2 #7/10 dialogue_reply: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #7/10 dialogue_reply: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #7/10 dialogue_reply: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #7/10 dialogue_reply: advanced exactly one task — 6 → 7
+  ✓ L2 #8/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #8/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #8/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #8/10 listen_pick: advanced exactly one task — 7 → 8
+  ✓ L2 #9/10 dialogue_reply: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #9/10 dialogue_reply: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #9/10 dialogue_reply: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #9/10 dialogue_reply: advanced exactly one task — 8 → 9
+  ✓ L2 #10/10 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L2 #10/10 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #10/10 say_it: advanced exactly one task — 9 → complete
+  ✓ node 2 reached #/complete — #/complete?node=2
+
+=== node 3 (3) · strict ===
+  ✓ L3 #1/10 reading_q: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #1/10 reading_q: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #1/10 reading_q: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #1/10 reading_q: advanced exactly one task — 0 → 1
+  ✓ L3 #2/10 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #2/10 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #2/10 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #2/10 translate_pick: advanced exactly one task — 1 → 2
+  ✓ L3 #3/10 reading_q: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #3/10 reading_q: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #3/10 reading_q: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #3/10 reading_q: advanced exactly one task — 2 → 3
+  ✓ L3 #4/10 tile_build: CTA visible before answering — "Build the sentencetap an option"
+  ✓ L3 #4/10 tile_build: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #4/10 tile_build: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #4/10 tile_build: advanced exactly one task — 3 → 4
+  ✓ L3 #5/10 reading_q: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #5/10 reading_q: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #5/10 reading_q: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #5/10 reading_q: advanced exactly one task — 4 → 5
+  ✓ L3 #6/10 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L3 #6/10 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #6/10 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #6/10 type_answer: advanced exactly one task — 5 → 6
+  ✓ L3 #7/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #7/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #7/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #7/10 listen_pick: advanced exactly one task — 6 → 7
+  ✓ L3 #8/10 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #8/10 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #8/10 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #8/10 translate_pick: advanced exactly one task — 7 → 8
+  ✓ L3 #9/10 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L3 #9/10 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #9/10 say_it: advanced exactly one task — 8 → 9
+  ✓ L3 #10/10 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #10/10 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #10/10 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #10/10 translate_pick: advanced exactly one task — 9 → complete
+  ✓ node 3 reached #/complete — #/complete?node=3
+
+=== node 4 (4) · strict ===
+  ✓ L4 #1/12 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #1/12 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #1/12 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #1/12 listen_pick: advanced exactly one task — 0 → 1
+  ✓ L4 #2/12 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #2/12 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #2/12 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #2/12 translate_pick: advanced exactly one task — 1 → 2
+  ✓ L4 #3/12 tile_build: CTA visible before answering — "Build the sentencetap an option"
+  ✓ L4 #3/12 tile_build: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #3/12 tile_build: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #3/12 tile_build: advanced exactly one task — 2 → 3
+  ✓ L4 #4/12 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L4 #4/12 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #4/12 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #4/12 type_answer: advanced exactly one task — 3 → 4
+  ✓ L4 #5/12 fill_blank: CTA visible before answering — "Choose the missing wordtap an option"
+  ✓ L4 #5/12 fill_blank: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #5/12 fill_blank: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #5/12 fill_blank: advanced exactly one task — 4 → 5
+  ✓ L4 #6/12 dictation: CTA visible before answering — "Type your answertap an option"
+  ✓ L4 #6/12 dictation: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #6/12 dictation: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #6/12 dictation: advanced exactly one task — 5 → 6
+  ✓ L4 #7/12 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #7/12 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #7/12 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #7/12 listen_pick: advanced exactly one task — 6 → 7
+  ✓ L4 #8/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #8/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #8/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #8/12 word_pick: advanced exactly one task — 7 → 8
+  ✓ L4 #9/12 word_match: CTA visible before answering — "Match the pairstap the words"
+  ✓ L4 #9/12 word_match: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #9/12 word_match: advanced exactly one task — 8 → 9
+  ✓ L4 #10/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #10/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #10/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #10/12 word_pick: advanced exactly one task — 9 → 10
+  ✓ L4 #11/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #11/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #11/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #11/12 word_pick: advanced exactly one task — 10 → 11
+  ✓ L4 #12/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #12/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #12/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #12/12 word_pick: advanced exactly one task — 11 → complete
+  ✓ node 4 reached #/complete — #/complete?node=4
+  ✓ onboarding starts lesson 0 — 13 tasks
+
+=== node 0 (0) · stress ===
+  ✓ L0 #1/13 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L0 #1/13 say_it: disabled CTA clicks did not move
+  ✓ L0 #1/13 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #1/13 say_it: advanced exactly one task — 0 → 1
+  ✓ L0 #2/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #2/13 word_card: disabled CTA clicks did not move
+  ✓ L0 #2/13 word_card: advanced exactly one card — 1 → 2
+  ✓ L0 #3/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #3/13 word_card: disabled CTA clicks did not move
+  ✓ L0 #3/13 word_card: advanced exactly one card — 2 → 3
+  ✓ L0 #4/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #4/13 word_card: disabled CTA clicks did not move
+  ✓ L0 #4/13 word_card: advanced exactly one card — 3 → 4
+  ✓ L0 #5/13 word_card: CTA visible before answering — "Got it"
+  ✓ L0 #5/13 word_card: disabled CTA clicks did not move
+  ✓ L0 #5/13 word_card: advanced exactly one card — 4 → 5
+  ✓ L0 #6/13 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #6/13 listen_pick: disabled CTA clicks did not move
+  ✓ L0 #6/13 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #6/13 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #6/13 listen_pick: advanced exactly one task — 5 → 6
+  ✓ L0 #7/13 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #7/13 translate_pick: disabled CTA clicks did not move
+  ✓ L0 #7/13 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #7/13 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #7/13 translate_pick: advanced exactly one task — 6 → 7
+  ✓ L0 #8/13 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #8/13 translate_pick: disabled CTA clicks did not move
+  ✓ L0 #8/13 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #8/13 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #8/13 translate_pick: advanced exactly one task — 7 → 8
+  ✓ L0 #9/13 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #9/13 listen_pick: disabled CTA clicks did not move
+  ✓ L0 #9/13 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #9/13 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #9/13 listen_pick: advanced exactly one task — 8 → 9
+  ✓ L0 #10/13 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L0 #10/13 type_answer: disabled CTA clicks did not move
+  ✓ L0 #10/13 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #10/13 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #10/13 type_answer: advanced exactly one task — 9 → 10
+  ✓ L0 #11/13 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L0 #11/13 listen_pick: disabled CTA clicks did not move
+  ✓ L0 #11/13 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L0 #11/13 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #11/13 listen_pick: advanced exactly one task — 10 → 11
+  ✓ L0 #12/13 word_match: CTA visible before answering — "Match the pairstap the words"
+  ✓ L0 #12/13 word_match: disabled CTA clicks did not move
+  ✓ L0 #12/13 word_match: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #12/13 word_match: advanced exactly one task — 11 → 12
+  ✓ L0 #13/13 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L0 #13/13 say_it: disabled CTA clicks did not move
+  ✓ L0 #13/13 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L0 #13/13 say_it: advanced exactly one task — 12 → complete
+  ✓ node 0 reached #/complete — #/complete?node=0
+
+=== node 1 (1) · stress ===
+  ✓ L1 #1/8 grammar_card: CTA visible before answering — "Got it"
+  ✓ L1 #1/8 grammar_card: advanced exactly one card — 0 → 1
+  ✓ L1 #2/8 fill_blank: CTA visible before answering — "Choose the missing wordtap an option"
+  ✓ L1 #2/8 fill_blank: disabled CTA clicks did not move
+  ✓ L1 #2/8 fill_blank: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #2/8 fill_blank: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #2/8 fill_blank: advanced exactly one task — 1 → 2
+  ✓ L1 #3/8 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L1 #3/8 type_answer: disabled CTA clicks did not move
+  ✓ L1 #3/8 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #3/8 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #3/8 type_answer: advanced exactly one task — 2 → 3
+  ✓ L1 #4/8 tile_build: CTA visible before answering — "Build the sentencetap an option"
+  ✓ L1 #4/8 tile_build: disabled CTA clicks did not move
+  ✓ L1 #4/8 tile_build: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #4/8 tile_build: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #4/8 tile_build: advanced exactly one task — 3 → 4
+  ✓ L1 #5/8 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L1 #5/8 translate_pick: disabled CTA clicks did not move
+  ✓ L1 #5/8 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #5/8 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #5/8 translate_pick: advanced exactly one task — 4 → 5
+  ✓ L1 #6/8 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L1 #6/8 type_answer: disabled CTA clicks did not move
+  ✓ L1 #6/8 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #6/8 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #6/8 type_answer: advanced exactly one task — 5 → 6
+  ✓ L1 #7/8 fill_blank: CTA visible before answering — "Choose the missing wordtap an option"
+  ✓ L1 #7/8 fill_blank: disabled CTA clicks did not move
+  ✓ L1 #7/8 fill_blank: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L1 #7/8 fill_blank: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #7/8 fill_blank: advanced exactly one task — 6 → 7
+  ✓ L1 #8/8 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L1 #8/8 say_it: disabled CTA clicks did not move
+  ✓ L1 #8/8 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L1 #8/8 say_it: advanced exactly one task — 7 → complete
+  ✓ node 1 reached #/complete — #/complete?node=1
+
+=== node 2 (2) · stress ===
+  ✓ L2 #1/10 dictation: CTA visible before answering — "Type your answertap an option"
+  ✓ L2 #1/10 dictation: disabled CTA clicks did not move
+  ✓ L2 #1/10 dictation: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #1/10 dictation: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #1/10 dictation: advanced exactly one task — 0 → 1
+  ✓ L2 #2/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #2/10 listen_pick: disabled CTA clicks did not move
+  ✓ L2 #2/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #2/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #2/10 listen_pick: advanced exactly one task — 1 → 2
+  ✓ L2 #3/10 dictation: CTA visible before answering — "Type your answertap an option"
+  ✓ L2 #3/10 dictation: disabled CTA clicks did not move
+  ✓ L2 #3/10 dictation: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #3/10 dictation: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #3/10 dictation: advanced exactly one task — 2 → 3
+  ✓ L2 #4/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #4/10 listen_pick: disabled CTA clicks did not move
+  ✓ L2 #4/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #4/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #4/10 listen_pick: advanced exactly one task — 3 → 4
+  ✓ L2 #5/10 dialogue_reply: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #5/10 dialogue_reply: disabled CTA clicks did not move
+  ✓ L2 #5/10 dialogue_reply: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #5/10 dialogue_reply: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #5/10 dialogue_reply: advanced exactly one task — 4 → 5
+  ✓ L2 #6/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #6/10 listen_pick: disabled CTA clicks did not move
+  ✓ L2 #6/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #6/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #6/10 listen_pick: advanced exactly one task — 5 → 6
+  ✓ L2 #7/10 dialogue_reply: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #7/10 dialogue_reply: disabled CTA clicks did not move
+  ✓ L2 #7/10 dialogue_reply: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #7/10 dialogue_reply: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #7/10 dialogue_reply: advanced exactly one task — 6 → 7
+  ✓ L2 #8/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #8/10 listen_pick: disabled CTA clicks did not move
+  ✓ L2 #8/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #8/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #8/10 listen_pick: advanced exactly one task — 7 → 8
+  ✓ L2 #9/10 dialogue_reply: CTA visible before answering — "Choose an answertap an option"
+  ✓ L2 #9/10 dialogue_reply: disabled CTA clicks did not move
+  ✓ L2 #9/10 dialogue_reply: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L2 #9/10 dialogue_reply: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #9/10 dialogue_reply: advanced exactly one task — 8 → 9
+  ✓ L2 #10/10 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L2 #10/10 say_it: disabled CTA clicks did not move
+  ✓ L2 #10/10 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L2 #10/10 say_it: advanced exactly one task — 9 → complete
+  ✓ node 2 reached #/complete — #/complete?node=2
+
+=== node 3 (3) · stress ===
+  ✓ L3 #1/10 reading_q: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #1/10 reading_q: disabled CTA clicks did not move
+  ✓ L3 #1/10 reading_q: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #1/10 reading_q: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #1/10 reading_q: advanced exactly one task — 0 → 1
+  ✓ L3 #2/10 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #2/10 translate_pick: disabled CTA clicks did not move
+  ✓ L3 #2/10 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #2/10 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #2/10 translate_pick: advanced exactly one task — 1 → 2
+  ✓ L3 #3/10 reading_q: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #3/10 reading_q: disabled CTA clicks did not move
+  ✓ L3 #3/10 reading_q: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #3/10 reading_q: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #3/10 reading_q: advanced exactly one task — 2 → 3
+  ✓ L3 #4/10 tile_build: CTA visible before answering — "Build the sentencetap an option"
+  ✓ L3 #4/10 tile_build: disabled CTA clicks did not move
+  ✓ L3 #4/10 tile_build: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #4/10 tile_build: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #4/10 tile_build: advanced exactly one task — 3 → 4
+  ✓ L3 #5/10 reading_q: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #5/10 reading_q: disabled CTA clicks did not move
+  ✓ L3 #5/10 reading_q: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #5/10 reading_q: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #5/10 reading_q: advanced exactly one task — 4 → 5
+  ✓ L3 #6/10 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L3 #6/10 type_answer: disabled CTA clicks did not move
+  ✓ L3 #6/10 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #6/10 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #6/10 type_answer: advanced exactly one task — 5 → 6
+  ✓ L3 #7/10 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #7/10 listen_pick: disabled CTA clicks did not move
+  ✓ L3 #7/10 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #7/10 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #7/10 listen_pick: advanced exactly one task — 6 → 7
+  ✓ L3 #8/10 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #8/10 translate_pick: disabled CTA clicks did not move
+  ✓ L3 #8/10 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #8/10 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #8/10 translate_pick: advanced exactly one task — 7 → 8
+  ✓ L3 #9/10 say_it: CTA visible before answering — "Rate yourself to continue"
+  ✓ L3 #9/10 say_it: disabled CTA clicks did not move
+  ✓ L3 #9/10 say_it: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #9/10 say_it: advanced exactly one task — 8 → 9
+  ✓ L3 #10/10 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L3 #10/10 translate_pick: disabled CTA clicks did not move
+  ✓ L3 #10/10 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L3 #10/10 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L3 #10/10 translate_pick: advanced exactly one task — 9 → complete
+  ✓ node 3 reached #/complete — #/complete?node=3
+
+=== node 4 (4) · stress ===
+  ✓ L4 #1/12 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #1/12 listen_pick: disabled CTA clicks did not move
+  ✓ L4 #1/12 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #1/12 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #1/12 listen_pick: advanced exactly one task — 0 → 1
+  ✓ L4 #2/12 translate_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #2/12 translate_pick: disabled CTA clicks did not move
+  ✓ L4 #2/12 translate_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #2/12 translate_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #2/12 translate_pick: advanced exactly one task — 1 → 2
+  ✓ L4 #3/12 tile_build: CTA visible before answering — "Build the sentencetap an option"
+  ✓ L4 #3/12 tile_build: disabled CTA clicks did not move
+  ✓ L4 #3/12 tile_build: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #3/12 tile_build: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #3/12 tile_build: advanced exactly one task — 2 → 3
+  ✓ L4 #4/12 type_answer: CTA visible before answering — "Type your answertap an option"
+  ✓ L4 #4/12 type_answer: disabled CTA clicks did not move
+  ✓ L4 #4/12 type_answer: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #4/12 type_answer: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #4/12 type_answer: advanced exactly one task — 3 → 4
+  ✓ L4 #5/12 fill_blank: CTA visible before answering — "Choose the missing wordtap an option"
+  ✓ L4 #5/12 fill_blank: disabled CTA clicks did not move
+  ✓ L4 #5/12 fill_blank: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #5/12 fill_blank: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #5/12 fill_blank: advanced exactly one task — 4 → 5
+  ✓ L4 #6/12 dictation: CTA visible before answering — "Type your answertap an option"
+  ✓ L4 #6/12 dictation: disabled CTA clicks did not move
+  ✓ L4 #6/12 dictation: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #6/12 dictation: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #6/12 dictation: advanced exactly one task — 5 → 6
+  ✓ L4 #7/12 listen_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #7/12 listen_pick: disabled CTA clicks did not move
+  ✓ L4 #7/12 listen_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #7/12 listen_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #7/12 listen_pick: advanced exactly one task — 6 → 7
+  ✓ L4 #8/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #8/12 word_pick: disabled CTA clicks did not move
+  ✓ L4 #8/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #8/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #8/12 word_pick: advanced exactly one task — 7 → 8
+  ✓ L4 #9/12 word_match: CTA visible before answering — "Match the pairstap the words"
+  ✓ L4 #9/12 word_match: disabled CTA clicks did not move
+  ✓ L4 #9/12 word_match: Continue shown without a second Check — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #9/12 word_match: advanced exactly one task — 8 → 9
+  ✓ L4 #10/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #10/12 word_pick: disabled CTA clicks did not move
+  ✓ L4 #10/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #10/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #10/12 word_pick: advanced exactly one task — 9 → 10
+  ✓ L4 #11/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #11/12 word_pick: disabled CTA clicks did not move
+  ✓ L4 #11/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #11/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #11/12 word_pick: advanced exactly one task — 10 → 11
+  ✓ L4 #12/12 word_pick: CTA visible before answering — "Choose an answertap an option"
+  ✓ L4 #12/12 word_pick: disabled CTA clicks did not move
+  ✓ L4 #12/12 word_pick: CTA disabled while grading — "Checking…" disabled=true
+  ✓ L4 #12/12 word_pick: Continue reached after grading — {"label":"Continue","disabled":false,"hidden":false}
+  ✓ L4 #12/12 word_pick: advanced exactly one task — 11 → complete
+  ✓ node 4 reached #/complete — #/complete?node=4
+
+PAGE ERRORS: none
+
+ALL CTA FLOW CHECKS PASSED
+
+────────────────────────────────────────────────────────────────
+8/10 · Core browser edge cases
+────────────────────────────────────────────────────────────────
+
+Lesson progression past task 4
+  ✓ player advances past the 4th task — seen=0,1,2,3,4,5,6,7
+  ✓ progress is monotonic (no skipped items) — 0,1,2,3,4,5,6,7
+
+Reload mid-session
+  ✓ mid-session save survives reload — before=8 after=8
+  ✓ reload resumes the same item — 8/listen_pick -> 8/listen_pick
+  ✓ resumed session can still finish — #/complete?node=0
+  ✓ completion is routed to the receipt
+  ✓ completed node persisted
+  ✓ session cleared in the persisted save
+
+Corrupted and legacy saves
+  ✓ corrupt v2 save boots a usable screen — {"hash":"#/home","hasHome":true,"title":"Learn · Horang","session":false}
+  ✓ tabs are clickable after corrupt save
+  ✓ v1 save in the v2 slot migrates — {"hash":"#/home","xp":777,"nodes":4,"hasV2":true}
+  ✓ migrated save is written back as v2
+  ✓ legacy horang.state.v1 key migrates — {"xp":321,"v2":true,"hash":"#/home"}
+
+Routing edges
+  ✓ deep link to a locked node shows a blocked screen — That session is still locked
+
+Finish the session above it fi
+  ✓ blocked screen can navigate back to Learn
+  ✓ unknown hash falls back to a real screen — {"hash":"#/home","title":"Learn · Horang","home":true}
+  ✓ route change removes leftover overlays
+  ✓ no page errors across the whole browser run
+
+18 passed, 0 failed
+
+────────────────────────────────────────────────────────────────
+9/10 · Full browser journey (390×844 + 1440×900)
 ────────────────────────────────────────────────────────────────
 ▸ Welcome
 ▸ Onboarding
 ▸ Lesson 1 · vocab (word cards + tasks)
     · task 1/13 say_it
-    · task 2/13 word_card
     · task 3/13 word_card
     · task 4/13 word_card
     · task 5/13 word_card
@@ -366,7 +997,7 @@ ALL LAB CHECKS PASSED
   ✓ navigated to complete — http://localhost:4199/#/complete?node=0
   ✓ lesson recorded in path
   ✓ new sentences met — 7
-  ✓ XP awarded — 253
+  ✓ XP awarded — 273
   ✓ words were practised — 9
 ▸ Lesson 2 · grammar
   ✓ grammar lesson starts — grammar
@@ -382,7 +1013,7 @@ ALL LAB CHECKS PASSED
 ▸ Checkpoint (unit 1)
   ✓ checkpoint header visible
   ✓ checkpoint badge earned — u01_intro
-  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-17T15:32:54.852Z"}
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-18T00:47:10.382Z"}
 ▸ Home · course map + daily plan
   ✓ home shows 60 sessions
   ✓ home shows 288 sentences
@@ -420,7 +1051,7 @@ CONSOLE ERRORS: none
 ALL CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-7/7 · Retention Lab (60-day A1 simulation)
+10/10 · Retention Lab (60-day A1 simulation)
 ────────────────────────────────────────────────────────────────
 start day 0
 {
@@ -428,13 +1059,13 @@ start day 0
   sessions: 60,
   badges: 12,
   met: 288,
-  strong: 96,
+  strong: 94,
   words: 149,
-  xp: 20852,
+  xp: 20580,
   level: 22,
   streak: 19,
   best: 38,
-  coins: 15861,
+  coins: 15641,
   chests: 72,
   league: 1,
   timeline: 61,
@@ -442,4 +1073,4 @@ start day 0
 }
 errors none
 
-✓ All suites passed  (content=0 core=0 audio=0 engage=0 lab=0 e2e=0 demo=0)
+✓ All suites passed  (content=0 core=0 edge=0 persist=0 audio=0 engage=0 lab=0 cta=0 edgeBrowser=0 e2e=0 demo=0)

@@ -40,13 +40,14 @@ function rewardChips(r = {}) {
 function card(item, activeId) {
   const t = TIER[item.tier];
   const progress = Math.min(item.target, bountyProgress(item));
+  const left = Math.max(0, item.target - progress);
   const pct = (progress / item.target) * 100;
   const isActive = item.accepted;
   const ready = isActive && progress >= item.target && !item.done;
   return `<article class="bo-card bo-card--${t.tone} ${isActive ? 'is-active' : ''} ${item.done ? 'is-done' : ''}">
     <div class="bo-top">
       <span class="bo-tier">${t.label}</span>
-      <span class="bo-target">${item.target} to go</span>
+      <span class="bo-target">${left ? `${left} to go` : 'Ready'}</span>
       ${item.done ? '<span class="bo-done">CLAIMED</span>' : isActive ? '<span class="bo-pin">ACCEPTED</span>' : ''}
     </div>
     <h2>${ui.esc(item.title)}</h2>

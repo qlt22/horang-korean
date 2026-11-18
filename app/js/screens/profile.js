@@ -38,6 +38,12 @@ function accuracy() {
   return a ? Math.round((state.stats.correct / a) * 100) : 0;
 }
 function examBest() {
+  // The A1 exam stores raw marks, so convert its best attempt to a percentage
+  // before comparing with older percentage-shaped fields.
+  const a1 = state.flags?.a1Exam;
+  if (a1 && typeof a1.score === 'number') {
+    return Math.round((a1.score / (a1.total || 30)) * 100);
+  }
   const candidates = [
     state.exam?.best,
     state.exam?.score,
@@ -173,6 +179,9 @@ function heatmap() {
 
 /* ---------- copy ---------- */
 function goalLabel() {
+  // Onboarding's A1 funnel adds "family"; keep Profile aligned with the label
+  // the learner actually picked instead of falling back to "Just curious".
+  if (state.profile.goal === 'family') return 'Family';
   return GOALS[state.profile.goal]?.label || 'Just curious';
 }
 
@@ -239,7 +248,13 @@ function examCard() {
             : `Best ${best}% — 80% passes. Your weak units are worth one more review.`
       }</p>
       <button class="btn btn-primary btn-block mt-4" type="button" data-go="exam">
-        ${ui.icon('play', 18)} ${best === null ? 'Take the A1 exam' : 'Retake the exam'}
+        ${ui.icon('play', 18)} ${
+          state.flags?.a1Exam?.passed
+            ? 'View your certificate'
+            : best === null
+              ? 'Take the A1 exam'
+              : 'Retake the exam'
+        }
       </button>
     </div>
   </section>`;
@@ -268,8 +283,9 @@ export default {
     const levelTease = next
       ? `${next.min - info.level} level${next.min - info.level === 1 ? '' : 's'} to ${next.label}`
       : 'Top rank reached — 달인';
-    const joinedLeague =
-      (!!state.flags.leagueJoined || state.league.joinedDay != null) && state.league.members.length > 0;
+    // A new week clears `members` but keeps the join flags. Show the league row
+    // whenever the learner has actually joined, not only when a cohort is loaded.
+    const joinedLeague = !!state.flags.leagueJoined || state.league.joinedDay != null;
     const leagueReady = state.day >= 7;
     const memoryTone = decay.total > 0 ? 'warm' : 'calm';
 
@@ -481,13 +497,14 @@ export default {
                     </span>
                     <span class="chev">${ui.icon('chevron', 18)}</span>
                   </button>`
-                : `<div class="card pf-row-card pf-row-card--locked" aria-label="League locked">
+                : `<button class="card card-press pf-row-card pf-row-card--locked" type="button" data-go="league" aria-label="League locked until Day 7">
                     <span class="pf-row-ico">${ui.icon('lock', 20)}</span>
                     <span class="pf-row-body">
                       <span class="pf-row-title">League unlocks Day 7</span>
                       <span class="pf-row-sub">You're on Day ${state.day}. Keep the streak alive.</span>
                     </span>
-                  </div>`
+                    <span class="chev">${ui.icon('chevron', 18)}</span>
+                  </button>`
           }
 
           <button class="card card-press pf-row-card" type="button" data-settings>

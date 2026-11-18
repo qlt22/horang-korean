@@ -97,7 +97,13 @@ export function lessonUnlocked(index, completed = []) {
 export function nextLessonIndex(completed = []) {
   const done = new Set(completed);
   const i = LESSONS.findIndex((l) => !done.has(l.nodeIndex) && lessonUnlocked(l.nodeIndex, completed));
-  return i < 0 ? LESSONS.length - 1 : i;
+  if (i >= 0) return i;
+  // Everything reachable is done (course finished) or a save is out of order.
+  // Never hand a locked index back to the player: return the last unlocked one.
+  for (let j = LESSONS.length - 1; j >= 0; j--) {
+    if (lessonUnlocked(j, completed)) return j;
+  }
+  return 0;
 }
 
 export function unitProgress(unitId, mastery = {}) {

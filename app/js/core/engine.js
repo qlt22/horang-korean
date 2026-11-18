@@ -243,7 +243,7 @@ export function buildSession(kind, params = {}, mastery = {}, name = '') {
     lesson = lessonAt(index);
     items = buildLessonItems(lesson, { name, mastery });
     if (index === 0) items.unshift(exerciseFor('sentence0', 'say_it', { name }));
-  } else if (kind === 'practice' && params.grammarId) {
+  } else if (kind === 'practice' && params.grammarId && GRAMMAR_BY_ID[params.grammarId]) {
     const gid = params.grammarId;
     const pool = SENTENCES.filter((s) => (s.grammarIds || []).includes(gid));
     const chosen = pool.slice(0, 4);
@@ -314,6 +314,13 @@ export function buildSession(kind, params = {}, mastery = {}, name = '') {
       if (ex) items.push(ex);
     });
     items = interleave(items);
+  }
+
+  // Last line of defence: a session must always have at least one playable item.
+  // (Normally every branch above fills it; this covers sparse/legacy content.)
+  if (!items.length) {
+    const fallback = exerciseFor('sentence0', 'say_it', { name });
+    if (fallback) items.push(fallback);
   }
 
   return {

@@ -10,6 +10,9 @@ const AT_RISK = 5;
 const TIERS = ['Bronze', 'Silver', 'Gold', 'Sapphire', 'Ruby', 'Diamond'];
 
 let tab = 'week';
+// Which `?tab=` this screen already honoured. Refresh/state updates must not
+// re-apply a stale URL value after the learner has changed tabs.
+let appliedRouteTab = null;
 
 function weekMsLeft() {
   const d = clock.now();
@@ -209,7 +212,9 @@ export default {
   hideNav: false,
 
   render(params) {
-    if (params?.tab === 'all' || params?.tab === 'week') tab = params.tab;
+    const wanted = params?.tab === 'all' || params?.tab === 'week' ? params.tab : null;
+    if (wanted && wanted !== appliedRouteTab) tab = wanted;
+    appliedRouteTab = wanted;
     const joined = !!state.flags.leagueJoined || (state.day || 0) >= 7;
     if (!joined) return lockedRender();
 
@@ -279,6 +284,11 @@ export default {
         const next = btn.dataset.lgTab;
         if (next === tab) return;
         tab = next;
+        try {
+          history.replaceState(null, '', `#/league${next === 'all' ? '?tab=all' : ''}`);
+        } catch {
+          /* history can be locked down; the tab still switches */
+        }
         audio.sfx('tap');
         router.refresh();
       })

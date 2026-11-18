@@ -25,6 +25,7 @@ export default {
     const d = expeditionData();
     const isMode = mode() === 'expedition';
     const roleName = d.roleMeta?.name || 'No role yet';
+    const chaptersOpen = d.chapters.filter((c) => d.pct >= c.at * 100).length;
     return `<section class="screen expedition">
       <div class="labhub-top">
         <button class="icon-btn" data-back="lab" type="button" aria-label="Back">${ui.icon('back', 22)}</button>
@@ -92,7 +93,7 @@ export default {
 
       <div class="ex-section-head">
         <h3>The diary</h3>
-        <span class="small muted">${d.chapter} / 4 chapters</span>
+        <span class="small muted">${chaptersOpen} / ${d.chapters.length} chapters open</span>
       </div>
       <div class="ex-chapters">
         ${d.chapters

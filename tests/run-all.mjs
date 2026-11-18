@@ -46,30 +46,40 @@ if (!up) {
   process.exit(1);
 }
 
-line('1/7 · Content validation (12 units)');
+line('1/10 · Content validation (12 units)');
 const content = await run('tools/validate-content.mjs');
 
-line('2/7 · Core logic');
+line('2/10 · Core logic');
 const core = await run('tests/core.test.mjs');
 
-line('3/7 · Audio bundle');
+line('3/10 · Core edge cases');
+const edge = await run('tests/core-edge.test.mjs');
+const persist = await run('tests/persistence.test.mjs');
+
+line('4/10 · Audio bundle');
 const audio = await run('tests/audio.test.mjs');
 
-line('4/7 · Engagement alternatives (branch)');
+line('5/10 · Engagement alternatives (branch)');
 const engage = await run('tests/engagement.test.mjs');
 
-line('5/7 · Engagement Lab UI');
+line('6/10 · Engagement Lab UI');
 const lab = await run('tests/lab.mjs', { BASE });
 
-line('6/7 · Full browser journey (390×844 + 1440×900)');
+line('7/10 · Lesson CTA + advance flow');
+const cta = await run('tests/cta-flow.mjs', { BASE });
+
+line('8/10 · Core browser edge cases');
+const edgeBrowser = await run('tests/core-edge-browser.mjs', { BASE });
+
+line('9/10 · Full browser journey (390×844 + 1440×900)');
 const e2e = await run('tests/e2e.mjs', { BASE });
 
-line('7/7 · Retention Lab (60-day A1 simulation)');
+line('10/10 · Retention Lab (60-day A1 simulation)');
 const demo = await run('tests/demo.mjs', { BASE });
 
 server.kill();
-const failed = [content, core, audio, engage, lab, e2e, demo].filter((c) => c !== 0).length;
+const failed = [content, core, edge, persist, audio, engage, lab, cta, edgeBrowser, e2e, demo].filter((c) => c !== 0).length;
 console.log(
-  `\n${failed ? `✗ ${failed} suite(s) failed` : '✓ All suites passed'}  (content=${content} core=${core} audio=${audio} engage=${engage} lab=${lab} e2e=${e2e} demo=${demo})`
+  `\n${failed ? `✗ ${failed} suite(s) failed` : '✓ All suites passed'}  (content=${content} core=${core} edge=${edge} persist=${persist} audio=${audio} engage=${engage} lab=${lab} cta=${cta} edgeBrowser=${edgeBrowser} e2e=${e2e} demo=${demo})`
 );
 process.exit(failed ? 1 : 0);

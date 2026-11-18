@@ -125,6 +125,11 @@ function counts() {
 }
 
 function examBest() {
+  // exam.js stores raw marks in flags.a1Exam; Profile/Collection speak percent.
+  const a1 = state.flags?.a1Exam;
+  if (a1 && typeof a1.score === 'number') {
+    return Math.round((a1.score / (a1.total || 30)) * 100);
+  }
   const candidates = [
     state.exam?.best,
     state.exam?.score,
@@ -427,6 +432,7 @@ function badgesTab() {
   const c = counts();
   const all = c.badges >= UNIT_COUNT;
   const best = examBest();
+  const examPassed = !!state.flags?.a1Exam?.passed;
   const cert = all
     ? `<section class="cl-cert is-open">
         <span class="cl-cert-art" aria-hidden="true">${ui.icon('trophy', 30)}</span>
@@ -437,7 +443,7 @@ function badgesTab() {
             best === null ? 'Your final exam is ready.' : `Best score ${best}%${best >= 80 ? ' — passed' : ' · 80% to pass'}`
           }</div>
         </div>
-        <button class="btn btn-primary btn-sm" type="button" data-go="exam">Take exam</button>
+        <button class="btn btn-primary btn-sm" type="button" data-go="exam">${examPassed ? 'View certificate' : 'Take exam'}</button>
       </section>`
     : `<section class="cl-cert is-locked">
         <span class="cl-cert-art" aria-hidden="true">${ui.icon('lock', 26)}</span>
@@ -547,7 +553,7 @@ function sentenceSheet(id) {
   box?.querySelector('[data-bookmark]')?.addEventListener('click', (e) => {
     const on = toggleBookmark(id);
     e.currentTarget.textContent = on ? 'Saved ★' : 'Save for later';
-    ui.toast(on ? 'Saved to Words.' : 'Removed from saved.', { icon: 'star', tone: on ? 'mint' : undefined });
+    ui.toast(on ? 'Saved for later.' : 'Removed from saved.', { icon: 'star', tone: on ? 'mint' : undefined });
   });
 }
 
@@ -775,6 +781,9 @@ export default {
         const next = tabBtn.dataset.cltab;
         if (next === tab) return;
         tab = next;
+        // Keep the "already honoured" marker in sync with the URL we are
+        // writing. Otherwise a later deep link can be ignored as stale.
+        appliedRouteTab = next === 'sentences' ? null : next;
         audio.sfx('tap');
         const body = root.querySelector('#clBody');
         if (body) body.innerHTML = tabHtml();
