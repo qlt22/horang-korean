@@ -817,7 +817,7 @@ function paint() {
   // A transition just landed on an ungraded card: keep its "Got it" disabled for a
   // beat so a double-tap can't skip the next card too.
   if (ex.ungraded && S.lastAdvanceAt) {
-    const wait = 420 - (nowMs() - S.lastAdvanceAt);
+    const wait = 220 - (nowMs() - S.lastAdvanceAt);
     if (wait > 0) {
       S.cta.disabled = true;
       later(() => {
@@ -966,7 +966,7 @@ function applyGrade(correct, ex, opts = {}) {
     // player wait through a dead window. Everything else keeps a short beat so the
     // result is readable, with the CTA disabled (never enabled-but-inert).
     if (opts.instantContinue) swapToContinue();
-    else later(() => swapToContinue(), opts.near ? 1100 : correct ? 780 : 1050);
+    else later(() => swapToContinue(), opts.near ? 800 : correct ? 450 : 650);
   }
 }
 
@@ -1189,7 +1189,7 @@ function advance() {
   if (!S.graded && !ex?.ungraded) return;
   // Ungraded cards ("Got it") re-enable the CTA on the very next card. Ignore a
   // rapid repeat click so one double-tap can never swallow two cards.
-  if (ex?.ungraded && S.lastAdvanceAt && nowMs() - S.lastAdvanceAt < 420) return;
+  if (ex?.ungraded && S.lastAdvanceAt && nowMs() - S.lastAdvanceAt < 220) return;
 
   S.advancing = true;
   S.ready = false;
