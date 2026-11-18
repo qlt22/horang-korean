@@ -165,15 +165,25 @@ function progressHTML(s) {
 }
 
 // ---------- 3b · Seoul Works ----------
+function happinessFace(happiness) {
+  const h = Math.max(0, Math.min(100, Number(happiness) || 0));
+  return h >= 80 ? '😄' : h >= 65 ? '🙂' : h >= 45 ? '😐' : h >= 30 ? '🙁' : '😟';
+}
+
 function cityHTML() {
   cityCore.ensureCity();
   const info = cityCore.info();
+  const st = info.stats || cityCore.stats();
+  const tier = st.tier || info.tier || { name: 'Village' };
+  const population = Math.round(st.population || 0);
+  const happiness = Math.round(st.happiness || 0);
   const next = cityCore.catalog().find((d) => !d.unlocked && d.lockReason);
+  const buildingWord = info.buildings.length === 1 ? 'building' : 'buildings';
   if (!info.buildings.length) {
     return `<button class="city-card city-card--empty" data-go="city" type="button">
       <span class="cc-art">🏗️</span>
       <span class="cc-body">
-        <span class="overline">Seoul Works</span>
+        <span class="overline">Seoul Works · ${esc(tier.name)}</span>
         <b>Start building your city</b>
         <span>You already have ${Math.floor(state.city?.resources?.brick || 0)} bricks from studying.</span>
       </span>
@@ -181,11 +191,13 @@ function cityHTML() {
     </button>`;
   }
   return `<button class="city-card" data-go="city" type="button">
-    <span class="cc-art">${info.eraInfo ? '🏙️' : '🏗️'}</span>
+    <span class="cc-art">${ui.icon('city', 22)}</span>
     <span class="cc-body">
-      <span class="overline">Seoul Works · Era ${info.era}</span>
-      <b>₩${(info.income || 0).toFixed(1)}/s · ${info.buildings.length} ${info.buildings.length === 1 ? 'building' : 'buildings'}</b>
-      <span>${next ? `Next: ${next.name} · ${next.lockReason}` : 'Every building unlocked — scale the skyline'}</span>
+      <span class="overline">Seoul Works · Era ${info.era} · ${esc(tier.name)}</span>
+      <b>${ui.fmt(population)} ${population === 1 ? 'resident' : 'residents'} · ₩${(info.income || 0).toFixed(1)}/s</b>
+      <span>${happinessFace(happiness)} ${happiness}% · ${info.buildings.length} ${buildingWord} · ${
+        next ? `Next: ${esc(next.name)}` : 'Every building unlocked — scale the skyline'
+      }</span>
     </span>
     <span class="cc-go">${ui.icon('chevron', 18)}</span>
   </button>`;

@@ -1,7 +1,7 @@
 [server] Horang running → http://localhost:4199
 
 ────────────────────────────────────────────────────────────────
-1/12 · Content validation (12 units)
+1/13 · Content validation (12 units)
 ────────────────────────────────────────────────────────────────
 
 u01.json
@@ -101,7 +101,7 @@ Totals: 12 units · 60 sessions · 288 sentences · 576 words · 48 grammar · 1
 ✓ 0 errors, 56 warnings
 
 ────────────────────────────────────────────────────────────────
-2/12 · Core logic
+2/13 · Core logic
 ────────────────────────────────────────────────────────────────
 
 A1 content
@@ -158,9 +158,9 @@ Session + progression
   ✓ lesson 1 starts
   ✓ lesson 1 opens with sentence #0 — say_it
   ✓ lesson completes with 3 stars — 3
-  ✓ lesson awards >= 100 XP — 168
+  ✓ lesson awards >= 100 XP — 138
   ✓ lesson met 5+ new sentences — 7
-  ✓ XP total rises — 303
+  ✓ XP total rises — 273
   ✓ lesson 2 unlocks
   ✓ lesson 4 is still locked early
   ✓ chest slot filled — 2
@@ -191,7 +191,7 @@ Economy + meta
 70 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-3/12 · Core edge cases
+3/13 · Core edge cases
 ────────────────────────────────────────────────────────────────
 
 Session builder invariants
@@ -307,7 +307,7 @@ Save/load robustness
 11 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-4/12 · Audio bundle
+4/13 · Audio bundle
 ────────────────────────────────────────────────────────────────
   ✓ expected clip count — 1352
   ✓ every clip exists
@@ -321,37 +321,151 @@ Save/load robustness
 8 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-5/12 · Seoul Works city economy
+5/13 · Seoul Works city economy
 ────────────────────────────────────────────────────────────────
 
 Catalogue
-  ✓ 12 buildings — 12
+  ✓ 31 buildings (12 original + 19 new) — 31
   ✓ every building has a cost
+  ✓ every building has a valid category
+  ✓ every building has a footprint
   ✓ hanok is affordable at the start
   ✓ upgrade cost scales — 102
+  ✓ six categories
+  ✓ CATEGORY_META mirrors categories with icons
+  ✓ catalogue has villa
+  ✓ catalogue has officetel
+  ✓ catalogue has mall
+  ✓ catalogue has factory
+  ✓ catalogue has school
+  ✓ catalogue has hospital
+  ✓ catalogue has police
+  ✓ catalogue has fire
+  ✓ catalogue has power
+  ✓ catalogue has water
+  ✓ catalogue has bus
+  ✓ catalogue has metro
+  ✓ catalogue has train
+  ✓ catalogue has ferry
+  ✓ catalogue has airport
+  ✓ catalogue has palace
+  ✓ catalogue has stadium
+  ✓ catalogue has lotte
+  ✓ catalogue has bridge
+  ✓ villa is 2×1
+  ✓ airport is 3×3
+  ✓ office is 2×1
+  ✓ bridge is 3×1
+  ✓ unknown type is 1×1
+
+Tile geometry
+  ✓ apartment covers four tiles
+  ✓ buildingAt finds the origin
+  ✓ buildingAt finds a covered tile
+  ✓ buildingAt returns null outside
+  ✓ occupiedMap covers every tile
+  ✓ overlap check sees covered tiles
+  ✓ save without w/h is 1×1
+  ✓ legacy footprint does not claim neighbours
 
 Placement
   ✓ empty city is 6x6
   ✓ places a hanok
+  ✓ stored footprint on new buildings
   ✓ cannot place on an occupied tile
   ✓ cannot place outside the grid
   ✓ cannot afford without coins
-  ✓ park is locked at one building
-  ✓ park unlocks at two buildings
-  ✓ unique tower needs 12 badges
+  ✓ cafe locked at one building
+  ✓ cafe unlocks at two buildings
+  ✓ tower needs 12 badges
+  ✓ tower also needs 20 buildings
+  ✓ villa needs 4 buildings
+  ✓ villa places as 2×1
+  ✓ villa blocks both tiles
+  ✓ villa rejects out-of-bounds x
+  ✓ apartment needs 8 buildings
+  ✓ 2×2 blocks a sub-tile
+  ✓ 2×2 leaves the rest free
+  ✓ overlap reason is tile taken
+  ✓ airport tiles are 9
+  ✓ airport covers its far corner
+  ✓ 3×3 rejects a neighbour overlap
+  ✓ unique buildings cannot repeat
+  ✓ era requirement blocks early placement
+  ✓ era requirement opens later
 
 Income and adjacency
-  ✓ hanok earns 0.4/s — 0.4
-  ✓ adjacent park boosts income by 12% — 0.44800000000000006
-  ✓ level 2 multiplies income by 1.45
+  ✓ hanok raw income is 0.4/s
+  ✓ happiness baseline is 35
+  ✓ income applies the happiness factor + tax — 0.36700000000000005
+  ✓ cityIncome matches cityStats
+  ✓ adjacent park boosts raw income by 12%
+  ✓ park services raise happiness — 65
+  ✓ park income end-to-end
+  ✓ level 2 multiplies raw income by 1.45
   ✓ era 2 adds a 1.5x global multiplier
+  ✓ 12 badges add 12% global
 
-Production
+Population, jobs, happiness
+  ✓ hanok houses 6
+  ✓ cafe has 4 jobs
+  ✓ employment is jobs/pop capped at 1
+  ✓ employment feeds happiness — 51.666666666666664
+  ✓ population scales +20% per level — 8
+  ✓ jobs scale +20% per level — 5
+  ✓ employment caps at 1
+  ✓ empty city has no NaN happiness
+  ✓ empty city is 0% employment
+
+Transit coverage
+  ✓ bus covers one of two hanoks — 0.5
+  ✓ two buses cover both residents
+  ✓ multi-tile transit covers multi-tile housing
+  ✓ metro coverage has a real radius
+
+Service coverage, utilities, pollution
+  ✓ police covers one of two — 0.5
+  ✓ two service types average to 1
+  ✓ one utility gives 0.5
+  ✓ power + water gives full utilities
+  ✓ pollution sums across buildings
+  ✓ pollution adds up
+  ✓ pollution lowers happiness
+
+Happiness floors and caps
+  ✓ happiness floors at 0
+  ✓ ideal city caps at 100 — 100
+  ✓ ideal city transit is 100%
+  ✓ ideal city services are 100%
+
+Tax, tourism, rates
+  ✓ tax is population × 1% × happiness
+  ✓ tower tourism is 6/s before happiness — 6.540000000000001
+  ✓ income includes tourism
+  ✓ cityRates exposes brick/s
+  ✓ cityRates exposes timber/s
+  ✓ stats carry the same rates
+
+Tiers
+  ✓ tier 0 is Village
+  ✓ tier 99 is still Village
+  ✓ tier 100 is Town
+  ✓ tier 400 is City
+  ✓ tier 1200 is Metropolis
+  ✓ tier 3000 is Megacity
+  ✓ tier 9999 stays Megacity
+  ✓ cityStats reports the tier
+  ✓ megacity has no next tier
+
+Production and ticks
   ✓ brickworks makes 2 bricks/min — 0.03333333333333333
   ✓ no phantom timber
   ✓ 60 seconds produces 2 bricks — 2
   ✓ tick reports elapsed seconds
-  ✓ offline production is capped at 8h
+  ✓ 24h tick is capped at 8h — 960
+  ✓ tick records the gain
+  ✓ tick banks income for the elapsed time
+  ✓ tick grows lifetimeWon
 
 Upgrades and selling
   ✓ upgrade succeeds
@@ -360,15 +474,36 @@ Upgrades and selling
   ✓ cannot upgrade past 10
   ✓ sell refunds coins
   ✓ sell removes the building
+  ✓ selling an unknown id fails
 
 Expansion
   ✓ expands the grid
   ✓ expansion gets more expensive
+  ✓ cannot expand past 9
 
 Achievements
+  ✓ 32 achievements — 32
+  ✓ new achievement pop100 exists
+  ✓ new achievement pop500 exists
+  ✓ new achievement pop2000 exists
+  ✓ new achievement metropolis exists
+  ✓ new achievement transit50 exists
+  ✓ new achievement transit90 exists
+  ✓ new achievement airport exists
+  ✓ new achievement metro exists
+  ✓ new achievement train exists
+  ✓ new achievement palace exists
+  ✓ new achievement stadium exists
+  ✓ new achievement happy90 exists
+  ✓ new achievement all_categories exists
+  ✓ new achievement twenty_buildings exists
+  ✓ new achievement thirty_buildings exists
+  ✓ old achievement first_brick stays
   ✓ first building earns first_brick
   ✓ achievements are not awarded twice
   ✓ 10 buildings earns neighborhood
+  ✓ ctx.badges unlocks a1_badges
+  ✓ missing city fields do not throw
 
 Study rewards
   ✓ new sentences give bricks — 19
@@ -376,6 +511,7 @@ Study rewards
   ✓ words give glass
   ✓ streak gives energy
   ✓ checkpoint gives steel and a blueprint
+  ✓ one lesson covers a hanok — 21
 
 Prestige
   ✓ not ready before the threshold
@@ -389,10 +525,311 @@ Rewards
   ✓ applyRewards returns bank currency
   ✓ applyRewards adds materials
 
-45 passed, 0 failed
+167 passed, 0 failed
+
+Every category
+  ✓ category res has buildings — 4
+  ✓ category res has label/ko/color
+  ✓ category meta res has an icon
+  ✓ category com has buildings — 4
+  ✓ category com has label/ko/color
+  ✓ category meta com has an icon
+  ✓ category ind has buildings — 5
+  ✓ category ind has label/ko/color
+  ✓ category meta ind has an icon
+  ✓ category svc has buildings — 7
+  ✓ category svc has label/ko/color
+  ✓ category meta svc has an icon
+  ✓ category transit has buildings — 6
+  ✓ category transit has label/ko/color
+  ✓ category meta transit has an icon
+  ✓ category landmark has buildings — 5
+  ✓ category landmark has label/ko/color
+  ✓ category meta landmark has an icon
+  ✓ category keys match meta keys
+
+Every new building matches the contract
+  ✓ villa: exists with a name — Villa
+  ✓ villa: res 2×1 — res 2×1
+  ✓ villa: economy fields — {"income":1.2,"pop":16,"jobs":0}
+  ✓ villa: cost 300
+  ✓ villa: requires — {"buildings":4}
+  ✓ villa: has a human description
+  ✓ officetel: exists with a name — Officetel
+  ✓ officetel: res 1×1 — res 1×1
+  ✓ officetel: economy fields — {"income":2.4,"pop":30,"jobs":0}
+  ✓ officetel: cost 1200
+  ✓ officetel: requires — {"buildings":8}
+  ✓ officetel: has a human description
+  ✓ mall: exists with a name — Mall
+  ✓ mall: com 2×2 — com 2×2
+  ✓ mall: economy fields — {"income":9,"pop":0,"jobs":30}
+  ✓ mall: cost 4000
+  ✓ mall: requires — {"pop":120}
+  ✓ mall: has a human description
+  ✓ factory: exists with a name — Factory
+  ✓ factory: ind 3×2 — ind 3×2
+  ✓ factory: economy fields — {"income":6,"pop":0,"jobs":40,"pollution":12}
+  ✓ factory: cost 8000
+  ✓ factory: requires — {"buildings":14}
+  ✓ factory: has a human description
+  ✓ school: exists with a name — School
+  ✓ school: svc 2×2 — svc 2×2
+  ✓ school: economy fields — {"jobs":6,"coverage":5,"service":"education"}
+  ✓ school: cost 1200
+  ✓ school: requires — {"pop":80}
+  ✓ school: has a human description
+  ✓ hospital: exists with a name — Hospital
+  ✓ hospital: svc 2×2 — svc 2×2
+  ✓ hospital: economy fields — {"jobs":10,"coverage":6,"service":"health"}
+  ✓ hospital: cost 6000
+  ✓ hospital: requires — {"pop":180}
+  ✓ hospital: has a human description
+  ✓ police: exists with a name — Police Box
+  ✓ police: svc 1×1 — svc 1×1
+  ✓ police: economy fields — {"jobs":4,"coverage":4,"service":"safety"}
+  ✓ police: cost 700
+  ✓ police: requires — {"buildings":8}
+  ✓ police: has a human description
+  ✓ fire: exists with a name — Fire Station
+  ✓ fire: svc 1×1 — svc 1×1
+  ✓ fire: economy fields — {"jobs":5,"coverage":4,"service":"safety"}
+  ✓ fire: cost 900
+  ✓ fire: requires — {"buildings":10}
+  ✓ fire: has a human description
+  ✓ power: exists with a name — Power Plant
+  ✓ power: svc 2×2 — svc 2×2
+  ✓ power: economy fields — {"jobs":8,"pollution":10,"service":"utility"}
+  ✓ power: cost 3000
+  ✓ power: requires — {"buildings":12}
+  ✓ power: has a human description
+  ✓ water: exists with a name — Water Tower
+  ✓ water: svc 1×1 — svc 1×1
+  ✓ water: economy fields — {"jobs":3,"service":"utility"}
+  ✓ water: cost 400
+  ✓ water: requires — {"buildings":6}
+  ✓ water: has a human description
+  ✓ bus: exists with a name — Bus Stop
+  ✓ bus: transit 1×1 — transit 1×1
+  ✓ bus: economy fields — {"jobs":1,"coverage":2,"service":"transit"}
+  ✓ bus: cost 150
+  ✓ bus: requires — {"buildings":3}
+  ✓ bus: has a human description
+  ✓ metro: exists with a name — Metro Station
+  ✓ metro: transit 2×1 — transit 2×1
+  ✓ metro: economy fields — {"jobs":6,"coverage":4,"service":"transit","global":0.05}
+  ✓ metro: cost 1800
+  ✓ metro: requires — {"buildings":10}
+  ✓ metro: has a human description
+  ✓ train: exists with a name — Train Station
+  ✓ train: transit 2×2 — transit 2×2
+  ✓ train: economy fields — {"jobs":10,"coverage":6,"service":"transit","global":0.08}
+  ✓ train: cost 7000
+  ✓ train: requires — {"buildings":18,"pop":150}
+  ✓ train: has a human description
+  ✓ ferry: exists with a name — Ferry Terminal
+  ✓ ferry: transit 1×1 — transit 1×1
+  ✓ ferry: economy fields — {"jobs":3,"coverage":3,"service":"transit","global":0.03}
+  ✓ ferry: cost 1200
+  ✓ ferry: requires — {"buildings":8}
+  ✓ ferry: has a human description
+  ✓ airport: exists with a name — Airport
+  ✓ airport: transit 3×3 — transit 3×3
+  ✓ airport: economy fields — {"jobs":60,"coverage":8,"service":"transit","global":0.2,"tourism":10}
+  ✓ airport: cost 40000
+  ✓ airport: requires — {"buildings":20,"pop":300}
+  ✓ airport: has a human description
+  ✓ palace: exists with a name — Gyeongbokgung
+  ✓ palace: landmark 3×2 — landmark 3×2
+  ✓ palace: economy fields — {"jobs":6,"tourism":6}
+  ✓ palace: cost 30000
+  ✓ palace: requires — {"badges":12}
+  ✓ palace: has a human description
+  ✓ stadium: exists with a name — World Cup Stadium
+  ✓ stadium: landmark 3×2 — landmark 3×2
+  ✓ stadium: economy fields — {"jobs":20,"tourism":5,"happiness":8,"coverage":5}
+  ✓ stadium: cost 20000
+  ✓ stadium: requires — {"pop":400}
+  ✓ stadium: has a human description
+  ✓ lotte: exists with a name — Lotte World Tower
+  ✓ lotte: landmark 2×2 — landmark 2×2
+  ✓ lotte: economy fields — {"income":12,"jobs":80,"global":0.1,"tourism":8}
+  ✓ lotte: cost 50000
+  ✓ lotte: requires — {"buildings":24,"pop":500}
+  ✓ lotte: has a human description
+  ✓ bridge: exists with a name — Han River Bridge
+  ✓ bridge: landmark 3×1 — landmark 3×1
+  ✓ bridge: economy fields — {"global":0.06}
+  ✓ bridge: cost 12000
+  ✓ bridge: requires — {"buildings":15}
+  ✓ bridge: has a human description
+
+Existing buildings keep their contract values
+  ✓ hanok: unchanged core stats — {"pop":6}
+  ✓ cafe: unchanged core stats — {"jobs":4}
+  ✓ park: unchanged core stats — {"coverage":2,"service":"park","happiness":4}
+  ✓ shop: unchanged core stats — {"jobs":8}
+  ✓ apartment: unchanged core stats — {"w":2,"h":2,"pop":48,"income":3}
+  ✓ office: unchanged core stats — {"w":2,"h":1,"jobs":60,"income":10}
+  ✓ brickworks: unchanged core stats — {"jobs":10,"pollution":4}
+  ✓ sawmill: unchanged core stats — {"jobs":8,"pollution":2}
+  ✓ glassworks: unchanged core stats — {"jobs":8,"pollution":3}
+  ✓ steelworks: unchanged core stats — {"w":2,"h":2,"jobs":24,"pollution":8}
+  ✓ subway: unchanged core stats — {"w":2,"h":1,"coverage":5,"global":0.1}
+  ✓ tower: unchanged core stats — {"w":2,"h":2,"global":0.25,"tourism":6}
+  ✓ subway is still unique
+  ✓ tower is still unique
+  ✓ all four old factories produce
+
+3×3 airport placement
+  ✓ fixture has 20 buildings
+  ✓ fixture has 300+ residents — 372
+  ✓ airport is placeable at 0,4
+  ✓ airport places
+  ✓ airport stores a 3×3 footprint
+  ✓ airport occupies nine tiles
+  ✓ airport owns its far corner
+  ✓ airport overlaps are rejected
+  ✓ second airport overlaps
+  ✓ airport rejects out-of-bounds x
+  ✓ airport rejects out-of-bounds y
+  ✓ airport needs 300 residents
+  ✓ airport needs 20 buildings
+
+Footprints and tile coverage
+  ✓ apartment tiles start at origin
+  ✓ apartment covers (2,2)
+  ✓ bridge covers three columns
+  ✓ villa covers two columns
+  ✓ occupiedMap tile total
+  ✓ occupied returns the owner tile
+  ✓ buildingAt on empty is null
+  ✓ old save: one tile
+  ✓ old save: neighbour is free
+  ✓ old save: can place next door
+  ✓ old save: still counts 48 residents
+  ✓ old save: sell still works
+
+Population and jobs maths
+  ✓ population sums every resident — 90
+  ✓ jobs sum every job — 64
+  ✓ employment is jobs/pop — 0.7111111111111111
+  ✓ level-2 hanok houses 7 — 65
+  ✓ level-2 apartment houses 58
+  ✓ level-2 office has 72 jobs
+  ✓ no jobs means 0 employment
+  ✓ no residents means 0 population
+
+Happiness formula
+  ✓ baseline 35
+  ✓ full employment adds 25
+  ✓ pollution-heavy city floors at 0
+  ✓ 30 residents without services stay low
+  ✓ happiness never exceeds 100
+  ✓ happiness is never negative
+
+Transit coverage maths
+  ✓ bus next door covers 100%
+  ✓ bus covers two of three — 0.6666666666666666
+  ✓ bus radius 2 still covers
+  ✓ bus radius is Chebyshev, not Manhattan
+  ✓ bus beyond radius covers nothing
+  ✓ multi-tile housing edge is distance 2
+  ✓ multi-tile housing edge beyond radius fails
+  ✓ coverage is a population fraction
+
+Service coverage maths
+  ✓ safety covers 3 of 4 residents — 0.75
+  ✓ two service types average — 0.625
+  ✓ no services means 0 coverage
+  ✓ power + water is full utilities
+  ✓ utilities lift happiness
+
+Tiers
+  ✓ tier at 0 is village
+  ✓ tier at 99 is village
+  ✓ tier at 100 is town
+  ✓ tier at 399 is town
+  ✓ tier at 400 is city
+  ✓ tier at 1199 is city
+  ✓ tier at 1200 is metropolis
+  ✓ tier at 2999 is metropolis
+  ✓ tier at 3000 is megacity
+  ✓ tier objects expose their threshold
+  ✓ resident count drives the tier
+  ✓ next tier is exposed
+  ✓ top tier has no next
+
+New achievements
+  ✓ pop100
+  ✓ pop500
+  ✓ pop2000
+  ✓ metropolis
+  ✓ transit50
+  ✓ transit90 boundary is exactly 90% — 0.9
+  ✓ transit90
+  ✓ airport achievement
+  ✓ metro achievement
+  ✓ train achievement
+  ✓ palace achievement
+  ✓ stadium achievement
+  ✓ fixture is at 100 happiness
+  ✓ happy90
+  ✓ all_categories
+  ✓ all_categories needs all six
+  ✓ twenty_buildings
+  ✓ thirty_buildings
+  ✓ old achievements still fire
+  ✓ era achievement still fires
+  ✓ badges from ctx still fire
+  ✓ award list has unique ids
+  ✓ awarded achievements are not repeated
+
+24 hour tick
+  ✓ elapsed time is capped at 8 hours — 28800
+  ✓ bricks accrue at 2/min — 960
+  ✓ timber accrues at 2/min — 960
+  ✓ coins equal income × capped seconds
+  ✓ lifetimeWon grows by the same amount
+  ✓ gain reports resource keys
+  ✓ lastTick moves to now
+  ✓ an immediate second tick is a no-op
+
+Determinism and snapshot shape
+  ✓ two calls are identical
+  ✓ stats has population
+  ✓ stats has jobs
+  ✓ stats has employment
+  ✓ stats has happiness
+  ✓ stats has transitCoverage
+  ✓ stats has serviceCoverage
+  ✓ stats has pollution
+  ✓ stats has utilities
+  ✓ stats has tax
+  ✓ stats has tourism
+  ✓ stats has buildingIncome
+  ✓ stats has income
+  ✓ stats has tier
+  ✓ stats has nextTier
+  ✓ stats has rates
+  ✓ snapshot is JSON-safe
+  ✓ stats does not mutate the city
+
+Balance and early game
+  ✓ one lesson gives a hanok worth of bricks
+  ✓ hanok keeps its 60 Won price
+  ✓ villa unlocks at four buildings
+  ✓ villa costs 300 Won
+  ✓ bus unlocks at three buildings
+  ✓ bus is cheap early
+  ✓ five early placements succeed — ||||
+  ✓ early city has residents
+  ✓ early city has positive income
+
+271 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-6/12 · Engagement alternatives (branch)
+6/13 · Engagement alternatives (branch)
 ────────────────────────────────────────────────────────────────
 
 Lab shell
@@ -447,7 +884,7 @@ Mode does not break the core
 35 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-7/12 · Engagement Lab UI
+7/13 · Engagement Lab UI
 ────────────────────────────────────────────────────────────────
   ✓ lab lists four modes
   ✓ lab explains the test method
@@ -471,7 +908,7 @@ CONSOLE ERRORS: none
 ALL LAB CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-8/12 · Lesson CTA + advance flow
+8/13 · Lesson CTA + advance flow
 ────────────────────────────────────────────────────────────────
   ✓ onboarding starts lesson 0 — 13 tasks
 
@@ -948,152 +1385,12 @@ ALL LAB CHECKS PASSED
   ✓ L4 #12/12 word_pick: advanced exactly one task — 11 → complete
   ✓ node 4 reached #/complete — #/complete?node=4
 
-PAGE ERRORS: 
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
-    at UtilityScript.evaluate (<anonymous>:372:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGE ERRORS: none
 
-50 CHECK(S) FAILED
+ALL CTA FLOW CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-9/12 · Core browser edge cases
+9/13 · Core browser edge cases
 ────────────────────────────────────────────────────────────────
 
 Lesson progression past task 4
@@ -1122,29 +1419,23 @@ Finish the session above it fi
   ✓ blocked screen can navigate back to Learn
   ✓ unknown hash falls back to a real screen — {"hash":"#/home","title":"Learn · Horang","home":true}
   ✓ route change removes leftover overlays
-  ✗ no page errors across the whole browser run — console: [router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4173/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4173/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4173/app/js/core/router.js:64:48)
-    at finish (http://localhost:4173/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4173/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4173/app/js/screens/lesson.js:1376:18) | pageerror: Cannot set properties of null (setting 'textContent') | pageerror: Cannot set properties of null (setting 'textContent') | pageerror: Cannot set properties of null (setting 'textContent')
+  ✓ no page errors across the whole browser run
 
-17 passed, 1 failed
+18 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-10/12 · Seoul Works browser UI
+10/13 · Seoul Works browser UI
 ────────────────────────────────────────────────────────────────
   ✓ city renders a 6x6 grid — 36
   ✓ city is the active tab
-  ✓ build sheet offers the first building — 1 affordable
+  ✓ build sheet offers the first building — 31 affordable
   ✓ building placed
   ✓ materials spent — 4992
   ✓ first-building achievement earned
-  ✓ park boosts the adjacent hanok
+  ✓ park boosts the adjacent hanok — 0.37 -> 0.55
   ✓ building upgrades to level 2
   ✓ grid expands
-  ✓ achievement sheet lists all 17 — 17
+  ✓ achievement sheet lists all 32 — 32
   ✓ prestige becomes available
   ✓ prestige advances the era — 2
   ✓ prestige clears buildings
@@ -1158,7 +1449,7 @@ CONSOLE ERRORS: none
 ALL CITY CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-11/12 · Full browser journey (390×844 + 1440×900)
+11/13 · Full browser journey (390×844 + 1440×900)
 ────────────────────────────────────────────────────────────────
 ▸ Welcome
 ▸ Onboarding
@@ -1175,7 +1466,6 @@ ALL CITY CHECKS PASSED
     · task 11/13 listen_pick
     · task 12/13 word_match
     · task 13/13 say_it
-  ✗ receipt shows Seoul Works materials
 ▸ Lesson 2 · grammar
     · task 1/8 grammar_card
     · task 2/8 fill_blank
@@ -1242,7 +1532,7 @@ ALL CITY CHECKS PASSED
   ✓ new sentences met — 7
   ✓ XP awarded — 283
   ✓ words were practised — 9
-  ✗ receipt shows Seoul Works materials
+  ✓ receipt shows Seoul Works materials
 ▸ Lesson 2 · grammar
   ✓ grammar lesson starts — grammar
   ✓ grammar lesson has a grammar card — grammar_card,fill_blank,type_answer,tile_build,translate_pick,say_it
@@ -1257,7 +1547,7 @@ ALL CITY CHECKS PASSED
 ▸ Checkpoint (unit 1)
   ✓ checkpoint header visible
   ✓ checkpoint badge earned — u01_intro
-  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-18T01:43:52.913Z"}
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-18T02:58:27.550Z"}
 ▸ Home · course map + daily plan
   ✓ home shows 60 sessions
   ✓ home shows 288 sentences
@@ -1290,67 +1580,531 @@ The certificate opens when all 12 unit badges are ear
 ▸ Desktop 1440×900
   ✓ desktop has no horizontal overflow
 
-CONSOLE ERRORS:
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
-    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
-    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
-    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
-    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
-    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
-    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
-PAGEERROR Cannot set properties of null (setting 'textContent')
+CONSOLE ERRORS: none
 
-1 CHECKS FAILED
+ALL CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-12/12 · Retention Lab (60-day A1 simulation)
+12/13 · Metropolis QA suite
+────────────────────────────────────────────────────────────────
+
+CATALOGUE AND DATA MODEL
+  ✓ catalogue has 31 buildings — 31
+  ✓ catalogue ids are unique
+  ✓ every category has buildings
+  ✓ category split matches the catalogue (4/4/5/7/6/5) — {"res":4,"com":4,"svc":7,"ind":5,"transit":6,"landmark":5}
+  ✓ all six categories expose label / Korean / colour
+  ✓ category meta exposes icon + emoji
+  ✓ every building has name/ko/emoji/description
+  ✓ every building has a positive Won cost
+  ✓ airport footprint is 3×3 — 3×3
+  ✓ palace footprint is 3×2 — 3×2
+  ✓ stadium footprint is 3×2 — 3×2
+  ✓ bridge footprint is 3×1 — 3×1
+  ✓ factory footprint is 3×2 — 3×2
+  ✓ apartment footprint is 2×2 — 2×2
+  ✓ steelworks footprint is 2×2 — 2×2
+  ✓ mall footprint is 2×2 — 2×2
+  ✓ school footprint is 2×2 — 2×2
+  ✓ hospital footprint is 2×2 — 2×2
+  ✓ power footprint is 2×2 — 2×2
+  ✓ train footprint is 2×2 — 2×2
+  ✓ lotte footprint is 2×2 — 2×2
+  ✓ tower footprint is 2×2 — 2×2
+  ✓ office footprint is 2×1 — 2×1
+  ✓ villa footprint is 2×1 — 2×1
+  ✓ metro footprint is 2×1 — 2×1
+  ✓ subway footprint is 2×1 — 2×1
+  ✓ hanok footprint is 1×1 — 1×1
+  ✓ sizeOf handles an unknown id safely
+  ✓ achievements total 32 — 32
+  ✓ achievement ids unique
+  ✓ new achievement pop100 exists
+  ✓ new achievement pop500 exists
+  ✓ new achievement pop2000 exists
+  ✓ new achievement metropolis exists
+  ✓ new achievement transit50 exists
+  ✓ new achievement transit90 exists
+  ✓ new achievement airport exists
+  ✓ new achievement metro exists
+  ✓ new achievement train exists
+  ✓ new achievement palace exists
+  ✓ new achievement stadium exists
+  ✓ new achievement happy90 exists
+  ✓ new achievement all_categories exists
+  ✓ new achievement twenty_buildings exists
+  ✓ new achievement thirty_buildings exists
+  ✓ tier at 0 is Village — Village/마을
+  ✓ tier at 99 is Village — Village/마을
+  ✓ tier at 100 is Town — Town/읍
+  ✓ tier at 399 is Town — Town/읍
+  ✓ tier at 400 is City — City/도시
+  ✓ tier at 1199 is City — City/도시
+  ✓ tier at 1200 is Metropolis — Metropolis/대도시
+  ✓ tier at 2999 is Metropolis — Metropolis/대도시
+  ✓ tier at 3000 is Megacity — Megacity/메가시티
+  ✓ tierFor exposes its threshold
+
+MULTI-TILE PLACEMENT RULES
+  ✓ 2×2 apartment places
+  ✓ apartment stores 2×2
+  ✓ apartment covers four tiles
+  ✓ occupiedMap counts all covered tiles — 12
+  ✓ buildingAt returns the owner on a covered tile
+  ✓ buildingAt returns null outside the footprint
+  ✓ 1×1 hanok overlaps a covered tile
+  ✓ 2×1 villa overlaps a covered tile
+  ✓ 2×2 apartment overlaps a covered tile
+  ✓ 3×3 airport overlaps a covered tile
+  ✓ overlap reason is human-readable
+  ✓ 3×3 airport rejects out-of-bounds x
+  ✓ 3×2 palace rejects out-of-bounds x
+  ✓ 3×1 bridge rejects out-of-bounds x
+  ✓ 2×2 apartment rejects out-of-bounds y
+  ✓ negative coordinates are rejected
+  ✓ 2×1 villa places next to the apartment
+  ✓ villa covers origin + far tile
+  ✓ villa far tile resolves to villa
+  ✓ occupiedMap now has fourteen tiles — 14
+  ✓ 3×3 airport places once its 20-building / 300-resident gate is met
+  ✓ airport covers nine tiles
+  ✓ airport owns its far corner
+  ✓ airport occupiedMap grows by nine entries
+  ✓ sold airport frees every tile
+  ✓ 3×1 bridge places and covers three columns
+  ✓ 3×2 palace places with 12 badges
+  ✓ palace covers six tiles
+  ✓ palace owns its far corner
+
+UNIQUE BUILDINGS
+  ✓ first subway places
+  ✓ second subway is rejected as unique — Only one per city
+  ✓ subway count is still one
+  ✓ tower places once with 20 buildings + 12 badges
+  ✓ second tower is rejected
+
+REQUIREMENTS (BUILDINGS / POP / BADGES / ERA)
+  ✓ cafe needs 2 buildings
+  ✓ sawmill needs 5 buildings
+  ✓ mall needs 120 residents
+  ✓ fixture has 144 residents
+  ✓ mall unlocks at 120 residents
+  ✓ palace needs 12 A1 badges
+  ✓ palace places with 12 badges
+  ✓ palace still rejects 11 badges
+  ✓ era-gated building is rejected in era 1
+  ✓ era-gated building is accepted in era 3
+  ✓ place charges the full material cost — brick=0
+  ✓ place reports the Won cost
+  ✓ place refuses when materials are gone — Not enough resources
+
+LEGACY SAVES (PURE API)
+  ✓ old save without w/h covers one tile
+  ✓ old save neighbour is free
+  ✓ old save still counts 48 residents
+  ✓ old save can build next door
+  ✓ old save sell works
+
+POPULATION / JOBS / HAPPINESS / INCOME
+  ✓ one hanok houses 6
+  ✓ baseline happiness is 35
+  ✓ no jobs means 0 employment
+  ✓ no transit means 0 transit coverage
+  ✓ no service means 0 service coverage
+  ✓ empty city tier is Village
+  ✓ population sums every resident — 84
+  ✓ jobs sum every job — 64
+  ✓ employment is jobs/pop — 0.7619047619047619
+  ✓ level 2 hanok houses 7
+  ✓ level 2 office has 72 jobs
+  ✓ full employment adds 25 happiness
+  ✓ bus lifts transit coverage to 100%
+  ✓ bus also adds its 1 job — 59.166666666666664
+  ✓ metro covers both hanoks
+  ✓ metro adds six jobs
+  ✓ metro lifts happiness
+  ✓ school gives full service coverage
+  ✓ school adds six jobs
+  ✓ school lifts happiness
+  ✓ park is a service + park score
+  ✓ power gives half utilities
+  ✓ power + water gives full utilities
+  ✓ water raises happiness over power alone
+  ✓ power adds its pollution
+  ✓ office city is fully employed and clean
+  ✓ industry pollution lowers happiness — 60 -> 57.6
+  ✓ industry pollution is summed
+  ✓ no residents means 0 population
+  ✓ service coverage is 0 without residents
+
+TRANSIT / SERVICE COVERAGE MATHS
+  ✓ bus covers two of three hanoks — 0.6666666666666666
+  ✓ coverage is Chebyshev (diagonal counts 1)
+  ✓ bus beyond radius covers nothing
+  ✓ multi-tile housing edge is distance 2
+  ✓ safety covers 3 of 4 residents — 0.75
+  ✓ two service types are averaged — 0.625
+  ✓ no services means 0 coverage
+
+INCOME FORMULA
+  ✓ tax = population × 0.01 × happiness
+  ✓ income = buildingIncome × happinessFactor + tax + tourism
+  ✓ cityIncome agrees with the snapshot
+  ✓ happiness factor is bounded — 1.1516666666666668
+  ✓ happiness never exceeds 100
+  ✓ happiness never goes negative
+  ✓ material rates are per second — {"brick":0.03333333333333333,"timber":0.03333333333333333,"glass":0,"steel":0,"energy":0,"blueprint":0}
+  ✓ palace produces tourism income — 6.540000000000001
+  ✓ tourism uses the same happiness factor — tourism=6.540000000000001, happiness=60
+
+TIERS FROM REAL CITY SNAPSHOTS
+  ✓ 96 residents is Village
+  ✓ 144 residents is Town
+  ✓ 432 residents is City
+  ✓ 1200 residents is Metropolis
+  ✓ 3024 residents is Megacity
+  ✓ next tier is exposed
+  ✓ top tier has no next tier
+
+TICK / OFFLINE CAP / ACHIEVEMENTS
+  ✓ 24h tick is capped at 8h — 28800
+  ✓ bricks accrue at 2/min — 960
+  ✓ timber accrues at 2/min
+  ✓ coins equal income × capped seconds
+  ✓ lifetimeWon grows with the tick
+  ✓ lastTick moves to now
+  ✓ an immediate second tick is a no-op
+  ✓ achievements are monotonic
+  ✓ pop100 fires
+  ✓ pop500 fires
+  ✓ transit90 fires at 90%
+  ✓ all_categories fires for a full mix
+  ✓ happy90 fires for a happy city
+
+PRESTIGE (PURE)
+  ✓ prestige is ready at the threshold
+  ✓ prestige advances the era
+  ✓ prestige clears buildings
+  ✓ prestige keeps achievements
+  ✓ prestige keeps badges
+  ✓ prestige resets lifetime Won
+  ✓ prestige increments the prestige count
+  ✓ prestige refuses before the threshold
+  ✓ prestige refuses at the final era — result=null
+
+BALANCE: AIRPORT / PALACE / NEXT UNLOCK
+  ✓ 20 villas give 320 residents — 320
+  ✓ airport is placeable after 20 villas
+  ✓ airport actually fits on the 9×9 grid
+  ✓ airport adds nine covered tiles
+  ✓ 20 level-1 hanoks are 120 residents
+  ✓ airport rejects 20 level-1 hanoks on population
+  ✓ 20 level-9 hanoks reach 320 residents
+  ✓ upgrading is enough to unlock the airport
+  ✓ palace is placeable with 12 badges and no other buildings
+  ✓ palace placed on an empty map
+  ✓ 24 officetels reach 720 residents
+  ✓ Lotte Tower unlocks at 24 buildings / 500 residents
+  ✓ 18 villas reach 288 residents
+  ✓ train station unlocks at 18 buildings / 150 residents
+  ✓ 9 apartments reach 432 residents
+  ✓ stadium unlocks at 400 residents
+  ✓ mall unlocks at 144 residents
+  ✓ fresh city has a next unlock — cafe
+  ✓ fresh next unlock is the cafe — cafe
+  ✓ two hanoks unlock the cafe
+  ✓ a new next unlock appears after the cafe — shop
+  ✓ next unlock requirement is finite
+
+UI: GRID, BUILD SHEET, CATEGORY FILTERS
+  ✓ 6×6 grid renders 36 tiles — 36
+  ✓ map shows 0 buildings
+  ✓ City tab is active
+  ✓ Build CTA opens the sheet
+  ✓ build sheet title names the first plot — Build · plot 1, 1
+  ✓ sheet has 7 category chips (All + 6) — 7
+  ✓ sheet lists all 31 buildings — 31
+  ✓ every build row has art
+  ✓ hanok row shows size / pop / cost — Hanok 한옥 1×1 6 pop 60 🧱 8 BUILD
+  ✓ villa row shows 2×1 / 16 pop / lock reason — Villa 빌라 2×1 16 pop 300 🧱 45 🪵 20 4 buildings LOCKED
+  ✓ airport row shows 3×3 / 60 jobs / tourism / global — Airport 공항 3×3 60 jobs cov 8 tour +10.0/s +20% city 40.0k 🔷 200 ⚙️ 400 ⚡ 60 📐 1 20 buildings LOCKED
+  ✓ airport row shows its lock reason — Airport 공항 3×3 60 jobs cov 8 tour +10.0/s +20% city 40.0k 🔷 200 ⚙️ 400 ⚡ 60 📐 1 20 buildings LOCKED
+  ✓ mall row shows its population lock — Mall 쇼핑몰 2×2 30 jobs 4,000 🔷 80 ⚙️ 120 120 residents LOCKED
+  ✓ Residential chip filters to 4 rows — 4
+  ✓ Residential chip is pressed
+  ✓ Residential group heading is correct
+  ✓ Residential filter only shows res rows
+  ✓ Transit chip filters to 6 rows — 6
+  ✓ Transit rows are all cat-transit
+  ✓ Transit chip count is 6 — 🚉 Transit 교통 6
+  ✓ All chip restores 31 rows
+  ✓ com chip filters to 4 rows — 4
+  ✓ com chip shows only com rows
+  ✓ com group heading is correct — COMMERCIAL 상업 4
+  ✓ ind chip filters to 5 rows — 5
+  ✓ ind chip shows only ind rows
+  ✓ ind group heading is correct — INDUSTRY 산업 5
+  ✓ svc chip filters to 7 rows — 7
+  ✓ svc chip shows only svc rows
+  ✓ svc group heading is correct — SERVICES 서비스 7
+  ✓ landmark chip filters to 5 rows — 5
+  ✓ landmark chip shows only landmark rows
+  ✓ landmark group heading is correct — LANDMARKS 명소 5
+  ✓ no horizontal overflow at 390 with the sheet open — {"doc":390,"client":390,"body":390}
+  ✓ no horizontal overflow at 1440 with the sheet open — {"doc":1440,"client":1440,"body":1440}
+
+UI: AFFORDABILITY AND LOCK REASONS
+  ✓ zero-wallet hanok row is disabled
+  ✓ zero-wallet hanok shows missing cost — Hanok 한옥 1×1 6 pop 60 🧱 8 Missing 60 🧱 8 NEED
+  ✓ zero-wallet status is NEED — Hanok 한옥 1×1 6 pop 60 🧱 8 Missing 60 🧱 8 NEED
+  ✓ zero-wallet sheet says 0 ready — 0 ready to build
+  ✓ all 31 rows are off — 31
+  ✓ locked cafe row shows 2 buildings — Café 카페 1×1 4 jobs 150 🧱 20 🪵 10 2 buildings LOCKED
+  ✓ locked palace row shows 12 badges — Gyeongbokgung 경복궁 3×2 6 jobs tour +6.0/s 30.0k 🔷 150 ⚙️ 300 📐 1 12 A1 badges LOCKED
+  ✓ locked row is disabled
+
+UI: EVERY CATEGORY + 1×1 / 2×1 / 3×2 PLACEMENT
+  ✓ villa (res) opens the sheet
+  ✓ villa (res) places
+  ✓ cafe (com) opens the sheet
+  ✓ cafe (com) places
+  ✓ brickworks (ind) opens the sheet
+  ✓ brickworks (ind) places
+  ✓ park (svc) opens the sheet
+  ✓ park (svc) places
+  ✓ bus (transit) opens the sheet
+  ✓ bus (transit) places
+  ✓ palace (landmark) opens the sheet
+  ✓ palace (landmark) places
+  ✓ one building exists in every category — res,com,ind,svc,transit,landmark
+  ✓ all_categories achievement fires — first_brick,a1_badges,first_factory,neighborhood,income10,palace,all_categories
+  ✓ villa stored a 2×1 footprint
+  ✓ palace stored a 3×2 footprint
+  ✓ map has res / com / ind / svc / transit / landmark cells
+  ✓ villa has a tappable covered tile
+  ✓ tapping the villa cover opens its inspector
+  ✓ villa inspector shows 2×1 — Villa · 빌라 Residential 2×1 CATEGORY Residential FOOTPRINT 2×1 2 tiles LEVEL 1 / 10 INCOME ₩1.3/s RESIDENTS 16 TAX SHARE ₩0.1/s UPGRADE TO LEVEL 2 510 🧱 77 🪵 34 Upgrade · +₩0.6/s Sell for ₩105 A low-rise row for the first real neighbourhood. Close
+  ✓ palace cover opens its inspector
+  ✓ palace inspector shows 3×2 — Gyeongbokgung · 경복궁 Landmarks 3×2 宮 Palace CATEGORY Landmarks FOOTPRINT 3×2 6 tiles LEVEL 1 / 10 JOBS 6 TOURISM ₩6.0/s UPGRADE TO LEVEL 2 51.0k 🔷 255 ⚙️ 510 📐 2 Upgrade to level 2 Sell for ₩10.5k A palace in the middle of the towers. Pure tourism. Close
+
+UI: 2×2 APARTMENT + UNIQUE SUBWAY
+  ✓ apartment sheet opens
+  ✓ apartment places
+  ✓ apartment stored 2×2 — {"id":"b_mwlj8hoq_1ea","type":"apartment","x":0,"y":0,"w":2,"h":2,"level":1}
+  ✓ apartment has three covered placeholders — 3
+  ✓ apartment cover opens the inspector
+  ✓ apartment inspector shows 2×2 and 4 tiles — Apartment · 아파트 Residential 2×2 CATEGORY Residential FOOTPRINT 2×2 4 tiles LEVEL 1 / 10 INCOME ₩3.0/s RESIDENTS 48 TAX SHARE ₩0.2/s UPGRADE TO LEVEL 2 1,530 🧱 102 ⚙️ 43 Upgrade · +₩1.4/s Sell for ₩315 The first tower that changes the skyline. Close
+  ✓ subway unlocks at 15 buildings
+  ✓ subway places once
+  ✓ subway count is one
+  ✓ subway sheet reopens
+  ✓ second subway row is disabled
+  ✓ second subway row says Already built — M Subway 지하철 2×1 8 jobs cov 5 +10% city 5,000 ⚙️ 100 ⚡ 20 Already built LOCKED
+
+UI: 3×3 AIRPORT + COVERED TAPS + PERSISTENCE
+  ✓ airport sheet opens on a free plot
+  ✓ airport row is unlocked and affordable — Airport 공항 3×3 60 jobs cov 8 tour +10.0/s +20% city 40.0k 🔷 200 ⚙️ 400 ⚡ 60 📐 1 BUILD
+  ✓ airport places
+  ✓ airport stored 3×3 — {"id":"b_mwlj8m87_2qr","type":"airport","x":0,"y":5,"w":3,"h":3,"level":1}
+  ✓ airport origin is (0,5)
+  ✓ airport has eight covered placeholders — 8
+  ✓ airport origin spans 3 columns and 3 rows — grid-column:1 / span 3;grid-row:6 / span 3
+  ✓ airport covers nine tiles in the store — 9
+  ✓ airport far corner opens the owner
+  ✓ airport inspector shows 3×3 — Airport · 공항 Transit 3×3 ✈ Airport CATEGORY Transit FOOTPRINT 3×3 9 tiles LEVEL 1 / 10 JOBS 60 COVERAGE 8 tiles TOURISM ₩10.0/s CITY BONUS +20% UPGRADE TO LEVEL 2 68.0k 🔷 340 ⚙️ 680 ⚡ 102 📐 2 Upgrade to level 2 Sell for ₩14.0k Three by three tiles of runway, sixty jobs, worldwide arrivals. Close
+  ✓ airport inspector shows Transit / 60 jobs
+  ✓ toast burst is capped at 3 — 1
+  ✓ airport row rejects the far edge (no room)
+  ✓ out-of-bounds airport row is disabled
+  ✓ out-of-bounds row explains the 3×3 requirement — Airport 공항 3×3 60 jobs cov 8 tour +10.0/s +20% city 40.0k 🔷 200 ⚙️ 400 ⚡ 60 📐 1 Needs 3×3 inside the map NO ROOM
+  ✓ reload keeps the airport
+  ✓ reload keeps population — 320
+  ✓ reload keeps era and achievements — era 2, 11 achievements
+
+UI: STATS MOVE IN THE RIGHT DIRECTION
+  ✓ four hanoks show 24 residents — 24
+  ✓ base happiness is 35 — 35
+  ✓ bus places
+  ✓ bus raises transit coverage — 0 -> 1
+  ✓ bus raises happiness — 35 -> 56.041666666666664
+  ✓ bus adds jobs
+  ✓ transit readout is 100%
+  ✓ happiness readout matches stats
+  ✓ school places
+  ✓ school raises service coverage from 0 to 1
+  ✓ school raises happiness — 35 -> 56.041666666666664
+  ✓ school adds six jobs
+  ✓ park places
+  ✓ park raises service coverage
+  ✓ park raises happiness by 10 + service — 35 -> 65
+  ✓ power places
+  ✓ power raises utilities — 0 -> 0.5
+  ✓ power adds pollution
+  ✓ power pollution lowers happiness versus a clean city — 35 -> 34.27777777777778
+  ✓ metro places
+  ✓ metro raises transit coverage to 100%
+  ✓ metro adds six jobs
+  ✓ metro raises happiness — 35 -> 57.5
+  ✓ brickworks places
+  ✓ industry pollution rises — 0 -> 4
+  ✓ industry pollution lowers happiness — 60 -> 57.6
+  ✓ pollution readout matches stats
+
+UI: TIER TRANSITIONS AT DOCUMENTED POPULATIONS
+  ✓ 90 residents show Village — 90/Village
+  ✓ Village is the UI tier — Village
+  ✓ 120 residents show Town — 120/Town
+  ✓ Town is the UI tier — Town
+  ✓ 420 residents show City — 420/City
+  ✓ City is the UI tier — City
+  ✓ 1200 residents show Metropolis — 1200/Metropolis
+  ✓ Metropolis is the UI tier — Metropolis
+  ✓ 3402 residents show Megacity — 3402/Megacity
+  ✓ Megacity is the UI tier
+
+UI: INSPECTOR — UPGRADE, SELL, MAX LEVEL
+  ✓ villa inspector opens from its cover
+  ✓ inspector shows category / footprint / level — Villa · 빌라 Residential 2×1 CATEGORY Residential FOOTPRINT 2×1 2 tiles LEVEL 1 / 10 INCOME ₩1.2/s RESIDENTS 16 TAX SHARE ₩0.1/s UPGRADE TO LEVEL 2 510 🧱 77 🪵 34 Upgrade · +₩0.5/s Sell for ₩105 A low-rise row for the first real neighbourhood. Close
+  ✓ inspector shows residents
+  ✓ upgrade button is enabled
+  ✓ upgrade button shows the gain — Upgrade · +₩0.5/s
+  ✓ villa upgrades
+  ✓ villa reaches level 2
+  ✓ level 2 villa houses 19 — 19
+  ✓ population readout updates to 19 — 19
+  ✓ villa inspector reopens
+  ✓ sell button opens the confirmation modal
+  ✓ sell modal names the building — Sell Villa?
+  ✓ sell modal mentions the 2 tiles — Sell Villa? You get 283 Won and 30% of the materials back. Its 2 tiles of land reopen. Sell Keep it
+  ✓ sell confirmation runs
+  ✓ selling removes the building
+  ✓ selling frees the map
+  ✓ max-level inspector opens
+  ✓ max-level building has no upgrade button
+  ✓ max-level copy is shown — Hanok · 한옥 Residential 1×1 CATEGORY Residential FOOTPRINT 1×1 1 tiles LEVEL 10 / 10 INCOME ₩11.3/s RESIDENTS 17 TAX SHARE ₩0.1/s Maximum level. This one is finished. Sell for ₩6,017 Your first roof. A tiled hanok on the river bank. Close
+
+UI: TRANSIT OVERLAY
+  ✓ overlay button shows 100% coverage — Transit 100%
+  ✓ overlay starts off
+  ✓ overlay toggles on
+  ✓ overlay aria-pressed is true
+  ✓ map gets the is-overlay class
+  ✓ coverage cells are marked — 12
+  ✓ non-transit tiles are dimmed — {"built":0.34,"transit":1}
+  ✓ transit tiles stay bright
+  ✓ overlay legend shows coverage while on — Transit coverage 1 hub 100% of residents
+  ✓ overlay toggles off
+  ✓ overlay aria-pressed is false
+  ✓ map loses the is-overlay class
+  ✓ no-transit overlay explains itself — No transit yet — build a bus stop for coverage
+  ✓ no-transit overlay still shows 0%
+
+UI: ACHIEVEMENTS SHEET
+  ✓ achievements button opens the sheet
+  ✓ achievements sheet title is correct — City achievements
+  ✓ achievements sheet lists all 32 — 32
+  ✓ achievements header starts at 0/32 — 0/32 EARNED
+  ✓ a known achievement is present
+  ✓ achievements button is not dead
+
+UI: PRESTIGE
+  ✓ prestige button appears when ready
+  ✓ prestige modal opens
+  ✓ prestige modal names Era 2 — Begin Era 2?
+  ✓ prestige modal promises the permanent bonus
+  ✓ prestige confirmation runs
+  ✓ prestige advances the era — 2
+  ✓ prestige clears buildings — 0
+  ✓ prestige keeps achievements — first_brick,pop100,era2
+  ✓ prestige keeps badges — 2
+  ✓ prestige resets Won — 0
+  ✓ prestige resets materials — {"brick":0,"timber":0,"glass":0,"steel":0,"energy":0,"blueprint":0}
+  ✓ city screen shows Era 2 — ERA 2 · MODERN ERA Village 마을 0 residents · 35% happy
+  ✓ prestige button disappears until ready again
+  ✓ max-era prestige does not promise Era 5
+  ✓ max-era prestige cannot be triggered
+
+UI: LEGACY SAVE MIGRATION
+  ✓ legacy buildings receive catalogue footprints — [{"type":"apartment","x":0,"y":0,"w":1,"h":1},{"type":"apartment","x":1,"y":0,"w":1,"h":1},{"type":"office","x":3,"y":3,"w":1,"h":1},{"type":"office","x":4,"y":3,"w":1,"h":1}]
+  ✓ legacy migration does not create overlapping footprints — covered tiles=4, unique tiles=4
+  ✓ legacy map has one cell per unique tile — built+cover=4, unique=4
+
+UI: OFFLINE REPORT (2 HOURS)
+  ✓ offline report appears — While you were away
+  ✓ offline report shows 2h — While you were away 2h 0m of production +0 🧱 +240 Collect
+  ✓ offline report shows coins gained
+  ✓ offline report shows bricks gained
+  ✓ offline report has Collect
+  ✓ Collect closes the report
+  ✓ report is consumed once
+  ✓ report does not reappear after reload
+
+INTEGRATION: HOME / PROFILE / COMPLETE / NAV
+  ✓ integration city has 144 residents — 144
+  ✓ integration city is Town
+  ✓ integration city has 8 buildings
+  ✓ panel income matches the snapshot — 25.4 vs 25.4
+  ✓ panel building income matches — 12.8 vs 12.8
+  ✓ panel tax breakdown matches — 1.2 vs 1.2
+  ✓ panel tourism breakdown matches — 7.7 vs 7.7
+  ✓ panel jobs / transit / pollution match
+  ✓ home city card exists
+  ✓ home card shows era + tier — seoul works · era 1 · town 144 residents · ₩25.4/s 😄 82% · 8 buildings · next: steelworks
+  ✓ home card shows population — seoul works · era 1 · town 144 residents · ₩25.4/s 😄 82% · 8 buildings · next: steelworks
+  ✓ home card shows income to one decimal — ₩25.4/s / seoul works · era 1 · town 144 residents · ₩25.4/s 😄 82% · 8 buildings · next: steelworks
+  ✓ home card shows happiness — seoul works · era 1 · town 144 residents · ₩25.4/s 😄 82% · 8 buildings · next: steelworks
+  ✓ home card shows building count — seoul works · era 1 · town 144 residents · ₩25.4/s 😄 82% · 8 buildings · next: steelworks
+  ✓ home card links to the city
+  ✓ home card navigates to #/city
+  ✓ City tab is active after the home card
+  ✓ profile has one Seoul Works row
+  ✓ profile row shows era + tier — seoul works era 1 · town · 144 residents · ₩25.4/s
+  ✓ profile row shows population — seoul works era 1 · town · 144 residents · ₩25.4/s
+  ✓ profile row shows income — ₩25.4/s / seoul works era 1 · town · 144 residents · ₩25.4/s
+  ✓ profile row links to the city
+  ✓ profile row navigates to #/city
+  ✓ complete screen has a materials strip — 3
+  ✓ materials strip shows brick +12 — Materials for Seoul Works from this run 🧱 +12 Bricks 🪵 +4 Timber 🔷 +2 Glass 🏙️ Town · 144 residents · 🙂 82% happy Open Seoul Works
+  ✓ materials strip shows timber +4
+  ✓ complete screen shows the city line — Materials for Seoul Works from this run 🧱 +12 Bricks 🪵 +4 Timber 🔷 +2 Glass 🏙️ Town · 144 residents · 🙂 82% happy Open Seoul Works
+  ✓ complete screen links to Seoul Works
+  ✓ reload keeps the city buildings
+  ✓ reload keeps population / era
+  ✓ reload keeps achievements
+
+QUALITY: OVERFLOW, DEAD BUTTONS, TOASTS, REDUCED MOTION, ERRORS
+  ✓ 9×9 city has no overflow at 390 — {"doc":390,"client":390,"body":390}
+  ✓ 9×9 city has no overflow at 1440 — {"doc":1440,"client":1440,"body":1440}
+  ✓ every enabled city button has a handler — []
+  ✓ Build CTA is not dead
+  ✓ Build CTA opened the sheet
+  ✓ Achievements button is not dead
+  ✓ Achievements opened the sheet
+  ✓ Next unlock card is not dead
+  ✓ Next unlock card opened a sheet
+  ✓ Expand is not dead
+  ✓ Expand grew the grid — 6 -> 7
+  ✓ Market link is not dead
+  ✓ Market link goes to the shop — #/shop
+  ✓ toasts are capped at three — 3
+  ✓ toast stack stays inside the viewport — {"left":15.6015625,"right":374.3984375,"width":358.796875,"vw":390}
+  ✓ reduced motion class is applied
+  ✓ reduced motion suppresses confetti — 0
+  ✓ reduced motion shortens CSS transitions — 0.001s
+  ✓ reduced motion still places a building
+  ✓ reduced motion placement does not add confetti
+  ✓ home has no overflow at 390 — {"doc":390,"client":390,"body":390}
+  ✓ home has no overflow at 1440 — {"doc":1440,"client":1440,"body":1440}
+  ✓ profile has no overflow at 390 — {"doc":390,"client":390,"body":390}
+  ✓ profile has no overflow at 1440 — {"doc":1440,"client":1440,"body":1440}
+  ✓ complete has no overflow at 390 — {"doc":390,"client":390,"body":390}
+  ✓ complete has no overflow at 1440 — {"doc":1440,"client":1440,"body":1440}
+  ✓ no unexpected console/page errors
+
+459 passed, 0 failed, 0 warnings
+
+────────────────────────────────────────────────────────────────
+13/13 · Retention Lab (60-day A1 simulation)
 ────────────────────────────────────────────────────────────────
 start day 0
 {
@@ -1358,13 +2112,13 @@ start day 0
   sessions: 60,
   badges: 12,
   met: 288,
-  strong: 95,
+  strong: 88,
   words: 149,
-  xp: 20406,
+  xp: 20324,
   level: 22,
   streak: 19,
   best: 38,
-  coins: 15616,
+  coins: 15397,
   chests: 72,
   league: 1,
   timeline: 61,
@@ -1372,4 +2126,4 @@ start day 0
 }
 errors none
 
-✗ 3 suite(s) failed  (content=0 core=0 edge=0 persist=0 audio=0 city=0 engage=0 lab=0 cta=1 edgeBrowser=1 cityUi=0 e2e=1 demo=0)
+✓ All suites passed  (content=0 core=0 edge=0 persist=0 audio=0 city=0+0 engage=0 lab=0 cta=0 edgeBrowser=0 cityUi=0 metropolis=0 e2e=0 demo=0)

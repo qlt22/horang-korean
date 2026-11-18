@@ -11,6 +11,7 @@ import {
   GOALS,
 } from '../core/store.js';
 import { UNITS, LESSONS, SENTENCES, WORDS, GRAMMAR } from '../core/course.js';
+import * as cityCore from '../core/city.js';
 import * as ui from '../core/ui.js';
 import * as clock from '../core/clock.js';
 import router from '../core/router.js';
@@ -288,6 +289,19 @@ export default {
     const joinedLeague = !!state.flags.leagueJoined || state.league.joinedDay != null;
     const leagueReady = state.day >= 7;
     const memoryTone = decay.total > 0 ? 'warm' : 'calm';
+    let seoul = null;
+    try {
+      cityCore.ensureCity();
+      const st = cityCore.stats();
+      seoul = {
+        era: state.city?.era || 1,
+        tier: st.tier?.name || 'Village',
+        population: Math.round(st.population || 0),
+        income: st.income || 0,
+      };
+    } catch {
+      seoul = { era: state.city?.era || 1, tier: 'Village', population: 0, income: 0 };
+    }
 
     return `
     <section class="screen screen-pad-nav profile">
@@ -468,6 +482,21 @@ export default {
             </span>
             <span class="chev">${ui.icon('chevron', 18)}</span>
           </button>
+
+          ${
+            seoul
+              ? `<button class="card card-press pf-row-card" type="button" data-go="city">
+                  <span class="pf-row-ico pf-row-ico--amber">${ui.icon('city', 21)}</span>
+                  <span class="pf-row-body">
+                    <span class="pf-row-title">Seoul Works</span>
+                    <span class="pf-row-sub">Era ${seoul.era} · ${ui.esc(seoul.tier)} · ${ui.fmt(seoul.population)} ${
+                      seoul.population === 1 ? 'resident' : 'residents'
+                    } · ₩${(seoul.income || 0).toFixed(1)}/s</span>
+                  </span>
+                  <span class="chev">${ui.icon('chevron', 18)}</span>
+                </button>`
+              : ''
+          }
 
           <button class="card card-press pf-row-card" type="button" data-go="grammar">
             <span class="pf-row-ico pf-row-ico--indigo">${ui.icon('quests', 21)}</span>

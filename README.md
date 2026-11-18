@@ -2,9 +2,9 @@
 
 **From Hangul to A1, one sentence at a time.** A complete CEFR A1 Korean course built as a game: 60 sessions, 288 sentences, 576 words, 48 grammar patterns, 13 task types, neural Korean audio, and a retention engine that uses real memory decay as the reason to come back.
 
-| The hook | The lesson | The proof |
+| The hook | The lesson | The city |
 |---|---|---|
-| ![Welcome](docs/screenshots/a1-00-welcome.png) | ![Lesson](docs/screenshots/a1-02-word-card.png) | ![Retention Lab](docs/screenshots/a1-demo-day60.png) |
+| ![Welcome](docs/screenshots/a1-00-welcome.png) | ![Lesson](docs/screenshots/a1-02-word-card.png) | ![Seoul Works](docs/screenshots/metropolis-showcase-mobile.png) |
 
 ---
 
@@ -53,6 +53,22 @@ Then open the **Retention Lab** (`Me → Retention Lab`, or `#/demo`) and press 
 Lessons differ by kind: vocabulary opens with word cards, grammar starts with a pattern card and drills it, listening is audio-first with dictation and dialogue, reading is passage-first, and checkpoints are 12 mixed items with no hints.
 
 ---
+
+## Seoul Works — the city you build by studying
+
+A Cities-Skylines-flavoured builder on the **City** tab. Study is the only source of materials:
+
+| You do | You get |
+|---|---|
+| Finish a lesson | Bricks (+3 for a perfect run) |
+| Review sentences | Timber |
+| Practise words | Glass |
+| Pass a checkpoint | Steel + a blueprint |
+| Hit the daily goal | Energy |
+
+A **31-building** catalogue spans homes, offices, industry, schools, hospitals, police/fire, power and water, buses, metro, rail, ferry and an **airport**, plus landmarks (Gyeongbokgung, World Cup Stadium, Lotte Tower, N Seoul Tower, Han River Bridge). You place them on a grid — including 3×3 airports — upgrade through 10 levels, and they generate **Won per second** — the same Won used in the shop. Factories produce materials per minute, parks boost neighbours, and transit (bus → metro → train → airport) raises coverage and happiness. The city earns while you are away (8 h cap), and **prestige** starts a new era with a permanent +50 % income.
+
+See `docs/CITY-SPEC.md` for the full catalogue and formulas.
 
 ## Engagement Lab (branch `gamification-lab`)
 
@@ -111,6 +127,8 @@ npm test           # starts its own server, runs core + browser journey + 60-day
 - `tests/core.test.mjs` — **70 assertions**: content shape, task generation for all 13 types, grading, SRS, unlock rules, checkpoints, word mastery, economy.
 - `tests/e2e.mjs` — real Chromium: onboarding → four lesson kinds → checkpoint → home → collection → word trainer → grammar → exam gate → profile → reload → desktop 1440×900, with overflow checks.
 - `tests/demo.mjs` — runs the 60-day A1 simulation and asserts the end state.
+- `tests/city.test.mjs` + `tests/city-sim.test.mjs` — **438 assertions** on the city economy, multi-tile footprints, population/happiness/transit, tiers, achievements and prestige.
+- `tests/metropolis.spec.mjs` — **459 browser/environment checks** on the metropolis build, migration, overlay, gating and integration.
 - `tools/validate-content.mjs` — 0 errors across 12 units (schema, refs, Hangul, particles, duplicates, batchim).
 
 Last full run: `docs/verification/test-run.txt`.

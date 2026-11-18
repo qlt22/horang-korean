@@ -208,6 +208,8 @@ export function toast(msg, opts = {}) {
   const el = document.createElement('div');
   el.className = 'toast' + (opts.tone ? ` toast--${opts.tone}` : '');
   el.innerHTML = `${opts.icon ? icon(opts.icon, 18) : ''}<span>${esc(msg)}</span>`;
+  // Never let a burst of achievements bury the screen.
+  while (toastWrap.children.length >= 3) toastWrap.firstElementChild?.remove();
   toastWrap.appendChild(el);
   setTimeout(() => {
     el.style.transition = 'opacity 180ms, transform 180ms';

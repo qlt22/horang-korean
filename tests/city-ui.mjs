@@ -54,12 +54,13 @@ ok('first-building achievement earned', afterBuild.ach.includes('first_brick'));
 await p.screenshot({ path: `${OUT}/city-ui-02-built.png` });
 
 // park adjacency
+const incBefore = await p.evaluate(async () => (await import('/app/js/core/city.js')).stats().income);
 await p.locator('[data-tile]').nth(1).click();
 await p.waitForTimeout(400);
 await p.locator('[data-build="park"]').click();
 await p.waitForTimeout(700);
-const inc = await p.evaluate(() => window.horang.cityInfo ? window.horang.cityInfo() : null);
-ok('park boosts the adjacent hanok', true);
+const incAfter = await p.evaluate(async () => (await import('/app/js/core/city.js')).stats().income);
+ok('park boosts the adjacent hanok', incAfter > incBefore, `${incBefore.toFixed(2)} -> ${incAfter.toFixed(2)}`);
 
 // upgrade
 await p.locator('[data-tile]').first().click();
@@ -78,7 +79,7 @@ ok('grid expands', (await p.evaluate(() => window.horang.state.city.grid)) === b
 // achievements
 await p.locator('[data-ach]').click();
 await p.waitForTimeout(500);
-ok('achievement sheet lists all 17', (await p.locator('.ach').count()) === 17, `${await p.locator('.ach').count()}`);
+ok('achievement sheet lists all 32', (await p.locator('.ach').count()) === 32, `${await p.locator('.ach').count()}`);
 await p.screenshot({ path: `${OUT}/city-ui-04-achievements.png` });
 await p.keyboard.press('Escape');
 await p.waitForTimeout(300);

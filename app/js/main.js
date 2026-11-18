@@ -83,7 +83,7 @@ function renderSidePanels() {
       </div>
       <div class="panel-card">
         <h3>Show a reviewer</h3>
-        <button class="btn btn-secondary btn-block btn-sm" data-go="demo" type="button">${ui.icon('chart', 18)} 30-day retention lab</button>
+        <button class="btn btn-secondary btn-block btn-sm" data-go="demo" type="button">${ui.icon('chart', 18)} 60-day A1 lab</button>
         <p class="panel-note">Time-travels the real app state through Day 0 → 7 → 14 → 30, including a lapse and comeback.</p>
       </div>
     </div>`;
@@ -92,6 +92,7 @@ function renderSidePanels() {
     ? `<span style="color:var(--amber-700);font-weight:700">${decay.total} fading</span>`
     : `<span style="color:var(--mint-700);font-weight:700">nothing fading</span>`;
   const courseDone = state.path.currentNode >= NODES.length;
+  const cityInfo = cityCore.info();
   const nextNode = NODES[Math.min(state.path.currentNode, NODES.length - 1)];
   const unit = UNIT_META.find((u) => u.id === nextNode?.unitId);
   right.innerHTML = `
@@ -105,6 +106,7 @@ function renderSidePanels() {
         <div class="panel-stat"><span>Memory</span><b>${fadingLine}</b></div>
         <div class="panel-stat"><span>Coins / gems</span><b>${ui.fmt(state.coins)} / ${state.gems}</b></div>
         <div class="panel-stat"><span>Day</span><b>Day ${state.day}</b></div>
+        <div class="panel-stat"><span>City</span><b>${cityInfo.buildings.length} bldg · ₩${cityInfo.income.toFixed(1)}/s</b></div>
       </div>
       <div class="panel-card">
         <h3>Today</h3>

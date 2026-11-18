@@ -2,6 +2,7 @@
 // Everything here is read from the real summary + course data: no invented counts.
 import { state, save, openChest, weekDaysActive, stampCount, logEvent } from '../core/store.js';
 import { MATERIALS, MATERIAL_KEYS } from '../core/city-data.js';
+import * as cityCore from '../core/city.js';
 import {
   META,
   LESSONS,
@@ -135,6 +136,22 @@ function tickTime(el, seconds) {
   }
   el.textContent = '0:00';
   requestAnimationFrame(frame);
+}
+
+function cityLine() {
+  try {
+    cityCore.ensureCity();
+    const st = cityCore.stats();
+    if (!st || !st.population) return '';
+    const tier = st.tier?.name || 'Village';
+    const pop = Math.round(st.population);
+    const happiness = Math.round(st.happiness || 0);
+    return `<p class="small muted mt-2">🏙️ ${ui.esc(tier)} · ${ui.fmt(pop)} ${
+      pop === 1 ? 'resident' : 'residents'
+    } · ${happiness >= 65 ? '🙂' : happiness >= 45 ? '😐' : '🙁'} ${happiness}% happy</p>`;
+  } catch {
+    return '';
+  }
 }
 
 function checkpointPanel(sum, nextIndex) {
@@ -289,6 +306,7 @@ export default {
                   )
                   .join('')}
               </div>
+              ${cityLine()}
               <button class="btn btn-secondary btn-sm btn-block mt-2" data-go="city" type="button">Open Seoul Works ${ui.icon(
                 'arrow',
                 16
