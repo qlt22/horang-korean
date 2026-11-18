@@ -2,7 +2,7 @@
 import { NODES, UNIT_META, buildSession, sentence0, starsFor, nodeUnlocked, nextLessonIndex } from './engine.js';
 import { lessonAt, UNIT_BY_ID, lessonsOf, unitProgress as courseUnitProgress } from './course.js';
 import { blankMastery, grade, dueStatus, decayCheck, nextDueLabel } from './srs.js';
-import { SENTENCES, BY_ID } from './quiz.js';
+import { SENTENCES, BY_ID, TYPES as TASK_TYPES } from './quiz.js';
 import { WORD_BY_ID, wordsOf } from './course.js';
 import * as clock from './clock.js';
 import { nowMs, today, DAY } from './clock.js';
@@ -113,6 +113,8 @@ function freshCounters() {
     reviews: 0,
     words: 0,
     reading: 0,
+    typed: 0,
+    perfectLesson: 0,
   };
 }
 
@@ -195,13 +197,219 @@ export function freshState() {
   };
 }
 
+// ---------- load / repair ----------
+// A save can be partial (old build), hand-edited or corrupted. Every nested
+// container is merged over the fresh shape so screens never read undefined.date,
+// undefined.completedNodes, etc. Unknown keys survive (demo backups, engagement).
+function isPlainObject(v) {
+  return !!v && typeof v === 'object' && !Array.isArray(v);
+}
+
+function mergeKnown(base, extra) {
+  if (extra === undefined || extra === null) return base;
+  if (Array.isArray(base)) return Array.isArray(extra) ? extra : base;
+  if (isPlainObject(base)) {
+    if (!isPlainObject(extra)) return base;
+    const out = { ...base };
+    Object.keys(extra).forEach((k) => {
+      const has = Object.prototype.hasOwnProperty.call(base, k);
+      out[k] = !has || base[k] === undefined ? extra[k] : mergeKnown(base[k], extra[k]);
+    });
+    return out;
+  }
+  if (base === null) return extra;
+  if (typeof base !== typeof extra) return base;
+  return extra;
+}
+
+function num(v, fallback = 0) {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function intIn(v, min, max, fallback = min) {
+  const n = Math.round(num(v, fallback));
+  return Math.max(min, Math.min(max, n));
+}
+
+function sanitizeMasteryMap(raw, kind = 'sentence') {
+  const out = {};
+  if (!isPlainObject(raw)) return out;
+  Object.keys(raw).forEach((id) => {
+    const m = raw[id];
+    if (!isPlainObject(m)) return;
+    const base =
+      kind === 'sentence'
+        ? blankMastery(id, 0)
+        : { tier: 0, seen: 0, correct: 0, wrong: 0, dueAt: 0, lastSeenAt: 0 };
+    const merged = mergeKnown(base, m);
+    merged.tier = intIn(merged.tier, 0, 5, 0);
+    ['dueAt', 'lastSeenAt', 'seen', 'correct', 'wrong', 'exposures', 'firstDay', 'advancedAt'].forEach((k) => {
+      if (merged[k] !== undefined) merged[k] = num(merged[k], 0);
+    });
+    merged.isStamp = !!merged.isStamp;
+    out[id] = merged;
+  });
+  return out;
+}
+
+function isRenderableItem(it) {
+  if (!isPlainObject(it) || !TASK_TYPES.includes(it.type)) return false;
+  if (typeof it.prompt !== 'string' || !it.prompt) return false;
+  if (it.ungraded || it.selfAssess) return true;
+  if (it.type === 'word_match') return Array.isArray(it.pairs) && it.pairs.length >= 3;
+  if (it.type === 'tile_build') return Array.isArray(it.answer) && it.answer.length >= 1 && Array.isArray(it.tiles);
+  if (it.type === 'fill_blank') return !!it.blank?.answer && Array.isArray(it.options) && it.options.some((o) => o.label === it.blank.answer);
+  if (it.type === 'type_answer' || it.type === 'dictation') return typeof it.answerText === 'string' && !!it.answerText;
+  return Array.isArray(it.options) && it.options.length >= 2 && it.options.some((o) => o.correct);
+}
+
+function sanitizeSession(raw) {
+  if (!isPlainObject(raw)) return null;
+  if (!['node', 'review', 'daily', 'practice'].includes(raw.kind)) return null;
+  if (!Array.isArray(raw.items)) return null;
+  const items = raw.items.filter(isRenderableItem);
+  if (!items.length) return null;
+  const last = items.length - 1;
+  return {
+    ...raw,
+    items,
+    index: intIn(raw.index, 0, last, 0),
+    nodeIndex: raw.kind === 'node' ? intIn(raw.nodeIndex, 0, NODES.length - 1, 0) : null,
+    correct: num(raw.correct, 0),
+    wrong: num(raw.wrong, 0),
+    answers: num(raw.answers, 0),
+    xp: num(raw.xp, 0),
+    combo: num(raw.combo, 0),
+    bestCombo: num(raw.bestCombo, 0),
+    crits: num(raw.crits, 0),
+    startedAt: num(raw.startedAt, nowMs()),
+    mistakes: Array.isArray(raw.mistakes) ? raw.mistakes : [],
+    met: Array.isArray(raw.met) ? raw.met : [],
+    strong: Array.isArray(raw.strong) ? raw.strong : [],
+  };
+}
+
+function sanitizeSummary(raw) {
+  if (!isPlainObject(raw)) return null;
+  const out = { ...raw };
+  ['met', 'strong', 'stamps', 'newStamps'].forEach((k) => {
+    if (!Array.isArray(out[k])) out[k] = [];
+  });
+  return out;
+}
+
+function normalizeState(raw) {
+  const base = freshState();
+  const merged = mergeKnown(base, isPlainObject(raw) ? raw : {});
+  merged.version = 2;
+
+  // Profile / settings / flags are merged above; make the numbers and identity safe.
+  merged.profile.name = typeof merged.profile.name === 'string' ? merged.profile.name : '';
+  merged.profile.dailyGoalXp = Math.max(30, num(merged.profile.dailyGoalXp, 120));
+  merged.coins = Math.max(0, num(merged.coins, 0));
+  merged.gems = Math.max(0, num(merged.gems, 0));
+  merged.xpTotal = Math.max(0, num(merged.xpTotal, 0));
+  merged.level = Math.max(1, num(merged.level, 1));
+  merged.focus = intIn(merged.focus, 0, 5, 5);
+  merged.day = Math.max(0, num(merged.day, 0));
+  merged.events = Array.isArray(merged.events) ? merged.events.slice(-300) : [];
+  merged.timeline = Array.isArray(merged.timeline) ? merged.timeline : [];
+
+  merged.mastery = sanitizeMasteryMap(merged.mastery, 'sentence');
+  merged.wordMastery = sanitizeMasteryMap(merged.wordMastery, 'word');
+  merged.checkpoints = isPlainObject(merged.checkpoints) ? merged.checkpoints : {};
+  merged.badges = Array.isArray(merged.badges) ? merged.badges.filter((b) => typeof b === 'string') : [];
+
+  merged.path.completedNodes = Array.isArray(merged.path.completedNodes)
+    ? [...new Set(merged.path.completedNodes.filter((n) => Number.isInteger(n) && n >= 0 && n < NODES.length))]
+    : [];
+  merged.path.currentNode = intIn(merged.path.currentNode, 0, NODES.length, 0);
+  // Older/partial saves may carry completed lessons but no pointer (or a stale
+  // one). Never show the course as behind what has actually been finished.
+  if (merged.path.completedNodes.length) {
+    const afterLast = Math.max(...merged.path.completedNodes) + 1;
+    merged.path.currentNode = intIn(Math.max(merged.path.currentNode, afterLast), 0, NODES.length, 0);
+  }
+
+  merged.streak.current = Math.max(0, num(merged.streak.current, 0));
+  merged.streak.best = Math.max(0, num(merged.streak.best, 0));
+  merged.streak.freezes = Math.max(0, num(merged.streak.freezes, 0));
+
+  merged.chest.slots = intIn(merged.chest.slots, 0, 3, 0);
+  merged.chest.openedToday = Math.max(0, num(merged.chest.openedToday, 0));
+  merged.chest.pityRare = Math.max(0, num(merged.chest.pityRare, 0));
+  merged.chest.pityEpic = Math.max(0, num(merged.chest.pityEpic, 0));
+  merged.chest.totalOpened = Math.max(0, num(merged.chest.totalOpened, 0));
+
+  merged.quests.items = Array.isArray(merged.quests.items) ? merged.quests.items.filter((q) => isPlainObject(q)) : [];
+
+  merged.stats.xpByDay = isPlainObject(merged.stats.xpByDay) ? merged.stats.xpByDay : {};
+  merged.stats.stampsByDay = isPlainObject(merged.stats.stampsByDay) ? merged.stats.stampsByDay : {};
+  ['answers', 'correct', 'minutes', 'bestCombo', 'sessions', 'nodesDone', 'daysActive'].forEach((k) => {
+    merged.stats[k] = Math.max(0, num(merged.stats[k], 0));
+  });
+
+  if (!Array.isArray(merged.inventory)) merged.inventory = freshState().inventory;
+  else merged.inventory = merged.inventory.filter((x) => isPlainObject(x) && typeof x.id === 'string');
+  merged.league.members = Array.isArray(merged.league.members)
+    ? merged.league.members.filter((m) => isPlainObject(m) && typeof m.name === 'string')
+    : [];
+
+  merged.settings.voice = typeof merged.settings.voice === 'string' ? merged.settings.voice : 'sunhi';
+  merged.settings.romanization = typeof merged.settings.romanization === 'string' ? merged.settings.romanization : 'auto';
+
+  merged.session = sanitizeSession(merged.session);
+  merged.lastSummary = sanitizeSummary(merged.lastSummary);
+
+  // Engagement lives in engagement.js but a corrupted value would make its
+  // ensureEngagement() throw on boot. Drop anything that isn't the right shape.
+  if (merged.engagement !== undefined) {
+    if (!isPlainObject(merged.engagement)) {
+      delete merged.engagement;
+    } else {
+      ['constellation', 'bounties', 'expedition'].forEach((k) => {
+        if (merged.engagement[k] !== undefined && !isPlainObject(merged.engagement[k])) delete merged.engagement[k];
+      });
+      if (merged.engagement.mode !== undefined && typeof merged.engagement.mode !== 'string') delete merged.engagement.mode;
+    }
+  }
+
+  return merged;
+}
+
+const LEGACY_KEYS = ['horang.state', 'horang.state.v1'];
+
 function load() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    let raw = localStorage.getItem(STORAGE_KEY);
+    let legacy = false;
+    if (!raw) {
+      for (const key of LEGACY_KEYS) {
+        raw = localStorage.getItem(key);
+        if (raw) {
+          legacy = true;
+          break;
+        }
+      }
+    }
     if (!raw) return freshState();
     const parsed = JSON.parse(raw);
-    if (!parsed || parsed.version !== 2) return freshState();
-    return { ...freshState(), ...parsed, flags: { ...freshState().flags, ...parsed.flags }, settings: { ...freshState().settings, ...parsed.settings } };
+    if (!isPlainObject(parsed)) return freshState();
+    // Unknown newer builds may use fields this version cannot understand; don't
+    // silently downgrade them into a broken v2 state.
+    if (typeof parsed.version === 'number' && parsed.version > 2) return freshState();
+    const migrated = { ...parsed, version: 2 };
+    if (parsed.version !== 2) migrated._migratedFrom = parsed.version ?? 1;
+    const next = normalizeState(migrated);
+    if (legacy) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        /* migration can retry next boot */
+      }
+    }
+    return next;
   } catch {
     return freshState();
   }
@@ -236,7 +444,13 @@ export function saveNow() {
   } catch {
     /* ignore */
   }
-  subscribers.forEach((fn) => fn(state));
+  subscribers.forEach((fn) => {
+    try {
+      fn(state);
+    } catch {
+      /* a subscriber must never break persistence or progression */
+    }
+  });
 }
 export function subscribe(fn) {
   subscribers.add(fn);
@@ -244,8 +458,9 @@ export function subscribe(fn) {
 }
 
 export function replaceState(next) {
+  const normalized = normalizeState(next);
   Object.keys(state).forEach((k) => delete state[k]);
-  Object.assign(state, { ...freshState(), ...next });
+  Object.assign(state, normalized);
   saveNow();
 }
 export function resetState(keepSettings = true) {
@@ -255,6 +470,7 @@ export function resetState(keepSettings = true) {
 }
 
 export function logEvent(name, props = {}) {
+  if (!Array.isArray(state.events)) state.events = [];
   state.events.push({ t: clock.now().toISOString(), name, ...props });
   if (state.events.length > 300) state.events = state.events.slice(-300);
   try {
@@ -268,6 +484,7 @@ export function logEvent(name, props = {}) {
 
 // ---------- mastery ----------
 export function ensureMastery(id) {
+  if (!isPlainObject(state.mastery)) state.mastery = {};
   if (!state.mastery[id]) {
     state.mastery[id] = blankMastery(id, state.day);
   }
@@ -281,6 +498,7 @@ export function masteryOf(id) {
   return state.mastery[id] || blankMastery(id, state.day);
 }
 export function ensureWord(id) {
+  if (!isPlainObject(state.wordMastery)) state.wordMastery = {};
   if (!state.wordMastery[id]) {
     state.wordMastery[id] = { tier: 0, seen: 0, correct: 0, wrong: 0, dueAt: 0, lastSeenAt: 0 };
   }
@@ -318,16 +536,16 @@ export function markWordSeen(wordId) {
 }
 export function dueWords() {
   const t = nowMs();
-  return Object.entries(state.wordMastery)
-    .filter(([, w]) => w.tier > 0 && w.dueAt <= t)
+  return Object.entries(state.wordMastery || {})
+    .filter(([id, w]) => w && w.tier > 0 && w.dueAt <= t && WORD_BY_ID[id])
     .map(([id, w]) => ({ id, word: WORD_BY_ID[id], mastery: w }));
 }
 export function knownWordCount() {
-  return Object.values(state.wordMastery).filter((w) => w.tier >= 3).length;
+  return Object.values(state.wordMastery || {}).filter((w) => w.tier >= 3).length;
 }
 export function dueSentences() {
   const t = nowMs();
-  return Object.entries(state.mastery)
+  return Object.entries(state.mastery || {})
     .filter(([id]) => id !== 'sentence0')
     .map(([id, m]) => ({ id, sentence: BY_ID[id], mastery: m, status: dueStatus(m, t) }))
     .filter((x) => x.sentence && x.status !== 'scheduled' && x.status !== 'new')
@@ -336,7 +554,7 @@ export function dueSentences() {
 export function decayReport() {
   const t = nowMs();
   const counts = { fading: 0, wilting: 0, dropped: 0, due: 0 };
-  Object.entries(state.mastery).forEach(([id, m]) => {
+  Object.entries(state.mastery || {}).forEach(([id, m]) => {
     if (id === 'sentence0') return;
     const s = dueStatus(m, t);
     if (counts[s] !== undefined) counts[s]++;
@@ -344,7 +562,7 @@ export function decayReport() {
   return { ...counts, total: counts.fading + counts.wilting + counts.dropped };
 }
 export function stampCount() {
-  return Object.entries(state.mastery).filter(([id, m]) => id !== 'sentence0' && m.isStamp).length;
+  return Object.entries(state.mastery || {}).filter(([id, m]) => id !== 'sentence0' && m?.isStamp).length;
 }
 export function packProgress(unitId) {
   const unit = UNIT_META.find((u) => u.id === unitId);
@@ -411,22 +629,23 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
   if (!sentenceId) {
     const s0 = state.session;
     if (s0) {
-      s0.answers = (s0.answers || 0) + 1;
-      s0.correct += correct ? 1 : 0;
-      s0.wrong += correct ? 0 : 1;
-      s0.combo = correct ? (s0.combo || 0) + 1 : 0;
-      s0.bestCombo = Math.max(s0.bestCombo || 0, s0.combo || 0);
+      s0.answers = num(s0.answers, 0) + 1;
+      s0.correct = num(s0.correct, 0) + (correct ? 1 : 0);
+      s0.wrong = num(s0.wrong, 0) + (correct ? 0 : 1);
+      s0.combo = correct ? num(s0.combo, 0) + 1 : 0;
+      s0.bestCombo = Math.max(num(s0.bestCombo, 0), s0.combo || 0);
+      state.stats.bestCombo = Math.max(num(state.stats.bestCombo, 0), s0.combo || 0);
     }
     const xp = correct ? 8 : 0;
     if (xp) {
-      if (s0) s0.xp = (s0.xp || 0) + xp;
+      if (s0) s0.xp = num(s0.xp, 0) + xp;
       addXP(xp, 'answer');
     }
-    if (correct) state.stats.correct++;
-    state.stats.answers++;
-    state.counters.correct += correct ? 1 : 0;
+    if (correct) state.stats.correct = num(state.stats.correct, 0) + 1;
+    state.stats.answers = num(state.stats.answers, 0) + 1;
+    state.counters.correct = num(state.counters.correct, 0) + (correct ? 1 : 0);
     const w = wordId ? recordWord(wordId, correct) : null;
-    if (correct && type === 'reading_q') state.counters.reading = (state.counters.reading || 0) + 1;
+    if (correct && type === 'reading_q') state.counters.reading = num(state.counters.reading, 0) + 1;
     save();
     return {
       xp,
@@ -444,11 +663,24 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
   const m = ensureMastery(sentenceId);
   if (state.session?.kind && state.session.kind !== 'node' && correct) state.counters.reviews++;
   const s = state.session;
+  if (s) {
+    // Saves written by older builds may lack these counters/arrays.
+    s.mistakes = Array.isArray(s.mistakes) ? s.mistakes : [];
+    s.met = Array.isArray(s.met) ? s.met : [];
+    s.strong = Array.isArray(s.strong) ? s.strong : [];
+    s.correct = num(s.correct, 0);
+    s.wrong = num(s.wrong, 0);
+    s.combo = num(s.combo, 0);
+    s.bestCombo = num(s.bestCombo, 0);
+    s.crits = num(s.crits, 0);
+    s.answers = num(s.answers, 0);
+    s.xp = num(s.xp, 0);
+  }
   const wasNew = m.exposures === 0;
   const statusBefore = dueStatus(m, nowMs());
 
   if (s) {
-    s.answers = (s.answers || 0) + 1;
+    s.answers = num(s.answers, 0) + 1;
   }
   const answersThisSession = s ? s.answers : state.stats.answers + 1;
 
@@ -469,24 +701,30 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
   let xp = 0;
   if (correct) {
     xp = usedHint ? 5 : crit ? 20 : 10;
+    const exp = state.engagement?.expedition;
+    if (state.engagement?.mode === 'expedition' && exp?.roleTypes?.includes(type)) {
+      xp = Math.max(1, Math.round(xp * 1.1));
+    }
     if (state.flags.boosterUntil && state.flags.boosterUntil > nowMs()) xp *= 2;
     if (clock.isEvening()) xp = Math.round(xp * 1.5);
     xp = Math.min(xp, 60); // hard cap: 3× base
-    if (s) s.xp = (s.xp || 0) + xp;
   }
 
   const graded = grade(m, correct, { wasNew });
   m.lastWrong = !correct;
 
   if (correct) {
-    state.stats.correct++;
-    state.counters.correct++;
-    if (crit) state.counters.crits++;
-    state.coinCarry = (state.coinCarry || 0) + 1;
+    state.stats.correct = num(state.stats.correct, 0) + 1;
+    state.counters.correct = num(state.counters.correct, 0) + 1;
+    if (crit) {
+      state.counters.crits = num(state.counters.crits, 0) + 1;
+      if (s) s.crits = num(s.crits, 0) + 1;
+    }
+    state.coinCarry = num(state.coinCarry, 0) + 1;
     const earned = Math.floor(state.coinCarry / 2);
     if (earned > 0) {
       state.coinCarry -= earned * 2;
-      state.coins += earned;
+      state.coins = num(state.coins, 0) + earned;
     }
     if (s) {
       s.correct++;
@@ -497,6 +735,7 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
     }
     if (type === 'say_it') state.counters.said++;
     if (type === 'listen_pick') state.counters.listens++;
+    if (type === 'type_answer' || type === 'dictation') state.counters.typed++;
     if (wasNew) state.counters.newSentences++;
     if (['fading', 'wilting', 'dropped'].includes(statusBefore)) state.counters.fadingReviews++;
   } else {
@@ -510,12 +749,12 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
   state.stats.answers++;
   if (xp) {
     addXP(xp, 'answer');
-    if (s) s.xp = (s.xp || 0) + xp;
+    if (s) s.xp = num(s.xp, 0) + xp;
   }
 
   if (s) {
-    if (graded.tierBefore === 0 && graded.tier > 0) s.met.push(sentenceId);
-    if (graded.tierBefore < 3 && graded.tier >= 3) s.strong.push(sentenceId);
+    if (graded.tierBefore === 0 && graded.tier > 0 && !s.met.includes(sentenceId)) s.met.push(sentenceId);
+    if (graded.tierBefore < 3 && graded.tier >= 3 && !s.strong.includes(sentenceId)) s.strong.push(sentenceId);
   }
   if (graded.stampMinted && sentenceId !== 'sentence0') {
     state.stats.stampsByDay[today()] = (state.stats.stampsByDay[today()] || 0) + 1;
@@ -538,12 +777,19 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
 
 // ---------- sessions ----------
 export function startSession(kind = 'node', params = {}) {
-  if (kind === 'node' && !isNodeUnlocked(params.nodeIndex ?? 0, state.path.completedNodes)) return null;
-  const built = buildSession(kind, params, state.mastery, state.profile.name);
+  const requested = Number(params.nodeIndex ?? params.node ?? 0);
+  const nodeIndex = Number.isFinite(requested) ? Math.max(0, Math.min(NODES.length - 1, Math.round(requested))) : 0;
+  if (kind === 'node' && !isNodeUnlocked(nodeIndex, state.path.completedNodes)) return null;
+  const built = buildSession(kind, kind === 'node' ? { ...params, nodeIndex } : params, state.mastery, state.profile.name);
+  // A session with no playable item would strand the player on an empty stage.
+  if (!built || !Array.isArray(built.items) || built.items.length === 0) return null;
   built.combo = 0;
   built.bestCombo = 0;
   built.crits = 0;
   built.answers = 0;
+  built.mistakes = Array.isArray(built.mistakes) ? built.mistakes : [];
+  built.met = Array.isArray(built.met) ? built.met : [];
+  built.strong = Array.isArray(built.strong) ? built.strong : [];
   state.session = built;
   save();
   logEvent('node_start', { kind, node: built.nodeIndex });
@@ -564,15 +810,23 @@ export function endSession() {
 export function completeNode() {
   const s = state.session;
   if (!s) return null;
-  const nodeIndex = s.nodeIndex ?? 0;
-  const node = NODES[nodeIndex];
-  const lesson = lessonAt(nodeIndex);
-  const stars = starsFor(s.wrong);
-  const accuracy = s.answers ? s.correct / s.answers : 0;
-  const seconds = Math.round((nowMs() - s.startedAt) / 1000);
+  // Claim the session before any side effect. Re-entrant calls (double click,
+  // two navigation paths, a throwing subscriber) then see null and cannot award
+  // the same completion twice or leave a finished session to be replayed.
+  state.session = null;
 
-  const answerXp = s.xp || 0;
   const isNode = (s.kind || 'node') === 'node';
+  const nodeIndex = isNode ? intIn(s.nodeIndex, 0, NODES.length - 1, 0) : null;
+  const node = isNode ? NODES[nodeIndex] : null;
+  const lesson = isNode ? lessonAt(nodeIndex) : null;
+  const stars = starsFor(num(s.wrong, 0));
+  const answers = num(s.answers, 0);
+  const correct = num(s.correct, 0);
+  const wrong = num(s.wrong, 0);
+  const accuracy = answers ? correct / answers : 0;
+  const seconds = Math.max(0, Math.round((nowMs() - num(s.startedAt, nowMs())) / 1000));
+
+  const answerXp = num(s.xp, 0);
   const isCheckpoint = isNode && lesson?.kind === 'checkpoint';
   let bonusXp = isNode ? 30 + (stars === 3 ? 20 : 0) : 20;
   let coins = isNode ? 30 + (stars === 3 ? 10 : 0) : 50; // Daily Run completion +50
@@ -583,46 +837,52 @@ export function completeNode() {
   }
   if (isNode) {
     if (!state.path.completedNodes.includes(nodeIndex)) state.path.completedNodes.push(nodeIndex);
-    state.path.currentNode = Math.max(state.path.currentNode, nodeIndex + 1);
-    state.counters.nodes++;
-    if (stars === 3) state.counters.stars3++;
-    state.stats.nodesDone++;
+    state.path.currentNode = Math.max(num(state.path.currentNode, 0), nodeIndex + 1);
+    state.counters.nodes = num(state.counters.nodes, 0) + 1;
+    if (stars === 3) {
+      state.counters.stars3 = num(state.counters.stars3, 0) + 1;
+      state.counters.perfectLesson = num(state.counters.perfectLesson, 0) + 1;
+    }
+    state.stats.nodesDone = num(state.stats.nodesDone, 0) + 1;
   }
   // Any finished session fills a chest slot (max 3/day) so the reward loop never
   // dead-ends once all 40 sentences are met.
   fillChest();
-  state.stats.minutes += Math.max(1, Math.round(seconds / 60));
-  state.stats.sessions++;
-  state.stats.daysActive = state.stats.daysActive || 1;
+  state.stats.minutes = num(state.stats.minutes, 0) + Math.max(1, Math.round(seconds / 60));
+  state.stats.sessions = num(state.stats.sessions, 0) + 1;
+  state.stats.daysActive = num(state.stats.daysActive, 0) || 1;
 
   const lvl = addXP(bonusXp, 'node');
-  state.coins += coins;
+  state.coins = num(state.coins, 0) + coins;
 
-  const stamped = (s.strong || []).map((id) => BY_ID[id]?.id || id).filter(Boolean);
+  const strong = (Array.isArray(s.strong) ? s.strong : []).filter(Boolean);
+  const met = (Array.isArray(s.met) ? s.met : []).filter(Boolean);
   const checkpointPassed = isCheckpoint ? accuracy >= 0.8 : null;
   if (isCheckpoint) {
     const uid = lesson.unitId;
+    if (!isPlainObject(state.checkpoints)) state.checkpoints = {};
     const prev = state.checkpoints[uid];
     if (!prev || (checkpointPassed && !prev.passed)) {
       state.checkpoints[uid] = { passed: checkpointPassed, score: Math.round(accuracy * 100), at: clock.now().toISOString() };
     }
+    if (!Array.isArray(state.badges)) state.badges = [];
     if (checkpointPassed && !state.badges.includes(uid)) {
       state.badges.push(uid);
       addXP(40, 'badge');
-      state.gems += 1;
+      state.gems = num(state.gems, 0) + 1;
       logEvent('unit_badge', { unitId: uid });
     }
   }
   const summary = {
     kind: s.kind || 'node',
-    lessonKind: lesson?.kind || s.lessonKind || 'node',
+    lessonKind: isNode ? lesson?.kind || 'node' : s.lessonKind || 'practice',
     lessonId: lesson?.id || null,
     unitId: lesson?.unitId || null,
     unitTitle: lesson ? UNIT_BY_ID[lesson.unitId]?.title : null,
     checkpoint: isCheckpoint
       ? { passed: checkpointPassed, score: Math.round(accuracy * 100), required: 80, unitId: lesson.unitId, unitTitle: UNIT_BY_ID[lesson.unitId]?.title }
       : null,
-    nodeIndex: isNode ? nodeIndex : null,
+    nodeIndex,
     nodeTitle:
       node && isNode
         ? `${lesson?.title || 'Session'} · ${node.unitTitle}`
@@ -635,25 +895,24 @@ export function completeNode() {
     stars,
     accuracy,
     seconds,
-    correct: s.correct,
-    wrong: s.wrong,
-    answers: s.answers,
+    correct,
+    wrong,
+    answers,
     answerXp,
     bonusXp,
     coins,
     xp: answerXp + bonusXp,
-    stamps: (s.strong || []).filter(Boolean),
-    strong: (s.strong || []).filter(Boolean),
-    met: (s.met || []).filter(Boolean),
-    newStamps: (s.strong || []).filter(Boolean),
+    stamps: strong,
+    strong,
+    met,
+    newStamps: strong,
     chestFilled: isNode && state.chest.slots > 0,
-    bestCombo: s.bestCombo || s.combo || 0,
+    bestCombo: num(s.bestCombo, 0) || num(s.combo, 0),
     levelsUp: lvl.levelsUp,
     level: lvl.level,
   };
   state.lastSummary = summary;
-  logEvent('node_complete', { stars, xp: summary.xp, mistakes: s.wrong });
-  state.session = null;
+  logEvent('node_complete', { stars, xp: summary.xp, mistakes: wrong });
   checkDailyGoal();
   checkQuests();
   save();
@@ -797,7 +1056,8 @@ export function questProgress(q) {
 export function checkQuests() {
   const newly = [];
   (state.quests.items || []).forEach((q) => {
-    if (!q.done && questProgress(q) >= q.target) {
+    if (!q || typeof q !== 'object' || q.done) return;
+    if (questProgress(q) >= q.target) {
       q.done = true;
       state.coins += q.rewardCoins;
       addXP(q.rewardXp, 'quest');

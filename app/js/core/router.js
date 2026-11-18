@@ -40,8 +40,12 @@ export function go(id, params = {}, opts = {}) {
   const mod = screens[id];
   if (!mod) {
     console.warn('[router] unknown screen', id);
+    // A stale deep link must not dead-end the app; fall back to Learn.
+    if (id !== 'home' && screens.home && !opts.fallback) go('home', {}, { replace: true, fallback: true });
     return;
   }
+  const root = document.getElementById('screen');
+  if (!root) return;
   if (current?.mod?.destroy) {
     try {
       current.mod.destroy();
@@ -53,13 +57,13 @@ export function go(id, params = {}, opts = {}) {
   if (opts.replace && stack.length) stack.pop();
   if (stack.length > 30) stack = stack.slice(-30);
 
-  const root = document.getElementById('screen');
   root.scrollTop = 0;
   // Overlays live on <body>; a route change must not leave a sheet behind.
   document.querySelectorAll('.scrim').forEach((el) => el.remove());
   const activeTab = mod.nav || null;
-  root.innerHTML = `<div class="screen-host">${mod.render(params) || ''}</div>`;
-  document.getElementById('tabbar').hidden = !!mod.hideNav;
+  root.innerHTML = `<div class="screen-host">${renderScreen(mod, params, id)}</div>`;
+  const tabbar = document.getElementById('tabbar');
+  if (tabbar) tabbar.hidden = !!mod.hideNav;
   document.querySelectorAll('.tab').forEach((t) => {
     if (activeTab && t.dataset.tab === activeTab) t.setAttribute('aria-current', 'page');
     else t.removeAttribute('aria-current');
@@ -75,7 +79,36 @@ export function go(id, params = {}, opts = {}) {
   const hash = `#/${id}${Object.keys(params).length ? '?' + new URLSearchParams(params).toString() : ''}`;
   if (location.hash !== hash) history.replaceState(null, '', hash);
   logEvent('screen_view', { screen: id });
-  listeners.forEach((fn) => fn(id, params));
+  listeners.forEach((fn) => {
+    try {
+      fn(id, params);
+    } catch (e) {
+      console.error('[router] navigate listener failed', e);
+    }
+  });
+}
+
+function renderScreen(mod, params, id) {
+  try {
+    const html = mod.render(params);
+    return typeof html === 'string' ? html : '';
+  } catch (e) {
+    // A malformed save or a broken screen must not leave the old DOM (and its
+    // dead Continue button) on screen with no way forward.
+    console.error('[router] render failed for', id, e);
+    try {
+      logEvent('screen_error', { screen: id, message: String(e?.message || e) });
+    } catch {
+      /* analytics is a nicety */
+    }
+    return `<section class="screen">
+      <div class="lesson-blocked">
+        <h1 class="h2">This screen could not load</h1>
+        <p class="muted mt-2">Your progress is safe. Head back and keep going.</p>
+        <button class="btn btn-primary btn-block mt-6" data-go="home" type="button">Back to Learn</button>
+      </div>
+    </section>`;
+  }
 }
 
 export function replace(id, params = {}) {
@@ -98,10 +131,17 @@ export function refresh() {
   if (!current) return;
   const { id, params } = current;
   const mod = screens[id];
-  mod.destroy?.();
+  if (!mod) return;
+  try {
+    mod.destroy?.();
+  } catch (e) {
+    console.warn('[router] destroy failed', e);
+  }
   const root = document.getElementById('screen');
+  if (!root) return;
   const y = root.scrollTop;
-  root.innerHTML = `<div class="screen-host">${mod.render(params) || ''}</div>`;
+  document.querySelectorAll('.scrim').forEach((el) => el.remove());
+  root.innerHTML = `<div class="screen-host">${renderScreen(mod, params, id)}</div>`;
   try {
     mod.mount?.(root.firstElementChild || root, params);
   } catch (e) {
@@ -173,7 +213,11 @@ function bindGlobal() {
   window.addEventListener('hashchange', () => {
     const parsed = parseHash();
     if (!parsed) return;
-    if (!current || parsed.id !== current.id) go(parsed.id, parsed.params, { replace: true });
+    const sameParams =
+      current && JSON.stringify(parsed.params || {}) === JSON.stringify(current.params || {});
+    if (!current || parsed.id !== current.id || !sameParams) {
+      go(parsed.id, parsed.params, { replace: true });
+    }
   });
 }
 

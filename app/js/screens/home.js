@@ -166,19 +166,44 @@ function progressHTML(s) {
 // ---------- 4 · Next lesson hero ----------
 function heroHTML(s) {
   if (s.complete) {
+    const earned = new Set(state.badges || []);
+    const missingUnit = UNIT_META.find((u) => !earned.has(u.id));
+    // A finished node list is not a passed checkpoint. If a learner finished all
+    // sessions but missed a checkpoint, the exam stays locked — send them to the
+    // first unearned checkpoint instead of a locked exam panel.
+    if (missingUnit) {
+      const checkpoint = NODES.find((n) => n.unitId === missingUnit.id && n.kind === 'checkpoint');
+      return `<section class="hero-lesson hero-lesson--done">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-top">
+        <span class="hero-unit">A1 · all ${NODES.length} sessions</span>
+        <span class="hero-min">${ui.icon('trophy', 14)} Sessions complete</span>
+      </div>
+      <h2 class="hero-title">One step left: Unit ${missingUnit.order} badge.</h2>
+      <div class="hero-meta">
+        <span class="kind-chip kind-chip--checkpoint">${ui.icon('trophy', 15)} Checkpoint needed</span>
+        <span class="hero-xp">${earned.size} / ${UNIT_META.length} unit badges</span>
+      </div>
+      <button class="btn btn-primary btn-block hero-cta" data-continue-checkpoint="${checkpoint?.index ?? ''}" type="button">
+        Pass the checkpoint ${ui.icon('arrow', 19)}
+      </button>
+      <button class="hero-review" data-review type="button">or keep your sentences warm · review</button>
+    </section>`;
+    }
+    const passed = !!state.flags.a1Exam?.passed;
     return `<section class="hero-lesson hero-lesson--done">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-top">
         <span class="hero-unit">A1 · all ${NODES.length} sessions</span>
-        <span class="hero-min">${ui.icon('trophy', 14)} Course complete</span>
+        <span class="hero-min">${ui.icon('trophy', 14)} ${passed ? 'Certificate earned' : 'Course complete'}</span>
       </div>
-      <h2 class="hero-title">A1 course complete.</h2>
+      <h2 class="hero-title">${passed ? 'A1 certificate earned.' : 'A1 course complete.'}</h2>
       <div class="hero-meta">
-        <span class="kind-chip kind-chip--checkpoint">${ui.icon('trophy', 15)} Final exam</span>
+        <span class="kind-chip kind-chip--checkpoint">${ui.icon('trophy', 15)} ${passed ? 'A1 certificate' : 'Final exam'}</span>
         <span class="hero-xp">${s.met} / ${SENTENCES.length} sentences met</span>
       </div>
       <button class="btn btn-primary btn-block hero-cta" data-continue-exam type="button">
-        Take the final exam ${ui.icon('arrow', 19)}
+        ${passed ? 'View your certificate' : 'Take the final exam'} ${ui.icon('arrow', 19)}
       </button>
       <button class="hero-review" data-review type="button">or keep your sentences warm · review</button>
     </section>`;
@@ -377,31 +402,33 @@ function questStripHTML() {
 }
 
 function leagueHTML() {
-  if (state.day >= 7 && !state.flags.leagueJoined) {
+  const joined = !!state.flags.leagueJoined || state.league.members.length > 0 || state.day >= 7;
+  if (joined) {
     try {
+      // A new week empties `members` but keeps the joined flag; re-seed here so
+      // Home never claims the league is locked on Day 40.
       ensureLeague();
     } catch {
-      /* no-op: league stays locked */
+      /* no-op: league falls back to a placement row */
     }
-  }
-  if (state.flags.leagueJoined || state.league.members.length) {
-    const rank = state.league.rank || '—';
+    const rank = state.league.rank;
     return `<button class="league-row" data-go="league" type="button">
       <span class="league-ico">${ui.icon('trophy', 22)}</span>
       <span class="grow">
-        <span class="league-title">${esc(state.league.tier)} League · #${rank}</span>
-        <span class="league-sub">Weekly XP · resets Sunday</span>
+        <span class="league-title">${esc(state.league.tier)} League${rank ? ` · #${rank}` : ''}</span>
+        <span class="league-sub">${rank ? 'Weekly XP · resets Sunday' : 'Placing you this week…'}</span>
       </span>
       ${ui.icon('chevron', 18)}
     </button>`;
   }
-  return `<div class="league-row league-row--lock">
+  return `<button class="league-row league-row--lock" data-go="league" type="button">
     <span class="league-ico">${ui.icon('lock', 20)}</span>
     <span class="grow">
       <span class="league-title">League unlocks Day 7</span>
       <span class="league-sub">Day ${state.day} of 7 · keep your streak alive</span>
     </span>
-  </div>`;
+    ${ui.icon('chevron', 18)}
+  </button>`;
 }
 
 function comebackHTML() {
@@ -703,6 +730,13 @@ export default {
       router.go('exam');
     });
 
+    root.querySelector('[data-continue-checkpoint]')?.addEventListener('click', (ev) => {
+      const raw = ev.currentTarget.dataset.continueCheckpoint;
+      const node = raw === '' ? NaN : Number(raw);
+      if (Number.isInteger(node) && node >= 0) router.go('lesson', { node });
+      else router.go('passport', { tab: 'badges' });
+    });
+
     root.querySelector('[data-review]')?.addEventListener('click', () => {
       router.go('lesson', { kind: 'review' });
     });
@@ -781,9 +815,8 @@ export default {
         wrap.innerHTML = `<p class="sod-en">${esc(currentSod.english)}</p>
           <p class="small muted mt-2">Revealed today · +20 XP claimed</p>`;
       }
-      setTimeout(() => {
-        if (router.currentScreen()?.id === 'home') router.refresh();
-      }, 1100);
+      // No delayed router.refresh here: it would reset any unit the learner
+      // opened during the interaction and make the reveal feel like a page jump.
     });
   },
 

@@ -28,6 +28,7 @@ const S = {
   advancing: false,
   finishing: false,
   resumed: false,
+  lastAdvanceAt: 0,
   itemStart: 0,
   selection: null,
   tileOrder: [],
@@ -138,11 +139,16 @@ function ensureSession(params = {}) {
   const kind = params.kind || 'node';
   const nodeIndex = Math.max(0, Number(params.node ?? 0));
   const s = state.session;
+  const gid = params.grammarId || null;
   const matches =
-    s && s.kind === kind && (kind !== 'node' || (s.nodeIndex ?? 0) === nodeIndex) && Array.isArray(s.items);
+    s &&
+    s.kind === kind &&
+    (kind !== 'node' || (s.nodeIndex ?? 0) === nodeIndex) &&
+    (kind !== 'practice' || (s.targeted?.grammarId || null) === gid) &&
+    Array.isArray(s.items);
   if (matches && s.index < s.items.length) return { session: s, resumed: (s.index || 0) > 0 };
   // A finished run left behind (or no run at all): start clean.
-  const fresh = startSession(kind, kind === 'node' ? { nodeIndex } : {});
+  const fresh = startSession(kind, kind === 'node' ? { nodeIndex } : gid ? { grammarId: gid } : {});
   return { session: fresh || null, resumed: false };
 }
 
@@ -718,8 +724,40 @@ function resetFooter(ex) {
     S.cta.innerHTML = `Got it ${ui.icon('arrow', 20)}<span class="kbd-hint">Enter ↵</span>`;
     return;
   }
+  // Every task shows a primary CTA in a well-defined state. It is never hidden,
+  // and it is never enabled while a click would do nothing.
+  if (ex?.type === 'word_match') {
+    S.cta.innerHTML = `Match the pairs<span class="kbd-hint">tap the words</span>`;
+    return;
+  }
+  if (ex?.type === 'say_it') {
+    S.cta.textContent = 'Rate yourself to continue';
+    return;
+  }
+  // Tell the learner what the disabled button is waiting for. "Check" alone on a
+  // fresh listening/reading task reads as a dead button, especially on a phone.
+  const prompt =
+    ex?.type === 'tile_build'
+      ? 'Build the sentence'
+      : ex?.input
+        ? 'Type your answer'
+        : ex?.type === 'fill_blank'
+          ? 'Choose the missing word'
+          : 'Choose an answer';
+  S.cta.innerHTML = `${prompt}<span class="kbd-hint">tap an option</span>`;
+}
+
+function setCheckCta() {
+  if (!S.cta || S.graded) return;
   S.cta.innerHTML = 'Check<span class="kbd-hint">Enter ↵</span>';
-  if (ex?.type === 'word_match') S.cta.classList.add('is-hidden');
+}
+
+/** Show a visibly disabled CTA while a click would be meaningless. */
+function lockCta(label = 'Checking…') {
+  if (!S.cta) return;
+  S.cta.disabled = true;
+  S.cta.className = 'btn btn-primary btn-block lesson-cta';
+  S.cta.textContent = label;
 }
 
 function setCtaEnabled(on, focus = false) {
@@ -749,6 +787,7 @@ function paint() {
   const ex = currentEx();
   if (!s || !ex) {
     S.stage.innerHTML = `<div class="empty-note">Nothing left in this run.</div>`;
+    lockCta('Nothing left');
     return;
   }
 
@@ -775,6 +814,17 @@ function paint() {
   S.stage.innerHTML = bodyFor(ex);
   S.itemStart = nowMs();
   resetFooter(ex);
+  // A transition just landed on an ungraded card: keep its "Got it" disabled for a
+  // beat so a double-tap can't skip the next card too.
+  if (ex.ungraded && S.lastAdvanceAt) {
+    const wait = 420 - (nowMs() - S.lastAdvanceAt);
+    if (wait > 0) {
+      S.cta.disabled = true;
+      later(() => {
+        if (!S.graded && !S.advancing && currentEx()?.ungraded) setCtaEnabled(true);
+      }, wait);
+    }
+  }
   paintSegs();
   paintXp(false);
   paintCombo(false);
@@ -797,7 +847,7 @@ function paint() {
     later(() => {
       const input = S.stage?.querySelector('[data-input]');
       if (!input) return;
-      input.value = '';
+      // Never clear the field here — a fast answer could already be in it.
       const desktop = window.matchMedia?.('(min-width: 900px)')?.matches;
       if (desktop) {
         try {
@@ -828,7 +878,7 @@ function check() {
   if (ex.type === 'word_match') return;
   if (ex.type === 'say_it') {
     const label = { again: 'Again', good: 'Good', nailed: 'Nailed it' }[S.selection] || 'Said it';
-    applyGrade(true, ex, { ratingLabel: label });
+    applyGrade(true, ex, { ratingLabel: label, instantContinue: true });
     return;
   }
   const value = currentValue(ex);
@@ -845,55 +895,79 @@ function check() {
 }
 
 function applyGrade(correct, ex, opts = {}) {
-  if (S.graded) return;
+  if (S.graded || S.advancing || S.finishing) return;
   S.graded = true;
+  S.ready = false;
   clearMatchTimer();
+  // Nothing can advance while grading, so make that visibly true.
+  lockCta('Checking…');
 
-  const s = session();
-  if (!s) return;
-  const ms = Math.max(400, Math.round(nowMs() - (S.itemStart || nowMs())));
-  const beforeXp = s.xp || 0;
-  const levelBefore = state.level;
+  try {
+    const s = session();
+    if (!s) return;
+    const ms = Math.max(400, Math.round(nowMs() - (S.itemStart || nowMs())));
+    const beforeXp = s.xp || 0;
+    const levelBefore = state.level;
 
-  // One store call per graded item. Core owns mastery, crit, combo, XP, quests.
-  const res = recordAnswer({
-    sentenceId: ex.sentenceId || null,
-    wordId: ex.wordId || null,
-    type: ex.type,
-    correct,
-    ms,
-  });
+    // One store call per graded item. Core owns mastery, crit, combo, XP, quests.
+    const res = recordAnswer({
+      sentenceId: ex.sentenceId || null,
+      wordId: ex.wordId || null,
+      type: ex.type,
+      correct,
+      ms,
+    });
 
-  // The store accumulates session XP only on the word/dialogue branch; mirror it
-  // for sentence tasks so the pill and the receipt agree.
-  if (res?.xp && ex.sentenceId) s.xp = beforeXp + res.xp;
-  save();
+    // The store accumulates session XP only on the word/dialogue branch; mirror it
+    // for sentence tasks so the pill and the receipt agree.
+    if (res?.xp && ex.sentenceId) s.xp = beforeXp + res.xp;
+    save();
 
-  paintXp(true);
-  paintCombo(correct);
-  markSegmentDone();
-  reveal(correct, ex, res, opts);
+    paintXp(true);
+    paintCombo(correct);
+    markSegmentDone();
+    reveal(correct, ex, res, opts);
 
-  if (correct) {
-    audio.sfx('correct');
-    if (res?.crit) {
-      audio.sfx('crit');
-      ui.confetti({ count: 12 });
+    if (correct) {
+      audio.sfx('correct');
+      if (res?.crit) {
+        audio.sfx('crit');
+        ui.confetti({ count: 12 });
+      }
+      if (state.level > levelBefore) {
+        ui.toast(`Level ${state.level} — +20 coins`, { icon: 'sparkle', tone: 'coral' });
+      }
+    } else {
+      audio.sfx('wrong');
+      const stage = S.stage;
+      if (stage) {
+        stage.classList.remove('is-shake');
+        void stage.offsetWidth;
+        stage.classList.add('is-shake');
+      }
     }
-    if (state.level > levelBefore) {
-      ui.toast(`Level ${state.level} — +20 coins`, { icon: 'sparkle', tone: 'coral' });
+  } catch (err) {
+    // Grading must never trap the player: surface the error, then still offer Continue.
+    console.error('[lesson] grading failed', err);
+    try {
+      if (S.banner) {
+        S.banner.className = 'lesson-banner lesson-banner--bad is-up';
+        S.banner.innerHTML = `<span class="lb-ico">${ui.icon(
+          'info',
+          20
+        )}</span><div class="lb-text"><b>That answer was saved.</b><span class="lb-sub">Carry on to the next one.</span></div>`;
+        S.banner.hidden = false;
+      }
+    } catch {
+      /* banner is a nicety */
     }
-  } else {
-    audio.sfx('wrong');
-    const stage = S.stage;
-    if (stage) {
-      stage.classList.remove('is-shake');
-      void stage.offsetWidth;
-      stage.classList.add('is-shake');
-    }
+  } finally {
+    // Word match and self-rating already gave their feedback inline; don't make the
+    // player wait through a dead window. Everything else keeps a short beat so the
+    // result is readable, with the CTA disabled (never enabled-but-inert).
+    if (opts.instantContinue) swapToContinue();
+    else later(() => swapToContinue(), opts.near ? 1100 : correct ? 780 : 1050);
   }
-
-  later(() => swapToContinue(), opts.near ? 1100 : correct ? 780 : 1050);
 }
 
 function reveal(correct, ex, res, opts = {}) {
@@ -1096,7 +1170,7 @@ function xpFloat(amount, crit) {
 }
 
 function swapToContinue() {
-  if (!S.cta || S.advancing) return;
+  if (!S.cta || S.advancing || S.finishing || !S.graded) return;
   S.ready = true;
   S.cta.className = 'btn btn-ink btn-block lesson-cta';
   S.cta.disabled = false;
@@ -1110,27 +1184,62 @@ function swapToContinue() {
 
 function advance() {
   const s = session();
-  if (!s || S.advancing) return;
+  if (!s || S.advancing || S.finishing) return;
   const ex = currentEx();
   if (!S.graded && !ex?.ungraded) return;
+  // Ungraded cards ("Got it") re-enable the CTA on the very next card. Ignore a
+  // rapid repeat click so one double-tap can never swallow two cards.
+  if (ex?.ungraded && S.lastAdvanceAt && nowMs() - S.lastAdvanceAt < 420) return;
+
   S.advancing = true;
-  if (ex?.type === 'word_card' && ex.wordId) markWordSeen(ex.wordId);
-  markSegmentDone();
-  s.index += 1;
-  save();
-  if (s.index < s.items.length) paint();
-  else finish();
+  S.ready = false;
+  S.lastAdvanceAt = nowMs();
+  lockCta('One moment…');
+  try {
+    if (ex?.type === 'word_card' && ex.wordId) {
+      try {
+        markWordSeen(ex.wordId);
+      } catch (err) {
+        // Word mastery is a side effect — it must not strand the session.
+        console.warn('[lesson] markWordSeen failed', err);
+      }
+    }
+    markSegmentDone();
+    s.index += 1;
+    save();
+    if (s.index < s.items.length) paint();
+    else finish();
+  } catch (err) {
+    // Recover the player instead of leaving S.advancing latched forever.
+    console.error('[lesson] advance failed', err);
+    S.graded = false;
+    S.ready = false;
+    paint();
+  } finally {
+    S.advancing = false;
+  }
 }
 
 function finish() {
   const s = session();
   if (!s || S.finishing) return;
   S.finishing = true;
+  S.ready = false;
+  lockCta('Finishing…');
   const kind = s.kind;
   const nodeIndex = s.nodeIndex ?? 0;
-  audio.stopSpeaking();
-  // Awards bonus XP, fills the chest slot, updates streak + quests, sets lastSummary.
-  completeNode();
+  try {
+    audio.stopSpeaking();
+  } catch {
+    /* audio is a nicety */
+  }
+  try {
+    // Awards bonus XP, fills the chest slot, updates streak + quests, sets lastSummary.
+    completeNode();
+  } catch (err) {
+    console.error('[lesson] completeNode failed', err);
+  }
+  // Navigate exactly once even if the player could still click.
   router.go('complete', kind === 'node' ? { node: nodeIndex } : { kind });
 }
 
@@ -1214,7 +1323,9 @@ function onChip(side, id, el) {
     if (pair) {
       audio.playTask({ type: 'word_pick', clipKind: 'w', clipId: pair.clipId, korean: pair.ko });
     }
-    if (M.matched.size === M.ko.length) later(() => finishMatch(ex, false), 320);
+    // Complete immediately so the CTA flips straight to Continue: there is no
+    // window where the player sees an inert primary button.
+    if (M.matched.size === M.ko.length) finishMatch(ex, false);
   } else {
     M.mistakes += 1;
     updateMatchUi();
@@ -1253,29 +1364,33 @@ function finishMatch(ex, timedOut) {
   });
   const clear = M.matched.size === M.ko.length;
   const correct = M.mistakes <= 1 && clear;
-  applyGrade(correct, ex, { timedOut });
+  applyGrade(correct, ex, { timedOut, instantContinue: true });
 }
 
 // ---------- shell events ----------
+function primaryAction() {
+  if (S.advancing || S.finishing) return;
+  const ex = currentEx();
+  if (!ex) return;
+  if (S.graded) {
+    if (S.ready) advance();
+    else nudgeCta();
+    return;
+  }
+  if (ex.ungraded) {
+    advance();
+    return;
+  }
+  if (S.cta?.disabled) {
+    nudgeCta();
+    return;
+  }
+  check();
+}
+
 function bindShell(root) {
   root.querySelector('[data-leave]')?.addEventListener('click', openLeaveSheet);
-  S.cta?.addEventListener('click', () => {
-    const ex = currentEx();
-    if (S.graded) {
-      if (S.ready) advance();
-      else nudgeCta();
-      return;
-    }
-    if (ex?.ungraded) {
-      advance();
-      return;
-    }
-    if (S.cta?.disabled) {
-      nudgeCta();
-      return;
-    }
-    check();
-  });
+  S.cta?.addEventListener('click', primaryAction);
 }
 
 function openLeaveSheet() {
@@ -1312,7 +1427,9 @@ function nudgeCta() {
 function onStageInput(e) {
   if (!e.target?.matches?.('[data-input]')) return;
   if (S.graded) return;
-  setCtaEnabled(String(e.target.value || '').trim().length > 0, false);
+  const filled = String(e.target.value || '').trim().length > 0;
+  if (filled) setCheckCta();
+  setCtaEnabled(filled, false);
 }
 
 function onStageClick(e) {
@@ -1328,6 +1445,7 @@ function onStageClick(e) {
     S.selection = ex.type === 'fill_blank' ? o.label : o.id;
     stage.querySelectorAll('.opt').forEach((n) => n.classList.remove('is-selected'));
     opt.classList.add('is-selected');
+    setCheckCta();
     setCtaEnabled(true);
     return;
   }
@@ -1349,7 +1467,10 @@ function onStageClick(e) {
       tile.classList.add('tile--placed');
       zone.appendChild(tile);
     }
-    setCtaEnabled(S.tileOrder.length === (ex.answer || []).length);
+    const complete = S.tileOrder.length === (ex.answer || []).length;
+    if (complete) setCheckCta();
+    else if (S.cta && !S.graded) S.cta.innerHTML = 'Build the sentence<span class="kbd-hint">tap the words</span>';
+    setCtaEnabled(complete);
     return;
   }
 
@@ -1397,10 +1518,13 @@ function onStageClick(e) {
 
   const rate = e.target.closest('[data-rate]');
   if (rate && ex.type === 'say_it' && !S.graded) {
+    e.preventDefault();
     S.selection = rate.dataset.rate;
     stage.querySelectorAll('.rate').forEach((b) => b.classList.remove('is-selected'));
     rate.classList.add('is-selected');
-    setCtaEnabled(true);
+    // One action: the self-rating is the answer. Grade it now and go straight to Continue.
+    const label = { again: 'Again', good: 'Good', nailed: 'Nailed it' }[S.selection] || 'Said it';
+    applyGrade(true, ex, { ratingLabel: label, instantContinue: true });
     return;
   }
 
@@ -1444,26 +1568,14 @@ function onKey(e) {
     if (e.repeat) return;
     if (typing) {
       e.preventDefault();
-      if (S.graded) {
-        if (S.ready) advance();
-        else nudgeCta();
-        return;
-      }
-      if (S.cta && !S.cta.disabled) check();
-      else nudgeCta();
+      primaryAction();
       return;
     }
     // Let a focused audio button act natively.
     const focused = e.target?.closest?.('button,[data-clip]');
     if (focused && (focused.hasAttribute('data-clip') || focused.hasAttribute('data-play-task'))) return;
     e.preventDefault();
-    if (S.graded) {
-      if (S.ready) advance();
-      else nudgeCta();
-      return;
-    }
-    if (S.cta && !S.cta.disabled) check();
-    else nudgeCta();
+    primaryAction();
     return;
   }
 
@@ -1541,6 +1653,7 @@ export default {
     S.xpPill = root.querySelector('[data-xp]');
     S.comboPill = root.querySelector('[data-combo]');
     S.finishing = false;
+    S.lastAdvanceAt = 0;
 
     bindShell(root);
     S.stage?.addEventListener('click', onStageClick);
@@ -1575,6 +1688,7 @@ export default {
     S.ready = false;
     S.advancing = false;
     S.finishing = false;
+    S.lastAdvanceAt = 0;
     S.itemStart = 0;
     S.selection = null;
     S.tileOrder = [];

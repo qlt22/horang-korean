@@ -424,38 +424,45 @@ export default {
     const nextIndex = sum.nodeIndex != null ? sum.nodeIndex + 1 : null;
     const nextLesson = nextIndex != null && nextIndex < LESSONS.length ? lessonAt(nextIndex) : null;
 
-    root.querySelector('[data-primary]')?.addEventListener('click', () => {
+    // Exactly one departure click can win; rapid double-taps must not stack routes.
+    let leaving = false;
+    const leaveTo = (fn) => {
+      if (leaving) return;
+      leaving = true;
       audio.sfx('tap');
-      if (nextLesson) router.go('lesson', { node: nextIndex });
-      else if (sum.nodeIndex != null && sum.nodeIndex >= LESSONS.length - 1) router.go('exam');
-      else router.go('home');
+      fn();
+    };
+
+    root.querySelector('[data-primary]')?.addEventListener('click', () => {
+      leaveTo(() => {
+        if (nextLesson) router.go('lesson', { node: nextIndex });
+        else if (sum.nodeIndex != null && sum.nodeIndex >= LESSONS.length - 1) router.go('exam');
+        else router.go('home');
+      });
     });
 
     root.querySelector('[data-retry]')?.addEventListener('click', () => {
-      audio.sfx('tap');
-      router.go('lesson', { node: sum.nodeIndex ?? 0 });
+      leaveTo(() => router.go('lesson', { node: sum.nodeIndex ?? 0 }));
     });
 
     root.querySelector('[data-cp-retry]')?.addEventListener('click', () => {
-      audio.sfx('tap');
-      router.go('lesson', { node: sum.nodeIndex ?? 0 });
+      leaveTo(() => router.go('lesson', { node: sum.nodeIndex ?? 0 }));
     });
 
     root.querySelector('[data-cp-continue]')?.addEventListener('click', () => {
-      audio.sfx('tap');
-      if (nextLesson) router.go('lesson', { node: nextIndex });
-      else if (sum.nodeIndex != null && sum.nodeIndex >= LESSONS.length - 1) router.go('exam');
-      else router.go('home');
+      leaveTo(() => {
+        if (nextLesson) router.go('lesson', { node: nextIndex });
+        else if (sum.nodeIndex != null && sum.nodeIndex >= LESSONS.length - 1) router.go('exam');
+        else router.go('home');
+      });
     });
 
     root.querySelector('[data-review]')?.addEventListener('click', () => {
-      audio.sfx('tap');
-      router.go('lesson', { kind: 'review' });
+      leaveTo(() => router.go('lesson', { kind: 'review' }));
     });
 
     root.querySelector('[data-quick-check]')?.addEventListener('click', () => {
-      audio.sfx('tap');
-      router.go('onboarding', { step: 'quiz' });
+      leaveTo(() => router.go('onboarding', { step: 'quiz' }));
     });
 
     root.querySelector('[data-quick-skip]')?.addEventListener('click', () => {

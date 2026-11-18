@@ -12,6 +12,7 @@ import * as ui from '../core/ui.js';
 import * as audio from '../core/audio.js';
 import router from '../core/router.js';
 import * as clock from '../core/clock.js';
+import { NODES } from '../core/engine.js';
 
 const FREEZE_PRICE = 200;
 const BOOST_PRICE = 300;
@@ -56,11 +57,18 @@ function emptyChestSheet() {
     title: 'No chests yet',
     body: `<div class="chest-empty">
       ${ui.mascot(112, 'sleepy')}
-      <p class="h3 mt-2">Your next chest is one node away.</p>
-      <p class="small muted mt-2">Every node you finish adds a slot — up to 3 a day. Slots refill at midnight and chests are never sold.</p>
+      <p class="h3 mt-2">Your next chest is one lesson away.</p>
+      <p class="small muted mt-2">Every lesson you finish adds a slot — up to 3 a day. Slots refill at midnight and chests are never sold.</p>
     </div>`,
     actions: [
-      { label: 'Start a node', onClick: () => router.go('lesson', { node: state.path.currentNode || 0 }) },
+      {
+        label: (state.path.currentNode || 0) >= NODES.length ? 'Review instead' : 'Start a lesson',
+        onClick: () =>
+          router.go(
+            'lesson',
+            (state.path.currentNode || 0) >= NODES.length ? { kind: 'review' } : { node: state.path.currentNode || 0 }
+          ),
+      },
       { label: 'Not now', cls: 'btn-ghost' },
     ],
   });

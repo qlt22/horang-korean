@@ -18,9 +18,11 @@ function write(n, v) {
   }
 }
 
-let offsetMs = read(OFFSET_KEY, 0) || 0;
+let offsetMs = read(OFFSET_KEY, 0);
+if (!Number.isFinite(Number(offsetMs))) offsetMs = 0;
+offsetMs = Number(offsetMs) || 0;
 let installedAt = read(INSTALL_KEY, null);
-if (!installedAt) {
+if (!installedAt || Number.isNaN(new Date(installedAt).getTime())) {
   installedAt = new Date().toISOString();
   write(INSTALL_KEY, installedAt);
 }
@@ -68,14 +70,19 @@ export function daysBetween(aKey, bKey) {
   return Math.round((b - a) / DAY);
 }
 export function dayIndex() {
-  return Math.max(0, daysBetween(dateKey(new Date(installedAt)), today()));
+  const n = daysBetween(dateKey(new Date(installedAt)), today());
+  return Number.isFinite(n) ? Math.max(0, n) : 0;
 }
 export function shiftDays(n) {
-  offsetMs += n * DAY;
+  const d = Number(n);
+  if (!Number.isFinite(d)) return;
+  offsetMs += d * DAY;
   write(OFFSET_KEY, offsetMs);
 }
 export function shiftMs(ms) {
-  offsetMs += ms;
+  const d = Number(ms);
+  if (!Number.isFinite(d)) return;
+  offsetMs += d;
   write(OFFSET_KEY, offsetMs);
 }
 export function resetClock() {

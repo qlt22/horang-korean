@@ -45,7 +45,8 @@ export default {
   hideNav: true,
   render() {
     const goal = state.profile.dailyGoalXp || 120;
-    const reminder = state.profile.reminderTime || '19:30';
+    const reminderOff = !state.profile.reminderTime;
+    const reminder = state.profile.reminderTime || 'Off';
     const s = state.settings;
 
     return `
@@ -77,7 +78,9 @@ export default {
               <span class="st-row-ico st-row-ico--indigo">${ui.icon('bell', 20)}</span>
               <span class="st-row-text">
                 <span class="st-row-title">Reminder time</span>
-                <span class="st-row-sub">One nudge a day, never after 22:00</span>
+                <span class="st-row-sub">${
+                  reminderOff ? 'Reminders are off — pick a time to turn them on' : 'One nudge a day, never after 22:00'
+                }</span>
               </span>
               <span class="st-row-value" data-time-value>${ui.esc(reminder)}</span>
               <span class="chev">${ui.icon('chevron', 18)}</span>
@@ -282,11 +285,16 @@ export default {
     /* ---------- reminder time sheet ---------- */
     root.querySelector('[data-sheet="time"]')?.addEventListener('click', () => {
       const cur = state.profile.reminderTime || '19:30';
+      const off = !state.profile.reminderTime;
       const body = `
-        <p class="st-sheet-lead">If it's ${ui.esc(cur)}, then I study. One reminder a day, quiet hours 22:00–08:00.</p>
+        <p class="st-sheet-lead">${
+          off
+            ? 'Reminders are off. Pick a time to turn one gentle daily nudge back on.'
+            : `If it's ${ui.esc(cur)}, then I study. One reminder a day, quiet hours 22:00–08:00.`
+        }</p>
         <div class="st-times">
           ${TIMES.map(
-            (t) => `<button class="chip st-time" type="button" data-time="${t}" aria-pressed="${t === cur}">${t}</button>`
+            (t) => `<button class="chip st-time" type="button" data-time="${t}" aria-pressed="${!off && t === cur}">${t}</button>`
           ).join('')}
         </div>`;
       const close = ui.sheet({ title: 'Reminder time', body, dismiss: true });
@@ -298,6 +306,8 @@ export default {
           save();
           const val = root.querySelector('[data-time-value]');
           if (val) val.textContent = t;
+          const sub = root.querySelector('[data-sheet="time"] .st-row-sub');
+          if (sub) sub.textContent = 'One nudge a day, never after 22:00';
           close();
           audio.sfx('tap');
           ui.toast(`Reminder set for ${t}`, { icon: 'bell', tone: 'mint' });

@@ -46,24 +46,34 @@ if (!up) {
   process.exit(1);
 }
 
-line('1/5 · Content validation (12 units)');
+line('1/8 · Content validation (12 units)');
 const content = await run('tools/validate-content.mjs');
 
-line('2/5 · Core logic');
+line('2/8 · Core logic');
 const core = await run('tests/core.test.mjs');
 
-line('3/5 · Audio bundle');
+line('3/8 · Core edge cases');
+const edge = await run('tests/core-edge.test.mjs');
+const persist = await run('tests/persistence.test.mjs');
+
+line('4/8 · Audio bundle');
 const audio = await run('tests/audio.test.mjs');
 
-line('4/5 · Full browser journey (390×844 + 1440×900)');
+line('5/8 · Lesson CTA + advance flow');
+const cta = await run('tests/cta-flow.mjs', { BASE });
+
+line('6/8 · Core browser edge cases');
+const edgeBrowser = await run('tests/core-edge-browser.mjs', { BASE });
+
+line('7/8 · Full browser journey (390×844 + 1440×900)');
 const e2e = await run('tests/e2e.mjs', { BASE });
 
-line('5/5 · Retention Lab (60-day A1 simulation)');
+line('8/8 · Retention Lab (60-day A1 simulation)');
 const demo = await run('tests/demo.mjs', { BASE });
 
 server.kill();
-const failed = [content, core, audio, e2e, demo].filter((c) => c !== 0).length;
+const failed = [content, core, edge, persist, audio, cta, edgeBrowser, e2e, demo].filter((c) => c !== 0).length;
 console.log(
-  `\n${failed ? `✗ ${failed} suite(s) failed` : '✓ All suites passed'}  (content=${content} core=${core} audio=${audio} e2e=${e2e} demo=${demo})`
+  `\n${failed ? `✗ ${failed} suite(s) failed` : '✓ All suites passed'}  (content=${content} core=${core} edge=${edge} persist=${persist} audio=${audio} cta=${cta} edgeBrowser=${edgeBrowser} e2e=${e2e} demo=${demo})`
 );
 process.exit(failed ? 1 : 0);

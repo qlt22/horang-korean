@@ -20,6 +20,7 @@ import {
   wordsOf,
   lessonAt,
   nextLessonIndex,
+  lessonUnlocked,
 } from '../core/course.js';
 import { buildTask, gradeAnswer } from '../core/quiz.js';
 
@@ -562,8 +563,22 @@ function openWordSheet(word) {
         label: 'Practise this word',
         cls: 'btn-primary',
         onClick: () => {
-          if (lesson) router.go('lesson', { node: lesson.nodeIndex });
-          else router.go('lesson', { node: nextLessonIndex(state.path?.completedNodes || []) });
+          const completed = state.path?.completedNodes || [];
+          if (lesson && lessonUnlocked(lesson.nodeIndex, completed)) {
+            router.go('lesson', { node: lesson.nodeIndex });
+            return;
+          }
+          if (lesson) {
+            // The word browser covers all 576 words; a future-unit word must not
+            // drop the learner onto a dead locked-lesson screen.
+            const unit = UNIT_BY_ID[word.unitId];
+            ui.toast(
+              `That word arrives in Unit ${unit?.order || '?'}. Finish the units before it first.`,
+              { icon: 'lock' }
+            );
+            return;
+          }
+          router.go('lesson', { node: nextLessonIndex(completed) });
         },
       },
       { label: 'Close', cls: 'btn-ghost' },

@@ -842,7 +842,7 @@ function finishOnboarding() {
     state.flags.placementTaken = true;
     state.flags.placementLevel = resultLevel();
   }
-  state.profile.reminderTime = skipReminders ? null : picked.reminder;
+  state.profile.reminderTime = skipReminders ? '' : picked.reminder;
   logEvent('onboarding_complete', {
     goal: state.profile.goal,
     minutes: state.profile.minutes,
