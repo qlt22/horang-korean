@@ -1299,7 +1299,7 @@ try {
   const buttons = await page.locator('.city button:not([disabled])').evaluateAll((els) =>
     els.map((e) => ({
       label: (e.innerText || '').trim().slice(0, 24),
-      handled: ['data-tile', 'data-bid', 'data-owner', 'data-build-cta', 'data-ach', 'data-expand', 'data-go', 'data-next', 'data-prestige', 'data-overlay'].some((a) => e.hasAttribute(a)),
+      handled: ['data-tile', 'data-bid', 'data-owner', 'data-build-cta', 'data-ach', 'data-expand', 'data-go', 'data-next', 'data-prestige', 'data-overlay', 'data-showcase', 'data-restore-showcase'].some((a) => e.hasAttribute(a)),
     }))
   );
   const dead = buttons.filter((b) => !b.handled);

@@ -70,6 +70,12 @@ A **31-building** catalogue spans homes, offices, industry, schools, hospitals, 
 
 See `docs/CITY-SPEC.md` for the full catalogue and formulas.
 
+### See a finished city
+
+Open **`#/city?showcase=1`** (or **City → Showcase**) to load a legitimate completed save: **26 buildings on 81/81 tiles**, 531 residents, 85 % happiness, 100 % transit, airport, KTX, metro, palace, stadium, Lotte Tower, N Seoul Tower and the Han River bridge. It assumes a completed A1 learner (12 badges). Your save is backed up; **Restore my save** puts it back.
+
+![Finished city](docs/screenshots/showcase-city-mobile.png)
+
 ## Engagement Lab (branch `gamification-lab`)
 
 This branch adds three **alternative engagement systems** on top of the same course, switchable at `#/lab` (Me → Engagement Lab):

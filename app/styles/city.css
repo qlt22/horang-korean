@@ -472,6 +472,9 @@
   margin-left: auto;
   color: var(--ink-700);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  font-size: 10px;
 }
 .lg-swatch {
   width: 9px;
@@ -1561,4 +1564,33 @@ body.reduce-motion .ca-steam {
   .cv-pop b {
     font-size: 31px;
   }
+}
+
+/* ---------- showcase save ---------- */
+.city-showcase-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: var(--indigo-900);
+  color: var(--cream-50);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+.city-showcase-banner span {
+  flex: 1;
+  min-width: 0;
+}
+.city-showcase-banner b {
+  color: var(--amber-400);
+}
+.city-showcase-banner .btn {
+  flex: 0 0 auto;
+  height: 34px;
+  font-size: 11px;
+  background: var(--cream-50);
+  color: var(--ink-900);
+  box-shadow: none;
+  border: 0;
 }

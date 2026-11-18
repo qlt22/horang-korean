@@ -1,0 +1,40 @@
+// Showcase city: load a completed legitimate save, then restore the player's own.
+import { chromium } from 'playwright';
+const BASE = process.env.BASE || 'http://localhost:4173';
+const CHROME = process.env.CHROME_PATH || '/home/luat/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome';
+let fail = 0;
+const ok = (n, c, e = '') => { console.log(`  ${c ? '✓' : '✗'} ${n}${e ? ' — ' + e : ''}`); if (!c) fail++; };
+const b = await chromium.launch({ executablePath: CHROME });
+const p = await (await b.newContext({ viewport: { width: 390, height: 844 } })).newPage();
+const errs = [];
+p.on('pageerror', (e) => errs.push(e.message));
+p.on('console', (m) => m.type() === 'error' && !/404|Failed/.test(m.text()) && errs.push(m.text()));
+
+await p.goto(BASE, { waitUntil: 'networkidle' });
+await p.evaluate(() => localStorage.clear());
+await p.goto(BASE + '/#/city?showcase=1', { waitUntil: 'networkidle' });
+await p.waitForTimeout(1200);
+const s = await p.evaluate(() => {
+  const x = window.horang.state;
+  const tiles = x.city.buildings.reduce((a, b) => a + (b.w || 1) * (b.h || 1), 0);
+  const types = new Set(x.city.buildings.map((b) => b.type));
+  return { n: x.city.buildings.length, tiles, era: x.city.era, grid: x.city.grid, badges: x.badges.length, coins: x.coins, showcase: x.flags.showcaseCity, types: [...types] };
+});
+ok('loads 26 buildings', s.n === 26, `${s.n}`);
+ok('fills the 9x9 grid', s.grid === 9 && s.tiles === 81, `${s.grid}x${s.grid}, ${s.tiles} tiles`);
+ok('is Era 3', s.era === 3);
+ok('assumes 12 badges', s.badges === 12);
+ok('includes airport, KTX, metro, palace, stadium, Lotte, tower, bridge', ['airport','train','metro','palace','stadium','lotte','tower','bridge'].every((t) => s.types.includes(t)));
+ok('showcase flag set', s.showcase === true);
+ok('banner offers restore', (await p.locator('[data-restore-showcase]').count()) === 1);
+const text = await p.locator('#screen').innerText();
+ok('shows 531 residents', /531 residents/.test(text), text.match(/\d+ residents/)?.[0] || '');
+ok('shows 81/81 tiles', /81\/81 tiles/.test(text));
+await p.locator('[data-restore-showcase]').click();
+await p.waitForTimeout(900);
+const r = await p.evaluate(() => ({ n: window.horang.state.city.buildings.length, badges: window.horang.state.badges.length, coins: window.horang.state.coins, flag: window.horang.state.flags.showcaseCity }));
+ok('restore returns the pre-showcase save', r.n === 0 && r.badges === 0 && r.coins === 0 && !r.flag, JSON.stringify(r));
+console.log(`\n${errs.length ? 'CONSOLE ERRORS:\n' + errs.join('\n') : 'CONSOLE ERRORS: none'}`);
+console.log(fail ? `\n${fail} CHECKS FAILED` : '\nALL SHOWCASE CHECKS PASSED');
+await b.close();
+process.exit(fail || errs.length ? 1 : 0);

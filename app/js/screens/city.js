@@ -2,13 +2,17 @@
 // A metropolis builder: explicit multi-tile map, category build sheet, live
 // stats and a transit coverage overlay. All rules live in city-data.js; this
 // screen only renders and delegates (see docs/CITY-EXPANSION-CONTRACT.md).
-import { state } from '../core/store.js';
+import { state, saveNow, replaceState, exportData } from '../core/store.js';
+import { UNITS, NODES } from '../core/engine.js';
+import { buildShowcaseCity } from '../core/showcase-city.js';
 import * as city from '../core/city.js';
 import * as C from '../core/city-data.js';
 import * as ui from '../core/ui.js';
 import * as audio from '../core/audio.js';
 import { router } from '../core/router.js';
 import { buildingArt } from '../core/city-art.js';
+
+const SHOWCASE_BACKUP = 'horang.showcaseBackup.v1';
 
 const fmt = (n) => {
   const v = Number(n) || 0;
@@ -766,6 +770,14 @@ export default {
       </header>
 
       ${hudHTML()}
+      ${
+        state.flags.showcaseCity
+          ? `<div class="city-showcase-banner">
+              <span><b>Showcase city</b> · a completed A1 learner's save</span>
+              <button class="btn btn-secondary btn-sm" data-restore-showcase type="button">Restore my save</button>
+            </div>`
+          : ''
+      }
       ${heroHTML(info, s, tier)}
       ${mapHTML(info, s)}
       ${vitalsHTML(info, s)}
@@ -776,6 +788,7 @@ export default {
         <button class="btn btn-secondary btn-sm" data-expand type="button" ${
           info.canExpand ? '' : 'disabled'
         }>Expand · ₩${fmt(info.expandCost.coins)}</button>
+        <button class="btn btn-ghost btn-sm" data-showcase type="button">Showcase</button>
         <button class="btn btn-ghost btn-sm" data-go="shop" type="button">Market →</button>
       </div>
 
@@ -787,7 +800,7 @@ export default {
       </div>
     </section>`;
   },
-  mount(root) {
+  mount(root, params = {}) {
     city.ensureCity();
     const refresh = () => router.refresh();
 
@@ -862,6 +875,58 @@ export default {
         openBuild(root, x, y);
       }
     });
+
+    // ---- showcase save ----
+    const loadShowcase = () => {
+      try {
+        if (!localStorage.getItem(SHOWCASE_BACKUP)) localStorage.setItem(SHOWCASE_BACKUP, exportData());
+      } catch {
+        /* storage may be unavailable */
+      }
+      state.city = buildShowcaseCity();
+      state.coins = 250000;
+      state.gems = Math.max(state.gems, 50);
+      state.badges = UNITS.map((u) => u.id);
+      state.path.completedNodes = NODES.map((n) => n.index);
+      state.path.currentNode = NODES.length;
+      state.xpTotal = Math.max(state.xpTotal, 18000);
+      state.flags.showcaseCity = true;
+      saveNow();
+      audio.sfx('levelup');
+      ui.confetti({ count: 32 });
+      router.refresh();
+    };
+    const restoreShowcase = () => {
+      try {
+        const raw = localStorage.getItem(SHOWCASE_BACKUP);
+        if (!raw) {
+          ui.toast('No pre-showcase save found', { tone: 'amber' });
+          return;
+        }
+        replaceState(JSON.parse(raw));
+        localStorage.removeItem(SHOWCASE_BACKUP);
+        audio.sfx('tap');
+        router.go('city');
+        ui.toast('Your save is back', { tone: 'mint' });
+      } catch {
+        ui.toast('Could not restore the save', { tone: 'amber' });
+      }
+    };
+    root.querySelector('[data-restore-showcase]')?.addEventListener('click', restoreShowcase);
+    root.querySelector('[data-showcase]')?.addEventListener('click', () => {
+      ui.modal({
+        title: 'Load the showcase city?',
+        body: `<p class="small muted">This loads a completed A1 learner's save — all 12 badges, a 9×9 city with 81/81 tiles, the airport, KTX, metro, palace, stadium, Lotte Tower and the Han River bridge. Your current save is backed up and can be restored in one tap.</p>`,
+        actions: [
+          { label: 'Load showcase', cls: 'btn-primary', onClick: loadShowcase },
+          { label: 'Not now', cls: 'btn-ghost' },
+        ],
+      });
+    });
+    if (params?.showcase === '1' && !state.flags.showcaseCity) {
+      loadShowcase();
+      return;
+    }
 
     // ---- transit overlay ----
     root.querySelector('[data-overlay]')?.addEventListener('click', () => {
