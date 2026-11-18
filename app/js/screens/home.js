@@ -20,6 +20,7 @@ import {
 } from '../core/store.js';
 import { NODES, UNIT_META } from '../core/engine.js';
 import { SENTENCES, nextLessonIndex, unitUnlocked, grammarOf } from '../core/course.js';
+import * as cityCore from '../core/city.js';
 import * as ui from '../core/ui.js';
 import * as routerApi from '../core/router.js';
 import * as clock from '../core/clock.js';
@@ -161,6 +162,33 @@ function progressHTML(s) {
       <span class="a1-strong"><b>${s.strong}</b> strong</span>
     </div>
   </section>`;
+}
+
+// ---------- 3b · Seoul Works ----------
+function cityHTML() {
+  cityCore.ensureCity();
+  const info = cityCore.info();
+  const next = cityCore.catalog().find((d) => !d.unlocked && d.lockReason);
+  if (!info.buildings.length) {
+    return `<button class="city-card city-card--empty" data-go="city" type="button">
+      <span class="cc-art">🏗️</span>
+      <span class="cc-body">
+        <span class="overline">Seoul Works</span>
+        <b>Start building your city</b>
+        <span>You already have ${Math.floor(state.city?.resources?.brick || 0)} bricks from studying.</span>
+      </span>
+      ${ui.icon('chevron', 18)}
+    </button>`;
+  }
+  return `<button class="city-card" data-go="city" type="button">
+    <span class="cc-art">${info.eraInfo ? '🏙️' : '🏗️'}</span>
+    <span class="cc-body">
+      <span class="overline">Seoul Works · Era ${info.era}</span>
+      <b>₩${(info.income || 0).toFixed(1)}/s · ${info.buildings.length} ${info.buildings.length === 1 ? 'building' : 'buildings'}</b>
+      <span>${next ? `Next: ${next.name} · ${next.lockReason}` : 'Every building unlocked — scale the skyline'}</span>
+    </span>
+    <span class="cc-go">${ui.icon('chevron', 18)}</span>
+  </button>`;
 }
 
 // ---------- 4 · Next lesson hero ----------
@@ -689,6 +717,7 @@ export default {
         ${hudHTML()}
         ${dailyPlanHTML(plan)}
         ${progressHTML(s)}
+        ${cityHTML()}
         ${heroHTML(s)}
         ${fadingHTML()}
         ${mapHTML(s)}

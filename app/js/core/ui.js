@@ -49,6 +49,7 @@ const ICONS = {
   target: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>',
   gift: '<rect x="3.5" y="9" width="17" height="11" rx="2"/><path d="M2.5 9h19M12 9v11"/><path d="M12 9S10.5 4 7.5 4a2.5 2.5 0 0 0 0 5zM12 9s1.5-5 4.5-5a2.5 2.5 0 0 1 0 5z"/>',
   map: '<path d="M9 4L3.5 6v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/>',
+  city: '<path d="M3 21h18M5 21V10l3.5-2.5V21M8.5 21V7L14 3v18M14 21V12l5-2v11"/><path d="M11 8h.01M11 11h.01M11 14h.01"/>',
   refresh: '<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/>',
   star: '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.5 9.7l5.9-.8z"/>',
   edit: '<path d="M4 20l4.5-1 11-11-3.5-3.5-11 11z"/><path d="M14.5 6l3.5 3.5"/>',

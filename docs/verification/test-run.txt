@@ -1,7 +1,7 @@
 [server] Horang running → http://localhost:4199
 
 ────────────────────────────────────────────────────────────────
-1/10 · Content validation (12 units)
+1/12 · Content validation (12 units)
 ────────────────────────────────────────────────────────────────
 
 u01.json
@@ -101,7 +101,7 @@ Totals: 12 units · 60 sessions · 288 sentences · 576 words · 48 grammar · 1
 ✓ 0 errors, 56 warnings
 
 ────────────────────────────────────────────────────────────────
-2/10 · Core logic
+2/12 · Core logic
 ────────────────────────────────────────────────────────────────
 
 A1 content
@@ -158,9 +158,9 @@ Session + progression
   ✓ lesson 1 starts
   ✓ lesson 1 opens with sentence #0 — say_it
   ✓ lesson completes with 3 stars — 3
-  ✓ lesson awards >= 100 XP — 138
+  ✓ lesson awards >= 100 XP — 168
   ✓ lesson met 5+ new sentences — 7
-  ✓ XP total rises — 273
+  ✓ XP total rises — 303
   ✓ lesson 2 unlocks
   ✓ lesson 4 is still locked early
   ✓ chest slot filled — 2
@@ -191,7 +191,7 @@ Economy + meta
 70 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-3/10 · Core edge cases
+3/12 · Core edge cases
 ────────────────────────────────────────────────────────────────
 
 Session builder invariants
@@ -307,7 +307,7 @@ Save/load robustness
 11 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-4/10 · Audio bundle
+4/12 · Audio bundle
 ────────────────────────────────────────────────────────────────
   ✓ expected clip count — 1352
   ✓ every clip exists
@@ -321,7 +321,78 @@ Save/load robustness
 8 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-5/10 · Engagement alternatives (branch)
+5/12 · Seoul Works city economy
+────────────────────────────────────────────────────────────────
+
+Catalogue
+  ✓ 12 buildings — 12
+  ✓ every building has a cost
+  ✓ hanok is affordable at the start
+  ✓ upgrade cost scales — 102
+
+Placement
+  ✓ empty city is 6x6
+  ✓ places a hanok
+  ✓ cannot place on an occupied tile
+  ✓ cannot place outside the grid
+  ✓ cannot afford without coins
+  ✓ park is locked at one building
+  ✓ park unlocks at two buildings
+  ✓ unique tower needs 12 badges
+
+Income and adjacency
+  ✓ hanok earns 0.4/s — 0.4
+  ✓ adjacent park boosts income by 12% — 0.44800000000000006
+  ✓ level 2 multiplies income by 1.45
+  ✓ era 2 adds a 1.5x global multiplier
+
+Production
+  ✓ brickworks makes 2 bricks/min — 0.03333333333333333
+  ✓ no phantom timber
+  ✓ 60 seconds produces 2 bricks — 2
+  ✓ tick reports elapsed seconds
+  ✓ offline production is capped at 8h
+
+Upgrades and selling
+  ✓ upgrade succeeds
+  ✓ upgrade costs coins and materials
+  ✓ level caps at 10
+  ✓ cannot upgrade past 10
+  ✓ sell refunds coins
+  ✓ sell removes the building
+
+Expansion
+  ✓ expands the grid
+  ✓ expansion gets more expensive
+
+Achievements
+  ✓ first building earns first_brick
+  ✓ achievements are not awarded twice
+  ✓ 10 buildings earns neighborhood
+
+Study rewards
+  ✓ new sentences give bricks — 19
+  ✓ reviews give timber
+  ✓ words give glass
+  ✓ streak gives energy
+  ✓ checkpoint gives steel and a blueprint
+
+Prestige
+  ✓ not ready before the threshold
+  ✓ ready at the threshold
+  ✓ prestige raises the era
+  ✓ prestige clears buildings
+  ✓ prestige keeps achievements
+  ✓ era multiplier is +50%
+
+Rewards
+  ✓ applyRewards returns bank currency
+  ✓ applyRewards adds materials
+
+45 passed, 0 failed
+
+────────────────────────────────────────────────────────────────
+6/12 · Engagement alternatives (branch)
 ────────────────────────────────────────────────────────────────
 
 Lab shell
@@ -376,7 +447,7 @@ Mode does not break the core
 35 passed, 0 failed
 
 ────────────────────────────────────────────────────────────────
-6/10 · Engagement Lab UI
+7/12 · Engagement Lab UI
 ────────────────────────────────────────────────────────────────
   ✓ lab lists four modes
   ✓ lab explains the test method
@@ -400,7 +471,7 @@ CONSOLE ERRORS: none
 ALL LAB CHECKS PASSED
 
 ────────────────────────────────────────────────────────────────
-7/10 · Lesson CTA + advance flow
+8/12 · Lesson CTA + advance flow
 ────────────────────────────────────────────────────────────────
   ✓ onboarding starts lesson 0 — 13 tasks
 
@@ -877,12 +948,152 @@ ALL LAB CHECKS PASSED
   ✓ L4 #12/12 word_pick: advanced exactly one task — 11 → complete
   ✓ node 4 reached #/complete — #/complete?node=4
 
-PAGE ERRORS: none
+PAGE ERRORS: 
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+    at eval (eval at evaluate (:370:30), <anonymous>:3:36)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
 
-ALL CTA FLOW CHECKS PASSED
+50 CHECK(S) FAILED
 
 ────────────────────────────────────────────────────────────────
-8/10 · Core browser edge cases
+9/12 · Core browser edge cases
 ────────────────────────────────────────────────────────────────
 
 Lesson progression past task 4
@@ -911,12 +1122,43 @@ Finish the session above it fi
   ✓ blocked screen can navigate back to Learn
   ✓ unknown hash falls back to a real screen — {"hash":"#/home","title":"Learn · Horang","home":true}
   ✓ route change removes leftover overlays
-  ✓ no page errors across the whole browser run
+  ✗ no page errors across the whole browser run — console: [router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4173/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4173/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4173/app/js/core/router.js:64:48)
+    at finish (http://localhost:4173/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4173/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4173/app/js/screens/lesson.js:1376:18) | pageerror: Cannot set properties of null (setting 'textContent') | pageerror: Cannot set properties of null (setting 'textContent') | pageerror: Cannot set properties of null (setting 'textContent')
 
-18 passed, 0 failed
+17 passed, 1 failed
 
 ────────────────────────────────────────────────────────────────
-9/10 · Full browser journey (390×844 + 1440×900)
+10/12 · Seoul Works browser UI
+────────────────────────────────────────────────────────────────
+  ✓ city renders a 6x6 grid — 36
+  ✓ city is the active tab
+  ✓ build sheet offers the first building — 1 affordable
+  ✓ building placed
+  ✓ materials spent — 4992
+  ✓ first-building achievement earned
+  ✓ park boosts the adjacent hanok
+  ✓ building upgrades to level 2
+  ✓ grid expands
+  ✓ achievement sheet lists all 17 — 17
+  ✓ prestige becomes available
+  ✓ prestige advances the era — 2
+  ✓ prestige clears buildings
+  ✓ prestige resets Won — 0
+  ✓ offline report appears — While you were away
+  ✓ home shows the city card
+  ✓ no horizontal overflow
+
+CONSOLE ERRORS: none
+
+ALL CITY CHECKS PASSED
+
+────────────────────────────────────────────────────────────────
+11/12 · Full browser journey (390×844 + 1440×900)
 ────────────────────────────────────────────────────────────────
 ▸ Welcome
 ▸ Onboarding
@@ -933,6 +1175,7 @@ Finish the session above it fi
     · task 11/13 listen_pick
     · task 12/13 word_match
     · task 13/13 say_it
+  ✗ receipt shows Seoul Works materials
 ▸ Lesson 2 · grammar
     · task 1/8 grammar_card
     · task 2/8 fill_blank
@@ -997,8 +1240,9 @@ Finish the session above it fi
   ✓ navigated to complete — http://localhost:4199/#/complete?node=0
   ✓ lesson recorded in path
   ✓ new sentences met — 7
-  ✓ XP awarded — 273
+  ✓ XP awarded — 283
   ✓ words were practised — 9
+  ✗ receipt shows Seoul Works materials
 ▸ Lesson 2 · grammar
   ✓ grammar lesson starts — grammar
   ✓ grammar lesson has a grammar card — grammar_card,fill_blank,type_answer,tile_build,translate_pick,say_it
@@ -1013,7 +1257,7 @@ Finish the session above it fi
 ▸ Checkpoint (unit 1)
   ✓ checkpoint header visible
   ✓ checkpoint badge earned — u01_intro
-  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-18T01:03:14.810Z"}
+  ✓ checkpoint pass recorded — {"passed":true,"score":100,"at":"2026-11-18T01:43:52.913Z"}
 ▸ Home · course map + daily plan
   ✓ home shows 60 sessions
   ✓ home shows 288 sentences
@@ -1046,12 +1290,67 @@ The certificate opens when all 12 unit badges are ear
 ▸ Desktop 1440×900
   ✓ desktop has no horizontal overflow
 
-CONSOLE ERRORS: none
+CONSOLE ERRORS:
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+[router] render failed for complete ReferenceError: MATERIAL_KEYS is not defined
+    at Object.render (http://localhost:4199/app/js/screens/complete.js:218:18)
+    at renderScreen (http://localhost:4199/app/js/core/router.js:93:22)
+    at Object.go (http://localhost:4199/app/js/core/router.js:64:48)
+    at finish (http://localhost:4199/app/js/screens/lesson.js:1243:10)
+    at advance (http://localhost:4199/app/js/screens/lesson.js:1211:10)
+    at HTMLButtonElement.primaryAction (http://localhost:4199/app/js/screens/lesson.js:1376:18)
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
+PAGEERROR Cannot set properties of null (setting 'textContent')
 
-ALL CHECKS PASSED
+1 CHECKS FAILED
 
 ────────────────────────────────────────────────────────────────
-10/10 · Retention Lab (60-day A1 simulation)
+12/12 · Retention Lab (60-day A1 simulation)
 ────────────────────────────────────────────────────────────────
 start day 0
 {
@@ -1059,13 +1358,13 @@ start day 0
   sessions: 60,
   badges: 12,
   met: 288,
-  strong: 92,
+  strong: 95,
   words: 149,
-  xp: 20272,
-  level: 21,
+  xp: 20406,
+  level: 22,
   streak: 19,
   best: 38,
-  coins: 15459,
+  coins: 15616,
   chests: 72,
   league: 1,
   timeline: 61,
@@ -1073,4 +1372,4 @@ start day 0
 }
 errors none
 
-✓ All suites passed  (content=0 core=0 edge=0 persist=0 audio=0 engage=0 lab=0 cta=0 edgeBrowser=0 e2e=0 demo=0)
+✗ 3 suite(s) failed  (content=0 core=0 edge=0 persist=0 audio=0 city=0 engage=0 lab=0 cta=1 edgeBrowser=1 cityUi=0 e2e=1 demo=0)

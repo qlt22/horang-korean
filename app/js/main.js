@@ -26,14 +26,16 @@ import lab from './screens/lab.js';
 import constellation from './screens/constellation.js';
 import bounties from './screens/bounties.js';
 import expedition from './screens/expedition.js';
+import city from './screens/city.js';
+import * as cityCore from './core/city.js';
 import { ensureEngagement } from './core/engagement.js';
 
-const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo, vocab, grammar, exam, lab, constellation, bounties, expedition };
+const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo, vocab, grammar, exam, lab, constellation, bounties, expedition, city };
 
 const TABS = [
   { id: 'home', label: 'Learn', icon: 'home' },
+  { id: 'city', label: 'City', icon: 'city' },
   { id: 'quests', label: 'Quests', icon: 'quests' },
-  { id: 'shop', label: 'Shop', icon: 'shop' },
   { id: 'passport', label: 'Collection', icon: 'passport' },
   { id: 'profile', label: 'Me', icon: 'user' },
 ];
@@ -117,7 +119,10 @@ function renderSidePanels() {
 function boot() {
   buildTabs();
   ensureEngagement();
+  cityCore.ensureCity();
+  cityCore.tick();
   refreshDay();
+  setInterval(() => cityCore.tick(), 15000);
   audio.setEnabled(state.settings.sound);
   if (state.settings.voice && audio.getVoice() !== state.settings.voice) audio.setVoice(state.settings.voice);
   ui.initReducedMotion(state.settings.reducedMotion);

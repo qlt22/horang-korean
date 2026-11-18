@@ -1,6 +1,7 @@
 // W5 · A1 session receipt.
 // Everything here is read from the real summary + course data: no invented counts.
 import { state, save, openChest, weekDaysActive, stampCount, logEvent } from '../core/store.js';
+import { MATERIALS, MATERIAL_KEYS } from '../core/city-data.js';
 import {
   META,
   LESSONS,
@@ -215,6 +216,7 @@ export default {
     const met = solvedSentences(sum.met || []);
     const strong = solvedSentences(sum.strong || []);
     const words = sessionWords(sum, [...met, ...strong]);
+    const mats = MATERIAL_KEYS.filter((k) => (sum.materials?.[k] || 0) > 0).map((k) => [k, sum.materials[k]]);
     const activeDays = weekDaysActive()
       .map((on, i) => (on ? i : -1))
       .filter((i) => i >= 0);
@@ -271,6 +273,29 @@ export default {
       </div>
 
       ${checkpointPanel(sum, nextIndex)}
+
+      ${
+        mats.length
+          ? `<section class="complete-block cmp-mats">
+              <div class="complete-block-head">
+                <h2 class="complete-h2">Materials for Seoul Works</h2>
+                <span class="complete-count">from this run</span>
+              </div>
+              <div class="cmp-mat-strip">
+                ${mats
+                  .map(
+                    ([k, v]) =>
+                      `<span class="cmp-mat"><em>${MATERIALS[k].emoji}</em><b>+${Math.floor(v)}</b><span>${MATERIALS[k].label}</span></span>`
+                  )
+                  .join('')}
+              </div>
+              <button class="btn btn-secondary btn-sm btn-block mt-2" data-go="city" type="button">Open Seoul Works ${ui.icon(
+                'arrow',
+                16
+              )}</button>
+            </section>`
+          : ''
+      }
 
       <section class="complete-block cmp-met">
         <div class="complete-block-head">

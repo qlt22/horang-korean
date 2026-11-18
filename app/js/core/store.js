@@ -4,6 +4,7 @@ import { lessonAt, UNIT_BY_ID, lessonsOf, unitProgress as courseUnitProgress } f
 import { blankMastery, grade, dueStatus, decayCheck, nextDueLabel } from './srs.js';
 import { SENTENCES, BY_ID, TYPES as TASK_TYPES } from './quiz.js';
 import { WORD_BY_ID, wordsOf } from './course.js';
+import { newCity, studyRewards, applyRewards } from './city-data.js';
 import * as clock from './clock.js';
 import { nowMs, today, DAY } from './clock.js';
 
@@ -142,6 +143,7 @@ export function freshState() {
     mastery: {},
     wordMastery: {},
     checkpoints: {},
+    city: newCity(),
     badges: [],
     path: { completedNodes: [], currentNode: 0 },
     session: null,
@@ -505,6 +507,7 @@ export function ensureWord(id) {
   return state.wordMastery[id];
 }
 export function recordWord(wordId, correct) {
+  if (state.session) state.session.words = (state.session.words || 0) + 1;
   const w = ensureWord(wordId);
   const t = nowMs();
   w.seen++;
@@ -737,7 +740,10 @@ export function recordAnswer({ sentenceId, type, correct, ms = 0, usedHint = fal
     if (type === 'listen_pick') state.counters.listens++;
     if (type === 'type_answer' || type === 'dictation') state.counters.typed++;
     if (wasNew) state.counters.newSentences++;
-    if (['fading', 'wilting', 'dropped'].includes(statusBefore)) state.counters.fadingReviews++;
+    if (['fading', 'wilting', 'dropped'].includes(statusBefore)) {
+      state.counters.fadingReviews++;
+      if (s) s.reviews = (s.reviews || 0) + 1;
+    }
   } else {
     if (s) {
       s.wrong++;
@@ -855,6 +861,7 @@ export function completeNode() {
   const lvl = addXP(bonusXp, 'node');
   state.coins = num(state.coins, 0) + coins;
 
+  const goalHit = checkDailyGoal();
   const strong = (Array.isArray(s.strong) ? s.strong : []).filter(Boolean);
   const met = (Array.isArray(s.met) ? s.met : []).filter(Boolean);
   const checkpointPassed = isCheckpoint ? accuracy >= 0.8 : null;
@@ -911,9 +918,25 @@ export function completeNode() {
     levelsUp: lvl.levelsUp,
     level: lvl.level,
   };
+  // Seoul Works: study is the only source of building materials.
+  if (!state.city || state.city.version !== 1) state.city = newCity();
+  const materials = studyRewards({
+    kind: isNode ? lesson?.kind || 'node' : s.kind || 'practice',
+    newSentences: met.length,
+    reviews: num(s.reviews, 0),
+    words: num(s.words, 0),
+    stars,
+    checkpoint: isCheckpoint,
+    streakDay: goalHit,
+  });
+  const bank = applyRewards(state.city, materials);
+  state.coins += bank.coins;
+  state.gems += bank.gems;
+  summary.materials = materials;
+
   state.lastSummary = summary;
   logEvent('node_complete', { stars, xp: summary.xp, mistakes: wrong });
-  checkDailyGoal();
+  logEvent('city_materials', materials);
   checkQuests();
   save();
   return summary;

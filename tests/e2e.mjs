@@ -190,6 +190,7 @@ check('lesson recorded in path', s1.path.completedNodes.includes(0));
 check('new sentences met', (s1.lastSummary?.met || []).length >= 4, `${(s1.lastSummary?.met || []).length}`);
 check('XP awarded', s1.xpTotal > 60, `${s1.xpTotal}`);
 check('words were practised', s1.counters.words > 0, `${s1.counters.words}`);
+check('receipt shows Seoul Works materials', /Materials for Seoul Works/.test(await text()));
 await shot('a1-03-complete', 700);
 
 // ---------------------------------------------------------------- lesson 1 (grammar)
