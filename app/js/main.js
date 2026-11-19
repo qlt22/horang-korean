@@ -27,14 +27,15 @@ import constellation from './screens/constellation.js';
 import bounties from './screens/bounties.js';
 import expedition from './screens/expedition.js';
 import city from './screens/city.js';
+import game from './screens/game.js';
 import * as cityCore from './core/city.js';
 import { ensureEngagement } from './core/engagement.js';
 
-const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo, vocab, grammar, exam, lab, constellation, bounties, expedition, city };
+const SCREENS = { welcome, onboarding, home, lesson, complete, quests, shop, league, passport, profile, settings, demo, vocab, grammar, exam, lab, constellation, bounties, expedition, city, game };
 
 const TABS = [
   { id: 'home', label: 'Learn', icon: 'home' },
-  { id: 'city', label: 'City', icon: 'city' },
+  { id: 'game', label: 'City', icon: 'city' },
   { id: 'quests', label: 'Quests', icon: 'quests' },
   { id: 'passport', label: 'Collection', icon: 'passport' },
   { id: 'profile', label: 'Me', icon: 'user' },

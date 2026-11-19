@@ -33,20 +33,29 @@ The player never buys materials with real money. Every brick is a sentence they 
 
 ## 2 · The city and its grid
 
-- **6×6 grid** at the start, expandable to **9×9**.
+- **12×12 grid** at the start (144 tiles), expandable to **20×20** (400 tiles).
 - Buildings have a rectangular footprint (`w × h`). Footprints never overlap; every covered tile belongs to exactly one building.
 - Every building has levels **1–10**.
 - Income is **Won/second** and is the same Won used by the shop, so the city funds cosmetics and chests.
 - Industry produces **materials/minute**, so the city keeps working while you study.
 - **Eras:** prestige resets the city but grants a permanent multiplier and a new palette. Hanok Era → Modern → Skyline → Future.
 
-Expansion cost for the next grid size (`n = grid − 6 + 1`):
+Expansion cost for the next grid size (`n = grid − 11`, so `n = 1` at the 12×12 start):
 
 ```js
-coins = round(1500 × 1.8^n)
-brick = 40 × n
-steel = 15 × n
+coins = round(4000 × 1.55^(grid − 12))
+brick = 60 × n
+steel = 25 × n
 ```
+
+| From | To | Coins | Bricks | Steel |
+|---:|---:|---:|---:|---:|
+| 12×12 | 13×13 | ₩4,000 | 60 | 25 |
+| 15×15 | 16×16 | ₩14,896 | 240 | 100 |
+| 18×18 | 19×19 | ₩55,469 | 420 | 175 |
+| 19×19 | 20×20 | ₩85,977 | 480 | 200 |
+
+Saves older than the 12×12 start are normalised to 12 on load (buildings keep their coordinates); `newCity` starts at 12 so the constants and the wrapper agree.
 
 ## 3 · Categories
 
@@ -191,7 +200,7 @@ Rewards are banked immediately by the wrapper (`coins` and `gems` go to the wall
 | `income1000` | Megacity | 1,000 ₩/s | 3 gems · 1 blueprint |
 | `subway` | Express line | Build the subway | 1,000 coins · 5 energy |
 | `tower` | Landmark | Build N Seoul Tower | 2 gems · 2,000 coins |
-| `grid7` | Growing out | Expand to 7×7 | 800 coins · 30 brick |
+| `grid7` | Growing out | Expand to a 13×13 grid | 800 coins · 30 brick |
 | `era2` | New era | Prestige into Era 2 | 2 gems |
 | `era3` | Third skyline | Prestige into Era 3 | 3 gems · 1 blueprint |
 | `a1_badges` | A1 architect | All 12 A1 unit badges | 2 gems · 3,000 coins |
@@ -241,3 +250,22 @@ Wrapper API (`app/js/core/city.js`): `ensureCity`, `sync`, `tick`, `consumeRepor
 - Prestige is optional and always confirmed; it never removes badges, achievements, cosmetics or course progress.
 - Materials are awarded only for learning actions; idling produces Won/materials only from what you already built.
 - Footprints follow the catalogue. Old saves without `w`/`h` are upgraded on first load, so every surface agrees on which tiles a building covers.
+
+## 12 · Showcase city (16×16)
+
+`app/js/core/showcase-city.js` exports a completed, legitimate save used by the Showcase button and `#/city?showcase=1` (same `SHOWCASE_LAYOUT` / `buildShowcaseCity` shape). It assumes a finished A1 learner: Era 3 and all 12 badges.
+
+| | |
+|---|---|
+| Grid | 16×16 — **256 / 256 tiles** covered, no overlaps |
+| Buildings | **127** |
+| Residents | **1,448** — Metropolis |
+| Happiness | **91.6 / 100** |
+| Transit coverage | **100 %** |
+| Service coverage | **100 %** (education, health, safety, park) |
+| Utilities | 1.0 (power + water) |
+| Pollution | 39 |
+| Income | **≈ ₩15,042/s** (buildings ₩10,811 · tax ₩13 · tourism ₩170) |
+| Materials | brick 4.1/min · timber 4.1/min · glass 3/min · steel 2/min |
+
+Contents: airport, KTX/train station, metro, subway, ferry terminal, Gyeongbokgung, World Cup Stadium, Lotte World Tower, N Seoul Tower, two Han River bridge spans, eight apartments (levels 8–10), villas, officetels, a dense office district, four malls, a factory plus the full supply chain (brickworks, sawmill, glassworks, steelworks), four schools, two hospitals, police and fire posts, power, water, and 32 pocket parks. Every unlock gate is met by the finished city (20+ buildings, 300 airport residents, 400 stadium, 500 Lotte, 12 badges), so it is a valid final state rather than a decorated mock.

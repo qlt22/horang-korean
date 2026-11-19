@@ -11,8 +11,12 @@
 //   and power/water by `utilities`, so those are not averaged twice.
 // - The binding happiness formula is implemented verbatim; the per-building
 //   `happiness` field is exposed for UI copy but is not an extra term in it.
-export const GRID_START = 6;
-export const GRID_MAX = 9;
+// - The city starts at 12×12 (144 tiles) and grows to 20×20 (400 tiles).
+//   `expandCost` compounds 1.55× coins per expansion and adds one row of
+//   materials; grids below GRID_START are priced as the 12×12 base (the
+//   wrapper's `ensureCity` normalises old saves to 12 on load).
+export const GRID_START = 12;
+export const GRID_MAX = 20;
 export const MAX_LEVEL = 10;
 export const PRESTIGE_BASE = 25000;
 export const OFFLINE_CAP_SECONDS = 8 * 3600;
@@ -579,7 +583,7 @@ export const ACHIEVEMENTS = [
   { id: 'income1000', name: 'Megacity', desc: '1,000 Won per second', reward: { gems: 3, blueprint: 1 }, check: (c) => cityIncome(c) >= 1000 },
   { id: 'subway', name: 'Express line', desc: 'Build the subway', reward: { coins: 1000, energy: 5 }, check: (c) => (c.buildings || []).some((b) => b.type === 'subway') },
   { id: 'tower', name: 'Landmark', desc: 'Build N Seoul Tower', reward: { gems: 2, coins: 2000 }, check: (c) => (c.buildings || []).some((b) => b.type === 'tower') },
-  { id: 'grid7', name: 'Growing out', desc: 'Expand to a 7×7 grid', reward: { coins: 800, brick: 30 }, check: (c) => c.grid >= 7 },
+  { id: 'grid7', name: 'Growing out', desc: 'Expand to a 13×13 grid', reward: { coins: 800, brick: 30 }, check: (c) => (c.grid || GRID_START) >= GRID_START + 1 },
   { id: 'era2', name: 'New era', desc: 'Prestige into Era 2', reward: { gems: 2 }, check: (c) => c.era >= 2 },
   { id: 'era3', name: 'Third skyline', desc: 'Prestige into Era 3', reward: { gems: 3, blueprint: 1 }, check: (c) => c.era >= 3 },
   { id: 'a1_badges', name: 'A1 architect', desc: 'Earn all 12 A1 unit badges', reward: { gems: 2, coins: 3000 }, check: (c, ctx) => (ctx?.badges ?? c.badges ?? 0) >= 12 },
@@ -984,11 +988,24 @@ export function cityRates(city) {
   return computeRates(city);
 }
 
+/**
+ * Cost of the next expansion: the added row costs `n = grid − GRID_START + 1`
+ * (1 at the starting 12×12) worth of materials, and coins compound 1.55× per
+ * side already bought. Saves older than the 12×12 start normalise to 12 in the
+ * wrapper (`ensureCity`), and the clamp here keeps the curve monotonic anyway.
+ */
 export function expandCost(city) {
-  const n = city.grid - GRID_START + 1;
-  return { coins: Math.round(1500 * Math.pow(1.8, n)), brick: 40 * n, steel: 15 * n };
+  const grid = Math.max(GRID_START, Math.floor(Number(city?.grid) || GRID_START));
+  const n = grid - GRID_START + 1;
+  return {
+    coins: Math.round(4000 * Math.pow(1.55, grid - GRID_START)),
+    brick: 60 * n,
+    steel: 25 * n,
+  };
 }
 export function expand(city, coins) {
+  // Legacy saves predate the 12×12 start; normalise before pricing the next row.
+  if (!(Number(city.grid) >= GRID_START)) city.grid = GRID_START;
   if (city.grid >= GRID_MAX) return { ok: false, reason: 'Maximum grid size' };
   const cost = expandCost(city);
   if ((cost.coins || 0) > coins) return { ok: false, reason: 'Not enough Won' };

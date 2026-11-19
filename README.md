@@ -4,7 +4,7 @@
 
 | The hook | The lesson | The city |
 |---|---|---|
-| ![Welcome](docs/screenshots/a1-00-welcome.png) | ![Lesson](docs/screenshots/a1-02-word-card.png) | ![Seoul Works](docs/screenshots/metropolis-showcase-mobile.png) |
+| ![Welcome](docs/screenshots/a1-00-welcome.png) | ![Lesson](docs/screenshots/a1-02-word-card.png) | ![Seoul Works](docs/screenshots/game/game-02-street.png) |
 
 ---
 
@@ -56,7 +56,14 @@ Lessons differ by kind: vocabulary opens with word cards, grammar starts with a 
 
 ## Seoul Works — the city you build by studying
 
-A Cities-Skylines-flavoured builder on the **City** tab. Study is the only source of materials:
+A Cities-Skylines-flavoured city builder with two modes, switched in one tap:
+
+- **Study mode** — Home stays focused on the course: daily plan, lessons, reviews.
+- **Game mode** — a **full-screen 3D city** at `#/game`. The city fills the viewport (no bottom nav) and has its own **Study** and **List** buttons to come back.
+
+Buildings are **real 3D volumes** — CSS `preserve-3d` cuboids with pitched roofs, setbacks, canopies, platforms, spires, chimneys and window bands — not pictures or emoji. Pan by dragging, zoom with the wheel/pinch or buttons, rotate in 90° steps. Height follows the building level; footprints follow the catalogue (`w×h`).
+
+The map starts at **12×12 (144 tiles)** and expands to **20×20 (400 tiles)** — enough to lay out districts, a transit spine and a river. Study is the only source of materials:
 
 | You do | You get |
 |---|---|
@@ -66,15 +73,17 @@ A Cities-Skylines-flavoured builder on the **City** tab. Study is the only sourc
 | Pass a checkpoint | Steel + a blueprint |
 | Hit the daily goal | Energy |
 
-A **31-building** catalogue spans homes, offices, industry, schools, hospitals, police/fire, power and water, buses, metro, rail, ferry and an **airport**, plus landmarks (Gyeongbokgung, World Cup Stadium, Lotte Tower, N Seoul Tower, Han River Bridge). You place them on a grid — including 3×3 airports — upgrade through 10 levels, and they generate **Won per second** — the same Won used in the shop. Factories produce materials per minute, parks boost neighbours, and transit (bus → metro → train → airport) raises coverage and happiness. The city earns while you are away (8 h cap), and **prestige** starts a new era with a permanent +50 % income.
+A **31-building** catalogue spans homes, offices, industry, schools, hospitals, police/fire, power and water, buses, metro, rail, ferry and an **airport**, plus landmarks (Gyeongbokgung, World Cup Stadium, Lotte Tower, N Seoul Tower, Han River Bridge). You place them on the grid — including 3×3 airports — upgrade through 10 levels, and they generate **Won per second** — the same Won used in the shop. Factories produce materials per minute, parks boost neighbours, and transit (bus → metro → train → airport) raises coverage and happiness. The city earns while you are away (8 h cap), and **prestige** starts a new era with a permanent +50 % income.
 
-See `docs/CITY-SPEC.md` for the full catalogue and formulas.
+Full-screen game: **`#/game`** · 2D overview / List: `#/city` · spec: `docs/CITY-SPEC.md` and `docs/GAME-MODE-SPEC.md`.
+
+![3D game mode](docs/screenshots/game/game-02-street.png)
 
 ### See a finished city
 
-Open **`#/city?showcase=1`** (or **City → Showcase**) to load a legitimate completed save: **26 buildings on 81/81 tiles**, 531 residents, 85 % happiness, 100 % transit, airport, KTX, metro, palace, stadium, Lotte Tower, N Seoul Tower and the Han River bridge. It assumes a completed A1 learner (12 badges). Your save is backed up; **Restore my save** puts it back.
+Open **`#/city?showcase=1`** (or **City → Showcase**) to load a legitimate completed save: **127 buildings on 256/256 tiles** of a 16×16 map — **1,448 residents**, 92 % happiness, 100 % transit, **₩15,042/s**, Metropolis tier — including the airport, KTX, metro, ferry, palace, stadium, Lotte Tower, N Seoul Tower and the Han River bridge. It assumes a completed A1 learner (12 badges). Your save is backed up; **Restore my save** puts it back, or press **Play 3D** to walk the finished city.
 
-![Finished city](docs/screenshots/showcase-city-mobile.png)
+![Finished city](docs/screenshots/game/game-19-showcase-city.png)
 
 ## Engagement Lab (branch `gamification-lab`)
 

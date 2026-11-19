@@ -774,7 +774,8 @@ export default {
         state.flags.showcaseCity
           ? `<div class="city-showcase-banner">
               <span><b>Showcase city</b> · a completed A1 learner's save</span>
-              <button class="btn btn-secondary btn-sm" data-restore-showcase type="button">Restore my save</button>
+              <button class="btn btn-secondary btn-sm" data-go="game" type="button">Play 3D</button>
+              <button class="btn btn-secondary btn-sm" data-restore-showcase type="button">Restore</button>
             </div>`
           : ''
       }
@@ -916,7 +917,7 @@ export default {
     root.querySelector('[data-showcase]')?.addEventListener('click', () => {
       ui.modal({
         title: 'Load the showcase city?',
-        body: `<p class="small muted">This loads a completed A1 learner's save — all 12 badges, a 9×9 city with 81/81 tiles, the airport, KTX, metro, palace, stadium, Lotte Tower and the Han River bridge. Your current save is backed up and can be restored in one tap.</p>`,
+        body: `<p class="small muted">This loads a completed A1 learner's save — all 12 badges, a 16×16 city with 256/256 tiles, 127 buildings and 1,448 residents: the airport, KTX, metro, palace, stadium, Lotte Tower, N Seoul Tower and the Han River bridge. Your current save is backed up and can be restored in one tap.</p>`,
         actions: [
           { label: 'Load showcase', cls: 'btn-primary', onClick: loadShowcase },
           { label: 'Not now', cls: 'btn-ghost' },

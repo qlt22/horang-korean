@@ -52,12 +52,12 @@ section('Tile geometry');
 
 section('Placement');
 let city = seed(C.newCity(1000));
-ok('empty city is 6x6', city.grid === 6 && city.buildings.length === 0);
+ok('empty city is 12x12', city.grid === 12 && city.buildings.length === 0);
 let r = C.place(city, 'hanok', 0, 0, 100);
 ok('places a hanok', r.ok && city.buildings.length === 1);
 ok('stored footprint on new buildings', r.building.w === 1 && r.building.h === 1);
 ok('cannot place on an occupied tile', C.place(city, 'hanok', 0, 0, 100).ok === false);
-ok('cannot place outside the grid', C.place(city, 'hanok', 6, 0, 100).ok === false);
+ok('cannot place outside the grid', C.place(city, 'hanok', 12, 0, 100).ok === false);
 ok('cannot afford without coins', C.place(city, 'hanok', 1, 1, 10).ok === false);
 ok('cafe locked at one building', C.placeable(city, 'cafe', 1, 1).ok === false);
 city.buildings.push({ id: 'x1', type: 'park', x: 3, y: 3, level: 1 });
@@ -77,7 +77,7 @@ ok('tower also needs 20 buildings', C.placeable(city, 'tower', 1, 1, { badges: 1
   const v = C.place(c, 'villa', 0, 3, 1e6);
   ok('villa places as 2×1', v.ok && v.building.w === 2 && v.building.h === 1);
   ok('villa blocks both tiles', C.placeable(c, 'hanok', 1, 3).ok === false);
-  ok('villa rejects out-of-bounds x', C.placeable(c, 'villa', 5, 5).ok === false);
+  ok('villa rejects out-of-bounds x', C.placeable(c, 'villa', 11, 11).ok === false);
   ok('apartment needs 8 buildings', C.placeable(c, 'apartment', 2, 3).reason.includes('8'));
 }
 
@@ -91,11 +91,11 @@ ok('tower also needs 20 buildings', C.placeable(city, 'tower', 1, 1, { badges: 1
 
 {
   const c = seed(C.newCity(1000));
-  c.grid = 9;
-  c.buildings.push(mk('airport', 0, 6));
+  c.grid = 12;
+  c.buildings.push(mk('airport', 0, 9));
   ok('airport tiles are 9', C.tilesOf(c.buildings[0]).length === 9);
-  ok('airport covers its far corner', C.buildingAt(c, 2, 8) === c.buildings[0]);
-  ok('3×3 rejects a neighbour overlap', C.placeable(c, 'airport', 2, 5).ok === false);
+  ok('airport covers its far corner', C.buildingAt(c, 2, 11) === c.buildings[0]);
+  ok('3×3 rejects a neighbour overlap', C.placeable(c, 'airport', 2, 8).ok === false);
 }
 
 {
@@ -177,7 +177,7 @@ section('Transit coverage');
   const multi = cityOf([mk('apartment', 0, 0), mk('metro', 3, 1)]);
   // Apartment tiles (0,0)-(1,1); metro tiles (3,1)-(4,1): distance 2 ≤ 4.
   ok('multi-tile transit covers multi-tile housing', near(C.cityStats(multi).transitCoverage, 1));
-  const far = cityOf([mk('apartment', 0, 0), mk('metro', 7, 7)], { grid: 9 });
+  const far = cityOf([mk('apartment', 0, 0), mk('metro', 7, 7)], { grid: 12 });
   ok('metro coverage has a real radius', C.cityStats(far).transitCoverage === 0);
 }
 
@@ -296,12 +296,18 @@ section('Upgrades and selling');
 section('Expansion');
 {
   city = seed(C.newCity(1000));
+  ok('grid constants are 12 → 20', C.GRID_START === 12 && C.GRID_MAX === 20);
+  ok('new cities start at 12×12', city.grid === 12);
   const first = C.expandCost(city);
+  ok('first expansion costs ₩4,000 · 60 brick · 25 steel', first.coins === 4000 && first.brick === 60 && first.steel === 25);
   const ex = C.expand(city, 999999);
-  ok('expands the grid', ex.ok && city.grid === 7);
-  ok('expansion gets more expensive', C.expandCost(city).coins > first.coins);
+  ok('expands the grid', ex.ok && city.grid === 13);
+  const second = C.expandCost(city);
+  ok('next expansion compounds 1.55× and adds a row of materials', second.coins === 6200 && second.brick === 120 && second.steel === 50);
+  ok('expansion gets more expensive', second.coins > first.coins);
+  ok('legacy grids price from the 12×12 base', C.expandCost({ grid: 9 }).coins === first.coins);
   city.grid = C.GRID_MAX;
-  ok('cannot expand past 9', C.expand(city, 1e9).ok === false);
+  ok('cannot expand past 20', C.expand(city, 1e9).ok === false);
 }
 
 section('Achievements');

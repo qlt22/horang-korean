@@ -267,6 +267,36 @@ check('home shows unit badges', /badge|Unit 1/i.test(home));
 await shot('a1-08-home', 800);
 await noOverflow('home');
 
+// ---------------------------------------------------------------- city mode
+step('City mode ⇄ study switch');
+await page.locator('.mode-opt--city').click();
+await page.waitForTimeout(900);
+check('home City switch opens the 3D game', (await page.evaluate(() => location.hash)) === '#/game');
+check('game hides the bottom nav', await page.evaluate(() => document.getElementById('tabbar').hidden));
+check(
+  'game renders a 12×12 grid (144 tiles)',
+  (await page.locator('[data-tile]').count()) === 144,
+  `${await page.locator('[data-tile]').count()}`
+);
+await noOverflow('game');
+await page.locator('[data-study]').click();
+await page.waitForTimeout(700);
+check('game Study returns to home', (await page.evaluate(() => location.hash)) === '#/home');
+await page.locator('.tab[data-tab="game"]').click();
+await page.waitForTimeout(900);
+check('City bottom tab opens the game', (await page.evaluate(() => location.hash)) === '#/game');
+await page.locator('[data-list]').click();
+await page.waitForTimeout(800);
+check('game List shows the 2D overview', (await page.evaluate(() => location.hash)) === '#/city');
+check(
+  '2D overview is still a 12×12 grid',
+  (await page.locator('[data-tile]').count()) === 144 && /12×12/.test(await page.locator('.cmb-title').innerText()),
+  `${await page.locator('[data-tile]').count()}`
+);
+check('2D overview is not itself a bottom tab', (await page.locator('.tab[aria-current="page"]').count()) === 0);
+await page.evaluate(() => window.horang.router.go('home'));
+await page.waitForTimeout(500);
+
 // ---------------------------------------------------------------- collection
 step('Collection');
 await page.evaluate(() => window.horang.router.go('passport'));

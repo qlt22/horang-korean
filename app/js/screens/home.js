@@ -95,6 +95,24 @@ function hudHTML() {
   </div>`;
 }
 
+// ---------- 1b · Mode switch (study ⇄ city) ----------
+// Home is the study screen. One tap puts the learner in the 3D city; each side
+// says what the mode is for so the switch never reads as decoration.
+function modeSwitchHTML() {
+  return `<div class="mode-switch" role="group" aria-label="Mode: study or city">
+    <span class="mode-opt is-on" aria-current="page">
+      <span class="mode-ico">${ui.icon('book', 17)}</span>
+      <span class="mode-text"><b>Study</b><i>Lessons &amp; plan</i></span>
+    </span>
+    <button class="mode-opt mode-opt--city" data-go="game" type="button"
+        aria-label="Enter city mode — build and spend materials">
+      <span class="mode-ico">${ui.icon('city', 17)}</span>
+      <span class="mode-text"><b>City</b><i>Build &amp; spend</i></span>
+      <span class="mode-arrow">${ui.icon('chevron', 16)}</span>
+    </button>
+  </div>`;
+}
+
 // ---------- 2 · Daily plan ----------
 function goalText() {
   const goal = state.profile.dailyGoalXp || 120;
@@ -180,17 +198,19 @@ function cityHTML() {
   const next = cityCore.catalog().find((d) => !d.unlocked && d.lockReason);
   const buildingWord = info.buildings.length === 1 ? 'building' : 'buildings';
   if (!info.buildings.length) {
-    return `<button class="city-card city-card--empty" data-go="city" type="button">
+    return `<button class="city-card city-card--empty" data-go="game" type="button"
+        aria-label="Enter city mode — start building your Seoul Works city">
       <span class="cc-art">🏗️</span>
       <span class="cc-body">
         <span class="overline">Seoul Works · ${esc(tier.name)}</span>
         <b>Start building your city</b>
-        <span>You already have ${Math.floor(state.city?.resources?.brick || 0)} bricks from studying.</span>
+        <span>${ui.fmt(Math.floor(state.city?.resources?.brick || 0))} bricks from studying.</span>
       </span>
-      ${ui.icon('chevron', 18)}
+      <span class="cc-go"><span class="cc-enter">Enter</span>${ui.icon('arrow', 15)}</span>
     </button>`;
   }
-  return `<button class="city-card" data-go="city" type="button">
+  return `<button class="city-card" data-go="game" type="button"
+      aria-label="Enter city mode — ${ui.fmt(population)} residents, ${info.buildings.length} ${buildingWord}">
     <span class="cc-art">${ui.icon('city', 22)}</span>
     <span class="cc-body">
       <span class="overline">Seoul Works · Era ${info.era} · ${esc(tier.name)}</span>
@@ -199,7 +219,7 @@ function cityHTML() {
         next ? `Next: ${esc(next.name)}` : 'Every building unlocked — scale the skyline'
       }</span>
     </span>
-    <span class="cc-go">${ui.icon('chevron', 18)}</span>
+    <span class="cc-go"><span class="cc-enter">Enter</span>${ui.icon('arrow', 15)}</span>
   </button>`;
 }
 
@@ -727,6 +747,7 @@ export default {
     return `<section class="screen home">
       <div class="home-stack stagger">
         ${hudHTML()}
+        ${modeSwitchHTML()}
         ${dailyPlanHTML(plan)}
         ${progressHTML(s)}
         ${cityHTML()}

@@ -36,6 +36,90 @@
   color: var(--ink-300);
 }
 
+/* ---------- Mode switch (study ⇄ city) ---------- */
+.mode-switch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 16px;
+  background: var(--cream-200);
+  border: 1px solid var(--line);
+}
+.mode-opt {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border-radius: 12px;
+  text-align: left;
+  color: var(--ink-500);
+  transition: background var(--dur-2), color var(--dur-2), transform var(--dur-2) var(--ease-spring);
+}
+.mode-opt.is-on {
+  background: var(--white);
+  color: var(--ink-900);
+  box-shadow: var(--shadow-1);
+}
+.mode-opt--city:active {
+  transform: scale(0.985);
+}
+.mode-ico {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: var(--cream-100);
+  color: var(--ink-500);
+}
+.mode-opt.is-on .mode-ico {
+  background: var(--indigo-100);
+  color: var(--indigo-600);
+}
+.mode-opt--city .mode-ico {
+  background: var(--amber-100);
+  color: var(--amber-700);
+}
+.mode-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+.mode-text b {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+.mode-text i {
+  font-style: normal;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-300);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mode-opt--city .mode-text i {
+  color: var(--ink-500);
+}
+.mode-arrow {
+  margin-left: auto;
+  flex: 0 0 auto;
+  color: var(--ink-300);
+  display: grid;
+  place-items: center;
+}
+.reduce-motion .mode-opt {
+  transition: none;
+}
+.reduce-motion .mode-opt--city:active {
+  transform: none;
+}
+
 /* ---------- Daily plan ---------- */
 .plan-card {
   position: relative;
@@ -1329,7 +1413,29 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* The empty card's line is the invitation, not a stat row — let it wrap. */
+.city-card--empty .cc-body > span:last-child {
+  white-space: normal;
+  line-height: 1.35;
+}
 .cc-go {
   color: var(--ink-300);
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.cc-enter {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--amber-700);
+  background: var(--white);
+  border-radius: 999px;
+  padding: 4px 9px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-1);
+}
+.city-card:active .cc-enter {
+  background: var(--amber-100);
 }

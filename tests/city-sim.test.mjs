@@ -2,6 +2,7 @@
 // Exercises every category, every new building, multi-tile footprints,
 // coverage maths, tiers, the new achievements and long offline ticks.
 import * as C from '../app/js/core/city-data.js';
+import { buildShowcaseCity, SHOWCASE_LAYOUT } from '../app/js/core/showcase-city.js';
 
 let pass = 0, fail = 0;
 const out = [];
@@ -98,29 +99,29 @@ section('Existing buildings keep their contract values');
 section('3×3 airport placement');
 {
   const c = seed(C.newCity(1000));
-  c.grid = 9;
+  c.grid = 12;
   for (const [x, y] of [[0, 0], [2, 0], [4, 0], [0, 2], [2, 2], [4, 2]]) c.buildings.push(mk('apartment', x, y));
-  for (const [x, y] of [[6, 0], [7, 0], [8, 0], [6, 1], [7, 1], [8, 1], [6, 2], [7, 2], [8, 2], [6, 3], [7, 3], [8, 3], [6, 4], [7, 4]]) c.buildings.push(mk('hanok', x, y));
-  ok('fixture has 20 buildings', c.buildings.length === 20);
+  for (const [x, y] of [[6, 0], [7, 0], [8, 0], [6, 1], [7, 1], [8, 1], [6, 2], [7, 2], [8, 2], [6, 3], [7, 3], [8, 3], [6, 4], [7, 4], [8, 4]]) c.buildings.push(mk('hanok', x, y));
+  ok('fixture has 21 buildings', c.buildings.length === 21);
   ok('fixture has 300+ residents', C.cityStats(c).population >= 300, `${C.cityStats(c).population}`);
-  ok('airport is placeable at 0,4', C.placeable(c, 'airport', 0, 4).ok === true, C.placeable(c, 'airport', 0, 4).reason || '');
-  const p = C.place(c, 'airport', 0, 4, 1e6);
+  ok('airport is placeable at 0,6', C.placeable(c, 'airport', 0, 6).ok === true, C.placeable(c, 'airport', 0, 6).reason || '');
+  const p = C.place(c, 'airport', 0, 6, 1e6);
   ok('airport places', p.ok === true);
   ok('airport stores a 3×3 footprint', p.building.w === 3 && p.building.h === 3);
   ok('airport occupies nine tiles', C.tilesOf(p.building).length === 9);
-  ok('airport owns its far corner', C.buildingAt(c, 2, 6) === p.building);
-  ok('airport overlaps are rejected', C.placeable(c, 'hanok', 1, 5).ok === false);
-  ok('second airport overlaps', C.placeable(c, 'airport', 1, 4).ok === false);
-  ok('airport rejects out-of-bounds x', C.placeable(c, 'airport', 7, 4).reason === 'Outside the grid');
-  ok('airport rejects out-of-bounds y', C.placeable(c, 'airport', 3, 7).reason === 'Outside the grid');
+  ok('airport owns its far corner', C.buildingAt(c, 2, 8) === p.building);
+  ok('airport overlaps are rejected', C.placeable(c, 'hanok', 1, 7).ok === false);
+  ok('second airport overlaps', C.placeable(c, 'airport', 1, 6).ok === false);
+  ok('airport rejects out-of-bounds x', C.placeable(c, 'airport', 10, 6).reason === 'Outside the grid');
+  ok('airport rejects out-of-bounds y', C.placeable(c, 'airport', 3, 10).reason === 'Outside the grid');
 
   const lowPop = seed(C.newCity(1000));
-  lowPop.grid = 9;
-  for (let i = 0; i < 20; i++) lowPop.buildings.push(mk('hanok', i % 9, Math.floor(i / 9)));
+  lowPop.grid = 12;
+  for (let i = 0; i < 20; i++) lowPop.buildings.push(mk('hanok', i % 12, Math.floor(i / 12)));
   ok('airport needs 300 residents', C.placeable(lowPop, 'airport', 0, 6).reason.includes('residents'));
 
   const lowBuild = seed(C.newCity(1000));
-  lowBuild.grid = 9;
+  lowBuild.grid = 12;
   for (let i = 0; i < 10; i++) lowBuild.buildings.push(mk('apartment', (i % 4) * 2, Math.floor(i / 4) * 2));
   ok('airport needs 20 buildings', C.placeable(lowBuild, 'airport', 0, 6).reason.includes('buildings'));
 }
@@ -346,6 +347,79 @@ section('Balance and early game');
   ok('five early placements succeed', placed.every((p) => p.ok), placed.map((p) => p.reason).join('|'));
   ok('early city has residents', C.cityStats(early).population >= 22);
   ok('early city has positive income', C.cityIncome(early) > 0);
+}
+
+section('Grid scale 12 → 20');
+{
+  ok('grid constants are 12 → 20', C.GRID_START === 12 && C.GRID_MAX === 20);
+  const c = seed(C.newCity(1000));
+  ok('a new city starts 12×12', c.grid === 12);
+  const first = C.expandCost(c);
+  ok('first expansion is ₩4,000 · 60 brick · 25 steel', first.coins === 4000 && first.brick === 60 && first.steel === 25);
+  let steps = 0;
+  while (c.grid < C.GRID_MAX && steps < 20) {
+    if (!C.expand(c, 1e12).ok) break;
+    steps++;
+  }
+  ok('reaches the 20×20 maximum', c.grid === 20 && steps === 8, `${c.grid} after ${steps}`);
+  ok('20×20 is 400 tiles', c.grid ** 2 === 400);
+  ok('the last expansion compounds 1.55^7', C.expandCost({ grid: 19 }).coins === Math.round(4000 * 1.55 ** 7));
+  ok('last expansion needs n = 8 materials', C.expandCost({ grid: 19 }).brick === 480 && C.expandCost({ grid: 19 }).steel === 200);
+  ok('cannot expand past 20', C.expand(c, 1e12).ok === false);
+  ok('legacy grids price from the 12×12 base', C.expandCost({ grid: 9 }).coins === 4000);
+}
+
+section('Showcase city (16×16)');
+{
+  const c = buildShowcaseCity(1000);
+  const s = C.cityStats(c);
+  const owner = new Map();
+  let overlaps = 0;
+  let outOfBounds = 0;
+  for (const b of c.buildings) {
+    for (const t of C.tilesOf(b)) {
+      const k = `${t.x},${t.y}`;
+      if (owner.has(k)) overlaps++;
+      owner.set(k, b);
+      if (t.x < 0 || t.y < 0 || t.x >= c.grid || t.y >= c.grid) outOfBounds++;
+    }
+  }
+  const sumTiles = c.buildings.reduce((a, b) => a + C.tilesOf(b).length, 0);
+  const types = new Set(c.buildings.map((b) => b.type));
+
+  ok('showcase grid is 16×16', c.grid === 16);
+  ok('showcase packs at least 240/256 tiles', owner.size >= 240 && owner.size <= 256, `${owner.size}`);
+  ok('every footprint is inside the grid', outOfBounds === 0);
+  ok('no footprints overlap', overlaps === 0 && owner.size === sumTiles, `${overlaps} overlaps`);
+  ok('showcase is a Metropolis', s.population >= 1200 && s.tier.id === 'metropolis', `${s.population} / ${s.tier.id}`);
+  ok('showcase happiness is 85–100', s.happiness >= 85 && s.happiness <= 100, `${s.happiness}`);
+  ok('showcase transit is 100%', near(s.transitCoverage, 1), `${s.transitCoverage}`);
+  ok('showcase services reach every resident', near(s.serviceCoverage, 1), `${s.serviceCoverage}`);
+  ok('showcase has full utilities', s.utilities === 1);
+  ok('showcase is Era 3 with 12 badges', c.era === 3 && c.badges === 12);
+
+  for (const t of ['airport', 'train', 'metro', 'subway', 'ferry', 'palace', 'stadium', 'lotte', 'tower', 'bridge', 'apartment', 'office', 'mall', 'factory', 'school', 'hospital', 'police', 'fire', 'power', 'water', 'park', 'villa', 'officetel']) {
+    ok(`showcase has ${t}`, types.has(t));
+  }
+  ok('showcase has several apartments/offices/malls/factories', c.buildings.filter((b) => b.type === 'apartment').length >= 4 && c.buildings.filter((b) => b.type === 'office').length >= 4 && c.buildings.filter((b) => b.type === 'mall').length >= 2 && c.buildings.filter((b) => b.type === 'factory').length >= 1);
+
+  const uniqueTypes = ['subway', 'tower'];
+  ok('unique buildings appear at most once', uniqueTypes.every((t) => c.buildings.filter((b) => b.type === t).length <= 1));
+
+  let gatesOk = true;
+  for (const b of c.buildings) {
+    const req = C.def(b.type)?.requires || {};
+    if ((req.buildings || 0) > c.buildings.length) gatesOk = false;
+    if ((req.pop || 0) > s.population) gatesOk = false;
+    if ((req.badges || 0) > c.badges) gatesOk = false;
+    if ((req.era || 0) > c.era) gatesOk = false;
+  }
+  ok('every building gate is satisfied', gatesOk);
+  ok('layout footprints match the catalogue', SHOWCASE_LAYOUT.every((b) => {
+    const size = C.sizeOf(b.type);
+    return !!C.def(b.type) && b.w === size.w && b.h === size.h;
+  }));
+  ok('showcase keeps its export shape', typeof buildShowcaseCity === 'function' && Array.isArray(SHOWCASE_LAYOUT) && SHOWCASE_LAYOUT.length === c.buildings.length);
 }
 
 console.log(out.join('\n'));

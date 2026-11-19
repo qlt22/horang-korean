@@ -485,7 +485,8 @@ export default {
 
           ${
             seoul
-              ? `<button class="card card-press pf-row-card" type="button" data-go="city">
+              ? `<button class="card card-press pf-row-card" type="button" data-city-entry
+                    aria-label="Seoul Works city mode — enter the 3D city">
                   <span class="pf-row-ico pf-row-ico--amber">${ui.icon('city', 21)}</span>
                   <span class="pf-row-body">
                     <span class="pf-row-title">Seoul Works</span>
@@ -585,6 +586,14 @@ export default {
     });
 
     root.querySelectorAll('[data-settings]').forEach((b) => b.addEventListener('click', () => router.go('settings')));
+
+    // Seoul Works row → the full-screen city. Until main.js registers `game`,
+    // the router would bounce to Home, so fall back to the 2D city instead.
+    root.querySelector('[data-city-entry]')?.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      router.go('game');
+      if (router.currentScreen?.()?.id !== 'game') router.go('city', {}, { replace: true });
+    });
 
     root.querySelector('[data-review]')?.addEventListener('click', () => {
       router.go('lesson', { kind: 'review' });

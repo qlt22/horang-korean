@@ -133,7 +133,7 @@ section('CATALOGUE AND DATA MODEL');
 section('MULTI-TILE PLACEMENT RULES');
 /* ================================================================== */
 {
-  const c = rich(cityOf([], { grid: 9 }));
+  const c = rich(cityOf([], { grid: 12 }));
   // Eight hanoks satisfy the apartment's 8-building gate without blocking the
   // top-left quadrant used for the footprint assertions.
   for (let i = 0; i < 8; i++) c.buildings.push(mk('hanok', i % 4, 4 + Math.floor(i / 4)));
@@ -151,10 +151,10 @@ section('MULTI-TILE PLACEMENT RULES');
   ok('3×3 airport overlaps a covered tile', C.placeable(c, 'airport', 0, 0).ok === false);
   ok('overlap reason is human-readable', /taken/i.test(C.placeable(c, 'hanok', 1, 1).reason || ''));
 
-  ok('3×3 airport rejects out-of-bounds x', C.placeable(c, 'airport', 7, 0).reason === 'Outside the grid');
-  ok('3×2 palace rejects out-of-bounds x', C.placeable(c, 'palace', 8, 0).reason === 'Outside the grid');
-  ok('3×1 bridge rejects out-of-bounds x', C.placeable(c, 'bridge', 7, 0).reason === 'Outside the grid');
-  ok('2×2 apartment rejects out-of-bounds y', C.placeable(c, 'apartment', 8, 8).reason === 'Outside the grid');
+  ok('3×3 airport rejects out-of-bounds x', C.placeable(c, 'airport', 10, 0).reason === 'Outside the grid');
+  ok('3×2 palace rejects out-of-bounds x', C.placeable(c, 'palace', 10, 0).reason === 'Outside the grid');
+  ok('3×1 bridge rejects out-of-bounds x', C.placeable(c, 'bridge', 10, 0).reason === 'Outside the grid');
+  ok('2×2 apartment rejects out-of-bounds y', C.placeable(c, 'apartment', 11, 11).reason === 'Outside the grid');
   ok('negative coordinates are rejected', C.placeable(c, 'hanok', -1, 0).ok === false);
 
   const villa = C.place(c, 'villa', 2, 0, 1e6);
@@ -163,7 +163,7 @@ section('MULTI-TILE PLACEMENT RULES');
   ok('villa far tile resolves to villa', C.buildingAt(c, 3, 0) === villa.building);
   ok('occupiedMap now has fourteen tiles', C.occupiedMap(c).size === 14, `${C.occupiedMap(c).size}`);
 
-  const airportCity = rich(cityOf([], { grid: 9 }));
+  const airportCity = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 20; i++) airportCity.buildings.push(mk('hanok', i % 8, Math.floor(i / 8), 9));
   const air = C.place(airportCity, 'airport', 0, 3, 1e6);
   ok('3×3 airport places once its 20-building / 300-resident gate is met', air.ok === true, air.reason || '');
@@ -176,13 +176,13 @@ section('MULTI-TILE PLACEMENT RULES');
     return C.buildingAt(airportCity, 2, 5) === null && C.occupiedMap(airportCity).size === 20;
   })());
 
-  const bridgeCity = rich(cityOf([], { grid: 9 }));
+  const bridgeCity = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 15; i++) bridgeCity.buildings.push(mk('hanok', i % 9, 2 + Math.floor(i / 9)));
   const bridge = C.place(bridgeCity, 'bridge', 0, 0, 1e6);
   ok('3×1 bridge places and covers three columns',
     bridge.ok === true && C.tilesOf(bridge.building).map((t) => t.x).join() === '0,1,2', bridge.reason || '');
 
-  const palaceCity = rich(cityOf([], { grid: 9 }));
+  const palaceCity = rich(cityOf([], { grid: 12 }));
   palaceCity.badges = 12;
   const palace = C.place(palaceCity, 'palace', 0, 0, 1e6);
   ok('3×2 palace places with 12 badges', palace.ok === true, palace.reason || '');
@@ -194,7 +194,7 @@ section('MULTI-TILE PLACEMENT RULES');
 section('UNIQUE BUILDINGS');
 /* ================================================================== */
 {
-  const c = rich(cityOf([], { grid: 9 }));
+  const c = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 15; i++) c.buildings.push(mk('hanok', i % 8, Math.floor(i / 8)));
   const first = C.place(c, 'subway', 0, 2, 1e6);
   ok('first subway places', first.ok === true, first.reason || '');
@@ -202,7 +202,7 @@ section('UNIQUE BUILDINGS');
   ok('second subway is rejected as unique', second.ok === false && /one per city/i.test(second.reason || ''), second.reason || '');
   ok('subway count is still one', C.countType(c, 'subway') === 1);
 
-  const t = rich(cityOf([], { grid: 9 }));
+  const t = rich(cityOf([], { grid: 12 }));
   t.badges = 12;
   for (let i = 0; i < 20; i++) t.buildings.push(mk('hanok', i % 8, Math.floor(i / 8)));
   const tower = C.place(t, 'tower', 0, 4, 1e6);
@@ -214,19 +214,19 @@ section('UNIQUE BUILDINGS');
 section('REQUIREMENTS (BUILDINGS / POP / BADGES / ERA)');
 /* ================================================================== */
 {
-  const one = rich(cityOf([mk('hanok', 0, 0)], { grid: 9 }));
+  const one = rich(cityOf([mk('hanok', 0, 0)], { grid: 12 }));
   ok('cafe needs 2 buildings', /Needs 2 buildings/.test(C.placeable(one, 'cafe', 1, 0).reason || ''));
   ok('sawmill needs 5 buildings', /Needs 5 buildings/.test(C.placeable(one, 'sawmill', 1, 0).reason || ''));
 
-  const tiny = rich(cityOf([mk('hanok', 0, 0)], { grid: 9 }));
+  const tiny = rich(cityOf([mk('hanok', 0, 0)], { grid: 12 }));
   ok('mall needs 120 residents', /Needs 120 residents/.test(C.placeable(tiny, 'mall', 1, 0).reason || ''));
 
-  const threeApts = rich(cityOf([], { grid: 9 }));
+  const threeApts = rich(cityOf([], { grid: 12 }));
   threeApts.buildings.push(mk('apartment', 0, 0), mk('apartment', 2, 0), mk('apartment', 4, 0));
   ok('fixture has 144 residents', C.cityStats(threeApts).population === 144);
   ok('mall unlocks at 120 residents', C.placeable(threeApts, 'mall', 0, 2).ok === true, C.placeable(threeApts, 'mall', 0, 2).reason || '');
 
-  const noBadges = rich(cityOf([], { grid: 9 }));
+  const noBadges = rich(cityOf([], { grid: 12 }));
   ok('palace needs 12 A1 badges', /Needs 12 A1 badges/.test(C.placeable(noBadges, 'palace', 0, 0).reason || ''));
   ok('palace places with 12 badges', C.placeable(noBadges, 'palace', 0, 0, { badges: 12 }).ok === true);
   ok('palace still rejects 11 badges', C.placeable(noBadges, 'palace', 0, 0, { badges: 11 }).ok === false);
@@ -241,13 +241,13 @@ section('REQUIREMENTS (BUILDINGS / POP / BADGES / ERA)');
     requires: { era: 3 },
     unique: false,
   };
-  const era1 = rich(cityOf([], { grid: 9, era: 1 }));
-  const era3 = rich(cityOf([], { grid: 9, era: 3 }));
+  const era1 = rich(cityOf([], { grid: 12, era: 1 }));
+  const era3 = rich(cityOf([], { grid: 12, era: 3 }));
   ok('era-gated building is rejected in era 1', /Needs era 3/.test(C.placeable(era1, '__era_test', 0, 0).reason || ''));
   ok('era-gated building is accepted in era 3', C.placeable(era3, '__era_test', 0, 0).ok === true);
   delete C.CATALOG.__era_test;
 
-  const poor = cityOf([], { grid: 9 });
+  const poor = cityOf([], { grid: 12 });
   poor.resources.brick = 8;
   const paid = C.place(poor, 'hanok', 0, 0, 60);
   ok('place charges the full material cost', paid.ok === true && poor.resources.brick === 0, `brick=${poor.resources.brick}`);
@@ -464,54 +464,54 @@ section('BALANCE: AIRPORT / PALACE / NEXT UNLOCK');
 /* ================================================================== */
 {
   // 20 villas = 320 residents in 40 tiles: the airport's 3×3 still fits.
-  const villas = rich(cityOf([], { grid: 9 }));
+  const villas = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 20; i++) villas.buildings.push(mk('villa', (i % 4) * 2, Math.floor(i / 4)));
   const cover = C.placeable(villas, 'airport', 0, 5);
   ok('20 villas give 320 residents', C.cityStats(villas).population === 320, `${C.cityStats(villas).population}`);
   ok('airport is placeable after 20 villas', cover.ok === true, cover.reason || '');
   const airport = C.place(villas, 'airport', 0, 5, 1e6);
-  ok('airport actually fits on the 9×9 grid', airport.ok === true, airport.reason || '');
+  ok('airport actually fits on the 12×12 grid', airport.ok === true, airport.reason || '');
   ok('airport adds nine covered tiles', airport.ok && C.tilesOf(airport.building).length === 9);
 
   // 20 level-1 hanoks are only 120 residents: the requirement means something.
-  const hanoks = rich(cityOf([], { grid: 9 }));
+  const hanoks = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 20; i++) hanoks.buildings.push(mk('hanok', i % 8, Math.floor(i / 8)));
   ok('20 level-1 hanoks are 120 residents', C.cityStats(hanoks).population === 120);
   ok('airport rejects 20 level-1 hanoks on population', /residents/.test(C.placeable(hanoks, 'airport', 0, 4).reason || ''));
   // Upgrade them to level 9 → 320 residents, same 20 buildings.
-  const upgraded = rich(cityOf([], { grid: 9 }));
+  const upgraded = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 20; i++) upgraded.buildings.push(mk('hanok', i % 8, Math.floor(i / 8), 9));
   ok('20 level-9 hanoks reach 320 residents', C.cityStats(upgraded).population === 320);
   ok('upgrading is enough to unlock the airport', C.placeable(upgraded, 'airport', 0, 4).ok === true);
 
   // Palace needs badges, not population.
-  const palaceCity = rich(cityOf([], { grid: 9 }));
+  const palaceCity = rich(cityOf([], { grid: 12 }));
   palaceCity.badges = 12;
   ok('palace is placeable with 12 badges and no other buildings', C.placeable(palaceCity, 'palace', 0, 0).ok === true);
   ok('palace placed on an empty map', C.place(palaceCity, 'palace', 0, 0, 1e6).ok === true);
 
-  // Other late-game requirements are reachable in a 9×9 city.
-  const lotteCity = rich(cityOf([], { grid: 9 }));
+  // Other late-game requirements are reachable in a 12×12 city.
+  const lotteCity = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 24; i++) lotteCity.buildings.push(mk('officetel', i % 8, Math.floor(i / 8)));
   ok('24 officetels reach 720 residents', C.cityStats(lotteCity).population === 720);
   ok('Lotte Tower unlocks at 24 buildings / 500 residents', C.placeable(lotteCity, 'lotte', 0, 3).ok === true);
 
-  const trainCity = rich(cityOf([], { grid: 9 }));
+  const trainCity = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 18; i++) trainCity.buildings.push(mk('villa', (i % 4) * 2, Math.floor(i / 4)));
   ok('18 villas reach 288 residents', C.cityStats(trainCity).population === 288);
   ok('train station unlocks at 18 buildings / 150 residents', C.placeable(trainCity, 'train', 0, 5).ok === true);
 
-  const stadiumCity = rich(cityOf([], { grid: 9 }));
+  const stadiumCity = rich(cityOf([], { grid: 12 }));
   for (let i = 0; i < 9; i++) stadiumCity.buildings.push(mk('apartment', (i % 3) * 2, Math.floor(i / 3) * 2));
   ok('9 apartments reach 432 residents', C.cityStats(stadiumCity).population === 432);
   ok('stadium unlocks at 400 residents', C.placeable(stadiumCity, 'stadium', 6, 0).ok === true);
 
-  const mallCity = rich(cityOf([], { grid: 9 }));
+  const mallCity = rich(cityOf([], { grid: 12 }));
   mallCity.buildings.push(mk('apartment', 0, 0), mk('apartment', 2, 0), mk('apartment', 4, 0));
   ok('mall unlocks at 144 residents', C.placeable(mallCity, 'mall', 0, 2).ok === true);
 
   // The next unlock from a fresh city is reachable with two hanoks.
-  const fresh = rich(cityOf([], { grid: 6 }));
+  const fresh = rich(cityOf([], { grid: 12 }));
   const firstLocked = C.catalogList().find((d) => !C.placeable(fresh, d.id, 0, 0).ok);
   ok('fresh city has a next unlock', !!firstLocked, firstLocked?.id || 'none');
   ok('fresh next unlock is the cafe', firstLocked?.id === 'cafe', firstLocked?.id || '');
@@ -592,7 +592,7 @@ async function seedCity(buildings = [], opts = {}) {
       s.city = {
         version: 1,
         era: opts.era ?? 1,
-        grid: opts.grid ?? 6,
+        grid: opts.grid ?? 12,
         buildings: buildings.map((b) => ({ level: 1, ...b })),
         resources,
         lastTick: opts.lastTick ?? Date.now(),
@@ -661,10 +661,10 @@ const overflow = () =>
 section('UI: GRID, BUILD SHEET, CATEGORY FILTERS');
 /* ================================================================== */
 try {
-  await seedCity([], { grid: 6 });
-  ok('6×6 grid renders 36 tiles', (await count('[data-tile]')) === 36, `${await count('[data-tile]')}`);
+  await seedCity([], { grid: 12 });
+  ok('12×12 grid renders 144 tiles', (await count('[data-tile]')) === 144, `${await count('[data-tile]')}`);
   ok('map shows 0 buildings', (await text('.cmb-title')).includes('0 buildings'));
-  ok('City tab is active', (await text('.tab[aria-current="page"]')).includes('City'));
+  ok('City nav tab links to the game, not the 2D overview', (await count('.tab[data-tab="game"]')) === 1 && (await attr('.tab[data-tab="game"]', 'aria-current')) === null);
 
   ok('Build CTA opens the sheet', await click('[data-build-cta]'));
   await wait(300);
@@ -732,7 +732,7 @@ try {
 section('UI: AFFORDABILITY AND LOCK REASONS');
 /* ================================================================== */
 try {
-  await seedCity([], { grid: 6, coins: 0, resources: { brick: 0, timber: 0, glass: 0, steel: 0, energy: 0, blueprint: 0 } });
+  await seedCity([], { grid: 12, coins: 0, resources: { brick: 0, timber: 0, glass: 0, steel: 0, energy: 0, blueprint: 0 } });
   await openBuildAt(0, 0);
   ok('zero-wallet hanok row is disabled', await loc('[data-build="hanok"]').isDisabled().catch(() => false));
   ok('zero-wallet hanok shows missing cost', /Missing/.test(await text('[data-build="hanok"]')), await text('[data-build="hanok"]'));
@@ -752,7 +752,7 @@ section('UI: EVERY CATEGORY + 1×1 / 2×1 / 3×2 PLACEMENT');
 /* ================================================================== */
 try {
   const hanoks = [mk('hanok', 0, 5), mk('hanok', 1, 5), mk('hanok', 2, 5), mk('hanok', 3, 5)];
-  await seedCity(hanoks, { grid: 6, badges: 12 });
+  await seedCity(hanoks, { grid: 12, badges: 12 });
 
   ok('villa (res) opens the sheet', await openBuildAt(0, 0));
   ok('villa (res) places', await placeFromSheet('villa'));
@@ -801,7 +801,7 @@ section('UI: 2×2 APARTMENT + UNIQUE SUBWAY');
 /* ================================================================== */
 try {
   const hanoks = Array.from({ length: 8 }, (_, i) => mk('hanok', i % 4, 4 + Math.floor(i / 4)));
-  await seedCity(hanoks, { grid: 6 });
+  await seedCity(hanoks, { grid: 12 });
   ok('apartment sheet opens', await openBuildAt(0, 0));
   ok('apartment places', await placeFromSheet('apartment'));
   const apt = (await readCity()).buildings.find((b) => b.type === 'apartment');
@@ -812,7 +812,7 @@ try {
   await closeSheet();
 
   const fifteen = Array.from({ length: 15 }, (_, i) => mk('hanok', i % 8, Math.floor(i / 8)));
-  await seedCity(fifteen, { grid: 9 });
+  await seedCity(fifteen, { grid: 12 });
   ok('subway unlocks at 15 buildings', await openBuildAt(0, 2));
   ok('subway places once', await placeFromSheet('subway'));
   ok('subway count is one', (await readCity()).buildings.filter((b) => b.type === 'subway').length === 1);
@@ -830,7 +830,7 @@ section('UI: 3×3 AIRPORT + COVERED TAPS + PERSISTENCE');
 try {
   const villas = [];
   for (let i = 0; i < 20; i++) villas.push(mk('villa', (i % 4) * 2, Math.floor(i / 4)));
-  await seedCity(villas, { grid: 9, badges: 12, era: 2, coins: 1e7 });
+  await seedCity(villas, { grid: 12, badges: 12, era: 2, coins: 1e7 });
 
   ok('airport sheet opens on a free plot', await openBuildAt(0, 5));
   const row = await text('[data-build="airport"]');
@@ -855,7 +855,7 @@ try {
   await closeSheet();
   ok('toast burst is capped at 3', (await count('.toast')) <= 3, `${await count('.toast')}`);
 
-  ok('airport row rejects the far edge (no room)', await openBuildAt(8, 8));
+  ok('airport row rejects the far edge (no room)', await openBuildAt(10, 10));
   ok('out-of-bounds airport row is disabled', await loc('[data-build="airport"]').isDisabled().catch(() => false));
   ok('out-of-bounds row explains the 3×3 requirement', /Needs 3×3 inside the map|No room/i.test(await text('[data-build="airport"]')), await text('[data-build="airport"]'));
   await closeSheet();
@@ -878,7 +878,7 @@ section('UI: STATS MOVE IN THE RIGHT DIRECTION');
 /* ================================================================== */
 try {
   // bus
-  await seedCity([mk('hanok', 0, 4), mk('hanok', 1, 4), mk('hanok', 0, 5), mk('hanok', 1, 5)], { grid: 6 });
+  await seedCity([mk('hanok', 0, 4), mk('hanok', 1, 4), mk('hanok', 0, 5), mk('hanok', 1, 5)], { grid: 12 });
   const base = await readStats();
   ok('four hanoks show 24 residents', (await text('[data-live="pop"]')) === '24', await text('[data-live="pop"]'));
   ok('base happiness is 35', (await text('[data-live="happy"]')) === '35', await text('[data-live="happy"]'));
@@ -892,7 +892,7 @@ try {
   ok('happiness readout matches stats', Number(await text('[data-live="happy"]')) === Math.round(bus.happiness));
 
   // school
-  await seedCity([mk('apartment', 0, 0), mk('apartment', 2, 0), mk('apartment', 4, 0)], { grid: 6 });
+  await seedCity([mk('apartment', 0, 0), mk('apartment', 2, 0), mk('apartment', 4, 0)], { grid: 12 });
   const schoolBase = await readStats();
   await openBuildAt(0, 2);
   ok('school places', await placeFromSheet('school'));
@@ -902,7 +902,7 @@ try {
   ok('school adds six jobs', school.jobs === 6);
 
   // park
-  await seedCity([mk('hanok', 0, 0), mk('hanok', 1, 0)], { grid: 6 });
+  await seedCity([mk('hanok', 0, 0), mk('hanok', 1, 0)], { grid: 12 });
   const parkBase = await readStats();
   await openBuildAt(2, 0);
   ok('park places', await placeFromSheet('park'));
@@ -912,7 +912,7 @@ try {
 
   // power
   const twelve = Array.from({ length: 12 }, (_, i) => mk('hanok', i % 6, Math.floor(i / 6)));
-  await seedCity(twelve, { grid: 6 });
+  await seedCity(twelve, { grid: 12 });
   const powerBase = await readStats();
   await openBuildAt(0, 2);
   ok('power places', await placeFromSheet('power'));
@@ -923,7 +923,7 @@ try {
 
   // metro
   const ten = Array.from({ length: 10 }, (_, i) => mk('hanok', i % 5, Math.floor(i / 5)));
-  await seedCity(ten, { grid: 6 });
+  await seedCity(ten, { grid: 12 });
   const metroBase = await readStats();
   await openBuildAt(0, 2);
   ok('metro places', await placeFromSheet('metro'));
@@ -934,7 +934,7 @@ try {
 
   // industry pollution
   const clean = [mk('hanok', 0, 0), mk('hanok', 1, 0), mk('hanok', 2, 0), mk('office', 0, 1)];
-  await seedCity(clean, { grid: 6 });
+  await seedCity(clean, { grid: 12 });
   const cleanStats = await readStats();
   await openBuildAt(2, 1);
   ok('brickworks places', await placeFromSheet('brickworks'));
@@ -958,13 +958,13 @@ try {
   ];
   for (const [n, pop, tier] of cases) {
     const buildings = Array.from({ length: n }, (_, i) => mk('officetel', i % 8, Math.floor(i / 8)));
-    await seedCity(buildings, { grid: 9 });
+    await seedCity(buildings, { grid: 12 });
     const s = await readStats();
     ok(`${pop} residents show ${tier}`, s.population === pop && s.tier.name === tier, `${s.population}/${s.tier.name}`);
     ok(`${tier} is the UI tier`, (await text('[data-live="tier"]')) === tier, await text('[data-live="tier"]'));
   }
   const mega = Array.from({ length: 81 }, (_, i) => mk('officetel', i % 9, Math.floor(i / 9), 3));
-  await seedCity(mega, { grid: 9 });
+  await seedCity(mega, { grid: 12 });
   const ms = await readStats();
   ok('3402 residents show Megacity', ms.population === 3402 && ms.tier.name === 'Megacity', `${ms.population}/${ms.tier.name}`);
   ok('Megacity is the UI tier', (await text('[data-live="tier"]')) === 'Megacity');
@@ -976,7 +976,7 @@ try {
 section('UI: INSPECTOR — UPGRADE, SELL, MAX LEVEL');
 /* ================================================================== */
 try {
-  await seedCity([mk('villa', 0, 0)], { grid: 6, coins: 1e7 });
+  await seedCity([mk('villa', 0, 0)], { grid: 12, coins: 1e7 });
   ok('villa inspector opens from its cover', await openBuildingOfType('villa'));
   const ins = await text('.sheet');
   ok('inspector shows category / footprint / level', /Residential/i.test(ins) && /2×1/.test(ins) && /Level 1/i.test(ins), ins);
@@ -1001,7 +1001,7 @@ try {
   ok('selling removes the building', sold.buildings.length === 0);
   ok('selling frees the map', (await count('.city-cell.is-built')) === 0);
 
-  await seedCity([mk('hanok', 0, 0, 10)], { grid: 6 });
+  await seedCity([mk('hanok', 0, 0, 10)], { grid: 12 });
   ok('max-level inspector opens', await openBuildingOfType('hanok'));
   ok('max-level building has no upgrade button', (await count('[data-up]')) === 0);
   ok('max-level copy is shown', /Maximum level/.test(await text('.sheet')), await text('.sheet'));
@@ -1014,7 +1014,7 @@ try {
 section('UI: TRANSIT OVERLAY');
 /* ================================================================== */
 try {
-  await seedCity([mk('hanok', 0, 0), mk('bus', 1, 0)], { grid: 6 });
+  await seedCity([mk('hanok', 0, 0), mk('bus', 1, 0)], { grid: 12 });
   ok('overlay button shows 100% coverage', /100%/.test(await text('[data-overlay]')), await text('[data-overlay]'));
   ok('overlay starts off', (await attr('[data-overlay]', 'aria-pressed')) === 'false');
   ok('overlay toggles on', await click('[data-overlay]'));
@@ -1042,7 +1042,7 @@ try {
   ok('overlay aria-pressed is false', (await attr('[data-overlay]', 'aria-pressed')) === 'false');
   ok('map loses the is-overlay class', !/is-overlay/.test((await attr('.city-map', 'class')) || ''));
 
-  await seedCity([mk('hanok', 0, 0)], { grid: 6 });
+  await seedCity([mk('hanok', 0, 0)], { grid: 12 });
   await click('[data-overlay]');
   await wait(250);
   ok('no-transit overlay explains itself', /No transit yet/i.test(await text('.toast')), await text('.toast'));
@@ -1055,7 +1055,7 @@ try {
 section('UI: ACHIEVEMENTS SHEET');
 /* ================================================================== */
 try {
-  await seedCity([], { grid: 6 });
+  await seedCity([], { grid: 12 });
   ok('achievements button opens the sheet', await click('[data-ach]'));
   await wait(300);
   ok('achievements sheet title is correct', /City achievements/i.test(await text('.sheet h2')), await text('.sheet h2'));
@@ -1073,7 +1073,7 @@ section('UI: PRESTIGE');
 /* ================================================================== */
 try {
   await seedCity([mk('hanok', 0, 0), mk('hanok', 1, 0)], {
-    grid: 6,
+    grid: 12,
     lifetimeWon: 25000,
     achievements: ['first_brick', 'pop100'],
     badges: 2,
@@ -1122,7 +1122,7 @@ try {
     { id: 'old_off_a', type: 'office', x: 3, y: 3, level: 1 },
     { id: 'old_off_b', type: 'office', x: 4, y: 3, level: 1 },
   ];
-  await seedCity(legacy, { grid: 6 });
+  await seedCity(legacy, { grid: 12 });
   const migration = await page.evaluate(async () => {
     const C = await import('/app/js/core/city-data.js');
     const c = window.horang.state.city;
@@ -1153,7 +1153,7 @@ section('UI: OFFLINE REPORT (2 HOURS)');
 /* ================================================================== */
 try {
   const twoHoursAgo = Date.now() - 2 * 3600 * 1000;
-  await seedCity([mk('brickworks', 0, 0)], { grid: 6, lastTick: twoHoursAgo, coins: 0 });
+  await seedCity([mk('brickworks', 0, 0)], { grid: 12, lastTick: twoHoursAgo, coins: 0 });
   await page.waitForTimeout(900);
   const report = await text('.sheet');
   ok('offline report appears', /While you were away/i.test(report), report.split(' ').slice(0, 4).join(' '));
@@ -1187,7 +1187,7 @@ const CITY_FIXTURE = [
   mk('palace', 0, 4),
 ];
 try {
-  await seedCity(CITY_FIXTURE, { grid: 6, badges: 12 });
+  await seedCity(CITY_FIXTURE, { grid: 12, badges: 12 });
   const s = await readStats();
   ok('integration city has 144 residents', s.population === 144, `${s.population}`);
   ok('integration city is Town', s.tier.name === 'Town');
@@ -1207,21 +1207,24 @@ try {
   ok('home card shows income to one decimal', card.includes(`₩${s.income.toFixed(1)}/s`), `₩${s.income.toFixed(1)}/s / ${card}`);
   ok('home card shows happiness', card.includes(`${Math.round(s.happiness)}%`), card);
   ok('home card shows building count', card.includes('8 buildings'), card);
-  ok('home card links to the city', await click('.city-card'));
-  await wait(500);
-  ok('home card navigates to #/city', (await page.evaluate(() => location.hash)) === '#/city');
-  ok('City tab is active after the home card', (await text('.tab[aria-current="page"]')).includes('City'));
+  ok('home card links to the 3D city mode', (await loc('.city-card').getAttribute('data-go')) === 'game');
+  await click('.city-card');
+  await wait(900);
+  ok('home card navigates to #/game', (await page.evaluate(() => location.hash)) === '#/game');
+  ok('the full-screen game hides the bottom nav', (await page.evaluate(() => document.getElementById('tabbar').hidden)) === true);
+  await page.locator('[data-study]').click();
+  await wait(700);
 
   await page.goto(`${BASE}/#/profile`, { waitUntil: 'networkidle' });
   await wait(500);
-  ok('profile has one Seoul Works row', (await count('[data-go="city"]')) === 1);
-  const prof = (await text('[data-go="city"]')).toLowerCase();
+  ok('profile has one Seoul Works row', (await count('[data-city-entry]')) === 1);
+  const prof = (await text('[data-city-entry]')).toLowerCase();
   ok('profile row shows era + tier', prof.includes('era 1') && prof.includes('town'), prof);
   ok('profile row shows population', prof.includes('144 residents'), prof);
   ok('profile row shows income', prof.includes(`₩${s.income.toFixed(1)}/s`), `₩${s.income.toFixed(1)}/s / ${prof}`);
-  ok('profile row links to the city', await click('[data-go="city"]'));
-  await wait(500);
-  ok('profile row navigates to #/city', (await page.evaluate(() => location.hash)) === '#/city');
+  ok('profile row enters the 3D city mode', await click('[data-city-entry]'));
+  await wait(900);
+  ok('profile row navigates to #/game', (await page.evaluate(() => location.hash)) === '#/game');
 
   await page.evaluate(() => {
     const s = window.horang.state;
@@ -1281,17 +1284,17 @@ try {
 section('QUALITY: OVERFLOW, DEAD BUTTONS, TOASTS, REDUCED MOTION, ERRORS');
 /* ================================================================== */
 try {
-  // city at both widths, including a 9×9 grid and an open sheet
+  // city at both widths, including a 12×12 grid and an open sheet
   const villas = [];
   for (let i = 0; i < 20; i++) villas.push(mk('villa', (i % 4) * 2, Math.floor(i / 4)));
   villas.push(mk('airport', 0, 5));
-  await seedCity(villas, { grid: 9, badges: 12, era: 2 });
+  await seedCity(villas, { grid: 12, badges: 12, era: 2 });
   const ovMobile = await overflow();
-  ok('9×9 city has no overflow at 390', ovMobile.doc <= ovMobile.client + 1 && ovMobile.body <= ovMobile.client + 1, JSON.stringify(ovMobile));
+  ok('12×12 city has no overflow at 390', ovMobile.doc <= ovMobile.client + 1 && ovMobile.body <= ovMobile.client + 1, JSON.stringify(ovMobile));
   await page.setViewportSize({ width: 1440, height: 900 });
   await wait(300);
   const ovDesktop = await overflow();
-  ok('9×9 city has no overflow at 1440', ovDesktop.doc <= ovDesktop.client + 1, JSON.stringify(ovDesktop));
+  ok('12×12 city has no overflow at 1440', ovDesktop.doc <= ovDesktop.client + 1, JSON.stringify(ovDesktop));
   await page.setViewportSize({ width: 390, height: 844 });
   await wait(250);
 
@@ -1317,7 +1320,7 @@ try {
   await wait(250);
   ok('Next unlock card opened a sheet', (await count('.sheet')) === 1);
   await closeSheet();
-  await seedCity([], { grid: 6, coins: 1e7 });
+  await seedCity([], { grid: 12, coins: 1e7 });
   const gridBefore = (await readCity()).grid;
   ok('Expand is not dead', await click('[data-expand]'));
   await wait(500);
@@ -1345,7 +1348,7 @@ try {
   ok('toast stack stays inside the viewport', toastBox && toastBox.left >= 0 && toastBox.right <= toastBox.vw + 1, JSON.stringify(toastBox));
 
   // reduced motion
-  await seedCity([mk('hanok', 0, 0)], { grid: 6, reducedMotion: true });
+  await seedCity([mk('hanok', 0, 0)], { grid: 12, reducedMotion: true });
   ok('reduced motion class is applied', /reduce-motion/.test(await page.evaluate(() => document.body.className)));
   await page.evaluate(() => window.horang.ui.confetti({ count: 20 }));
   await wait(100);

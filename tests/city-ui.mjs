@@ -23,7 +23,7 @@ const seed = async () => {
     s.coins = 1e6;
     s.gems = 7;
     s.city = {
-      version: 1, era: 1, grid: 6, buildings: [],
+      version: 1, era: 1, grid: 12, buildings: [],
       resources: { brick: 5000, timber: 5000, glass: 5000, steel: 5000, energy: 500, blueprint: 5 },
       lastTick: Date.now(), lifetimeWon: 0, totalBuilt: 0, achievements: [], prestigeCount: 0, badges: 0, unbanked: 0,
     };
@@ -33,8 +33,9 @@ const seed = async () => {
 await seed();
 await p.goto(BASE + '/#/city', { waitUntil: 'networkidle' });
 await p.waitForTimeout(800);
-ok('city renders a 6x6 grid', (await p.locator('[data-tile]').count()) === 36, `${await p.locator('[data-tile]').count()}`);
-ok('city is the active tab', (await p.locator('.tab[aria-current="page"]').innerText()).includes('City'));
+ok('city renders a 12×12 grid', (await p.locator('[data-tile]').count()) === 144, `${await p.locator('[data-tile]').count()}`);
+ok('city overview is the 2D screen, not a bottom tab', (await p.locator('.city').count()) === 1 && (await p.locator('.tab[aria-current="page"]').count()) === 0);
+ok('City bottom tab points at the 3D game', (await p.locator('.tab[data-tab="game"]').count()) === 1);
 await p.screenshot({ path: `${OUT}/city-ui-01-empty.png` });
 
 // build a hanok
@@ -118,6 +119,7 @@ await p.screenshot({ path: `${OUT}/city-ui-06-offline.png` });
 await p.goto(BASE + '/#/home', { waitUntil: 'networkidle' });
 await p.waitForTimeout(700);
 ok('home shows the city card', (await p.locator('.city-card').count()) === 1);
+ok('home city card enters the 3D game', (await p.locator('.city-card').getAttribute('data-go')) === 'game');
 await p.screenshot({ path: `${OUT}/city-ui-07-home-card.png` });
 
 const over = await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
